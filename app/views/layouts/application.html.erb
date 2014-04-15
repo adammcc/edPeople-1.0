@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ep</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+	<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </a>
+        <a class="brand" href="#">Some Store</a>
+        <div class="nav-collapse">
+          <ul class="nav">
+            <li><%= link_to "About" %></li>
+            <li><%= link_to "People" %></li>
+            <li><%= link_to "Organizations" %></li>
+            <li><%= link_to "Jobs" %></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="container">
+	<% if user_signed_in? %>
+	  Logged in as <strong><%= current_user.email %></strong>.
+	  <%= link_to 'Edit profile', edit_user_registration_path %> |
+	  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+	<% else %>
+	  <%= link_to "Sign up", new_user_registration_path %> |
+	  <%= link_to "Login", new_user_session_path %>
+	<% end %>
+
+
+	<%= yield %>
+</div>
+
+</body>
+</html>
