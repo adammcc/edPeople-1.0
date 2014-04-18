@@ -2,8 +2,16 @@ Ep::Application.routes.draw do
   
 
   devise_for :users
-
-  root :to => 'users#index'
+  
+  
+  devise_scope :user do
+    authenticated :user do
+      root :to => 'users#index'
+    end
+    unauthenticated :user do
+      root :to => 'devise/registrations#new'
+    end
+  end
 
   resources :users
 

@@ -2,14 +2,17 @@
 <html>
 <head>
   <title>Ep</title>
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+  <![endif]-->
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
-<body>
-
+<body id='ep'>
+<div class="container">
 	<div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
@@ -18,29 +21,43 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <a class="brand" href="#">Some Store</a>
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li><%= link_to "About" %></li>
-            <li><%= link_to "People" %></li>
-            <li><%= link_to "Organizations" %></li>
-            <li><%= link_to "Jobs" %></li>
+        <a class="brand" href="#">edPeople</a>
+        <div class="nav-collapse pull-right">
+          <ul class="nav nav-tabs">
+
+            <% if user_signed_in? %>
+              <li class="<%= 'active' if current_page?(user_path(current_user)) %>"><%= link_to "Home", user_path(current_user) %></li>
+            <% else %>
+              <li class="<%= 'active' if current_page?(root_path) %>"><%= link_to "Home", root_path %></li>
+            <% end %>
+
+            <li class="<%= 'active' if current_page?(users_path) %>"><%= link_to "People", users_path %></li>
+            <li><a href="#" data-toggle="tab">Organizations</a></li>
+            <li><a href="#" data-toggle="tab">Jobs</a></li>
           </ul>
+
+          <ul class="nav">
+					  <li class="dropdown">
+					    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					      Account
+					      <b class="caret"></b>
+					    </a>
+					    <ul class="dropdown-menu">
+					    	<% if user_signed_in? %>
+								  <li><%= link_to 'Edit profile', edit_user_registration_path %></li> 
+								  <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li> 
+								<% else %>
+								  <li><%= link_to "Sign up", new_user_registration_path %></li> 
+								  <li><%= link_to "Login", new_user_session_path %></li> 
+								<% end %>
+					    </ul>
+					  </li>
+					</ul>
+
         </div>
       </div>
     </div>
   </div>
-
-<div class="container">
-	<% if user_signed_in? %>
-	  Logged in as <strong><%= current_user.email %></strong>.
-	  <%= link_to 'Edit profile', edit_user_registration_path %> |
-	  <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-	<% else %>
-	  <%= link_to "Sign up", new_user_registration_path %> |
-	  <%= link_to "Login", new_user_session_path %>
-	<% end %>
-
 
 	<%= yield %>
 </div>

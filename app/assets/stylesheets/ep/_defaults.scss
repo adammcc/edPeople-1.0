@@ -1,0 +1,12 @@
+body#ep {
+	background-color: $ep-light-gray;
+	a { 
+		color: $ep-links; 
+	}
+	a:hover {
+		color: $ep-light-blue; 
+	}
+	.white-bg {
+		background-color: white;
+	}
+}

@@ -1,3 +1,19 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.ep-profile-header {
+	.ep-profile-image {
+		margin: 20px;
+		float: left;
+	}
+	.ep-user-info {
+		float: left;
+	}
+	.ep-profile-actions {
+		float: left;
+		margin-top: 20px;
+	}
+}
+
+@media only screen and (max-width: 767px) {
+	.ep-profile-actions {
+		text-align: center;
+	}
+}
