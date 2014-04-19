@@ -5,6 +5,7 @@
 	}
 	.ep-user-info {
 		float: left;
+		width: 200px;
 	}
 	.ep-profile-actions {
 		float: left;
@@ -12,8 +13,30 @@
 	}
 }
 
+.ep-profile-section-header {
+	background-color: $ep-profile-section-header;
+	h4 {
+		padding: 5px;
+	}
+}
+
+.ep-profile-section-body {
+	p {
+		padding: 5px;
+	}
+}
+
 @media only screen and (max-width: 767px) {
+	.ep-hr-line {
+		border-top: 1px solid $ep-light-gray;
+		margin: 0 auto;
+		margin-bottom: 10px;
+		width: 80%;
+	}
 	.ep-profile-actions {
 		text-align: center;
+	}
+	.ep-user-info {
+		margin-left: 20px;
 	}
 }

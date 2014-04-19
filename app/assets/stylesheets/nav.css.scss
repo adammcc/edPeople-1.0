@@ -1,0 +1,12 @@
+body#ep {
+	.dropdown-menu {
+		border: 0;
+		outline: none;
+	}
+	.navbar .nav > li > .dropdown-menu:before {
+		top: -100px;
+	}
+	.navbar .nav > li > .dropdown-menu:after {
+		top: -5px;
+	}
+}

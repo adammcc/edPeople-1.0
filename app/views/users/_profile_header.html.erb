@@ -1,22 +1,23 @@
 <div class="span12 ep-profile-header white-bg">
 	
 	<div class="row">
-		<div class="span7">
+		<div class="span7 ep-user-snapshot">
 			<div class="ep-profile-image">
 			  <%= image_tag("me.png", height: '120', width: '120') %>
 			</div>
 
 			<div class="ep-user-info">
 				<h3><%= @user.name %></h3>
-				<p><%= @user.email %></p>
+				<p>Teacher turned full stack web developer.</p>
 			</div>
 		</div>
 
 		<div class="span5 ep-profile-actions">
-			<p>Sign in to become Adam's Connection</p>
-			<p>Send Adam a message</p>
-			<p>Download Adam's resume</p>
-			<p>View Adam's portfolio</p>
+			<div class="ep-hr-line"></div>
+			<p><i class="fa fa-plus"></i>&nbsp Sign in to become Adam's Connection</p>
+			<p><i class="fa fa-envelope"></i> Send Adam a message</p>
+			<p><i class="fa fa-file-text"></i>&nbsp Download Adam's resume</p>
+			<p><i class="fa fa-folder-open"></i> View Adam's portfolio</p>
 		</div>
 	</div>
 
