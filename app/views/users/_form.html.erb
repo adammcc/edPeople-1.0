@@ -1,16 +1,19 @@
 <%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+  
   <div class="control-group">
     <%= f.label :email, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :email, :class => 'text_field' %>
     </div>
   </div>
+  
   <div class="control-group">
     <%= f.label :first_name, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :first_name, :class => 'text_field' %>
     </div>
   </div>
+  
   <div class="control-group">
     <%= f.label :last_name, :class => 'control-label' %>
     <div class="controls">
@@ -23,4 +26,5 @@
     <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 users_path, :class => 'btn' %>
   </div>
+
 <% end %>
