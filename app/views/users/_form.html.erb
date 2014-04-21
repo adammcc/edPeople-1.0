@@ -1,5 +1,6 @@
 <%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
   
+<h4>Your info</h4>
   <div class="control-group">
     <%= f.label :email, :class => 'control-label' %>
     <div class="controls">
@@ -18,6 +19,34 @@
     <%= f.label :last_name, :class => 'control-label' %>
     <div class="controls">
       <%= f.text_field :last_name, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :image_url, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :image_url, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :headline, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :headline, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :pro_summary, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :pro_summary, :class => 'text_field' %>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <%= f.label :skill, :class => 'control-label' %>
+    <div class="controls">
+      <%= f.text_field :skill, :class => 'text_field' %>
     </div>
   </div>
 

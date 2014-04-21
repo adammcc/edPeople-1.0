@@ -1,0 +1,47 @@
+<div class='ep-form'>
+	<%= form_for @colleges.first, :url => { controller: 'college', :action => "do_add_college" }, :html => { :method => "put", :class => 'form-horizontal' } do |f| %>
+		
+		 <div class="control-group">
+	    <%= f.label :college_name, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.collection_select :name, College.all, :id, :name, {:include_blank => 'Please Select'}, :class => 'text_field' %>
+	    </div>
+	  </div>
+
+	  <div class="control-group">
+	    <%= f.label :degree_type, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.text_field :degree_type, :value => '', :class => 'text_field' %>
+
+	    </div>
+	  </div>
+
+	  <div class="control-group">
+	    <%= f.label :major, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.text_field :major, :value => '', :class => 'text_field' %>
+	    </div>
+	  </div>
+
+	  <div class="control-group">
+	    <%= f.label :start_date, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.text_field :start_date, :value => '', :class => 'text_field' %>
+	    </div>
+	  </div>
+
+	  <div class="control-group">
+	    <%= f.label :end_date, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.text_field :end_date, :value => '', :class => 'text_field' %>
+	    </div>
+	  </div>
+
+	  <div class="">
+	    <%= f.submit 'Add', :class => 'btn btn-primary' %>
+	    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+	                users_path, :class => 'btn' %>
+	  </div>
+
+	<% end %>
+</div>

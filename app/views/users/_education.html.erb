@@ -3,5 +3,14 @@
 </div>
 
 <div class="ep-profile-section-body">
-	<p>Some info</p>
+	<% for college in @user.colleges %>
+		<%= render partial: 'college', locals: { college: college, user: @user } %>
+	<% end %>
+	<br><br>
+	<%# link_to "Add", add_college_college_path %>
+	<a class="" data-toggle="collapse" data-target="#ep-add-college">Add</a>
+
+	<div id="ep-add-college" class="collapse">
+		<%= render :partial => '../views/college/add_form', locals: { college: @colleges } %>
+	</div>
 </div>

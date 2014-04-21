@@ -6,7 +6,8 @@ class User
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation,
+  :remember_me, :pro_summary, :skill, :headline, :image_url
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -25,6 +26,7 @@ class User
   field :last_sign_in_at,    :type => Time
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
+  
 
   ## Confirmable
   # field :confirmation_token,   :type => String
@@ -36,9 +38,15 @@ class User
   # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
   # field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
   # field :locked_at,       :type => Time
-  field :first_name, type: String
-  field :last_name, type: String
-  field :email, type: String
+  field :first_name,  type: String
+  field :last_name,   type: String
+  field :image_url,   type: String
+  field :email,       type: String
+  field :pro_summary, type: String
+  field :skill,       type: String
+  field :headline,    type: String
+
+  has_and_belongs_to_many :colleges
 
   def name
     "#{first_name} #{last_name}"

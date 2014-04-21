@@ -3,12 +3,12 @@
 	<div class="row">
 		<div class="span7 ep-user-snapshot">
 			<div class="ep-profile-image">
-			  <%= image_tag("me.png", height: '120', width: '120') %>
+			  <%= image_tag(@user.image_url, height: '120', width: '120') %>
 			</div>
 
 			<div class="ep-user-info">
 				<h3><%= @user.name %></h3>
-				<p>Teacher turned full stack web developer.</p>
+				<p><%= @user.headline %></p>
 			</div>
 		</div>
 

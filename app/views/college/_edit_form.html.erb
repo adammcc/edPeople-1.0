@@ -1,0 +1,47 @@
+<div class='ep-form'>
+	<%= form_for college, :html => { :class => 'form-horizontal' } do |f| %>
+		
+		<div class="control-group">
+	    <%= f.label :college_name, :class => 'control-label' %>
+	    <div class="controls">
+	    	<%= f.hidden_field :name, :class => 'text_field' %>
+	     	<%= college.name %>
+	    </div>
+	  </div>
+
+	  <div class="control-group">
+	    <%= f.label :degree_type, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.text_field :degree_type, :class => 'text_field', :value => college.users_meta_data[current_user.id.to_s] ? college.users_meta_data[current_user.id.to_s]["degree_type"] : '' %>
+
+	    </div>
+	  </div>
+
+	  <div class="control-group">
+	    <%= f.label :major, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.text_field :major, :class => 'text_field', :value => college.users_meta_data[current_user.id.to_s] ? college.users_meta_data[current_user.id.to_s]["major"] : '' %>
+	    </div>
+	  </div>
+
+	  <div class="control-group">
+	    <%= f.label :start_date, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.text_field :start_date, :class => 'text_field', :value => college.users_meta_data[current_user.id.to_s] ? college.users_meta_data[current_user.id.to_s]["start_date"] : '' %>
+	    </div>
+	  </div>
+
+	  <div class="control-group">
+	    <%= f.label :end_date, :class => 'control-label' %>
+	    <div class="controls">
+	      <%= f.text_field :end_date, :class => 'text_field', :value => college.users_meta_data[current_user.id.to_s] ? college.users_meta_data[current_user.id.to_s]["end_date"] : '' %>
+	    </div>
+	  </div>
+
+	  <div class="form-actions">
+	    <%= f.submit 'Update', :class => 'btn btn-primary' %>
+	    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+	                users_path, :class => 'btn' %>
+	  </div>
+	<% end %>
+</div>
