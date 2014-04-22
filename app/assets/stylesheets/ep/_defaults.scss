@@ -3,6 +3,8 @@ body#ep {
 	color: $ep-deep-gray;
 	a { 
 		color: $ep-links; 
+		cursor: pointer;
+		text-decoration: none;
 	}
 	a:hover {
 		color: $ep-light-blue; 
