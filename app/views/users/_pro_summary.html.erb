@@ -1,7 +1,11 @@
 <div class="ep-profile-section-header">
-	<h4>Pro summary</h4>
+	<h4>
+		Pro summary
+		<a class="ep-edit-pro-summary"><i class="fa fa-pencil"></i> Edit</a>
+	</h4>
 </div>
 
 <div class="ep-profile-section-body">
-	<p><%= @user.pro_summary %></p>
+	<p><%= best_in_place user, :pro_summary, :type => :textarea, activator: '.ep-edit-pro-summary' %></p>
+	<!-- <p><%# @user.pro_summary %></p> -->
 </div>
