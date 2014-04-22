@@ -13,13 +13,20 @@ Ep::Application.routes.draw do
     end
   end
 
-  resources :users
+  resources :users do
+    member do
+      put :add_experience
+    end
+  end 
+
   resources :college, only: [:new, :edit, :update] do
     member do
       get :add_college
       put :do_add_college
     end
   end
+
+  resources :experiences
 
 
 

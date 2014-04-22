@@ -9,7 +9,7 @@
 		</div>
 
 		<div class="ep-profile-section white-bg">
-			<%= render partial: 'experience' %>
+			<%= render partial: 'experience', locals: { colleges: @experiences } %>
 		</div>
 
 		<div class="ep-profile-section white-bg">
@@ -27,7 +27,6 @@
 		</div>
 	</div>
 </div>
-
 
 <div class="form-actions">
   <%= link_to t('.back', :default => t("helpers.links.back")),

@@ -7,7 +7,7 @@ class User
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation,
-  :remember_me, :pro_summary, :skill, :headline, :image_url
+  :remember_me, :pro_summary, :skill, :headline, :image_url, :experiences
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -47,6 +47,7 @@ class User
   field :headline,    type: String
 
   has_and_belongs_to_many :colleges
+  embeds_many :experiences
 
   def name
     "#{first_name} #{last_name}"

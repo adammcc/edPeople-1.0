@@ -1,0 +1,61 @@
+<div class='ep-form'>
+	<%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+		
+
+			<%= f.fields_for experience do |p| %>
+				<%= p.hidden_field :id %>
+				<div class="control-group">
+				  <%= p.label :title, :class => 'control-label' %>	
+				  <div class="controls">
+				    <%= p.text_field :title, :class => 'text_field' %>
+			    </div>
+		    </div>
+
+		    <div class="control-group">
+				  <%= p.label :employer, :class => 'control-label' %>	
+				  <div class="controls">
+				    <%= p.text_field :employer, :class => 'text_field' %>
+			    </div>
+		    </div>
+
+		    <div class="control-group">
+				  <%= p.label :school, :class => 'control-label' %>	
+				  <div class="controls">
+				  	<%= p.hidden_field :id %>
+				    <%= p.text_field :school, :class => 'text_field' %>
+			    </div>
+		    </div>
+
+		    <div class="control-group">
+				  <%= p.label :district, :class => 'control-label' %>	
+				  <div class="controls">
+				  	<%= p.hidden_field :id %>
+				    <%= p.text_field :district, :class => 'text_field' %>
+			    </div>
+		    </div>
+
+		     <div class="control-group">
+				  <%= p.label :boro, :class => 'control-label' %>	
+				  <div class="controls">
+				  	<%= p.hidden_field :id %>
+				    <%= p.text_field :boro, :class => 'text_field' %>
+			    </div>
+		    </div>
+
+		    <div class="control-group">
+				  <%= p.label :description, :class => 'control-label' %>	
+				  <div class="controls">
+				  	<%= p.hidden_field :id %>
+				    <%= p.text_area :description, :class => 'text_field', :rows => '6' %>
+			    </div>
+		    </div>
+
+		  <% end %>
+
+	  <div class="form-actions">
+	    <%= f.submit 'Update', :class => 'btn btn-primary' %>
+	    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+	                users_path, :class => 'btn' %>
+	  </div>
+	<% end %>
+</div>

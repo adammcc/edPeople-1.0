@@ -13,7 +13,6 @@
 	    <%= f.label :degree_type, :class => 'control-label' %>
 	    <div class="controls">
 	      <%= f.text_field :degree_type, :class => 'text_field', :value => college.users_meta_data[current_user.id.to_s] ? college.users_meta_data[current_user.id.to_s]["degree_type"] : '' %>
-
 	    </div>
 	  </div>
 

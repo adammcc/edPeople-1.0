@@ -3,5 +3,12 @@
 </div>
 
 <div class="ep-profile-section-body">
-	<p>Some info</p>
+	<% for experience in @user.experiences %>
+		<%= render partial: 'job', locals: { experience: experience, user: @user } %>
+	<% end %>
+	<a class="" data-toggle="collapse" data-target="#ep-add-experience">Add</a>
+
+	<div id="ep-add-experience" class="collapse">
+		<%= render :partial => '../views/experience/add_form', locals: { experience: experience } %>
+	</div>
 </div>

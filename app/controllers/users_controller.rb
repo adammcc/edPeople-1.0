@@ -17,6 +17,7 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @colleges = College.all
+    @experiences = Experience.all
 
     respond_to do |format|
       format.html # show.html.erb
@@ -61,6 +62,16 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
+    experience = @user.experiences.find(params[:user][:experience][:id])
+    experience.update_attributes(title: params[:user][:experience][:title],
+                                employer: params[:user][:experience][:employer],
+                                school: params[:user][:experience][:school],
+                                district: params[:user][:experience][:district],
+                                boro: params[:user][:experience][:boro],
+                                description: params[:user][:experience][:description]
+                              )
+    experience.save
+
     respond_to do |format|
       if @user.update_attributes(params[:user])
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
@@ -70,6 +81,21 @@ class UsersController < ApplicationController
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def add_experience
+    @user = User.find(params[:id])
+
+    experience = @user.experiences.create(title: params[:user][:experience][:title],
+                                employer: params[:user][:experience][:employer],
+                                school: params[:user][:experience][:school],
+                                district: params[:user][:experience][:district],
+                                boro: params[:user][:experience][:boro],
+                                description: params[:user][:experience][:description]
+                              )
+    experience.save
+
+    redirect_to :back
   end
 
   # DELETE /users/1
