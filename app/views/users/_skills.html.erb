@@ -2,6 +2,8 @@
 	<h4>Skills</h4>
 </div>
 
-<div class="ep-profile-section-body">
-	<p><%= @user.skill %></p>
+<div class="ep-skills ep-profile-section-body">
+	<% for skill in @user.skills %>
+		<div class="ep-skill"><%= skill.name %></div>
+	<% end %>
 </div>

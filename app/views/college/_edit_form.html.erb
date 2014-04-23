@@ -10,7 +10,6 @@
     <%= f.label :degree_type, :class => '' %>
     <%= f.text_field :degree_type, :class => 'text_field', :value => college.users_meta_data[current_user.id.to_s] ? college.users_meta_data[current_user.id.to_s]["degree_type"] : '' %>
  
-
     <%= f.label :major, :class => '' %>
     <%= f.text_field :major, :class => 'text_field', :value => college.users_meta_data[current_user.id.to_s] ? college.users_meta_data[current_user.id.to_s]["major"] : '' %>
 

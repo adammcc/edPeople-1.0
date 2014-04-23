@@ -1,6 +1,12 @@
 Ep::Application.routes.draw do
   
 
+  get "skill/new"
+
+  get "skill/create"
+
+  get "skill/destroy"
+
   devise_for :users
   
   

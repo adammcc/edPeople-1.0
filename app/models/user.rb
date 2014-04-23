@@ -47,6 +47,7 @@ class User
   field :headline,    type: String
 
   has_and_belongs_to_many :colleges
+  has_and_belongs_to_many :skills
   embeds_many :experiences
 
   def name
