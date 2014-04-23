@@ -28,6 +28,7 @@ gem 'mongoid', '~> 3.1.6'
 gem 'devise'
 
 gem 'best_in_place', '~> 2.1.0'
+gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

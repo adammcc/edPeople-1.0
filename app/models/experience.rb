@@ -5,7 +5,7 @@ class Experience
   :district, :boro, :description
 
 
-  field :title, type: String
+  field :title, type: String, default: nil
   field :employer, type: String
   field :school, type: String
   field :start_date, type: String
@@ -13,6 +13,8 @@ class Experience
   field :district, type: String
   field :boro, type: String
   field :description, type: String
+  field :start_date, type: String
+  field :end_date, type: String
 
   embedded_in :user
 end

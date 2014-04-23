@@ -8,7 +8,10 @@
 
 			<div class="ep-user-info">
 				<h3><%= @user.name %></h3>
-				<p><%= @user.headline %></p>
+				<p>
+					<%= best_in_place @user, :headline, :type => :input, activator: '.ep-edit-headline' %>
+					<a class="ep-edit-headline"><i class="fa fa-pencil"></i> Edit</a>
+				</p>
 			</div>
 		</div>
 

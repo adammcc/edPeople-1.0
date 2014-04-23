@@ -1,3 +1,31 @@
-.ep-form {
-	background-color: $ep-blue-gray;
+body#ep {
+	.ep-form {
+		background-color: $ep-blue-gray;
+		padding: 40px;
+		input.text_field {
+			width: 70%;
+		}
+		textarea {
+			width: 100%;
+		}
+		.ep-start-date {
+			float: left;
+			margin-right: 20px;
+		}
+		.ep-date input {
+			width: 120px;
+		}
+
+		.ep-district {
+			float: left;
+			margin-right: 20px;
+		}
+		.ep-location input {
+			width: 120px;
+		}
+		.ep-college-name {
+			font-weight: bold;
+			margin-bottom: 10px;
+		}
+	}
 }

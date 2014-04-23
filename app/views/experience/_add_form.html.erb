@@ -1,58 +1,51 @@
 <div class='ep-form'>
 	<%# form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
-	<%= form_for @user, :url => { controller: 'users', :action => "add_experience" }, :html => { :method => "put", :class => 'form-horizontal' } do |f| %>
+	<%= form_for @user, :url => { controller: 'users', :action => "add_experience" }, :html => { :method => "put", :class => '' } do |f| %>
 		
+			<%= f.fields_for experiences do |p| %>
 
-			<%= f.fields_for experience do |p| %>
-				<div class="control-group">
-				  <%= p.label :title, :class => 'control-label' %>	
-				  <div class="controls">
-				    <%= p.text_field :title, :value => '', :class => 'text_field' %>
-			    </div>
-		    </div>
+				<%= p.hidden_field :id %>
+			  <%= p.label :title, :class => '' %>	
+			  <%= p.text_field :title, :value => '', :class => 'text_field' %>
 
-		    <div class="control-group">
-				  <%= p.label :employer, :class => 'control-label' %>	
-				  <div class="controls">
-				    <%= p.text_field :employer, :value => '', :class => 'text_field' %>
-			    </div>
-		    </div>
 
-		    <div class="control-group">
-				  <%= p.label :school, :class => 'control-label' %>	
-				  <div class="controls">
-				  	<%= p.hidden_field :id %>
-				    <%= p.text_field :school, :value => '', :class => 'text_field' %>
-			    </div>
-		    </div>
+			  <%= p.label :employer, :class => '' %>	
+			  <%= p.text_field :employer, :value => '', :class => 'text_field' %>
 
-		    <div class="control-group">
-				  <%= p.label :district, :class => 'control-label' %>	
-				  <div class="controls">
-				  	<%= p.hidden_field :id %>
-				    <%= p.text_field :district, :value => '', :class => 'text_field' %>
-			    </div>
-		    </div>
 
-		     <div class="control-group">
-				  <%= p.label :boro, :class => 'control-label' %>	
-				  <div class="controls">
-				  	<%= p.hidden_field :id %>
-				    <%= p.text_field :boro, :value => '', :class => 'text_field' %>
-			    </div>
-		    </div>
+			  <%= p.label :school, :class => '' %>	
+			  <%= p.text_field :school, :value => '', :class => 'text_field' %>
 
-		    <div class="control-group">
-				  <%= p.label :description, :class => 'control-label' %>	
-				  <div class="controls">
-				  	<%= p.hidden_field :id %>
-				    <%= p.text_area :description, :value => '', :class => 'text_field', :rows => '6' %>
-			    </div>
-		    </div>
+
+			 
+			  <div class="ep-date ep-start-date">
+				  <%= p.label :start_date, :class => '' %>	
+				  <%= p.text_field :start_date, :value => '', :class => 'date-field ep-datepicker' %>
+			  </div>
+
+			  <div class="ep-date">
+				  <%= p.label :end_date, :class => '' %>	
+				  <%= p.text_field :end_date, :value => '', :class => 'date-field ep-datepicker' %>
+			  </div>
+	
+
+			  <div class="ep-location ep-district">
+				  <%= p.label :district, :class => '' %>	
+				  <%= p.text_field :district, :value => '', :class => 'text_field' %>
+		  	</div>
+
+				<div class="ep-location">
+				  <%= p.label :borough, :class => '' %>	
+				  <%= p.text_field :boro, :value => '', :class => 'text_field' %>
+ 				</div>
+
+			  <%= p.label :description, :class => '' %>	
+			  <%= p.text_area :description, :value => '', :class => 'text_field', :rows => '6' %>
+
 
 		  <% end %>
 
-	  <div class="form-actions">
+	  <div class="">
 	    <%= f.submit 'Update', :class => 'btn btn-primary' %>
 	    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
 	                users_path, :class => 'btn' %>

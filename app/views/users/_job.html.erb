@@ -2,14 +2,17 @@
 	<%= render :partial => '../views/experience/edit_form', locals: { experience: experience } %>
 </div>
 
-<div class="js-experience">
-	<h5><%= experience.title %>
+<div class="js-experience ep-experience">
+	<h5>
+		<%= experience.title %> at <span><%= experience.school ||= experience.employer %></span> 
+		<span class="nycdoe">(<%= experience.employer == 'NYCDOE' ? experience.employer : '' %>)</span>
 		<a class="js-edit-experience" data-toggle="collapse" data-target="#ep-edit-job-<%= experience.id %>"><i class="fa fa-pencil"></i> Edit</a>
 	</h5>
-	<p><%= experience.employer %></p>
-	<p><%= experience.school %></p>
-	<p><%= experience.district %></p>
-	<p><%= experience.boro %></p>
+
+	<p class="ep-experience-meta">
+	<%= experience.boro %> | District <%= experience.district %> | <%= experience.start_date %> - <%= experience.end_date %>
+	</p>
+
 	<p><%= experience.description %></p>
 </div>
 <br>

@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require jquery.ui.all
+ *= require bootstrap-datepicker
  *= require_self
  */
 
@@ -19,3 +20,4 @@
 @import 'users';
 @import 'nav';
 @import 'forms';
+@import 'experience'

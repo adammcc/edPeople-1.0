@@ -15,9 +15,12 @@
 //= require jquery.ui.all
 //= require twitter/bootstrap
 //= require best_in_place
+//= require bootstrap-datepicker
+//= require forms
 //= require_tree .
 
 
 $(document).ready(function() {
-  jQuery(".best_in_place").best_in_place();
+  $(".best_in_place").best_in_place();
+  $('.datepicker').datepicker()
 });
