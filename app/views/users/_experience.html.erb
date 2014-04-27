@@ -6,8 +6,9 @@
 	<% for experience in @user.experiences %>
 		<%= render partial: 'job', locals: { experience: experience, user: @user } %>
 	<% end %>
-	<a class="" data-toggle="collapse" data-target="#ep-add-experience">Add</a>
-
+	<% if @user == current_user %>
+		<a class="" data-toggle="collapse" data-target="#ep-add-experience"><i class="fa fa-plus"></i> Add</a>
+	<% end %>
 	<div id="ep-add-experience" class="collapse">
 		<%= render :partial => '../views/experience/add_form', locals: { experiences: experiences } %>
 	</div>

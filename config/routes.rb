@@ -1,14 +1,6 @@
 Ep::Application.routes.draw do
-  
-
-  get "skill/new"
-
-  get "skill/create"
-
-  get "skill/destroy"
 
   devise_for :users
-  
   
   devise_scope :user do
     authenticated :user do
@@ -22,6 +14,7 @@ Ep::Application.routes.draw do
   resources :users do
     member do
       put :add_experience
+      put :add_skill
     end
   end 
 
@@ -33,6 +26,8 @@ Ep::Application.routes.draw do
   end
 
   resources :experiences
+
+  resources :skills
 
 
 

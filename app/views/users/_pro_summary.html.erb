@@ -1,7 +1,9 @@
 <div class="ep-profile-section-header">
 	<h4>
 		Pro summary
-		<a class="ep-edit-pro-summary"><i class="fa fa-pencil"></i> Edit</a>
+		<% if @user == current_user %>
+			<a class="ep-edit-pro-summary"><i class="fa fa-pencil"></i> Edit</a>
+		<% end %>
 	</h4>
 </div>
 

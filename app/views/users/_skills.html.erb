@@ -4,6 +4,36 @@
 
 <div class="ep-skills ep-profile-section-body">
 	<% for skill in @user.skills %>
-		<div class="ep-skill"><%= skill.name %></div>
+		<div class="ep-skill">
+			<%= skill.name %>
+				<% if @user == current_user %>
+					<%= link_to skill_path(skill), method: :delete do %>
+					<i class="fa fa-times"></i>
+				<% end %>
+			<% end %>
+		</div>
+	<% end %>
+
+	
+	<br>
+	<% if @user == current_user %>
+		<br>
+		<a class="" data-toggle="collapse" data-target="#ep-add-skill"><i class="fa fa-plus"></i> Add</a>
+
+		<div id="ep-add-skill" class="collapse">
+			<%= form_for @user, :url => { controller: 'users', :action => "add_skill" }, :html => { :method => "put", :class => '' } do |f| %>
+
+				<%= f.fields_for user.skills do |p| %>
+					<%= p.label :name, :class => '' %>	
+				 	<%= p.text_field :name, :value => '', :class => 'text_field' %>
+
+				 	<div class="">
+				    <%= f.submit 'Add', :class => 'btn btn-primary' %>
+				    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+				                user_path(current_user), :class => 'btn' %>
+				  </div>
+			 	<% end %>
+		 	<% end %>
+		</div>
 	<% end %>
 </div>

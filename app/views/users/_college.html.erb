@@ -3,7 +3,9 @@
 </div>
 <div class="js-college">
 	<h5><%= college.name %>
-		<a class="js-edit-college" data-toggle="collapse" data-target="#ep-edit-college-<%= college.id %>"><i class="fa fa-pencil"></i> Edit</a>
+		<% if @user == current_user %>
+			<a class="js-edit-college" data-toggle="collapse" data-target="#ep-edit-college-<%= college.id %>"><i class="fa fa-pencil"></i> Edit</a>
+		<% end %>
 	</h5>
 
 	<% if college.users_meta_data[user.id.to_s] %>

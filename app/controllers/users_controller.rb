@@ -113,4 +113,14 @@ class UsersController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def add_skill
+    user = current_user
+    skill = Skill.create(name: params[:user][:skill][:name])
+
+    user.skills << skill
+
+    redirect_to :back
+
+  end
 end

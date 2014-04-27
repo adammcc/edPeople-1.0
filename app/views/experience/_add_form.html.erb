@@ -1,5 +1,4 @@
 <div class='ep-form'>
-	<%# form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
 	<%= form_for @user, :url => { controller: 'users', :action => "add_experience" }, :html => { :method => "put", :class => '' } do |f| %>
 		
 			<%= f.fields_for experiences do |p| %>
@@ -16,6 +15,7 @@
 			  <%= p.label :school, :class => '' %>	
 			  <%= p.text_field :school, :value => '', :class => 'text_field' %>
 
+			  <!-- <p>Leave end date blank if this is your current position</p> -->
 
 			  <div class="ep-date ep-start-date">
 				  <%= p.label :start_date, :class => '' %>	
@@ -23,7 +23,7 @@
 			  </div>
 
 			  <div class="ep-date">
-				  <%= p.label :end_date, :class => '' %>	
+				  <%= p.label "End Date (Leave blank if this is your current position)", :class => '' %>	
 				  <%= p.text_field :end_date, :value => '', :class => 'date-field ep-datepicker' %>
 			  </div>
 	
