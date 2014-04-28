@@ -15,6 +15,8 @@ Ep::Application.routes.draw do
     member do
       put :add_experience
       put :add_skill
+      put :invite_friend
+      put :approve_friend
     end
   end 
 

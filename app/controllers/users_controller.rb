@@ -102,7 +102,41 @@ class UsersController < ApplicationController
     redirect_to :back
   end
 
-  # DELETE /users/1
+  def add_skill
+    user = current_user
+    skill = Skill.create(name: params[:user][:skill][:name])
+
+    user.skills << skill
+
+    redirect_to :back
+
+  end
+
+  def invite_friend
+    inviter = current_user
+    invitee = User.find(params[:id])
+
+    inviter.invite invitee
+
+    render nothing: true
+  end
+
+  def approve_friend
+    p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+    invitee = current_user
+    inviter = User.find(params[:id])
+
+    p invitee
+
+    invitee.approve inviter
+
+    invitee.save
+
+
+    redirect_to :back
+  end 
+
+   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
@@ -114,13 +148,4 @@ class UsersController < ApplicationController
     end
   end
 
-  def add_skill
-    user = current_user
-    skill = Skill.create(name: params[:user][:skill][:name])
-
-    user.skills << skill
-
-    redirect_to :back
-
-  end
 end

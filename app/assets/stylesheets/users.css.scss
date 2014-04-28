@@ -8,12 +8,15 @@
 		width: 210px;
 	}
 	.ep-profile-actions {
-		color: $ep-blue;
+		// color: $ep-blue;
 		cursor: pointer;
 		float: left;
 		margin-top: 20px;
 		i {
 			font-size: 16px;
+		}
+		.ep-approve {
+			font-size: 12px;
 		}
 	}
 }

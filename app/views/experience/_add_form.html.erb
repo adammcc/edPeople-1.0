@@ -1,6 +1,7 @@
 <div class='ep-form'>
 	<%= form_for @user, :url => { controller: 'users', :action => "add_experience" }, :html => { :method => "put", :class => '' } do |f| %>
-		
+
+		<% if @user.experiences.count > 0 %>
 			<%= f.fields_for experiences do |p| %>
 
 				<%= p.hidden_field :id %>
@@ -40,7 +41,7 @@
 			  <%= p.label :description, :class => '' %>	
 			  <%= p.text_area :description, :value => '', :class => 'text_field', :rows => '6' %>
 		  <% end %>
-
+		<% end %>
 	  <div class="">
 	    <%= f.submit 'Update', :class => 'btn btn-primary' %>
 	    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

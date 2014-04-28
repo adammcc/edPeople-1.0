@@ -3,5 +3,29 @@
 </div>
 
 <div class="ep-profile-section-body">
-	<p>Some info</p>
+
+	<div class="ep-connections">
+		<a id="ep-show-friends">Connections</a> |
+		<a id="ep-show-invites">Invites</a> |
+		<a id="ep-show-inviters">Invited by</a>
+	</div>
+
+	<div id="ep-friends">
+		<% for friend in @user.friends %>
+			<%= friend.name %>
+		<% end %>
+	</div>
+
+	<div id="ep-invited">
+		<% for invite in @user.pending_invited %>
+			<%= invite.name %>
+		<% end %>
+	</div>
+
+	<div id="ep-invited_by">
+		<% for inviter in @user.pending_invited_by %>
+			<%= inviter.name %>
+		<% end %>
+	</div>
+
 </div>

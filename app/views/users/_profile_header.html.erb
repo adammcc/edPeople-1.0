@@ -19,7 +19,32 @@
 
 		<div class="span5 ep-profile-actions">
 			<div class="ep-hr-line"></div>
-			<p><i class="fa fa-plus"></i>&nbsp Sign in to become Adam's Connection</p>
+
+			<% if !user_signed_in? %>
+				<p><i class="fa fa-plus"></i>&nbsp Sign in to become Adam's Connection</p>
+
+			<% elsif current_user == @user %>
+				<% %>
+
+			<% elsif !current_user.connected_with? @user %>
+				<%= link_to "Become #{@user.first_name}'s Connection", invite_friend_user_path(@user)%>
+
+			<% elsif current_user.friend_with? @user %> 
+				<p><i class="fa fa-plus"></i>&nbsp You are connected to <%= @user.first_name %></p>
+
+			<% elsif current_user.invited? @user %>
+				<p><i class="fa fa-plus"></i>
+				Pending connection
+				</p>
+
+			<% elsif current_user.invited_by? @user %>
+				<p><i class="fa fa-plus"></i>
+				Pending connection
+				<%= link_to "(Approve)", approve_friend_user_path(@user), method: :put, class: 'ep-approve' %></p>
+
+			<% end %>
+
+
 			<p><i class="fa fa-envelope"></i> Send Adam a message</p>
 			<p><i class="fa fa-file-text"></i>&nbsp Download Adam's resume</p>
 			<p><i class="fa fa-folder-open"></i> View Adam's portfolio</p>
