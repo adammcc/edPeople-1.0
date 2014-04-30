@@ -17,6 +17,7 @@ Ep::Application.routes.draw do
       put :add_skill
       put :invite_friend
       put :approve_friend
+      put :remove_deny_friend
     end
   end 
 

@@ -27,7 +27,8 @@
 				<% %>
 
 			<% elsif !current_user.connected_with? @user %>
-				<%= link_to "Become #{@user.first_name}'s Connection", invite_friend_user_path(@user)%>
+				<p><i class="fa fa-plus"></i>
+					<%= link_to "Become #{@user.first_name}'s Connection", invite_friend_user_path(@user), method: :put %></p>
 
 			<% elsif current_user.friend_with? @user %> 
 				<p><i class="fa fa-plus"></i>&nbsp You are connected to <%= @user.first_name %></p>

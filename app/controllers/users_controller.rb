@@ -118,23 +118,28 @@ class UsersController < ApplicationController
 
     inviter.invite invitee
 
-    render nothing: true
+    redirect_to :back
   end
 
   def approve_friend
-    p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     invitee = current_user
     inviter = User.find(params[:id])
 
-    p invitee
-
     invitee.approve inviter
-
     invitee.save
 
+    redirect_to :back
+  end
+
+  def remove_deny_friend
+    friend = current_user
+    bad_friend = User.find(params[:id])
+
+    friend.remove_friendship bad_friend
+    friend.save
 
     redirect_to :back
-  end 
+  end
 
    # DELETE /users/1
   # DELETE /users/1.json

@@ -5,3 +5,20 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+users = User.all
+for user in users
+	if user.demo == true
+		user.destroy
+	end
+end
+
+skills = ["Backward Design", "Common Core State Standards", "Microsoft Office", "School Programming", "Differentiated Instruction", "SMARTboard", "Graphing Calculator", "Data Analysis", "Unit Mapping","Danielson Framework", "Secondary Education"]
+
+30.times do
+	user = User.create(demo: true, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "asdfasdf", password_confirmation: "asdfasdf", pro_summary: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 3), skill: "Bowling", headline: Faker::Lorem.sentence(word_count = 5, supplemental = false, random_words_to_add = 6), image_url: "http://placekitten.com/120/120")
+
+	4.times do
+		user.skills.create(:name => skills.sample)
+	end
+end

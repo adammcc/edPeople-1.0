@@ -21,6 +21,23 @@
 	}
 }
 
+#ep-connection {
+	position: relative;
+	.ep-connection-choice {
+		position: absolute;
+		bottom: 1px;
+		right: 10px;
+		a.ep-approve { 
+			color: $ep-light-blue;
+			font-size: 10px;
+		}
+		a.ep-deny {
+			color: $ep-orange;
+			font-size: 10px;
+		}
+	}
+}
+
 .ep-profile-section-header {
 	background-color: $ep-profile-section-header;
 	h4 {
@@ -49,6 +66,10 @@
 
 .ep-title-container {
 	max-width: 500px;
+}
+
+.ep-connection {
+	margin-top: 20px;
 }
 
 @media only screen and (max-width: 767px) {
