@@ -141,6 +141,17 @@ class UsersController < ApplicationController
     redirect_to :back
   end
 
+  def add_avatar
+    user = User.find(params[:id])
+    avatar = params[:user][:avatar]
+
+    user.avatar = avatar
+    user.save
+
+    redirect_to :back
+
+  end 
+
    # DELETE /users/1
   # DELETE /users/1.json
   def destroy

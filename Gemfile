@@ -27,10 +27,18 @@ gem 'jquery-ui-rails'
 gem 'mongoid', '~> 3.1.6'
 gem 'devise'
 
+gem "mongoid-paperclip", "~> 0.0.8", :require => "mongoid_paperclip"
+gem 'aws-sdk', '~> 1.3.4', :require => "aws-sdk"
+
 gem 'best_in_place', '~> 2.1.0'
 gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
 gem 'amistad', '~> 0.9.2'
 gem 'faker', '~> 1.3.0'
+
+group :development do
+  gem 'better_errors',     '1.0.1'
+  gem 'binding_of_caller', '0.7.2'
+end
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

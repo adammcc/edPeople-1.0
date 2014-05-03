@@ -18,6 +18,7 @@ Ep::Application.routes.draw do
       put :invite_friend
       put :approve_friend
       put :remove_deny_friend
+      put :add_avatar
     end
   end 
 

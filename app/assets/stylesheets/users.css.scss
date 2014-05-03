@@ -1,14 +1,21 @@
 .ep-profile-header {
-	.ep-profile-image {
-		margin: 20px;
-		float: left;
-	}
-	.ep-user-info {
-		float: left;
-		width: 210px;
+	padding-bottom: 10px;
+	.ep-user-snapshot {
+		.ep-profile-image {
+			width: 120px;
+			margin: 20px 20px 0px 20px;
+			float: left;
+			.ep-add-update-image {
+				text-align: center;
+				font-size: 12px;
+			}
+		}
+		.ep-user-info {
+			float: left;
+			width: 210px;
+		}
 	}
 	.ep-profile-actions {
-		// color: $ep-blue;
 		cursor: pointer;
 		float: left;
 		margin-top: 20px;
@@ -79,10 +86,22 @@
 		margin-bottom: 10px;
 		width: 80%;
 	}
+	.ep-user-snapshot {
+		text-align: center;
+		width: 210px;
+		margin: 0 auto;
+		padding-top: 20px;
+	}
+	.ep-profile-image {
+		text-align: center;
+		width: 120px;
+		margin: 0 45px !important;
+	}
 	.ep-profile-actions {
 		text-align: center;
 	}
 	.ep-user-info {
 		margin-left: 20px;
+		margin-left: 0;
 	}
 }

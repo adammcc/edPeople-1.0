@@ -1,6 +1,11 @@
 class User
   include Mongoid::Document
   include Amistad::FriendModel
+  include Mongoid::Paperclip
+
+  # validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
+  # validates_attachment :image, presence: true, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -8,7 +13,7 @@ class User
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation,
-  :remember_me, :pro_summary, :skill, :headline, :image_url, :experiences, :demo
+  :remember_me, :pro_summary, :skill, :headline, :image_url, :experiences, :demo, :avatar
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -50,7 +55,11 @@ class User
 
   has_and_belongs_to_many :colleges
   has_and_belongs_to_many :skills
+  has_mongoid_attached_file :avatar, :styles => { :medium => "120x120>", :thumb => "50x50>" }, :default_url => "/images/:style/missing.png"
   embeds_many :experiences
+
+  validates_attachment_content_type :avatar, :content_type => %w(image/jpeg image/jpg image/png)
+  
 
   def name
     "#{first_name} #{last_name}"
