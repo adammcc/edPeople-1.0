@@ -9,6 +9,9 @@
 				text-align: center;
 				font-size: 12px;
 			}
+			.ep-add-image {
+				width: 50px;
+			}
 		}
 		.ep-user-info {
 			float: left;
@@ -42,6 +45,14 @@
 			color: $ep-orange;
 			font-size: 10px;
 		}
+	}
+}
+
+.ep-connection-modal {
+	padding: 30px;
+	z-index: -1;
+	&.in {
+		z-index: 9999999;
 	}
 }
 

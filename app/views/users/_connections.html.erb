@@ -13,7 +13,7 @@
 	</div>
 
 	<div id="ep-friends">
-		<% for friend in @user.friends %>
+		<% for friend in @user.friends.take(3) %>
 			<%= render partial: 'connection', locals: { user: friend } %>
 		<% end %>
 	</div>
@@ -31,4 +31,16 @@
 		</div>
 	<% end %>
 
+	<a class="ep-see-all-connections" data-toggle="modal" data-target=".ep-connection-modal">See All</a>
+
+</div>
+
+<div class="modal fade ep-connection-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <% for friend in @user.friends %>
+				<%= render partial: 'connection', locals: { user: friend } %>
+			<% end %>
+    </div>
+  </div>
 </div>

@@ -16,6 +16,7 @@
 //= require twitter/bootstrap
 //= require best_in_place
 //= require bootstrap-datepicker
+//= require bootstrap-file-input
 //= require forms
 //= require_tree .
 

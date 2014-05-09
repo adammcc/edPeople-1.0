@@ -4,7 +4,7 @@
 		<div class="span7 ep-user-snapshot">
 			<div class="ep-profile-image">
 				<% if @user.avatar.url != "/images/original/missing.png" %>
-					<%= image_tag @user.avatar.url(:medium) %>
+					<%= image_tag("https://s3.amazonaws.com/ep-profilepics-avatar/#{@user.id}") %>
 				<% else %>
 			  	<%= image_tag(@user.image_url, height: '120', width: '120') %>
 			  <% end %>
@@ -15,8 +15,8 @@
 
 						<div id="ep-add-update-image" class="collapse">
 							<%= form_for @user, :url => { controller: 'users', :action => "add_avatar" }, :html => { :method => "put",:multipart => true, :class => '' } do |f| %>
-							  <%= f.file_field :avatar %>
-							  <%= f.submit "Add Image" %>
+							  <%= f.file_field :avatar, "data-filename-placement"=> "inside", class: "ep-add-image" %>
+							  <%= f.submit "Add", class: "btn btn-primary ep-add-image-button" %>
 							<% end %>
 						</div>
 					</div>

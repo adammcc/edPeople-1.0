@@ -64,15 +64,7 @@ class UsersController < ApplicationController
 
     if params[:user][:experience]
       experience = @user.experiences.find(params[:user][:experience][:id])
-      experience.update_attributes(title: params[:user][:experience][:title],
-                                  employer: params[:user][:experience][:employer],
-                                  school: params[:user][:experience][:school],
-                                  district: params[:user][:experience][:district],
-                                  boro: params[:user][:experience][:boro],
-                                  description: params[:user][:experience][:description],
-                                  start_date: params[:user][:experience][:start_date],
-                                  end_date: params[:user][:experience][:end_date]
-                                )
+      experience.update_attributes(params[:user][:experience])
       experience.save
     end
 
@@ -90,13 +82,7 @@ class UsersController < ApplicationController
   def add_experience
     @user = User.find(params[:id])
 
-    experience = @user.experiences.create(title: params[:user][:experience][:title],
-                                employer: params[:user][:experience][:employer],
-                                school: params[:user][:experience][:school],
-                                district: params[:user][:experience][:district],
-                                boro: params[:user][:experience][:boro],
-                                description: params[:user][:experience][:description]
-                              )
+    experience = @user.experiences.create(params[:user][:experience])
     experience.save
 
     redirect_to :back
@@ -148,8 +134,9 @@ class UsersController < ApplicationController
     user.avatar = avatar
     user.save
 
-    redirect_to :back
+    upload_avatar_to_s3(user, avatar)
 
+    redirect_to :back
   end 
 
    # DELETE /users/1
@@ -162,6 +149,22 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+  end
+
+  private
+
+  def upload_avatar_to_s3(user, avatar)
+    s3 = AWS::S3.new()
+    bucket_path = Ep::Lib.bucket_path('avatar')
+    object_path = avatar.original_filename
+
+    bucket = s3.buckets[bucket_path]
+    if !bucket.exists?
+      bucket = s3.buckets.create(bucket_path)
+    end
+
+    # TODO: public_read probably not the best thing to do here
+    bucket.objects.create(user.id, avatar.tempfile.read(), acl: :public_read)
   end
 
 end

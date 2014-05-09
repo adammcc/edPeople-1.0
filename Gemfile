@@ -5,8 +5,6 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-
-
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -32,6 +30,7 @@ gem 'aws-sdk', '~> 1.3.4', :require => "aws-sdk"
 
 gem 'best_in_place', '~> 2.1.0'
 gem 'bootstrap-datepicker-rails', '~> 1.3.0.2'
+gem 'bootstrap-file-input', '~> 0.0.1'
 gem 'amistad', '~> 0.9.2'
 gem 'faker', '~> 1.3.0'
 
