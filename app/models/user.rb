@@ -55,10 +55,13 @@ class User
 
   has_and_belongs_to_many :colleges
   has_and_belongs_to_many :skills
-  has_mongoid_attached_file :avatar, :styles => { :medium => "120x120>", :thumb => "50x50>" }, :default_url => "/images/:style/missing.png"
+  has_mongoid_attached_file :avatar, :styles => { :medium => "120x120>", :thumb => "50x50>", :large => "500x500>" }, :default_url => "/images/:style/missing.png"
   embeds_many :experiences
 
   validates_attachment_content_type :avatar, :content_type => %w(image/jpeg image/jpg image/png)
+  validates_attachment_presence :photo
+  validates_attachment_size :photo, :less_than => 5.megabytes
+  validates_attachment_content_type :photo, :content_type => ['image/jpeg', 'image/png']
   
 
   def name

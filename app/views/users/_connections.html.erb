@@ -38,6 +38,10 @@
 <div class="modal fade ep-connection-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
+    	<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Connections</h4>
+      </div>
       <% for friend in @user.friends %>
 				<%= render partial: 'connection', locals: { user: friend } %>
 			<% end %>
