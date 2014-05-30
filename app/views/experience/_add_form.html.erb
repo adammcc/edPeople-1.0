@@ -1,47 +1,47 @@
 <div class='ep-form'>
-	<%= form_for @user, :url => { controller: 'users', :action => "add_experience" }, :html => { :method => "put", :class => '' } do |f| %>
+	<%= form_for @user.experiences.new, :url => { controller: 'users', :action => "add_experience" }, :html => { :method => "put", :class => '' } do |f| %>
 
-		<% if @user.experiences.count > 0 %>
-			<%= f.fields_for experiences do |p| %>
+		<%# if @user.experiences.count > 0 %>
+			<%#f.fields_for experiences do |p| %>
 
-				<%= p.hidden_field :id %>
-			  <%= p.label :title, :class => '' %>	
-			  <%= p.text_field :title, :value => '', :class => 'text_field' %>
-
-
-			  <%= p.label :employer, :class => '' %>	
-			  <%= p.text_field :employer, :value => '', :class => 'text_field' %>
+				<%= f.hidden_field :id %>
+			  <%= f.label :title, :class => '' %>	
+			  <%= f.text_field :title, :value => '', :class => 'text_field' %>
 
 
-			  <%= p.label :school, :class => '' %>	
-			  <%= p.text_field :school, :value => '', :class => 'text_field' %>
+			  <%= f.label :employer, :class => '' %>	
+			  <%= f.text_field :employer, :value => '', :class => 'text_field' %>
+
+
+			  <%= f.label :school, :class => '' %>	
+			  <%= f.text_field :school, :value => '', :class => 'text_field' %>
 
 			  <!-- <p>Leave end date blank if this is your current position</p> -->
 
 			  <div class="ep-date ep-start-date">
-				  <%= p.label :start_date, :class => '' %>	
-				  <%= p.text_field :start_date, :value => '', :class => 'date-field ep-datepicker' %>
+				  <%= f.label :start_date, :class => '' %>	
+				  <%= f.text_field :start_date, :value => '', :class => 'date-field ep-datepicker' %>
 			  </div>
 
 			  <div class="ep-date">
-				  <%= p.label "End Date (Leave blank if this is your current position)", :class => '' %>	
-				  <%= p.text_field :end_date, :value => '', :class => 'date-field ep-datepicker' %>
+				  <%= f.label "End Date (Leave blank if this is your current position)", :class => '' %>	
+				  <%= f.text_field :end_date, :value => '', :class => 'date-field ep-datepicker' %>
 			  </div>
 	
 			  <div class="ep-location ep-district">
-				  <%= p.label :district, :class => '' %>	
-				  <%= p.text_field :district, :value => '', :class => 'text_field' %>
+				  <%= f.label :district, :class => '' %>	
+				  <%= f.text_field :district, :value => '', :class => 'text_field' %>
 		  	</div>
 
 				<div class="ep-location">
-				  <%= p.label :borough, :class => '' %>	
-				  <%= p.text_field :boro, :value => '', :class => 'text_field' %>
+				  <%= f.label :borough, :class => '' %>	
+				  <%= f.text_field :boro, :value => '', :class => 'text_field' %>
  				</div>
 
-			  <%= p.label :description, :class => '' %>	
-			  <%= p.text_area :description, :value => '', :class => 'text_field', :rows => '6' %>
-		  <% end %>
-		<% end %>
+			  <%= f.label :description, :class => '' %>	
+			  <%= f.text_area :description, :value => '', :class => 'text_field', :rows => '6' %>
+		  <%# end %>
+		<%# end %>
 	  <div class="">
 	    <%= f.submit 'Add', :class => 'btn btn-primary' %>
 	    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),

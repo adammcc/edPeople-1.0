@@ -23,7 +23,9 @@ end
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'mongoid', '~> 3.1.6'
-gem 'devise'
+gem 'devise', '3.2.4'
+gem 'omniauth', '1.2.1'
+gem 'omniauth-linkedin', '0.1.0'
 
 gem "mongoid-paperclip", "~> 0.0.8", :require => "mongoid_paperclip"
 gem 'aws-sdk', '~> 1.3.4', :require => "aws-sdk"

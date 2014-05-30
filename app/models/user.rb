@@ -9,7 +9,8 @@ class User
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable,
+         :omniauthable
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation,
@@ -53,6 +54,9 @@ class User
   field :headline,    type: String
   field :demo,        type: Boolean, default: false
 
+  field :provider,    type: String 
+  field :uid,         type: String
+
   has_and_belongs_to_many :colleges
   has_and_belongs_to_many :skills
   has_mongoid_attached_file :avatar, :styles => { :medium => "120x120#", :thumb => "50x50#" }, :default_url => "/images/:style/missing.png"
@@ -65,4 +69,27 @@ class User
   def name
     "#{first_name} #{last_name}"
   end
+
+  def self.connect_to_linkedin(auth, signed_in_resource=nil)
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    if user
+      return user
+    else
+      registered_user = User.where(:email => auth.info.email).first
+      if registered_user
+        return registered_user
+      else
+        user = User.create(first_name:auth.info.first_name,
+                            last_name:auth.info.last_name,
+                            image_url:auth.info.image,
+                            headline:auth.info.location,
+                            provider:auth.provider,
+                            uid:auth.uid,
+                            email:auth.info.email,
+                            password:Devise.friendly_token[0,20],
+                          )
+      end
+
+    end
+  end  
 end

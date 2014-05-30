@@ -21,7 +21,7 @@
 		<a class="" data-toggle="collapse" data-target="#ep-add-skill"><i class="fa fa-plus"></i> Add</a>
 
 		<div id="ep-add-skill" class="collapse">
-			<%= form_for @user, :url => { controller: 'users', :action => "add_skill" }, :html => { :method => "put", :class => '' } do |f| %>
+			<%= form_for @user.skills.new, :url => { controller: 'users', :action => "add_skill" }, :html => { :method => "put", :class => '' } do |f| %>
 
 				<%= f.fields_for user.skills do |p| %>
 					<%= p.label :name, :class => '' %>	

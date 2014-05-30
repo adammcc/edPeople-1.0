@@ -82,7 +82,7 @@ class UsersController < ApplicationController
   def add_experience
     @user = User.find(params[:id])
 
-    experience = @user.experiences.create(params[:user][:experience])
+    experience = @user.experiences.create(params[:experience])
     experience.save
 
     redirect_to :back
@@ -90,7 +90,7 @@ class UsersController < ApplicationController
 
   def add_skill
     user = current_user
-    skill = Skill.create(name: params[:user][:skill][:name])
+    skill = Skill.create(name: params[:skill][:skill][:name])
 
     user.skills << skill
 
