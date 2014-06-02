@@ -15,6 +15,8 @@ class Experience
   field :description, type: String
   field :start_date, type: String
   field :end_date, type: String
+  field :is_current, type: Boolean
+  field :linkedin_id, type: String
 
   embedded_in :user
 end

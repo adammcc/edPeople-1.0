@@ -230,10 +230,7 @@ Devise.setup do |config|
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   require 'omniauth-linkedin'
   config.omniauth :linkedin, ENV["EP_LINKEDIN_API_KEY"], ENV["EP_LINKEDIN_SECRET_KEY"], 
-                  :scope => 'r_fullprofile r_emailaddress r_network', 
-                  :fields => ["id", "email-address", "first-name", "last-name", "headline", 
-                              "industry", "picture-url", "public-profile-url", "location", 
-                              "connections"]
+                  :scope => 'r_fullprofile r_emailaddress r_network'
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
