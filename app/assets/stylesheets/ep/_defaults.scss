@@ -3,6 +3,9 @@ body#ep {
 	color: #444;
 	background-color: $ep-light-gray;
 	color: $ep-deep-gray;
+	.container {
+		margin-left: 10px;
+	}
 	a { 
 		color: $ep-links; 
 		cursor: pointer;

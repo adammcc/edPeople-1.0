@@ -1,29 +1,31 @@
-<div class="row">
-	<%= render partial: 'profile_header' %>
-</div>
-
-<div class="row">
-	<div class="span7">
-		<!-- <div class="ep-profile-section white-bg">
-			<%# render partial: 'pro_summary', locals: { user: @user } %>
-		</div> -->
-
-		<div class="ep-profile-section white-bg">
-			<%= render partial: 'experience', locals: { experiences: @experiences } %>
-		</div>
-
-		<div class="ep-profile-section white-bg">
-			<%= render partial: 'education', locals: { colleges: @colleges } %>
-		</div>
+<div class="span12">
+	<div class="row">
+		<%= render partial: 'profile_header' %>
 	</div>
 
-	<div class="span5">
-		<div class="ep-profile-section white-bg">
-			<%= render partial: 'skills', locals: { user: @user } %>
+	<div class="row">
+		<div class="span7">
+			<!-- <div class="ep-profile-section white-bg">
+				<%# render partial: 'pro_summary', locals: { user: @user } %>
+			</div> -->
+
+			<div class="ep-profile-section white-bg">
+				<%= render partial: 'experience', locals: { experiences: @experiences } %>
+			</div>
+
+			<div class="ep-profile-section white-bg">
+				<%= render partial: 'education', locals: { colleges: @colleges } %>
+			</div>
 		</div>
 
-		<div class="ep-profile-section white-bg">
-			<%= render partial: 'connections' %>
+		<div class="span5">
+			<div class="ep-profile-section white-bg">
+				<%= render partial: 'skills', locals: { user: @user } %>
+			</div>
+
+			<div class="ep-profile-section white-bg">
+				<%= render partial: 'connections' %>
+			</div>
 		</div>
 	</div>
 </div>

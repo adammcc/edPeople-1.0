@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require jquery.ui.all
 //= require twitter/bootstrap
+//= require icheck.min
 //= require best_in_place
 //= require bootstrap-datepicker
 //= require bootstrap-file-input
