@@ -17,10 +17,10 @@ body#ep {
 		color: white;
 		background-color: $blue-jeans;
 	}
-	.brand {
+	.brand, .brand:hover {
 		color: white
 	}
-	.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+	.nav-tabs > li.active > a, .nav-tabs > li > a:hover {
 		background-color: $blue-jeans-light !important;
 	}
 	.nav-tabs > li {

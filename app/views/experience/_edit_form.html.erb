@@ -43,7 +43,7 @@
 	  <div class="">
 	    <%= f.submit 'Update', :class => 'btn btn-primary' %>
 	    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-	                user_path(current_user), :class => 'btn' %>
+	                user_path(@user), :class => 'btn' %>
 	  </div>
 	<% end %>
 </div>
