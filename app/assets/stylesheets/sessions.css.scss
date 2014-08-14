@@ -1,6 +1,32 @@
-.ep-sign-in-form {
-	border: 1px solid black;
+.ep-home-page-container {
+	// background-color: white;
+	background-image: url('newyorkwall.jpg');
+	background-size:100%;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+	z-index: 0;
+
+	// -webkit-filter: grayscale(100%)
+	// -webkit-filter: sepia(100%);
+
+	// -webkit-filter: blur(4px);
+  //  -moz-filter: blur(4px);
+  //  -o-filter: blur(4px);
+  //  -ms-filter: blur(4px);
+  //  filter: blur(4px);
+}
+
+.ep-signin-signup {
+	background-color: rgba(255, 255, 255, 0.9);
+	// color: white;
 	height: 400px;
-	padding: 20px;
-	width: 280px;
+	padding: 20px 0px 40px 20px;
+	position: absolute;
+	top: 20%;
+	right: 25%;
+	width: 320px;
+	z-index: 2;
 }
