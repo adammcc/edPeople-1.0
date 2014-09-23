@@ -1,8 +1,8 @@
 class Experience
   include Mongoid::Document
 
-  attr_accessible :title, :employer, :school, :start_date, :end_date, 
-  :district, :boro, :description
+  # attr_accessible :title, :employer, :school, :start_date, :end_date,
+  # :district, :boro, :description
 
 
   field :title, type: String, default: nil

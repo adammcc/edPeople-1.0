@@ -4,9 +4,14 @@ require File.expand_path('../boot', __FILE__)
 # require "active_record/railtie"
 require "action_controller/railtie"
 require "action_mailer/railtie"
-require "active_resource/railtie"
+# require "active_resource/railtie"
 require "sprockets/railtie"
 require "rails/test_unit/railtie"
+
+require "bson"
+require "moped"
+
+Moped::BSON = BSON
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -50,7 +55,7 @@ module Ep
     config.active_support.escape_html_entities_in_json = true
 
     config.assets.initialize_on_precompile = false
-    
+
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
     # like if you have constraints or database-specific column types
@@ -67,5 +72,7 @@ module Ep
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+
+    config.assets.paths << "#{Rails}/vendor/assets/fonts"
   end
 end

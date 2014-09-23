@@ -1,3 +1,5 @@
+@import 'config';
+
 .ep-profile-header {
 	padding-bottom: 10px;
 	.ep-user-snapshot {
@@ -37,7 +39,7 @@
 		position: absolute;
 		bottom: 1px;
 		right: 10px;
-		a.ep-approve { 
+		a.ep-approve {
 			color: $ep-light-blue;
 			font-size: 10px;
 		}

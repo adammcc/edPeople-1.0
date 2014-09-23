@@ -1,6 +1,6 @@
 class User
   include Mongoid::Document
-  include Amistad::FriendModel
+  # include Amistad::FriendModel
   include Mongoid::Paperclip
 
   # validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
@@ -13,8 +13,8 @@ class User
          :omniauthable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :first_name, :last_name, :email, :password, :password_confirmation,
-  :remember_me, :pro_summary, :skill, :headline, :image_url, :experiences, :demo, :avatar
+  # attr_accessible :first_name, :last_name, :email, :password, :password_confirmation,
+  # :remember_me, :pro_summary, :skill, :headline, :image_url, :experiences, :demo, :avatar
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -33,7 +33,7 @@ class User
   field :last_sign_in_at,    :type => Time
   field :current_sign_in_ip, :type => String
   field :last_sign_in_ip,    :type => String
-  
+
 
   ## Confirmable
   # field :confirmation_token,   :type => String
@@ -54,7 +54,7 @@ class User
   field :headline,    type: String
   field :demo,        type: Boolean, default: false
 
-  field :provider,    type: String 
+  field :provider,    type: String
   field :uid,         type: String
 
   has_and_belongs_to_many :colleges
@@ -64,7 +64,7 @@ class User
 
   validates_attachment_content_type :avatar, :content_type => %w(image/jpeg image/jpg image/png)
   validates_attachment_size :avatar, :less_than => 5.megabytes
-  
+
 
   def name
     "#{first_name} #{last_name}"
@@ -100,7 +100,7 @@ class User
       end
     end
     return @user
-  end  
+  end
 
   def sync_to_linkedin(user, auth)
     p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
@@ -130,7 +130,7 @@ class User
           ex.end_date = "#{p["end_date"]["month"]}/#{p["end_date"]["year"]}"
           ex.save
         end
-      end              
+      end
     end
 
     skills = @profile.skills.to_hash
@@ -156,128 +156,128 @@ class User
         user.colleges << college.first
       end
     end
-  end 
+  end
 end
 
 # positions:
-# [{"company"=>{"id"=>1419465, "industry"=>"Education Management", 
-#   "name"=>"PS 58 The Carroll School"}, 
-#   "id"=>313027805, "is_current"=>true, 
-#   "start_date"=>{"month"=>9, "year"=>2012}, 
-#   "title"=>"Fifth Grade Dual Language Teacher"}, 
+# [{"company"=>{"id"=>1419465, "industry"=>"Education Management",
+#   "name"=>"PS 58 The Carroll School"},
+#   "id"=>313027805, "is_current"=>true,
+#   "start_date"=>{"month"=>9, "year"=>2012},
+#   "title"=>"Fifth Grade Dual Language Teacher"},
 
 #   {"company"=>{"industry"=>"Education Management", "name"=>"edPeople"},
-#    "id"=>404714900, 
-#    "is_current"=>true, 
-#    "start_date"=>{"month"=>3, "year"=>2012}, 
-#    "summary"=>"Co-founded a professional networking site for NYC's educators. We launched in beta in June 2013: www.edpeople.com", 
+#    "id"=>404714900,
+#    "is_current"=>true,
+#    "start_date"=>{"month"=>3, "year"=>2012},
+#    "summary"=>"Co-founded a professional networking site for NYC's educators. We launched in beta in June 2013: www.edpeople.com",
 #    "title"=>"Co-Founder"}]
 
 # Profile
-# {"first_name"=>"Natasha", 
-#   "headline"=>"Fifth Grade Dual Language Teacher and Co-Founder of edPeople", 
-#   "last_name"=>"Marra McCabe", 
-#   "positions"=>{"total"=>2, 
-#                 "all"=>[{"company"=>{"id"=>1419465, 
-#                         "industry"=>"Education Management", 
-#                         "name"=>"PS 58 The Carroll School"}, 
-#                         "id"=>313027805, "is_current"=>true, "start_date"=>{"month"=>9, "year"=>2012}, 
-#                         "title"=>"Fifth Grade Dual Language Teacher"}, 
-#                         {"company"=>{"industry"=>"Education Management", 
-#                           "name"=>"edPeople"}, 
-#                           "id"=>404714900, 
-#                           "is_current"=>true, 
-#                           "start_date"=>{"month"=>3, "year"=>2012}, 
-#                           "summary"=>"Co-founded a professional networking site for NYC's educators. We launched in beta in June 2013: www.edpeople.com", 
+# {"first_name"=>"Natasha",
+#   "headline"=>"Fifth Grade Dual Language Teacher and Co-Founder of edPeople",
+#   "last_name"=>"Marra McCabe",
+#   "positions"=>{"total"=>2,
+#                 "all"=>[{"company"=>{"id"=>1419465,
+#                         "industry"=>"Education Management",
+#                         "name"=>"PS 58 The Carroll School"},
+#                         "id"=>313027805, "is_current"=>true, "start_date"=>{"month"=>9, "year"=>2012},
+#                         "title"=>"Fifth Grade Dual Language Teacher"},
+#                         {"company"=>{"industry"=>"Education Management",
+#                           "name"=>"edPeople"},
+#                           "id"=>404714900,
+#                           "is_current"=>true,
+#                           "start_date"=>{"month"=>3, "year"=>2012},
+#                           "summary"=>"Co-founded a professional networking site for NYC's educators. We launched in beta in June 2013: www.edpeople.com",
 #                           "title"=>"Co-Founder"}]}}
 
 # Full Profile
-# {"educations"=>{"total"=>3, 
-#                 "all"=>[{"degree"=>"M.A.", 
-#                         "end_date"=>{"year"=>2011}, 
-#                         "field_of_study"=>"Teaching English to Speakers of Other Languages", 
-#                         "id"=>59228633, 
-#                         "school_name"=>"City University of New York-Hunter College", 
-#                         "start_date"=>{"year"=>2010}}, 
-#                       {"degree"=>"M.A.", 
-#                         "end_date"=>{"year"=>2006}, 
-#                         "field_of_study"=>"French Cultural Studies", 
-#                         "id"=>7830316, 
-#                         "school_name"=>"Columbia University in the City of New York", 
-#                         "start_date"=>{"year"=>2005}}, 
-#                       {"activities"=>"", 
-#                           "degree"=>"B.A.", 
-#                           "end_date"=>{"year"=>2002}, 
-#                           "field_of_study"=>"TV, Radio and Film; French (dual major)", 
-#                           "id"=>5986863, 
-#                           "notes"=>"", 
-#                           "school_name"=>"Syracuse University", 
-#                           "start_date"=>{"year"=>1998}}]}, 
-# "positions"=>{"total"=>6, 
-#               "all"=>[{"company"=>{"id"=>1419465, 
-#                       "industry"=>"Education Management", 
-#                       "name"=>"PS 58 The Carroll School"}, 
-#                       "id"=>313027805, 
-#                       "is_current"=>true, 
-#                       "start_date"=>{"month"=>9, "year"=>2012}, 
-#                       "title"=>"Fifth Grade Dual Language Teacher"}, 
-#                     {"company"=>{"industry"=>"Education Management", 
-#                       "name"=>"edPeople"}, 
-#                       "id"=>404714900, 
-#                       "is_current"=>true, 
-#                       "start_date"=>{"month"=>3, "year"=>2012}, 
-#                       "summary"=>"Co-founded a professional networking site for NYC's educators. We launched in beta in June 2013: www.edpeople.com", 
-#                       "title"=>"Co-Founder"}, 
-#                     {"company"=>{"id"=>2624, 
-#                       "industry"=>"Higher Education", 
-#                       "name"=>"Columbia University", 
-#                       "size"=>"10,001+ employees", 
-#                       "type"=>"Educational Institution"}, 
-#                       "end_date"=>{"month"=>6, "year"=>2012}, 
-#                       "id"=>258745315, 
-#                       "is_current"=>false, 
-#                       "start_date"=>{"month"=>4, "year"=>2011}, 
-#                       "title"=>"Development Officer"}, 
-#                     {"company"=>{"id"=>2624, 
-#                       "industry"=>"Higher Education", 
-#                       "name"=>"Columbia University", 
-#                       "size"=>"10,001+ employees", 
-#                       "type"=>"Educational Institution"}, 
-#                       "end_date"=>{"month"=>5, "year"=>2011}, 
-#                       "id"=>55459737, 
-#                       "is_current"=>false, 
-#                       "start_date"=>{"month"=>10, "year"=>2008}, 
-#                       "title"=>"Associate Director of Development"}, 
-#                     {"company"=>{"id"=>2624, 
-#                       "industry"=>"Higher Education", 
-#                       "name"=>"Columbia University", 
-#                       "type"=>"Educational Institution"}, 
-#                       "end_date"=>{"month"=>10, "year"=>2008}, 
-#                       "id"=>13348122, 
-#                       "is_current"=>false, 
-#                       "start_date"=>{"month"=>1, "year"=>2007}, 
-#                       "summary"=>"", 
-#                       "title"=>"Assistant Director of Development"}, 
-#                     {"company"=>{"id"=>13174, 
-#                       "industry"=>"Investment Management", 
-#                       "name"=>"Soros Fund Management", 
-#                       "size"=>"201-500 employees", 
-#                       "type"=>"Privately Held"}, 
-#                       "end_date"=>{"month"=>12, "year"=>2006}, 
-#                       "id"=>275866123, 
-#                       "is_current"=>false, 
-#                       "start_date"=>{"month"=>2, "year"=>2005}, 
-#                       "title"=>"Assistant"}]}, 
-# "skills"=>{"total"=>10, 
-#            "all"=>[{"id"=>10, "skill"=>{"name"=>"Volunteer Management"}}, 
-#                   {"id"=>11, "skill"=>{"name"=>"Fundraising"}}, 
-#                   {"id"=>12, "skill"=>{"name"=>"Higher Education"}}, 
-#                   {"id"=>13, "skill"=>{"name"=>"Non-profits"}}, 
-#                   {"id"=>14, "skill"=>{"name"=>"Alumni Relations"}}, 
-#                   {"id"=>15, "skill"=>{"name"=>"Public Education"}}, 
-#                   {"id"=>16, "skill"=>{"name"=>"Language Teaching"}}, 
-#                   {"id"=>20, "skill"=>{"name"=>"French"}}, 
-#                   {"id"=>23, "skill"=>{"name"=>"Educational Technology"}}, 
+# {"educations"=>{"total"=>3,
+#                 "all"=>[{"degree"=>"M.A.",
+#                         "end_date"=>{"year"=>2011},
+#                         "field_of_study"=>"Teaching English to Speakers of Other Languages",
+#                         "id"=>59228633,
+#                         "school_name"=>"City University of New York-Hunter College",
+#                         "start_date"=>{"year"=>2010}},
+#                       {"degree"=>"M.A.",
+#                         "end_date"=>{"year"=>2006},
+#                         "field_of_study"=>"French Cultural Studies",
+#                         "id"=>7830316,
+#                         "school_name"=>"Columbia University in the City of New York",
+#                         "start_date"=>{"year"=>2005}},
+#                       {"activities"=>"",
+#                           "degree"=>"B.A.",
+#                           "end_date"=>{"year"=>2002},
+#                           "field_of_study"=>"TV, Radio and Film; French (dual major)",
+#                           "id"=>5986863,
+#                           "notes"=>"",
+#                           "school_name"=>"Syracuse University",
+#                           "start_date"=>{"year"=>1998}}]},
+# "positions"=>{"total"=>6,
+#               "all"=>[{"company"=>{"id"=>1419465,
+#                       "industry"=>"Education Management",
+#                       "name"=>"PS 58 The Carroll School"},
+#                       "id"=>313027805,
+#                       "is_current"=>true,
+#                       "start_date"=>{"month"=>9, "year"=>2012},
+#                       "title"=>"Fifth Grade Dual Language Teacher"},
+#                     {"company"=>{"industry"=>"Education Management",
+#                       "name"=>"edPeople"},
+#                       "id"=>404714900,
+#                       "is_current"=>true,
+#                       "start_date"=>{"month"=>3, "year"=>2012},
+#                       "summary"=>"Co-founded a professional networking site for NYC's educators. We launched in beta in June 2013: www.edpeople.com",
+#                       "title"=>"Co-Founder"},
+#                     {"company"=>{"id"=>2624,
+#                       "industry"=>"Higher Education",
+#                       "name"=>"Columbia University",
+#                       "size"=>"10,001+ employees",
+#                       "type"=>"Educational Institution"},
+#                       "end_date"=>{"month"=>6, "year"=>2012},
+#                       "id"=>258745315,
+#                       "is_current"=>false,
+#                       "start_date"=>{"month"=>4, "year"=>2011},
+#                       "title"=>"Development Officer"},
+#                     {"company"=>{"id"=>2624,
+#                       "industry"=>"Higher Education",
+#                       "name"=>"Columbia University",
+#                       "size"=>"10,001+ employees",
+#                       "type"=>"Educational Institution"},
+#                       "end_date"=>{"month"=>5, "year"=>2011},
+#                       "id"=>55459737,
+#                       "is_current"=>false,
+#                       "start_date"=>{"month"=>10, "year"=>2008},
+#                       "title"=>"Associate Director of Development"},
+#                     {"company"=>{"id"=>2624,
+#                       "industry"=>"Higher Education",
+#                       "name"=>"Columbia University",
+#                       "type"=>"Educational Institution"},
+#                       "end_date"=>{"month"=>10, "year"=>2008},
+#                       "id"=>13348122,
+#                       "is_current"=>false,
+#                       "start_date"=>{"month"=>1, "year"=>2007},
+#                       "summary"=>"",
+#                       "title"=>"Assistant Director of Development"},
+#                     {"company"=>{"id"=>13174,
+#                       "industry"=>"Investment Management",
+#                       "name"=>"Soros Fund Management",
+#                       "size"=>"201-500 employees",
+#                       "type"=>"Privately Held"},
+#                       "end_date"=>{"month"=>12, "year"=>2006},
+#                       "id"=>275866123,
+#                       "is_current"=>false,
+#                       "start_date"=>{"month"=>2, "year"=>2005},
+#                       "title"=>"Assistant"}]},
+# "skills"=>{"total"=>10,
+#            "all"=>[{"id"=>10, "skill"=>{"name"=>"Volunteer Management"}},
+#                   {"id"=>11, "skill"=>{"name"=>"Fundraising"}},
+#                   {"id"=>12, "skill"=>{"name"=>"Higher Education"}},
+#                   {"id"=>13, "skill"=>{"name"=>"Non-profits"}},
+#                   {"id"=>14, "skill"=>{"name"=>"Alumni Relations"}},
+#                   {"id"=>15, "skill"=>{"name"=>"Public Education"}},
+#                   {"id"=>16, "skill"=>{"name"=>"Language Teaching"}},
+#                   {"id"=>20, "skill"=>{"name"=>"French"}},
+#                   {"id"=>23, "skill"=>{"name"=>"Educational Technology"}},
 #                   {"id"=>24, "skill"=>{"name"=>"Lean Startup"}}]}}
 
 

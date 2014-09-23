@@ -1,10 +1,9 @@
-<div class="span12">
+<div class="col-md-12 ep-main-container">
 	<div class="row">
-		<%= render partial: 'profile_header' %>
-	</div>
-
-	<div class="row">
-		<div class="span7">
+		<div class="col-md-12">
+			<%= render partial: 'profile_header' %>
+		</div>
+		<div class="col-md-7">
 			<!-- <div class="ep-profile-section white-bg">
 				<%# render partial: 'pro_summary', locals: { user: @user } %>
 			</div> -->
@@ -18,7 +17,7 @@
 			</div>
 		</div>
 
-		<div class="span5">
+		<div class="col-md-5">
 			<div class="ep-profile-section white-bg">
 				<%= render partial: 'skills', locals: { user: @user } %>
 			</div>

@@ -1,10 +1,10 @@
-<div class="span12 ep-profile-header white-bg">
-	
+<div class="col-md-12 ep-profile-header white-bg">
+
 	<div class="row">
-		<div class="span7 ep-user-snapshot">
+		<div class="col-md-7 ep-user-snapshot">
 			<div class="ep-profile-image">
 				<% if @user.avatar.url != "/images/original/missing.png" %>
-					<%= image_tag("https://s3.amazonaws.com/ep-profilepics-avatar/#{@user.id}") %>
+					<%= image_tag("https://s3.amazonaws.com/ep-profilepics-avatar/#{@user.id}", height: '120', width: '120') %>
 				<% else %>
 			  	<%= image_tag(@user.image_url, height: '120', width: '120') %>
 			  <% end %>
@@ -34,7 +34,7 @@
 			</div>
 		</div>
 
-		<div class="span5 ep-profile-actions">
+		<div class="col-md-5 ep-profile-actions">
 			<div class="ep-hr-line"></div>
 
 			<% if !user_signed_in? %>
@@ -47,7 +47,7 @@
 				<p><i class="fa fa-plus"></i>
 					<%= link_to "Become #{@user.first_name}'s Connection", invite_friend_user_path(@user), method: :put %></p>
 
-			<% elsif current_user.friend_with? @user %> 
+			<% elsif current_user.friend_with? @user %>
 				<p><i class="fa fa-plus"></i>&nbsp You are connected to <%= @user.first_name %></p>
 
 			<% elsif current_user.invited? @user %>

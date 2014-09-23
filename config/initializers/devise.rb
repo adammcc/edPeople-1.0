@@ -4,7 +4,7 @@ Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
   # random tokens. Changing this key will render invalid all existing
   # confirmation, reset password and unlock tokens in the database.
-  config.secret_key = 'b6b3e90c9e330d389f742351a99b5a0f95c68d2e8b40135cecb12130662f4da42ba40c91047986a1082a9baa730a2b59fe4545ef8a276413b3840bdd00cbfca7'
+  # config.secret_key = 'b6b3e90c9e330d389f742351a99b5a0f95c68d2e8b40135cecb12130662f4da42ba40c91047986a1082a9baa730a2b59fe4545ef8a276413b3840bdd00cbfca7'
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -229,7 +229,7 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   require 'omniauth-linkedin'
-  config.omniauth :linkedin, ENV["EP_LINKEDIN_API_KEY"], ENV["EP_LINKEDIN_SECRET_KEY"], 
+  config.omniauth :linkedin, ENV["EP_LINKEDIN_API_KEY"], ENV["EP_LINKEDIN_SECRET_KEY"],
                   :scope => 'r_fullprofile r_emailaddress r_network'
 
   # ==> Warden configuration

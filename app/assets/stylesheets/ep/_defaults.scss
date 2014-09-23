@@ -1,18 +1,20 @@
+@import 'config';
+
 body#ep {
 	font-family: 'Open Sans', sans-serif;
 	color: #444;
 	background-color: $ep-light-gray;
 	color: $ep-deep-gray;
 	.container {
-		margin-left: 10px;
+		// margin-left: 10px;
 	}
-	a { 
-		color: $ep-links; 
+	a {
+		color: $ep-links;
 		cursor: pointer;
 		text-decoration: none;
 	}
 	a:hover {
-		color: $ep-light-blue; 
+		color: $ep-light-blue;
 	}
 	.white-bg {
 		background-color: white;
@@ -20,5 +22,8 @@ body#ep {
 	.right {
 		float: right;
 		clear: both;
+	}
+	.ep-main-container {
+		margin-top: 80px;
 	}
 }

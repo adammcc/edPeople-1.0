@@ -8,7 +8,7 @@ class College
   # College.create(name: 'Columbia University', users_meta_data: {})
   # College.create(name: 'Massachusetts Institute of Technology', users_meta_data: {})
   # College.create(name: 'Yale University', users_meta_data: {})
-  
+
   # user_metadata
   # { user_id:
   #   { start_date: 1/1/2017, end_date: 1/1/2020, degree_type: 'Masters', major: 'Mathematics' }
@@ -19,6 +19,6 @@ class College
   field :end_date, type: String
   field :degree_type, type: String
   field :major, type: String
- 	
+
   has_and_belongs_to_many :users
 end

@@ -1,10 +1,10 @@
 Ep::Application.routes.draw do
 
   devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
-  
+
   devise_scope :user do
     authenticated :user do
-      root :to => 'users#index'
+      root :to => 'users#index', as: :authenticated_root
     end
     unauthenticated :user do
       root :to => 'devise/registrations#new'
@@ -20,7 +20,7 @@ Ep::Application.routes.draw do
       put :remove_deny_friend
       put :add_avatar
     end
-  end 
+  end
 
   resources :college, only: [:new, :edit, :update] do
     member do

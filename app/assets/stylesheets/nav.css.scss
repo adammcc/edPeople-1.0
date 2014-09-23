@@ -1,23 +1,18 @@
+@import 'config';
+
 body#ep {
 	.navbar {
 		background-color: $blue-jeans;
 	}
-	// .dropdown-menu {
-	// 	border: 0;
-	// 	outline: none;
-	// }
-	// .navbar .nav > li > .dropdown-menu:before {
-	// 	top: -100px;
-	// }
-	// .navbar .nav > li > .dropdown-menu:after {
-	// 	top: -5px;
-	// }
-	.navbar .nav > li > a {
+	.navbar-nav {
+		list-style: none;
+	}
+	.navbar-nav > li > a {
 		text-shadow: none;
 		color: white;
 		background-color: $blue-jeans;
 	}
-	.brand, .brand:hover {
+	.navbar .navbar-brand, .navbar-brand:hover {
 		color: white
 	}
 	.nav-tabs > li.active > a, .nav-tabs > li > a:hover {
@@ -26,13 +21,17 @@ body#ep {
 	.nav-tabs > li {
 		border: 0;
 	}
-	.navbar .nav > li > a {
-		padding: 14px 10px;
+	.navbar-nav > li > a {
+		padding: 17px 10px;
+		line-height: 50px;
 	}
 	.nav-tabs > li > a {
 		border: none;
 		border-radius: 0px;
 		margin-right: 0px;
 		-webkit-border-radius: 0px;
+	}
+	.nav-tabs {
+		border: none;
 	}
 }

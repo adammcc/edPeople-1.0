@@ -8,19 +8,5 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require jquery.ui.all
- *= require bootstrap-datepicker
- *= require bootflat
  *= require_self
  */
-
-@import "bootstrap_and_overrides";
-@import "config";
-@import "mixins";
-@import 'sessions';
-@import 'ep/_defaults';
-@import 'users';
-@import 'nav';
-@import 'forms';
-@import 'experience';
-@import 'skills';
