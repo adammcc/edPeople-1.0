@@ -51,7 +51,7 @@ class User
   field :email,       type: String
   field :pro_summary, type: String
   field :skill,       type: String
-  field :headline,    type: String
+  field :headline,    type: String, default: 'Headline'
   field :demo,        type: Boolean, default: false
 
   field :provider,    type: String
