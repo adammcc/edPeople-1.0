@@ -18,6 +18,6 @@
 			<%= college.users_meta_data[user.id.to_s]["end_date"] %>
 		</p>
 	<% end %>
-	<%# link_to "Edit", edit_college_path(college) %>
+	<%= link_to "Delete", college_path(college), method: :delete %>
 </div>
 <hr>

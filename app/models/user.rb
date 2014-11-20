@@ -60,7 +60,7 @@ class User
   has_and_belongs_to_many :colleges
   has_and_belongs_to_many :skills
   has_mongoid_attached_file :avatar, :styles => { :medium => "120x120#", :thumb => "50x50#" }, :default_url => "/images/:style/missing.png"
-  embeds_many :experiences
+  has_and_belongs_to_many :experiences
 
   validates_attachment_content_type :avatar, :content_type => %w(image/jpeg image/jpg image/png)
   validates_attachment_size :avatar, :less_than => 5.megabytes
@@ -73,12 +73,12 @@ class User
   def self.connect_to_linkedin(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     if user
-      user.sync_to_linkedin(user, auth)
+      user.sync_with_linkedin(user, auth)
       return user
     else
       registered_user = User.where(:email => auth.info.email).first
       if registered_user
-        registered_user.sync_to_linkedin(registered_user, auth)
+        registered_user.sync_with_linkedin(registered_user, auth)
         return registered_user
       else
         @user = User.create( first_name:auth.info.first_name,
@@ -90,13 +90,13 @@ class User
                             email:auth.info.email,
                             password:Devise.friendly_token[0,20],
                           )
-        @user.sync_to_linkedin(@user, auth)
+        @user.sync_with_linkedin(@user, auth)
       end
     end
     return @user
   end
 
-  def sync_to_linkedin(user, auth)
+  def sync_with_linkedin(user, auth)
     client = LinkedIn::Client.new
     client.authorize_from_access(auth.extra.access_token.token, auth.extra.access_token.secret)
 
@@ -110,12 +110,14 @@ class User
     positions = profile.positions.to_hash
     positions["all"].each do |p|
       if !user_experiences.include? p[:id]
-        ex = user.experiences.create(title: p["title"],
+        ex = Experience.create(title: p["title"],
                                 employer: p["company"]["name"],
                                 start_date: "#{p["start_date"]["month"]}/#{p["start_date"]["year"]}",
                                 is_current: p["is_current"],
                                 description: p["summary"],
                                 linkedin_id: p["id"])
+        ex.save
+        user.experiences << ex
         if p["end_date"]
           ex.end_date = "#{p["end_date"]["month"]}/#{p["end_date"]["year"]}"
           ex.save

@@ -1,8 +1,10 @@
 class SkillsController < ApplicationController
-  def new
-  end
 
   def create
+    @user = current_user
+    skill = @user.skills.create(params[:skill])
+
+    redirect_to :back
   end
 
   def destroy

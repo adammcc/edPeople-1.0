@@ -14,25 +14,23 @@
 		</div>
 	<% end %>
 
-	
+
 	<br>
 	<% if @user == current_user %>
 		<br>
 		<a class="" data-toggle="collapse" data-target="#ep-add-skill"><i class="fa fa-plus"></i> Add</a>
 
 		<div id="ep-add-skill" class="collapse">
-			<%= form_for @user.skills.new, :url => { controller: 'users', :action => "add_skill" }, :html => { :method => "put", :class => '' } do |f| %>
+			<%= form_for Skill.new do |f| %>
 
-				<%= f.fields_for user.skills do |p| %>
-					<%= p.label :name, :class => '' %>	
-				 	<%= p.text_field :name, :value => '', :class => 'text_field' %>
+					<%= f.label :name, :class => '' %>
+				 	<%= f.text_field :name, :value => '', :class => 'text_field' %>
 
 				 	<div class="">
 				    <%= f.submit 'Add', :class => 'btn btn-primary' %>
 				    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
 				                user_path(current_user), :class => 'btn' %>
 				  </div>
-			 	<% end %>
 		 	<% end %>
 		</div>
 	<% end %>

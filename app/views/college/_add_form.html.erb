@@ -1,16 +1,16 @@
 <div class='ep-form'>
 	<% if current_user %>
-		<%= form_for @colleges.first, :url => { controller: 'college', :action => "do_add_college" }, :html => { :method => "put", :class => '' } do |f| %>
-			
+		<%= form_for College.new do |f| %>
+
 	    <%= f.label :college_name, :class => '' %>
-	    <%= f.collection_select :name, College.all, :id, :name, {:include_blank => 'Please Select'}, :class => 'text_field' %>
-	    
+	    <%= f.collection_select :id, College.all, :id, :name, {:include_blank => 'Please Select'}, :class => 'text_field' %>
+
 	    <%= f.label :degree_type, :class => '' %>
 	    <%= f.text_field :degree_type, :value => '', :class => 'text_field' %>
 
 	    <%= f.label :major, :class => '' %>
 	    <%= f.text_field :major, :value => '', :class => 'text_field' %>
-	    
+
 	    <div class="ep-date ep-start-date">
 		    <%= f.label :start_date, :class => '' %>
 		    <%= f.text_field :start_date, :value => '', :class => 'text_field' %>
@@ -23,8 +23,7 @@
 
 		  <div class="">
 		    <%= f.submit 'Add', :class => 'btn btn-primary' %>
-		    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-		                user_path(current_user), :class => 'btn' %>
+		    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), user_path(current_user), :class => 'btn' %>
 		  </div>
 
 		<% end %>

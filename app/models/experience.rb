@@ -18,5 +18,5 @@ class Experience
   field :is_current, type: Boolean
   field :linkedin_id, type: String
 
-  embedded_in :user
+  has_and_belongs_to_many :users
 end

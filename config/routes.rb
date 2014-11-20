@@ -13,8 +13,6 @@ Ep::Application.routes.draw do
 
   resources :users do
     member do
-      put :add_experience
-      put :add_skill
       put :invite_friend
       put :approve_friend
       put :remove_deny_friend
@@ -22,15 +20,8 @@ Ep::Application.routes.draw do
     end
   end
 
-  resources :college, only: [:new, :edit, :update] do
-    member do
-      get :add_college
-      put :do_add_college
-    end
-  end
-
+  resources :colleges
   resources :experiences
-
   resources :skills
 
 

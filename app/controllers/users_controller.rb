@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
 
-  # GET /users
-  # GET /users.json
   def index
     @users = User.all
 
@@ -12,10 +10,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1
-  # GET /users/1.json
   def show
-
     if params[:id]
       @user = User.find params[:id]
     else
@@ -31,8 +26,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/new
-  # GET /users/new.json
   def new
     @user = User.new
 
@@ -42,13 +35,6 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /users/1/edit
-  def edit
-    @user = User.find(params[:id])
-  end
-
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(params[:user])
 
@@ -63,16 +49,12 @@ class UsersController < ApplicationController
     end
   end
 
-  # PUT /users/1
-  # PUT /users/1.json
+  def edit
+    @user = User.find(params[:id])
+  end
+
   def update
     @user = User.find(params[:id])
-
-    if params[:user][:experience]
-      experience = @user.experiences.find(params[:user][:experience][:id])
-      experience.update_attributes(params[:user][:experience])
-      experience.save
-    end
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
@@ -85,24 +67,16 @@ class UsersController < ApplicationController
     end
   end
 
-  def add_experience
+  def destroy
     @user = User.find(params[:id])
+    @user.destroy
 
-    experience = @user.experiences.create(params[:experience])
-    experience.save
-
-    redirect_to :back
+    respond_to do |format|
+      format.html { redirect_to users_url }
+      format.json { head :no_content }
+    end
   end
 
-  def add_skill
-    user = current_user
-    skill = Skill.create(name: params[:skill][:skill][:name])
-
-    user.skills << skill
-
-    redirect_to :back
-
-  end
 
   def invite_friend
     inviter = current_user
@@ -143,18 +117,6 @@ class UsersController < ApplicationController
     upload_avatar_to_s3(user, avatar)
 
     redirect_to :back
-  end
-
-  # DELETE /users/1
-  # DELETE /users/1.json
-  def destroy
-    @user = User.find(params[:id])
-    @user.destroy
-
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
-    end
   end
 
   private
