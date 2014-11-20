@@ -66,6 +66,7 @@
 			<p><i class="fa fa-envelope"></i> Send <%= @user.first_name %> a message</p>
 			<p><i class="fa fa-file-text"></i>&nbsp Download <%= @user.first_name %>'s resume</p>
 			<p><i class="fa fa-folder-open"></i> View <%= @user.first_name %>'s portfolio</p>
+			<p><%= link_to "Sync with Linkedin",user_omniauth_authorize_path(:linkedin) %></p>
 		</div>
 	</div>
 

@@ -21,7 +21,7 @@ class UsersController < ApplicationController
     else
       @user = current_user
     end
-    
+
     @colleges = College.all
     @experiences = @user.experiences
 
@@ -143,9 +143,9 @@ class UsersController < ApplicationController
     upload_avatar_to_s3(user, avatar)
 
     redirect_to :back
-  end 
+  end
 
-   # DELETE /users/1
+  # DELETE /users/1
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])

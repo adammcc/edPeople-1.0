@@ -71,12 +71,6 @@ class User
   end
 
   def self.connect_to_linkedin(auth, signed_in_resource=nil)
-    p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    p auth.info
-
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     if user
       user.sync_to_linkedin(user, auth)
@@ -103,21 +97,17 @@ class User
   end
 
   def sync_to_linkedin(user, auth)
-    p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
-    p "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
     client = LinkedIn::Client.new
     client.authorize_from_access(auth.extra.access_token.token, auth.extra.access_token.secret)
 
     user.image_url = client.picture_urls.all.first
 
-    @profile = client.profile(:fields => %w(positions educations skills))
-    @profile.to_hash
+    profile = client.profile(:fields => %w(positions educations skills))
+    profile.to_hash
 
     user_experiences = user.experiences.map { |exp| exp.linkedin_id }
 
-    positions = @profile.positions.to_hash
+    positions = profile.positions.to_hash
     positions["all"].each do |p|
       if !user_experiences.include? p[:id]
         ex = user.experiences.create(title: p["title"],
@@ -133,7 +123,7 @@ class User
       end
     end
 
-    skills = @profile.skills.to_hash
+    skills = profile.skills.to_hash
     skills["all"].each do |s|
       if !user.skills.any? { |skill| skill.name == s["skill"]["name"] }
         skill = Skill.create(name: s["skill"]["name"])
@@ -142,16 +132,22 @@ class User
       end
     end
 
-    educations = @profile.educations.to_hash
+    educations = profile.educations.to_hash
     educations["all"].each do |e|
       if !College.all.any? { |education| education.name == e["school_name"]}
         college = College.create(name: e["school_name"])
-        college.users_meta_data[user.id] = {start_date: e["start_date"]["year"], end_date: e["end_date"]["year"], degree_type: e["degree"], major: e["field_of_study"] }
+        college.users_meta_data[user.id] = { start_date: e["start_date"]["year"],
+                                             end_date: e["end_date"]["year"],
+                                             degree_type: e["degree"],
+                                             major: e["field_of_study"] }
         college.save
         user.colleges << college
       else
         college = College.where(name: e["school_name"])
-        college.first.users_meta_data[user.id] = {start_date: e["start_date"]["year"], end_date: e["end_date"]["year"], degree_type: e["degree"], major: e["field_of_study"] }
+        college.first.users_meta_data[user.id] = { start_date: e["start_date"]["year"],
+                                                   end_date: e["end_date"]["year"],
+                                                   degree_type: e["degree"],
+                                                   major: e["field_of_study"] }
         college.first.save
         user.colleges << college.first
       end
