@@ -102,11 +102,13 @@ class User
 
     user.image_url = client.picture_urls.all.first
 
-    profile = client.profile(:fields => %w(positions educations skills))
+    profile = client.profile(:fields => %w(positions educations skills headline))
     profile.to_hash
 
-    user_experiences = user.experiences.map { |exp| exp.linkedin_id }
+    user.headline = profile.headline
+    user.save
 
+    user_experiences = user.experiences.map { |exp| exp.linkedin_id }
     positions = profile.positions.to_hash
     positions["all"].each do |p|
       if !user_experiences.include? p["id"].to_s
