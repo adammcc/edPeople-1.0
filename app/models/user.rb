@@ -109,18 +109,18 @@ class User
 
     positions = profile.positions.to_hash
     positions["all"].each do |p|
-      if !user_experiences.include? p[:id]
-        ex = Experience.create(title: p["title"],
+      if !user_experiences.include? p["id"].to_s
+        exp = Experience.create(title: p["title"],
                                 employer: p["company"]["name"],
                                 start_date: "#{p["start_date"]["month"]}/#{p["start_date"]["year"]}",
                                 is_current: p["is_current"],
                                 description: p["summary"],
                                 linkedin_id: p["id"])
-        ex.save
-        user.experiences << ex
+        exp.save
+        user.experiences << exp
         if p["end_date"]
-          ex.end_date = "#{p["end_date"]["month"]}/#{p["end_date"]["year"]}"
-          ex.save
+          exp.end_date = "#{p["end_date"]["month"]}/#{p["end_date"]["year"]}"
+          exp.save
         end
       end
     end
@@ -138,7 +138,7 @@ class User
     educations["all"].each do |e|
       if !College.all.any? { |education| education.name == e["school_name"]}
         college = College.create(name: e["school_name"])
-        college.users_meta_data[user.id] = { start_date: e["start_date"]["year"],
+        college.users_meta_data[user.id.to_s] = { start_date: e["start_date"]["year"],
                                              end_date: e["end_date"]["year"],
                                              degree_type: e["degree"],
                                              major: e["field_of_study"] }
@@ -146,7 +146,7 @@ class User
         user.colleges << college
       else
         college = College.where(name: e["school_name"])
-        college.first.users_meta_data[user.id] = { start_date: e["start_date"]["year"],
+        college.first.users_meta_data[user.id.to_s] = { start_date: e["start_date"]["year"],
                                                    end_date: e["end_date"]["year"],
                                                    degree_type: e["degree"],
                                                    major: e["field_of_study"] }
