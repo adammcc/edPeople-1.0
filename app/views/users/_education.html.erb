@@ -1,8 +1,8 @@
-<div class="ep-profile-section-header">
+<div class="ep-profile-section__header">
 	<h4>Education</h4>
 </div>
 
-<div class="ep-profile-section-body">
+<div class="ep-profile-section__body">
 	<% for college in @user.colleges %>
 		<%= render partial: 'college', locals: { college: college, user: @user } %>
 	<% end %>

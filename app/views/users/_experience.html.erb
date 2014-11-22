@@ -1,8 +1,8 @@
-<div class="ep-profile-section-header">
+<div class="ep-profile-section__header">
 	<h4>Experience</h4>
 </div>
 
-<div class="ep-profile-section-body">
+<div class="ep-profile-section__body">
 	<% for experience in @user.experiences %>
 		<%= render partial: 'job', locals: { experience: experience, user: @user } %>
 	<% end %>

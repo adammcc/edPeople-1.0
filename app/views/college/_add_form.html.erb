@@ -1,31 +1,35 @@
 <div class='ep-form'>
 	<% if current_user %>
 		<%= form_for College.new do |f| %>
-
-	    <%= f.label :college_name, :class => '' %>
-	    <%= f.collection_select :id, College.all, :id, :name, {:include_blank => 'Please Select'}, :class => 'text_field' %>
-
-	    <%= f.label :degree_type, :class => '' %>
-	    <%= f.text_field :degree_type, :value => '', :class => 'text_field' %>
-
-	    <%= f.label :major, :class => '' %>
-	    <%= f.text_field :major, :value => '', :class => 'text_field' %>
-
-	    <div class="ep-date ep-start-date">
-		    <%= f.label :start_date, :class => '' %>
-		    <%= f.text_field :start_date, :value => '', :class => 'text_field' %>
+			<div class="ep-form__profile-form-field">
+		    <%= f.label :college_name, :class => 'ep-form__label' %><br>
+		    <%= f.collection_select :id, College.all, :id, :name, {:include_blank => 'Please Select'}, :class => 'ep-form__text-field' %>
 		  </div>
 
-		  <div class="ep-date">
-		    <%= f.label :end_date, :class => '' %>
-		    <%= f.text_field :end_date, :value => '', :class => 'text_field' %>
+	    <div class="ep-form__profile-form-field">
+		    <%= f.label :degree_type, :class => 'ep-form__label' %><br>
+		    <%= f.text_field :degree_type, :value => '', :class => 'ep-form__text-field' %>
 	    </div>
 
-		  <div class="">
-		    <%= f.submit 'Add', :class => 'btn btn-primary' %>
-		    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), user_path(current_user), :class => 'btn' %>
+	    <div class="ep-form__profile-form-field">
+		    <%= f.label :major, :class => 'ep-form__label' %><br>
+		    <%= f.text_field :major, :value => '', :class => 'ep-form__text-field' %>
 		  </div>
 
+	    <div class="ep-date ep-start-date ep-form__profile-form-field ep-form__small-input">
+		    <%= f.label :start_date, :class => 'ep-form__label' %><br>
+		    <%= f.text_field :start_date, :value => '', :class => 'ep-form__text-field' %>
+		  </div>
+
+		  <div class="ep-date ep-form__profile-form-field ep-form__small-input">
+		    <%= f.label :end_date, :class => 'ep-form__label' %><br>
+		    <%= f.text_field :end_date, :value => '', :class => 'ep-form__text-field' %>
+	    </div><br><br><br><br>
+
+		  <div class="ep-form__clear">
+		    <%= f.submit 'Add', :class => 'btn btn-primary' %>
+		    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), user_path(current_user), :class => 'btn btn-default' %>
+		  </div>
 		<% end %>
 	<% end %>
 </div>

@@ -1,8 +1,7 @@
-<div class="ep-profile-section-header">
+<div class="ep-profile-section__header">
 	<h4>Skills</h4>
 </div>
-
-<div class="ep-skills ep-profile-section-body">
+<div class="ep-skills ep-profile-section__body">
 	<% for skill in @user.skills %>
 		<div class="ep-skill">
 			<%= skill.name %>
@@ -13,24 +12,19 @@
 			<% end %>
 		</div>
 	<% end %>
-
-
 	<br>
 	<% if @user == current_user %>
 		<br>
 		<a class="" data-toggle="collapse" data-target="#ep-add-skill"><i class="fa fa-plus"></i> Add</a>
-
 		<div id="ep-add-skill" class="collapse">
 			<%= form_for Skill.new do |f| %>
-
-					<%= f.label :name, :class => '' %>
-				 	<%= f.text_field :name, :value => '', :class => 'text_field' %>
-
-				 	<div class="">
-				    <%= f.submit 'Add', :class => 'btn btn-primary' %>
-				    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-				                user_path(current_user), :class => 'btn' %>
-				  </div>
+				<div class="ep-form__profile-form-field">
+					<%= f.label :name, :class => 'ep-form__label' %>
+				 	<%= f.text_field :name, :class => 'ep-form__text-field' %>
+				</div>
+		    <%= f.submit 'Add', :class => 'btn btn-primary' %>
+		    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+		                user_path(current_user), :class => 'btn btn-default' %>
 		 	<% end %>
 		</div>
 	<% end %>

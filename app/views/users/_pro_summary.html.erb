@@ -1,4 +1,4 @@
-<div class="ep-profile-section-header">
+<div class="ep-profile-section__header">
 	<h4>
 		Pro summary
 		<% if @user == current_user %>
@@ -7,6 +7,6 @@
 	</h4>
 </div>
 
-<div class="ep-profile-section-body">
+<div class="ep-profile-section__body">
 	<p><%= best_in_place user, :pro_summary, :type => :textarea, activator: '.ep-edit-pro-summary' %></p>
 </div>

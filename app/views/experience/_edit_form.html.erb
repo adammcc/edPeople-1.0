@@ -1,45 +1,7 @@
 <div class='ep-form'>
 	<%= form_for experience, :html => { :class => '' } do |f| %>
-
-			  <%= f.label :title, :class => 'control-label' %>
-			  <%= f.text_field :title, :class => 'text_field' %>
-
-
-			  <%= f.label :employer, :class => 'control-label' %>
-			  <%= f.text_field :employer, :class => 'text_field' %>
-
-
-			  <%= f.label :school, :class => 'control-label' %>
-				<%= f.text_field :school, :class => 'text_field' %>
-
-
-		  	<div class="ep-date ep-start-date">
-				  <%= f.label :start_date, :class => 'control-label' %>
-				  <%= f.text_field :start_date, :class => 'date-field ep-datepicker' %>
-				</div>
-
-				<div class="ep-date">
-				  <%= f.label "End Date (Leave blank if this is your current position)", :class => 'control-label' %>
-				  <%= f.text_field :end_date, :class => 'date-field ep-datepicker' %>
-				</div>
-
-			  <div class="ep-location ep-district">
-				  <%= f.label :district, :class => 'control-label' %>
-				  <%= f.text_field :district, :class => 'text_field' %>
-	    	</div>
-
-	    	<div class="ep-location">
-				  <%= f.label :borough, :class => 'control-label' %>
-				  <%= f.text_field :boro, :class => 'text_field' %>
-			  </div>
-
-
-			  <%= f.label :description, :class => 'control-label' %>
-			  <%= f.text_area :description, :class => 'text_area', :rows => '6' %>
-	  <div class="">
-	    <%= f.submit 'Update', :class => 'btn btn-primary' %>
-	    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-	                user_path(@user), :class => 'btn' %>
-	  </div>
+		<%= render partial: 'experience/form_fields', locals: { f: f } %>
+    <%= f.submit 'Update', :class => 'btn btn-primary' %>
+    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), user_path(@user), :class => 'btn btn-default' %>
 	<% end %>
 </div>

@@ -1,4 +1,9 @@
-# $ ->
+$ ->
+  $('.js-edit-college').click ->
+    $(this).closest('.js-college').hide()
+
+  $('.js-edit-experience').click ->
+    $(this).closest('.js-experience').hide()
 # 	$('.ep-datepicker').datepicker()
 
 # 	$('.checkbox input').iCheck ->
