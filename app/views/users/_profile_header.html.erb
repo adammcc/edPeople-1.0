@@ -10,13 +10,20 @@
 			  <% end %>
 
 			 	<% if @user == current_user %>
-					<div class="ep-add-update-image">
-						<a class="" data-toggle="collapse" data-target="#ep-add-update-image">Change image</a>
+					<div class="ep-profile-image__uploader-container">
+						<a class="" data-toggle="collapse" data-target="#ep-profile-image__toggle">Change image</a>
 
-						<div id="ep-add-update-image" class="collapse">
-							<%= form_for @user, :url => { controller: 'users', :action => "add_avatar" }, :html => { :method => "put",:multipart => true, :class => '' } do |f| %>
-							  <%= f.file_field :avatar, "data-filename-placement"=> "inside", class: "ep-add-image" %>
-							  <%= f.submit "Add", class: "btn btn-primary ep-add-image-button" %>
+						<div id="ep-profile-image__toggle" class="collapse">
+							<%= form_for @user, :url => { controller: 'users', :action => "add_avatar" }, :html => { :method => "put",:multipart => true, :class => '' } do |f| %><br>
+
+								<span class="ep-profile-image__placeholder">
+									<input class="ep-profile-image__placeholder-input" placeholder="Choose File" disabled="disabled" />
+								</span>
+
+								<div class="ep-profile-image__upload-fields">
+								  <%= f.file_field :avatar, "data-filename-placement"=> "inside", class: "ep-profile-image__file-field js-profile-image__file-field" %>
+								  <%= f.submit "Upload", class: "btn btn-primary" %>
+							  </div>
 							<% end %>
 						</div>
 					</div>

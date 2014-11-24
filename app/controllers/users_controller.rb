@@ -109,12 +109,14 @@ class UsersController < ApplicationController
 
   def add_avatar
     user = User.find(params[:id])
-    avatar = params[:user][:avatar]
+    if !params[:user].nil?
+      avatar = params[:user][:avatar]
 
-    user.avatar = avatar
-    user.save
+      user.avatar = avatar
+      user.save
 
-    upload_avatar_to_s3(user, avatar)
+      upload_avatar_to_s3(user, avatar)
+    end
 
     redirect_to :back
   end
