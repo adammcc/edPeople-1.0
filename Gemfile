@@ -59,7 +59,8 @@ gem 'best_in_place', github: "bernat/best_in_place"
 # gem 'amistad', '~> 0.9.2'
 gem 'faker', '~> 1.3.0'
 
-gem "twitter-bootstrap-rails"
+# gem "twitter-bootstrap-rails"
+gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 
 gem 'actionpack-action_caching', '~>1.0.0'
 gem 'actionpack-page_caching', '~>1.0.0'

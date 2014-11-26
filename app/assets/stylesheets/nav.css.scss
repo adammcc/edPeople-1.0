@@ -4,11 +4,7 @@ body#ep {
 	.navbar {
 		background-color: $blue-jeans;
 	}
-	.navbar-nav {
-		list-style: none;
-	}
 	.navbar-nav > li > a {
-		text-shadow: none;
 		color: white;
 		background-color: $blue-jeans;
 	}
@@ -18,20 +14,16 @@ body#ep {
 	.nav-tabs > li.active > a, .nav-tabs > li > a:hover {
 		background-color: $blue-jeans-light !important;
 	}
-	.nav-tabs > li {
-		border: 0;
-	}
-	.navbar-nav > li > a {
-		padding: 17px 10px;
-		line-height: 50px;
-	}
 	.nav-tabs > li > a {
 		border: none;
 		border-radius: 0px;
 		margin-right: 0px;
-		-webkit-border-radius: 0px;
 	}
-	.nav-tabs {
-		border: none;
+	.navbar-toggle .icon-bar+.icon-bar {
+		margin-top: 7px;
+		background-color: white;
+	}
+	.navbar-default .navbar-toggle .icon-bar {
+		background-color: white;
 	}
 }
