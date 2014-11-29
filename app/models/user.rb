@@ -70,6 +70,13 @@ class User
     "#{first_name} #{last_name}"
   end
 
+  def update_name(full_name)
+    split_full_name = full_name.split(' ', 2)
+    self.first_name = split_full_name[0]
+    self.last_name = split_full_name[1]
+    self.save
+  end
+
   def self.connect_to_linkedin(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     if user
