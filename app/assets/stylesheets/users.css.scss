@@ -83,6 +83,10 @@
 
 .ep-title-container {
 	max-width: 500px;
+	h5 {
+		font-weight: bold;
+		margin-bottom: 5px;
+	}
 }
 
 .ep-connection {
@@ -115,4 +119,8 @@
 		margin-left: 20px;
 		margin-left: 0;
 	}
+}
+
+.js-exit-edit-mode, .js-edit {
+	display: none;
 }

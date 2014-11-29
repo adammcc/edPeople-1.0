@@ -8,17 +8,17 @@
 				<%# render partial: 'pro_summary', locals: { user: @user } %>
 			</div> -->
 
-			<div class="ep-profile-section white-bg">
-				<%= render partial: 'experience', locals: { experiences: @experiences } %>
+			<div class="ep-profile-section ep-profile-section--experience  white-bg">
+				<%= render partial: 'experience', locals: { user: @user, experiences: @experiences } %>
 			</div>
 
-			<div class="ep-profile-section white-bg">
+			<div class="ep-profile-section ep-profile-section--education white-bg">
 				<%= render partial: 'education', locals: { colleges: @colleges } %>
 			</div>
 		</div>
 
 		<div class="col-md-5">
-			<div class="ep-profile-section white-bg">
+			<div class="ep-profile-section ep-profile-section--skill white-bg">
 				<%= render partial: 'skills', locals: { user: @user } %>
 			</div>
 

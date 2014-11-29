@@ -1,6 +1,6 @@
-<div class='ep-form'>
+<div class='ep-form ep-edit-form js-edit-form'>
 	<% if current_user %>
-		<%= form_for college, :html => { :class => '' } do |f| %>
+		<%= form_for college, :html => { :class => '' }, remote: true do |f| %>
 			<div class="ep-form__profile-form-field">
 				<div class="ep-college-name">
 		  		<%= f.hidden_field :name, :class => 'ep-form__text-field' %>
@@ -30,8 +30,7 @@
 
 		  <div class="ep-form__clear">
 		    <%= f.submit 'Update', :class => 'btn btn-primary' %>
-		    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-		                user_path(current_user), :class => 'btn btn-default' %>
+		    <%= content_tag :div, 'cancel', class: 'ep-cancel-edit btn btn-default' %>
 		  </div>
 		<% end %>
 	<% end %>

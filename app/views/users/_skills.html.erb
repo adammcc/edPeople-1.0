@@ -1,12 +1,12 @@
 <div class="ep-profile-section__header">
 	<h4>Skills</h4>
 </div>
-<div class="ep-skills ep-profile-section__body">
+<div class="ep-skills ep-profile-section__body js-section-container">
 	<% for skill in @user.skills %>
 		<div class="ep-skill">
 			<%= skill.name %>
 				<% if @user == current_user %>
-					<%= link_to skill_path(skill), method: :delete do %>
+					<%= link_to skill_path(skill), method: :delete, remote: true, class: 'js-edit js-delete' do %>
 					<i class="fa fa-times"></i>
 				<% end %>
 			<% end %>
@@ -15,16 +15,15 @@
 	<br>
 	<% if @user == current_user %>
 		<br>
-		<a class="" data-toggle="collapse" data-target="#ep-add-skill"><i class="fa fa-plus"></i> Add</a>
-		<div id="ep-add-skill" class="collapse">
-			<%= form_for Skill.new do |f| %>
+		<a class="js-edit js-edit-section-item"><i class="fa fa-plus"></i> Add</a>
+		<div id="ep-add-skill" class="js-edit-form ep-edit-form">
+			<%= form_for Skill.new, remote: true do |f| %>
 				<div class="ep-form__profile-form-field">
 					<%= f.label :name, :class => 'ep-form__label' %>
-				 	<%= f.text_field :name, :class => 'ep-form__text-field' %>
+				 	<%= f.text_field :name, autofocus: true, :class => 'ep-form__text-field' %>
 				</div>
 		    <%= f.submit 'Add', :class => 'btn btn-primary' %>
-		    <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
-		                user_path(current_user), :class => 'btn btn-default' %>
+		    <%= content_tag :div, 'cancel', class: 'ep-cancel-edit btn btn-default' %>
 		 	<% end %>
 		</div>
 	<% end %>

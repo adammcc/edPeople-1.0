@@ -2,8 +2,17 @@ $ ->
   $('.js-edit-college').click ->
     $(this).closest('.js-college').hide()
 
-  $('.js-edit-experience').click ->
-    $(this).closest('.js-experience').hide()
+  $(".js-section-container").each ->
+    $(this).on 'click', '.js-edit-section-item', ->
+      $(this).siblings('.js-section-item').hide()
+      $(this).siblings('.js-edit-form').show()
+
+  $('.ep-cancel-edit').click ->
+    $('.js-edit-form').hide()
+    $('.js-section-item').show()
+
+  $('.js-delete').click ->
+    $(this).parent().hide()
 
   $(".ep-profile-image__placeholder").click ->
     $(".js-profile-image__file-field").click()

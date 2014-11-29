@@ -1,29 +1,28 @@
-<div id="ep-edit-job-<%= experience.id %>" class="collapse">
-	<%= render :partial => '../views/experience/edit_form', locals: { experience: experience } %>
-</div>
-
-<div class="js-experience ep-experience">
-	<div class="ep-title-container">
-		<h5>
-			<%= experience.title %> at <span><%= experience.school.present? ? experience.school : experience.employer %></span> 
-			<span class="nycdoe"><%= experience.employer == 'NYCDOE' ? "(#{experience.employer})" : '' %></span>
-			<% if @user == current_user %>
-				<a class="js-edit-experience" data-toggle="collapse" data-target="#ep-edit-job-<%= experience.id %>"><i class="fa fa-pencil"></i> Edit</a>
-			<% end %>
-		</h5>
+<div class="js-section-container ep-experience-container">
+	<div id="ep-edit-job-<%= experience.id %>" class="ep-experience-edit-form ep-edit-form js-edit-form">
+		<%= render :partial => '../views/experiences/edit_form', locals: { experience: experience } %>
 	</div>
-
-	<p class="ep-experience-meta">
-	<%= experience.boro.present? ? "#{experience.boro} |" : '' %>
-	<%= experience.district.present? ? "District #{experience.district} |" : '' %>
-	<% if experience.start_date.present? && experience.end_date.present? %>
-		<%= experience.start_date %> - <%= experience.end_date %>
-	<% elsif experience.start_date.present? && !experience.end_date.present? %>
-		<%= "#{experience.start_date} - present" %>
+	<div class="js-experience ep-experience js-section-item">
+		<div class="ep-title-container">
+			<h5>
+				<%= experience.title %> at <span><%= experience.school.present? ? experience.school : experience.employer %></span>
+				<span class="nycdoe"><%= experience.employer == 'NYCDOE' ? "(#{experience.employer})" : '' %></span>
+			</h5>
+		</div>
+		<p class="ep-experience-meta">
+			<%= experience.boro.present? ? "#{experience.boro} |" : '' %>
+			<%= experience.district.present? ? "District #{experience.district} |" : '' %>
+			<% if experience.start_date.present? && experience.end_date.present? %>
+				<%= experience.start_date %> - <%= experience.end_date %>
+			<% elsif experience.start_date.present? && !experience.end_date.present? %>
+				<%= "#{experience.start_date} - present" %>
+			<% end %>
+		</p>
+		<p><%= experience.description %></p>
+	</div>
+	<% if @user == current_user %>
+		<a class="js-edit-section-item js-edit">Edit |</a>
+		<%= link_to ' Delete', experience_path(experience), method: :delete, remote: true, class: 'js-edit js-delete' %>
 	<% end %>
-	</p>
-
-	<p><%= experience.description %></p>
-	<%= link_to 'Delete', experience_path(experience), method: :delete %>
+	<hr>
 </div>
-<hr>

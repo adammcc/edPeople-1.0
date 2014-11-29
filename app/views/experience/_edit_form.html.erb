@@ -1,7 +1,0 @@
-<div class='ep-form'>
-	<%= form_for experience, :html => { :class => '' } do |f| %>
-		<%= render partial: 'experience/form_fields', locals: { f: f } %>
-    <%= f.submit 'Update', :class => 'btn btn-primary' %>
-    <%= link_to t('.cancel', :default => t("helpers.links.cancel")), user_path(@user), :class => 'btn btn-default' %>
-	<% end %>
-</div>

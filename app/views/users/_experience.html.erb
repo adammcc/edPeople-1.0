@@ -2,14 +2,14 @@
 	<h4>Experience</h4>
 </div>
 
-<div class="ep-profile-section__body">
-	<% for experience in @user.experiences %>
-		<%= render partial: 'job', locals: { experience: experience, user: @user } %>
+<div class="ep-profile-section__body js-section-container">
+	<% for experience in user.experiences %>
+		<%= render partial: 'users/job', locals: { experience: experience, user: user } %>
 	<% end %>
-	<% if @user == current_user %>
-		<a class="" data-toggle="collapse" data-target="#ep-add-experience"><i class="fa fa-plus"></i> Add</a>
+	<% if user == current_user %>
+		<a class="js-edit js-edit-section-item js-edit-section-item"><i class="fa fa-plus"></i> Add</a>
 	<% end %>
-	<div id="ep-add-experience" class="collapse">
-		<%= render :partial => '../views/experience/add_form', locals: { experiences: experiences } %>
+	<div id="ep-add-experience" class="js-edit-form ep-edit-form">
+		<%= render :partial => '../views/experiences/add_form', locals: { experiences: experiences } %>
 	</div>
 </div>
