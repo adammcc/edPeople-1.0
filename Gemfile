@@ -56,7 +56,7 @@ gem 'best_in_place', github: "bernat/best_in_place"
 # gem 'bootstrap-sass', '3.0.2.1'
 # gem 'bootstrap-file-input', '~> 0.0.1'
 # gem 'bootflat-rails'
-# gem 'amistad', '~> 0.9.2'
+gem 'amistad', '~> 0.10.2'
 gem 'faker', '~> 1.3.0'
 
 # gem "twitter-bootstrap-rails"

@@ -1,6 +1,6 @@
 class User
   include Mongoid::Document
-  # include Amistad::FriendModel
+  include Amistad::FriendModel
   include Mongoid::Paperclip
 
   # validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]

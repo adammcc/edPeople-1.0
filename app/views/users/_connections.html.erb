@@ -13,26 +13,27 @@
 	</div>
 
 	<div id="ep-friends">
-		<%# for friend in @user.friends.take(3) %>
-			<%#= render partial: 'connection', locals: { user: friend } %>
-		<%# end %>
+		<% for friend in @user.friends.take(6) %>
+			<%= render partial: 'connection', locals: { user: friend } %>
+		<% end %>
 	</div>
 	<% if @user == current_user %>
 		<div id="ep-invited">
-			<%# for invite in @user.pending_invited %>
-				<%#= render partial: 'connection', locals: { user: invite } %>
-			<%# end %>
+			<% for invite in @user.pending_invited %>
+				<%= render partial: 'connection', locals: { user: invite } %>
+			<% end %>
 		</div>
 
 		<div id="ep-invited_by">
-			<%# for inviter in @user.pending_invited_by %>
-				<%#= render partial: 'connection', locals: { user: inviter } %>
-			<%# end %>
+			<% for inviter in @user.pending_invited_by %>
+				<%= render partial: 'connection', locals: { user: inviter } %>
+			<% end %>
 		</div>
 	<% end %>
 
-	<a class="ep-see-all-connections" data-toggle="modal" data-target=".ep-connection-modal">See All</a>
-
+  <% if @user.friends.count > 6 %>
+	 <a class="ep-see-all-connections" data-toggle="modal" data-target=".ep-connection-modal">See All</a>
+  <% end %>
 </div>
 
 <div class="modal fade ep-connection-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
@@ -42,9 +43,9 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">Connections</h4>
       </div>
-      <%# for friend in @user.friends %>
-				<%#= render partial: 'connection', locals: { user: friend } %>
-			<%# end %>
+      <% for friend in @user.friends %>
+				<%= render partial: 'connection', locals: { user: friend } %>
+			<% end %>
     </div>
   </div>
 </div>
