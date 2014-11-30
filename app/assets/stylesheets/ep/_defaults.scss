@@ -1,5 +1,19 @@
 @import 'config';
 
+html, body {
+    height: 100%;
+}
+
+.wrapper {
+    min-height: 100%;
+    height: auto;
+    margin: 0 auto -100px;
+    padding-bottom: 100px;
+}
+.footer {
+    height: 100px;
+}
+
 body#ep {
 	font-family: 'Open Sans', sans-serif;
 	color: #444;
