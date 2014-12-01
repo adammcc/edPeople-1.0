@@ -7,6 +7,13 @@
   */
 
 
-  .modal-content {
-    padding: 10px 22px;
-  }
+.btn-primary {
+  background-color: #3BAFDA;
+  border-color: #3BAFDA;
+}
+.btn-primary:hover {
+  background-color:  #0088cc;
+}
+.modal-content {
+  padding: 10px 22px;
+}

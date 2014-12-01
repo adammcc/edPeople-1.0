@@ -1,5 +1,6 @@
 class College
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   # Create a college:
   # College.create(name: 'Stanford University', users_meta_data: {'534d861685db9e8cfd000001' => {start_date: "9/1/2001", end_date: "5/15/2005", degree_type: 'Bachelor of Science (BS)', major: 'Mathematics'}})

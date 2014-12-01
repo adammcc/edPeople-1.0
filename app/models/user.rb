@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  include Mongoid::Timestamps
   include Amistad::FriendModel
   include Mongoid::Paperclip
 

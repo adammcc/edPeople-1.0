@@ -78,8 +78,8 @@
 			<p><i class="fa fa-envelope"></i> Send <%= @user.first_name %> a message</p>
 			<p><i class="fa fa-file-text"></i>&nbsp Download <%= @user.first_name %>'s resume</p>
 			<p><i class="fa fa-folder-open"></i> View <%= @user.first_name %>'s portfolio</p>
-			<% if current_user == @user%>
-				<p><i class="fa fa-linkedin-square"></i>&nbsp<%= link_to "Import form Linkedin",user_omniauth_authorize_path(:linkedin) %></p>
+			<% if current_user == @user %>
+				<p><i class="fa fa-linkedin-square"></i>&nbsp<%= link_to "Import from Linkedin",user_omniauth_authorize_path(:linkedin) %></p>
 			<% end %>
 		</div>
 	</div>

@@ -1,36 +1,54 @@
-<%- model_class = User -%>
-<div class="page-header">
-  <h1><%=t '.title', :default => model_class.model_name.human.pluralize.titleize %></h1>
-</div>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th><%= model_class.human_attribute_name(:email) %></th>
-      <th><%= model_class.human_attribute_name(:first_name) %></th>
-      <th><%= model_class.human_attribute_name(:last_name) %></th>
-      <th><%=t '.actions', :default => t("helpers.actions") %></th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.email, user_path(user) %></td>
-        <td><%= user.first_name %></td>
-        <td><%= user.last_name %></td>
-        <td>
-          <%= link_to t('.edit', :default => t("helpers.links.edit")),
-                      edit_user_path(user), :class => 'btn btn-mini' %>
-          <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
-                      user_path(user),
-                      :method => :delete,
-                      :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
-                      :class => 'btn btn-mini btn-danger' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
-<%= link_to t('.new', :default => t("helpers.links.new")),
-            new_user_path,
-            :class => 'btn btn-primary' %>
+<div class="row-fluid"><br><br><br><br>
+
+  <div class="ep-search col-md-3 white-bg">
+    <h3>Find people</h3>
+    <%= text_field_tag 'search', nil, placeholder: 'Search people...'%>
+
+    <h4>Filter by role</h4>
+    <div class="ep-search__filter-item"><%= check_box_tag 'teachers' %> Teachers</div>
+    <div class="ep-search__filter-item"><%= check_box_tag 'administrators' %> Administrators</div>
+    <div class="ep-search__filter-item"><%= check_box_tag 'consolers' %> Consolers</div>
+
+    <h4>Filter by subject</h4>
+    <div class="ep-search__filter-item"><%= check_box_tag 'math' %>  Math</div>
+    <div class="ep-search__filter-item"><%= check_box_tag 'english' %> English</div>
+    <div class="ep-search__filter-item"><%= check_box_tag 'history' %> History</div>
+    <div class="ep-search__filter-item"><%= check_box_tag 'science' %> Science</div>
+    <div class="ep-search__filter-item"><%= check_box_tag 'speced' %> Special Education</div>
+    <div class="ep-search__filter-item"><%= check_box_tag 'art' %> Art</div>
+    <div class="ep-search__filter-item"><%= check_box_tag 'physed' %> Physical Education</div>
+  </div>
+
+  <div class="ep-users col-md-8 white-bg">
+    <div class="page-header">
+      <h3>People</h3>
+    </div>
+    <table class="table">
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td>
+              <div class="ep-users__photo">
+                <% if user.avatar.url != "/images/original/missing.png" %>
+                  <%= image_tag("https://s3.amazonaws.com/ep-profilepics-avatar/#{user.id}", height: '60', width: '60') %>
+                <% else %>
+                  <%= image_tag(user.image_url, height: '60', width: '60') %>
+                <% end %>
+              </div>
+              <div class="ep-users__meta">
+                <p><%= link_to user.name, user_path(user) %></p>
+                <p><%= user.headline %></p>
+              </div>
+            </td>
+            <td>
+              <% unless user == current_user %>
+                <%= link_to "Connect", invite_friend_user_path(user), method: :put, class: 'ep-users__connect btn btn-primary' %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

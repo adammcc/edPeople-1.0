@@ -1,5 +1,6 @@
 class Experience
   include Mongoid::Document
+  include Mongoid::Timestamps
 
   # attr_accessible :title, :employer, :school, :start_date, :end_date,
   # :district, :boro, :description

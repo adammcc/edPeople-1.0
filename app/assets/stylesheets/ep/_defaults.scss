@@ -14,13 +14,23 @@ html, body {
     height: 100px;
 }
 
+
 body#ep {
 	font-family: 'Open Sans', sans-serif;
-	color: #444;
 	background-color: $ep-light-gray;
-	color: $ep-deep-gray;
+	color: rgb(52, 73, 94);
 	.container {
 		// margin-left: 10px;
+	}
+	table {
+		tbody {
+			tr {
+				td {
+					border-top: none;
+					border-bottom: 1px solid #ddd;
+				}
+			}
+		}
 	}
 	a {
 		color: $ep-links;
