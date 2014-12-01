@@ -1,12 +1,18 @@
 <div id="ep-connection" class="ep-connection">
 	<p>
-		<%= image_tag(user.image_url, height: '40', width: '40') %>
+		<span class="ep-connection__photo">
+			<% if user.avatar.url != "/images/original/missing.png" %>
+	      <%= image_tag("https://s3.amazonaws.com/ep-profilepics-avatar/#{user.id}", height: '40', width: '40') %>
+	    <% else %>
+	      <%= image_tag(user.image_url, height: '40', width: '40') %>
+	    <% end %>
+	  </span>
 		<%= link_to user.name, user_path(user) %>	</p>
 		<% if current_user %>
 			<% if (current_user.invited_by? user) && (!current_user.friend_with? user) %>
 				<div class="ep-connection-choice">
 					<%= link_to approve_friend_user_path(user), method: :put, class: 'ep-approve' do %>
-						 <i class="fa fa-plus"></i> Approve 
+						 <i class="fa fa-plus"></i> Approve
 					<% end %>
 					&nbsp|&nbsp
 					<%= link_to remove_deny_friend_user_path(user), method: :put, class: 'ep-deny' do %>
