@@ -20,6 +20,13 @@ $ ->
   $(".js-profile-image__file-field").change ->
     $('.ep-profile-image__placeholder-input').attr('placeholder', $(this).val().split('\\').pop())
 
+  $(".js-search-form__text-field").bind "keyup", ->
+    $(".js-search-form").submit()
+
+  $(".js-search-form__check-box").each ->
+    $(this).change ->
+      $(this).closest('.js-search-form').submit()
+
 # 	$('.ep-datepicker').datepicker()
 
 # 	$('.checkbox input').iCheck ->

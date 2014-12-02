@@ -2,7 +2,23 @@ class UsersController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
 
   def index
-    @users = User.asc(:created_at)
+    @search_term = params[:search]
+    roles = params[:filter_by_roles]
+    subject_areas = params[:filter_by_subjects]
+    if !@search_term.blank? || roles || subject_areas
+      @users = User.asc(:created_at)
+      @users = User.full_text_search(@search_term) if !@search_term.blank?
+      if roles && subject_areas
+        users_by_role_then_subject = @users.in(role: roles).in(subject_area: subject_areas)
+        @users = users_by_role_then_subject
+      elsif roles || subject_areas
+        users_by_role = @users.in(role: roles) if roles
+        users_by_subject = @users.in(subject_area: subject_areas) if subject_areas
+        @users = users_by_role ||= [] + users_by_subject ||= []
+      end
+    else
+      @users = User.asc(:created_at)
+    end
   end
 
   def show

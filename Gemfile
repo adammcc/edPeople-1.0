@@ -35,6 +35,7 @@ gem "moped", github: "mongoid/moped"
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 gem 'mongoid', '~> 4.0.0'
+gem 'mongoid_search', '~> 0.3.2'
 # gem 'activemodel', '~> 4.1.6'
 # gem 'mongoid', '~> 4.0.0'
 # gem 'devise', '3.2.4'

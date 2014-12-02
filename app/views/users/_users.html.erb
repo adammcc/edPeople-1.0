@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h3>People</h3>
+</div>
+<% if @users.present? %>
+  <table class="table ep-users__table">
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td>
+            <div class="ep-users__photo">
+              <% if user.avatar.url != "/images/original/missing.png" %>
+                <%= image_tag("https://s3.amazonaws.com/ep-profilepics-avatar/#{user.id}", height: '60', width: '60') %>
+              <% else %>
+                <%= image_tag(user.image_url, height: '60', width: '60') %>
+              <% end %>
+            </div>
+            <div class="ep-users__meta">
+              <p><%= link_to user.name, user_path(user) %></p>
+              <p><%= user.headline %></p>
+              <p><%= user.role %> | <%= user.subject_area %></p>
+            </div>
+          </td>
+          <td>
+            <% unless user == current_user %>
+              <%= link_to "Connect", invite_friend_user_path(user), method: :put, class: 'ep-users__connect btn btn-primary' %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>Sorry, no matches. Try broadening your search.</p>
+<% end %>

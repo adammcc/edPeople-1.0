@@ -1,54 +1,45 @@
 
 <div class="row-fluid"><br><br><br><br>
-
   <div class="ep-search col-md-3 white-bg">
     <h3>Find people</h3>
-    <%= text_field_tag 'search', nil, placeholder: 'Search people...'%>
+    <%= form_tag users_path, method: :get, remote: true, class: 'js-search-form' do %>
+      <%= text_field_tag 'search', @search_term, placeholder: 'Search people...', class: "js-search-form__text-field" %>
 
-    <h4>Filter by role</h4>
-    <div class="ep-search__filter-item"><%= check_box_tag 'teachers' %> Teachers</div>
-    <div class="ep-search__filter-item"><%= check_box_tag 'administrators' %> Administrators</div>
-    <div class="ep-search__filter-item"><%= check_box_tag 'consolers' %> Consolers</div>
+      <h4>Filter by role</h4>
+      <%= check_box_tag 'filter_by_roles[]', 'teacher', false, class: 'js-search-form__check-box' %>
+      <%= label_tag 'filter_by_role', 'Teachers' %><br>
 
-    <h4>Filter by subject</h4>
-    <div class="ep-search__filter-item"><%= check_box_tag 'math' %>  Math</div>
-    <div class="ep-search__filter-item"><%= check_box_tag 'english' %> English</div>
-    <div class="ep-search__filter-item"><%= check_box_tag 'history' %> History</div>
-    <div class="ep-search__filter-item"><%= check_box_tag 'science' %> Science</div>
-    <div class="ep-search__filter-item"><%= check_box_tag 'speced' %> Special Education</div>
-    <div class="ep-search__filter-item"><%= check_box_tag 'art' %> Art</div>
-    <div class="ep-search__filter-item"><%= check_box_tag 'physed' %> Physical Education</div>
+      <%= check_box_tag 'filter_by_roles[]', 'administrator', false, class: 'js-search-form__check-box' %>
+      <%= label_tag 'filter_by_role', 'Administrators' %><br>
+
+      <%= check_box_tag 'filter_by_roles[]', 'counselor', false, class: 'js-search-form__check-box' %>
+      <%= label_tag 'filter_by_role', 'Counselors' %>
+
+      <h4>Filter by subject</h4>
+      <%= check_box_tag 'filter_by_subjects[]', 'math', false, class: 'js-search-form__check-box' %>
+      <%= label_tag 'filter_by_subjects', 'Math' %><br>
+
+      <%= check_box_tag 'filter_by_subjects[]', 'english', false, class: 'js-search-form__check-box' %>
+      <%= label_tag 'filter_by_subjects', 'English' %><br>
+
+      <%= check_box_tag 'filter_by_subjects[]', 'history', false, class: 'js-search-form__check-box' %>
+      <%= label_tag 'filter_by_subjects', 'History' %><br>
+
+      <%= check_box_tag 'filter_by_subjects[]', 'science', false, class: 'js-search-form__check-box' %>
+      <%= label_tag 'filter_by_subjects', 'Science' %><br>
+
+      <%= check_box_tag 'filter_by_subjects[]', 'sped', false, class: 'js-search-form__check-box' %>
+      <%= label_tag 'filter_by_subjects', 'Special Education' %><br>
+
+      <%= check_box_tag 'filter_by_subjects[]', 'art', false, class: 'js-search-form__check-box' %>
+      <%= label_tag 'filter_by_subjects', 'Art' %><br>
+
+      <%= check_box_tag 'filter_by_subjects[]', 'physed', false, class: 'js-search-form__check-box' %>
+      <%= label_tag 'filter_by_subjects', 'Physical Education' %>
+   <% end %>
   </div>
 
   <div class="ep-users col-md-8 white-bg">
-    <div class="page-header">
-      <h3>People</h3>
-    </div>
-    <table class="table">
-      <tbody>
-        <% @users.each do |user| %>
-          <tr>
-            <td>
-              <div class="ep-users__photo">
-                <% if user.avatar.url != "/images/original/missing.png" %>
-                  <%= image_tag("https://s3.amazonaws.com/ep-profilepics-avatar/#{user.id}", height: '60', width: '60') %>
-                <% else %>
-                  <%= image_tag(user.image_url, height: '60', width: '60') %>
-                <% end %>
-              </div>
-              <div class="ep-users__meta">
-                <p><%= link_to user.name, user_path(user) %></p>
-                <p><%= user.headline %></p>
-              </div>
-            </td>
-            <td>
-              <% unless user == current_user %>
-                <%= link_to "Connect", invite_friend_user_path(user), method: :put, class: 'ep-users__connect btn btn-primary' %>
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+    <%= render partial: 'users/users', locals: { users: @users } %>
   </div>
 </div>

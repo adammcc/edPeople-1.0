@@ -14,6 +14,8 @@ for user in users
 end
 
 skills = ["Backward Design", "Common Core State Standards", "Microsoft Office", "School Programming", "Differentiated Instruction", "SMARTboard", "Graphing Calculator", "Data Analysis", "Unit Mapping","Danielson Framework", "Secondary Education"]
+roles = %w(teacher administrator counselor)
+subjects =  %w(math english history science sped art physed)
 
 30.times do
 	user = User.create(demo: true,
@@ -23,8 +25,11 @@ skills = ["Backward Design", "Common Core State Standards", "Microsoft Office", 
                      password: "asdfasdf",
                      password_confirmation: "asdfasdf",
                      pro_summary: Faker::Lorem.paragraph(sentence_count = 3, supplemental = false, random_sentences_to_add = 3),
-                     skill: "Bowling", headline: Faker::Lorem.sentence(word_count = 5, supplemental = false, random_words_to_add = 6),
-                     image_url: Faker::Avatar.image)
+                     skill: "Bowling",
+                     headline: Faker::Lorem.sentence(word_count = 5, supplemental = false, random_words_to_add = 6),
+                     image_url: Faker::Avatar.image,
+                     role: roles.sample,
+                     subject_area: subjects.sample)
 
 	4.times do
 		user.skills.create(:name => skills.sample)

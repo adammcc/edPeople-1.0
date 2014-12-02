@@ -3,6 +3,7 @@ class User
   include Mongoid::Timestamps
   include Amistad::FriendModel
   include Mongoid::Paperclip
+  include Mongoid::Search
 
   # validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
   # validates_attachment :image, presence: true, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
@@ -54,6 +55,8 @@ class User
   field :skill,       type: String
   field :headline,    type: String, default: 'Headline'
   field :demo,        type: Boolean, default: false
+  field :role,        type: String
+  field :subject_area, type: String
 
   field :provider,    type: String
   field :uid,         type: String
@@ -62,6 +65,11 @@ class User
   has_and_belongs_to_many :skills
   has_mongoid_attached_file :avatar, :styles => { :medium => "120x120#", :thumb => "50x50#" }, :default_url => "/images/:style/missing.png"
   has_and_belongs_to_many :experiences
+
+  search_in :first_name, :last_name, :email, :headline, :role, :subject_area,
+            skills: :name,
+            colleges: [ :name, :degree_type, :major ],
+            experiences: [ :title, :employer, :school, :boro ]
 
   validates_attachment_content_type :avatar, :content_type => %w(image/jpeg image/jpg image/png)
   validates_attachment_size :avatar, :less_than => 5.megabytes
