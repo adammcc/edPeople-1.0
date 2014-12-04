@@ -9,7 +9,8 @@ body#ep {
 		background-color: $blue-jeans;
 	}
 	.navbar .navbar-brand, .navbar-brand:hover {
-		color: white
+		color: white;
+		font-size: 28px;
 	}
 	.nav-tabs > li.active > a, .nav-tabs > li > a:hover {
 		background-color: $blue-jeans-light !important;
@@ -25,5 +26,6 @@ body#ep {
 	}
 	.navbar-default .navbar-toggle .icon-bar {
 		background-color: white;
+		border-color:  $blue-jeans;
 	}
 }

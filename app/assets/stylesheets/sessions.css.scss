@@ -1,33 +1,149 @@
-.ep-home-page-container {
-	// background-color: white;
-	background-image: url('newyorkwall.jpg');
-	background-repeat: no-repeat;
-	background-size:100%;
+%ep-home-section {
 	height: 100%;
-	left: 0;
-	position: absolute;
-	top: 0;
-	width: 100%;
-	z-index: 0;
+	height:690px;
+	p {
+		font-size: 24px;
+	}
+}
 
-	// -webkit-filter: grayscale(100%)
-	// -webkit-filter: sepia(100%);
+.ep-home-section__one {
+	@extend %ep-home-section;
+	background-color: #3BAFDA;
+}
 
-	// -webkit-filter: blur(4px);
-  //  -moz-filter: blur(4px);
-  //  -o-filter: blur(4px);
-  //  -ms-filter: blur(4px);
-  //  filter: blur(4px);
+.ep-home-section__two {
+	@extend %ep-home-section;
+	background-color: #ecf0f1;
+}
+
+.ep-home-section__three {
+	@extend %ep-home-section;
+	background-color: #96ceb4;
+	color: white;
+}
+
+.ep-home-section__four {
+	@extend %ep-home-section;
+	background-color: #3BAFDA;
+	color: white;
+}
+
+.ep-home-section__row {
+	margin-top: 100px;
+}
+
+.ep-home-section__one-liner {
+	margin-top: 100px;
+	// text-align:center;
+	color: white;
+	// width: 440px;
+	p {
+		font-size:22px;
+	}
+}
+
+.ep-info-blurb {
+	margin-top: 120px;
+	line-height: 40px;
+	i {
+		font-size: 250px;
+		color: white;
+	}
+	&.ep-info-blurb--first {
+		i {
+			color: rgb(52, 73, 94);
+		}
+	}
+	&.ep-info-blurb__with-margin {
+		margin-top: 200px;
+	}
+}
+
+.ep-info-blurb--small {
+	margin-top: 100px;
+	line-height: 30px;
+	text-align: center;
 }
 
 .ep-signin-signup {
-	background-color: rgba(255, 255, 255, 0.9);
-	// color: white;
-	height: 400px;
-	padding: 20px 0px 40px 20px;
-	position: absolute;
-	top: 20%;
-	right: 25%;
-	width: 320px;
+	background-color: #ecf0f1;
+	height: 420px;
+	// max-width: 571px;
+	margin-top: 8px;
 	z-index: 2;
+	h2 {
+		text-align: center;
+	}
+	input {
+		height: 58px;
+		margin-bottom: 14px;
+	}
+	&.ep-signin-signup--signin {
+		height: 350px;
+	}
+	&.ep-signin-signup--forgot-pw  {
+		height: 260px;
+	}
 }
+
+.ep-signin-signup__text-field-small {
+	width: 228px;
+}
+
+.ep-signin-signup__text-field-small--right {
+	margin-left: 9px;
+}
+
+.ep-signin-signup__text-field-large {
+	width: 100%;
+}
+
+.ep-signin-signup__submit {
+	background-color: #96ceb4;
+	border-color: #96ceb4;
+	border-radius: 0px;
+	width: 100%;
+	text-align: center;
+	&:hover {
+		border-color: darken(#96ceb4, 5%);
+    background: darken(#96ceb4, 5%);
+  }
+}
+
+.ep-signin-signup__submit-small {
+	border-radius: 0px;
+	color: white !important;
+	height: 58px;
+	line-height: 46px;
+	width: 222px;
+	text-align: center;
+}
+
+.ep-signin-signup__submit-small--right {
+	margin-left: 9px;
+}
+
+.ep-links {
+	margin-top: 5px;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 1000px white inset;
+}
+
+.ep-linkedin-icon {
+	font-size: 20px;
+	color: #3BAFDA;
+	position: relative;
+	top: 2px
+}
+
+.ep-navbar-sessions {
+	margin-bottom: 0px;
+}
+
+.footer--sessions {
+	margin-top:0px !important;
+	border-top:1px solid white
+}
+
