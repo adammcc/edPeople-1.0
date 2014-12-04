@@ -135,14 +135,30 @@ a.ep-users__connect {
 	margin: 5px 0px 0px 10px;
 	p {
 		margin: 0;
+		line-height: 18px;
 	}
+}
+
+.ep-users__meta-content {
+	color: $ep-mid-gray;
+	font-size: 12px;
 }
 
 .ep-search {
 	padding: 20px;
+	font-size: 12px;
 	h4	{
 		padding: 10px 0px 5px 0px;
 		border-bottom: 1px solid $ep-light-gray;
+	}
+}
+
+.ep-users__table {
+	tr {
+		height: 140px;
+		td {
+			padding-top: 38px !important;
+		}
 	}
 }
 
