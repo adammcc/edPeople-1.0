@@ -65,3 +65,12 @@ body#ep {
 	}
 }
 
+.btn-primary {
+  background-color: #96ceb4;
+  border-color: #96ceb4;
+}
+.btn-primary:hover {
+  border-color: darken(#96ceb4, 5%);
+  background-color: darken(#96ceb4, 5%);
+}
+
