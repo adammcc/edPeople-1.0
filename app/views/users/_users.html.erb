@@ -9,9 +9,9 @@
           <td>
             <div class="ep-users__photo">
               <% if user.avatar.url != "/images/original/missing.png" %>
-                <%= image_tag("https://s3.amazonaws.com/ep-profilepics-avatar/#{user.id}", height: '60', width: '60') %>
+                <%= image_tag("https://s3.amazonaws.com/ep-profilepics-avatar/#{user.id}", height: '50', width: '50') %>
               <% else %>
-                <%= image_tag(user.image_url, height: '60', width: '60') %>
+                <%= image_tag(user.image_url, height: '50', width: '50') %>
               <% end %>
             </div>
             <div class="ep-users__meta">
