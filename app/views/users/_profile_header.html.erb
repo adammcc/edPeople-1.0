@@ -14,7 +14,7 @@
 						<a class="js-edit" data-toggle="collapse" data-target="#ep-profile-image__toggle">Change image</a>
 
 						<div id="ep-profile-image__toggle" class="js-edit-form--profile-image collapse">
-							<%= form_for @user, :url => { controller: 'users', :action => "add_avatar" }, :html => { :method => "put",:multipart => true, :class => '' } do |f| %><br>
+							<%= form_for @user, :url => add_avatar_user_path(@user), :html => { :method => "put", :multipart => true } do |f| %><br>
 
 								<span class="ep-profile-image__placeholder">
 									<input class="ep-profile-image__placeholder-input" placeholder="Choose File" disabled="disabled" />
