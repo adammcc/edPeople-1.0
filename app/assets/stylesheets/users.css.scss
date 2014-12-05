@@ -166,43 +166,6 @@ a.ep-users__connect {
 	margin-bottom: 10px;
 }
 
-// MEDIA
-////////
-
-@media only screen and (max-width: 767px) {
-	.ep-hr-line {
-		border-top: 1px solid $ep-light-gray;
-		margin: 0 auto;
-		margin-bottom: 10px;
-		width: 80%;
-	}
-	.ep-user-snapshot {
-		text-align: center;
-		width: 240px;
-		margin: 0 auto;
-		padding-top: 20px;
-	}
-	.ep-profile-image {
-		text-align: center;
-		width: 120px;
-		margin: 0 45px !important;
-	}
-	.ep-profile-actions {
-		margin-left: 20px;
-		text-align: center;
-	}
-	.ep-user-info {
-		margin-left: 20px;
-		margin-left: 0;
-	}
-	.ep-users {
-		margin-left: 0px;
-	}
-	.ep-users__meta {
-		width: 200px;
-	}
-}
-
 .ep-search__button {
-	margin-top: 4px;
+  margin-top: 4px;
 }

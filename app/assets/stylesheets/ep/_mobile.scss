@@ -1,0 +1,109 @@
+@import 'config';
+
+@media only screen and (max-width: 767px) {
+  // User Profile
+  ////////////////
+
+  .ep-hr-line {
+    border-top: 1px solid $ep-light-gray;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    width: 80%;
+  }
+  .ep-user-snapshot {
+    text-align: center;
+    width: 240px;
+    margin: 0 auto;
+    padding-top: 20px;
+  }
+  .ep-profile-image {
+    text-align: center;
+    width: 120px;
+    margin: 0 45px !important;
+  }
+  .ep-profile-actions {
+    margin-left: 20px;
+    text-align: center;
+  }
+  .ep-user-info {
+    margin-left: 20px;
+    margin-left: 0;
+  }
+  .ep-users {
+    margin-left: 0px;
+  }
+  .ep-users__meta {
+    width: 200px;
+  }
+
+  // Sessions
+  ///////////
+
+  .ep-signin-signup {
+    padding-top: 5px;
+    margin: 36px;
+    height: 540px !important;
+    &.ep-signin-signup--signin-pw {
+      height: 360px !important;
+    }
+  }
+
+  .ep-home-section__row {
+    margin-top: 0px;
+  }
+
+  .ep-home-section__one--sign-in-pw {
+    height: 520px !important;
+  }
+
+  .ep-home-section__two {
+    height: 490px !important;
+  }
+
+  .ep-home-section__three {
+    height: 490px !important;
+  }
+
+  .ep-home-section__one-liner {
+    margin-top: 0px !important;
+    text-align: center;
+    width: 300px;
+    margin-left: 24px;
+    p {
+      font-size: 16px !important;
+    }
+  }
+
+  .ep-home-section__row {
+     margin-top: 40px !important;
+  }
+
+  .ep-signin-signup__text-field-small {
+    width: 100% !important;
+  }
+
+  .ep-signin-signup__text-field-small--right {
+    margin-left: 0px !important;
+  }
+
+  .ep-info-blurb {
+    margin-top: 60px !important;
+    text-align: center;
+    i {
+      display: none;
+    }
+    &.ep-info-blurb__with-margin {
+      margin-top: 0px !important;
+    }
+    &.ep-info-blurb__with-margin-for-mobile {
+      margin-top: 100px !important;
+    }
+  }
+  .ep-info-blurb--small {
+    margin-top: 0px !important;
+  }
+
+  ul.dropdown-menu li a {
+    color: white !important;
+  }
+}
