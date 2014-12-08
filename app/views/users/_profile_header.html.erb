@@ -85,6 +85,7 @@
 	</div>
 <% if current_user == @user %>
 	<a class='js-edit-mode pull-right'> Edit</a>
+	<%= link_to '| Remove account', user_path(@user), method: :delete, class: 'js-edit pull-right ', data: {confirm: "Are you sure?"} %>
 	<a class='js-exit-edit-mode pull-right'><i class="fa fa-times"></i> Done Editing</a>
 <% end %>
 </div>

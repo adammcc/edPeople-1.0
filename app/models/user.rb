@@ -86,6 +86,20 @@ class User
     self.save
   end
 
+  def remove_all_friends
+    friends.each do |friend|
+      remove_friendship friend
+    end
+
+    pending_invited.each do |f|
+      remove_friendship f
+    end
+
+    pending_invited_by.each do |f|
+      remove_friendship f
+    end
+  end
+
   def self.connect_to_linkedin(auth, signed_in_resource=nil)
     user = User.where(:provider => auth.provider, :uid => auth.uid).first
     if user

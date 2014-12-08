@@ -86,12 +86,10 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find(params[:id])
+    @user.remove_all_friends
     @user.destroy
 
-    respond_to do |format|
-      format.html { redirect_to users_url }
-      format.json { head :no_content }
-    end
+    redirect_to :root
   end
 
 
