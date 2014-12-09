@@ -49,6 +49,7 @@ gem 'aws-sdk', '~> 1.3.4', :require => "aws-sdk"
 
 # gem 'best_in_place', '~> 2.1.0'
 gem 'best_in_place', github: "bernat/best_in_place"
+gem 'rails4-autocomplete'
 # gem 'anjlab-bootstrap-rails', :require => 'bootstrap-rails',
 #                           :github => 'anjlab/bootstrap-rails',
 #                           :branch => '3.0.0'

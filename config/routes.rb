@@ -12,6 +12,7 @@ Ep::Application.routes.draw do
   end
 
   resources :users do
+    get :autocomplete_college_name, :on => :collection
     member do
       put :invite_friend
       put :approve_friend

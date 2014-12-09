@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   before_filter :authenticate_user!, except: [:index, :show]
 
+  autocomplete :college, :name, full: true
+
   def index
     @search_term = params[:search]
     roles = params[:filter_by_roles]

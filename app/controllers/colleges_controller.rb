@@ -1,16 +1,19 @@
 class CollegesController < ApplicationController
 
   def create
-    @college = College.find(params[:college][:id])
     @user = current_user
-
-    @college.users_meta_data[@user.id.to_s] = { start_date: params[:college][:start_date],
-                                                end_date: params[:college][:end_date],
-                                                degree_type: params[:college][:degree_type],
-                                                major: params[:college][:major]
+    college = College.where(name: params[:college][:name]).first
+    if college.nil?
+      college = College.create(name: params[:college][:name])
+    end
+    @user.colleges << college
+    college.users_meta_data[@user.id.to_s] = { start_date: params[:college][:start_date],
+                                               end_date: params[:college][:end_date],
+                                               degree_type: params[:college][:degree_type],
+                                               major: params[:college][:major]
                                               }
-    @college.save
-    @user.colleges << @college
+    college.save
+    @colleges = College.all
   end
 
 	def edit
