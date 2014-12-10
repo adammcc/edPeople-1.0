@@ -62,6 +62,7 @@ class User
   field :uid,         type: String
 
   has_and_belongs_to_many :colleges
+  has_many :college_infos
   has_and_belongs_to_many :skills
   has_mongoid_attached_file :avatar, :styles => { :medium => "120x120#", :thumb => "50x50#" }, :default_url => "/images/:style/missing.png"
   has_and_belongs_to_many :experiences
@@ -168,23 +169,17 @@ class User
 
     educations = profile.educations.to_hash
     educations["all"].each do |e|
-      if !College.all.any? { |education| education.name == e["school_name"]}
-        college = College.create(name: e["school_name"])
-        college.users_meta_data[user.id.to_s] = { start_date: e["start_date"]["year"],
-                                             end_date: e["end_date"]["year"],
-                                             degree_type: e["degree"],
-                                             major: e["field_of_study"] }
-        college.save
-        user.colleges << college
+      if College.all.any? { |education| education.name == e["school_name"]}
+        college = College.where(name: e["school_name"]).first
       else
-        college = College.where(name: e["school_name"])
-        college.first.users_meta_data[user.id.to_s] = { start_date: e["start_date"]["year"],
-                                                   end_date: e["end_date"]["year"],
-                                                   degree_type: e["degree"],
-                                                   major: e["field_of_study"] }
-        college.first.save
-        user.colleges << college.first
+        college = College.create(name: e["school_name"])
       end
+      college.college_infos.create( start_date: e["start_date"]["year"],
+                                    end_date: e["end_date"]["year"],
+                                    degree_type: e["degree"],
+                                    major: e["field_of_study"],
+                                    user: user)
+      user.colleges << college
     end
   end
 end

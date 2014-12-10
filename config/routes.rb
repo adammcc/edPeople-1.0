@@ -22,6 +22,7 @@ Ep::Application.routes.draw do
   end
 
   resources :colleges
+  resources :college_infos
   resources :experiences
   resources :skills
 

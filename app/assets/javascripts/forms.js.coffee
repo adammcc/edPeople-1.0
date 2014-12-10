@@ -27,6 +27,9 @@ $ ->
     $(this).change ->
       $(this).closest('.js-search-form').submit()
 
+  $('.autocomplete_field').on 'autocompleteresponse', (event, ui) ->
+    $(this).autocomplete('close') if ui.content?[0].id.length == 0
+
 # 	$('.ep-datepicker').datepicker()
 
 # 	$('.checkbox input').iCheck ->

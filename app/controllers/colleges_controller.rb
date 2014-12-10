@@ -6,34 +6,9 @@ class CollegesController < ApplicationController
     if college.nil?
       college = College.create(name: params[:college][:name])
     end
-    @user.colleges << college
-    college.users_meta_data[@user.id.to_s] = { start_date: params[:college][:start_date],
-                                               end_date: params[:college][:end_date],
-                                               degree_type: params[:college][:degree_type],
-                                               major: params[:college][:major]
-                                              }
-    college.save
+    college_info = params[:college]
+    college_info.delete(:name)
+    college.college_infos.create(college_info.merge user: @user)
     @colleges = College.all
-  end
-
-	def edit
-    @college = College.find(params[:id])
-  end
-
-  def update
-    @college = College.find(params[:id])
-    @user = current_user
-
-    @college.users_meta_data[@user.id.to_s] = { start_date: params[:college][:start_date],
-                                                end_date: params[:college][:end_date],
-                                                degree_type: params[:college][:degree_type],
-                                                major: params[:college][:major]
-                                              }
-    @college.save
-  end
-
-  def destroy
-    @college = College.find(params[:id])
-    @college.destroy
   end
 end

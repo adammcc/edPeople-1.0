@@ -1,20 +1,20 @@
-<div id="ep-edit-college-<%= college.id %>" class="js-section-container">
-	<%= render :partial => '../views/colleges/edit_form', locals: { college: college } %>
+<% if college_info.college  %>
+	<div id="ep-edit-college-<%= college_info.id %>" class="js-section-container">
+		<%= render :partial => '../views/colleges/edit_form', locals: { college_info: college_info } %>
 
-	<div class="ep-title-container js-college js-section-item">
-		<h5><%= college.name %></h5>
-		<% if college.users_meta_data[user.id.to_s] %>
-			<p>
-				<%= college.users_meta_data[user.id.to_s]["degree_type"] %>,
-				<%= college.users_meta_data[user.id.to_s]["major"] %>
-			</p>
-			<p>
-				<%= college.users_meta_data[user.id.to_s]["start_date"] %> -
-				<%= college.users_meta_data[user.id.to_s]["end_date"] %>
-			</p>
-		<% end %>
+		<div class="ep-title-container js-college js-section-item">
+			<h5><%= college_info.college.name %></h5>
+				<p>
+					<%= college_info.degree_type %>,
+					<%= college_info.major %>
+				</p>
+				<p>
+					<%= college_info.start_date %> -
+					<%= college_info.end_date %>
+				</p>
+		</div>
+		<a class="js-edit-college js-edit js-edit-section-item">Edit |</a>
+		<%= link_to "Delete", college_info_path(college_info), method: :delete, remote: true, class: 'js-edit js-delete' %>
+		<hr>
 	</div>
-	<a class="js-edit-college js-edit js-edit-section-item">Edit |</a>
-	<%= link_to "Delete", college_path(college), method: :delete, remote: true, class: 'js-edit js-delete' %>
-	<hr>
-</div>
+<% end %>

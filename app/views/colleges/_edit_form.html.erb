@@ -1,35 +1,35 @@
 <div class='ep-form ep-edit-form js-edit-form'>
 	<% if current_user %>
-		<%= form_for college, :html => { :class => '' }, remote: true do |f| %>
+		<%= form_for college_info, :html => { class: '' }, remote: true do |f| %>
 			<div class="ep-form__profile-form-field">
 				<div class="ep-college-name">
-		  		<%= f.hidden_field :name, :class => 'ep-form__text-field' %>
-		   		<%= college.name %>
+					<%= f.label :college_name, :class => 'ep-form__label' %><br>
+		    	<%= f.autocomplete_field :name, autocomplete_college_name_users_path, value: college_info.college.name, class: 'autocomplete_field' %>
 		   	</div>
 		  </div>
 
 		  <div class="ep-form__profile-form-field">
-		    <%= f.label :degree_type, :class => 'ep-form__label' %><br>
-		    <%= f.text_field :degree_type, :class => 'ep-form__text-field', :value => college.users_meta_data[current_user.id.to_s] ? college.users_meta_data[current_user.id.to_s]["degree_type"] : '' %>
+		    <%= f.label :degree_type, class: 'ep-form__label' %><br>
+		    <%= f.text_field :degree_type, class: 'ep-form__text-field' %>
 		  </div>
 
 		  <div class="ep-form__profile-form-field">
-		    <%= f.label :major, :class => 'ep-form__label' %><br>
-		    <%= f.text_field :major, :class => 'ep-form__text-field', :value => college.users_meta_data[current_user.id.to_s] ? college.users_meta_data[current_user.id.to_s]["major"] : '' %>
+		    <%= f.label :major, class: 'ep-form__label' %><br>
+		    <%= f.text_field :major, class: 'ep-form__text-field' %>
 		  </div>
 
 	    <div class="ep-date ep-start-date ep-form__profile-form-field ep-form__small-input ep-form__clear">
-		    <%= f.label :start_date, :class => 'ep-form__label' %><br>
-		    <%= f.text_field :start_date, :class => 'ep-form__text-field', :value => college.users_meta_data[current_user.id.to_s] ? college.users_meta_data[current_user.id.to_s]["start_date"] : '' %>
+		    <%= f.label :start_date, class: 'ep-form__label' %><br>
+		    <%= f.text_field :start_date, class: 'ep-form__text-field' %>
 		  </div>
 
 	  	<div class="ep-date ep-form__profile-form-field ep-form__small-input">
-		    <%= f.label :end_date, :class => 'ep-form__label' %><br>
-		    <%= f.text_field :end_date, :class => 'ep-form__text-field', :value => college.users_meta_data[current_user.id.to_s] ? college.users_meta_data[current_user.id.to_s]["end_date"] : '' %>
+		    <%= f.label :end_date, class: 'ep-form__label' %><br>
+		    <%= f.text_field :end_date, class: 'ep-form__text-field' %>
 		  </div><br><br><br><br>
 
 		  <div class="ep-form__clear">
-		    <%= f.submit 'Update', :class => 'btn btn-primary' %>
+		    <%= f.submit 'Update', class: 'btn btn-primary' %>
 		    <%= content_tag :div, 'cancel', class: 'ep-cancel-edit btn btn-default' %>
 		  </div>
 		<% end %>

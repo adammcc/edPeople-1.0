@@ -69,21 +69,27 @@ input, textarea {
 }
 
 .ui-autocomplete {
-	background-color: white;
-	border: 2px solid $ep-light-gray;
-	width: 400px;
+	background-color: white !important;
+	border: 2px solid $ep-light-gray !important;
 	list-style: none;
 	padding: 0px;
 	li {
 		line-height: 24px;
 		padding-left: 5px;
+		background: white url('') 50% top repeat-x !important;
+		border: none !important;
 	}
 	li:hover {
-		padding-left: 8px;
-		background-color: $ep-light-gray;
+		background-color: white !important;
+		border: none !important;
 		margin-left: 0;
 		cursor: pointer;
 		text-align: left;
 	}
+}
+
+.ui-widget-content {
+	background-color: white !important;
+	background: white url('') 50% top repeat-x !important;
 }
 

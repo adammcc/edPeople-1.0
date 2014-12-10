@@ -12,10 +12,13 @@ for user in users
 		user.destroy
 	end
 end
+College.delete_all
+CollegeInfo.delete_all
 
 skills = ["Backward Design", "Common Core State Standards", "Microsoft Office", "School Programming", "Differentiated Instruction", "SMARTboard", "Graphing Calculator", "Data Analysis", "Unit Mapping","Danielson Framework", "Secondary Education"]
 roles = %w(teacher administrator counselor)
 subjects =  %w(math english history science sped art physed)
+college_names = ['Williams College', 'Stanford University', 'Swarthmore College', 'Princeton University', 'Massachusetts Institute of Technology', 'Yale University', 'Harvard University']
 
 30.times do
 	user = User.create(demo: true,
@@ -34,4 +37,8 @@ subjects =  %w(math english history science sped art physed)
 	4.times do
 		user.skills.create(:name => skills.sample)
 	end
+end
+
+college_names.each do |college_name|
+  College.create(name: college_name)
 end
