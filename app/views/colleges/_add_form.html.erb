@@ -3,7 +3,7 @@
 		<%= form_for College.new, remote: true do |f| %>
 			<div class="ep-form__profile-form-field">
 		    <%= f.label :college_name, :class => 'ep-form__label' %><br>
-		    <%= f.autocomplete_field :name, autocomplete_college_name_users_path, class: 'autocomplete_field' %>
+		    <%= f.autocomplete_field :name, autocomplete_college_name_users_path, class: 'autocomplete_field ep-form__text-field' %>
 		  </div>
 
 	    <div class="ep-form__profile-form-field">
@@ -18,12 +18,12 @@
 
 	    <div class="ep-date ep-start-date ep-form__profile-form-field ep-form__small-input">
 		    <%= f.label :start_date, :class => 'ep-form__label' %><br>
-		    <%= f.text_field :start_date, :value => '', :class => 'ep-form__text-field' %>
+		    <%= f.text_field :start_date, :value => '', :class => 'ep-form__text-field ep-datepicker' %>
 		  </div>
 
 		  <div class="ep-date ep-form__profile-form-field ep-form__small-input">
 		    <%= f.label :end_date, :class => 'ep-form__label' %><br>
-		    <%= f.text_field :end_date, :value => '', :class => 'ep-form__text-field' %>
+		    <%= f.text_field :end_date, :value => '', :class => 'ep-form__text-field ep-datepicker' %>
 	    </div><br><br><br><br>
 
 		  <div class="ep-form__clear">

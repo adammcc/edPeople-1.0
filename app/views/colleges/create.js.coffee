@@ -20,3 +20,4 @@ $('.js-delete').click ->
     $(this).parent().hide()
 
 $('.js-edit').show()
+$('.ep-datepicker').datepicker()

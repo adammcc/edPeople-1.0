@@ -15,12 +15,12 @@
 
 <div class="ep-form__date ep-form__start-date ep-form__small-input ep-form__profile-form-field">
   <%= f.label :start_date, :class => 'ep-form__label' %><br>
-  <%= f.text_field :start_date, :class => 'date-field ep-datepicker' %>
+  <%= f.text_field :start_date, id: "start-#{experience.id}", class: 'ep-form__text-field ep-datepicker' %>
 </div>
 
 <div class="ep-form__date ep-form__small-input ep-form__profile-form-field">
   <%= f.label "End Date (Leave blank if current position)", :class => 'ep-form__label' %><br>
-  <%= f.text_field :end_date, :class => 'date-field ep-datepicker' %>
+  <%= f.text_field :end_date, id: "end-#{experience.id}", class: 'ep-form__text-field ep-datepicker' %>
 </div>
 
 <div class="ep-form__district ep-form__small-input ep-form__profile-form-field">

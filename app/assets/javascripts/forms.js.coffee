@@ -1,4 +1,6 @@
 $ ->
+  $('.ep-datepicker').datepicker()
+
   $('.js-edit-college').click ->
     $(this).closest('.js-college').hide()
 
@@ -29,8 +31,6 @@ $ ->
 
   $('.autocomplete_field').on 'autocompleteresponse', (event, ui) ->
     $(this).autocomplete('close') if ui.content?[0].id.length == 0
-
-# 	$('.ep-datepicker').datepicker()
 
 # 	$('.checkbox input').iCheck ->
 # 		checkboxClass: 'icheckbox_flat',

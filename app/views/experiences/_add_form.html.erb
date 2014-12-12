@@ -1,6 +1,7 @@
 <div class='ep-form'>
-	<%= form_for Experience.new, remote: true do |f| %>
-		<%= render partial: 'experiences/form_fields', locals: { f: f } %>
+  <% experience = Experience.new %>
+	<%= form_for experience, remote: true do |f| %>
+		<%= render partial: 'experiences/form_fields', locals: { f: f, experience: experience } %>
 	  <div class="">
 	    <%= f.submit 'Add', :class => 'btn btn-primary' %>
       <%= content_tag :div, 'cancel', class: 'ep-cancel-edit btn btn-default' %>
