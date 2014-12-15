@@ -21,9 +21,9 @@
             </div>
           </td>
           <td>
-            <% unless user == current_user %>
-              <%= link_to "Connect", invite_friend_user_path(user), method: :put, class: 'ep-users__connect btn btn-primary' %>
-            <% end %>
+            <div class="ep_users--connection js_users--connection-<%= user.id %>">
+              <%= render partial: 'users/user_connection', locals: { user: user } %>
+            </div>
           </td>
         </tr>
       <% end %>

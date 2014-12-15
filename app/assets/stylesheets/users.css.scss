@@ -111,8 +111,19 @@
 }
 
 a.ep-users__connect {
-	color: white !important;
 	margin-top: 16px;
+}
+
+.ep_users--connection {
+	width: 110px;
+	border-left: 1px solid #ddd;
+	padding-left: 5px;
+}
+
+.ep-users__connection-status {
+	// margin-top: 16px;
+	color: $ep-mid-gray;
+	font-size: 12px !important;
 }
 
 .ep-users__photo {

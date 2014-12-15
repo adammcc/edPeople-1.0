@@ -96,32 +96,23 @@ class UsersController < ApplicationController
 
 
   def invite_friend
-    inviter = current_user
-    invitee = User.find(params[:id])
+    @friend = User.find(params[:id])
 
-    inviter.invite invitee
-
-    redirect_to :back
+    current_user.invite @friend
   end
 
   def approve_friend
-    invitee = current_user
-    inviter = User.find(params[:id])
+    @friend = User.find(params[:id])
 
-    invitee.approve inviter
-    invitee.save
-
-    redirect_to :back
+    current_user.approve @friend
+    current_user.save
   end
 
   def remove_deny_friend
-    friend = current_user
-    bad_friend = User.find(params[:id])
+    @friend = User.find(params[:id])
 
-    friend.remove_friendship bad_friend
-    friend.save
-
-    redirect_to :back
+    current_user.remove_friendship @friend
+    current_user.save
   end
 
   def add_avatar

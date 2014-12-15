@@ -1,0 +1,16 @@
+<% unless user == current_user %>
+  <%= link_to 'Contact', '',class: 'ep-users__connection-status' %> <br>
+  <% if user.friend_with? current_user %>
+    <p class="ep-users__connection-status">Connected</div>
+  <% elsif user.invited_by? current_user %>
+    <%= link_to 'Cancel request', remove_deny_friend_user_path(user), method: :put, remote: true, class: 'ep-users__connection-status' %>
+  <% elsif user.invited? current_user%>
+    <div class="ep-connection-choice">
+      <%= link_to 'Approve', approve_friend_user_path(user), method: :put, remote: true, class: 'ep-approve ep-users__connection-status' %>
+      &nbsp|&nbsp
+      <%= link_to 'Decline', remove_deny_friend_user_path(user), method: :put, remote: true, class: 'ep-deny ep-users__connection-status'%>
+    </div>
+  <% else %>
+    <%= link_to "Connect", invite_friend_user_path(user), method: :put, class: 'ep-users__connect ep-users__connection-status', remote: :true, data: {confirm: "Are you sure?"} %>
+  <% end %>
+<% end %>
