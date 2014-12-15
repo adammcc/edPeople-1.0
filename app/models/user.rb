@@ -167,19 +167,23 @@ class User
       end
     end
 
+    user_educations = user.college_infos.map { |edu| edu.linkedin_id }
     educations = profile.educations.to_hash
     educations["all"].each do |e|
-      if College.all.any? { |education| education.name == e["school_name"]}
-        college = College.where(name: e["school_name"]).first
-      else
-        college = College.create(name: e["school_name"])
+      if !user_educations.include? e["id"].to_s
+        if College.all.any? { |education| education.name == e["school_name"]}
+          college = College.where(name: e["school_name"]).first
+        else
+          college = College.create(name: e["school_name"])
+        end
+        college.college_infos.create( start_date: e["start_date"]["year"],
+                                      end_date: e["end_date"]["year"],
+                                      degree_type: e["degree"],
+                                      major: e["field_of_study"],
+                                      user: user,
+                                      linkedin_id: e["id"])
+        user.colleges << college
       end
-      college.college_infos.create( start_date: e["start_date"]["year"],
-                                    end_date: e["end_date"]["year"],
-                                    degree_type: e["degree"],
-                                    major: e["field_of_study"],
-                                    user: user)
-      user.colleges << college
     end
   end
 end
