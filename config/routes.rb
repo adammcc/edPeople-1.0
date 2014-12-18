@@ -18,6 +18,8 @@ Ep::Application.routes.draw do
       put :approve_friend
       put :remove_deny_friend
       put :add_avatar
+      put :add_resume
+      put :remove_resume
     end
   end
 

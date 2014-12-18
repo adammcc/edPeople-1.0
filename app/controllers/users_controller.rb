@@ -123,26 +123,32 @@ class UsersController < ApplicationController
       user.avatar = avatar
       user.save
 
-      upload_avatar_to_s3(user, avatar)
+      user.upload_avatar_to_s3(user, avatar)
     end
 
     redirect_to :back
   end
 
-  private
-
-  def upload_avatar_to_s3(user, avatar)
-    s3 = AWS::S3.new()
-    bucket_path = Ep::Lib.bucket_path('avatar')
-    object_path = avatar.original_filename
-
-    bucket = s3.buckets[bucket_path]
-    if !bucket.exists?
-      bucket = s3.buckets.create(bucket_path)
+  def add_resume
+    user = User.find(params[:id])
+    if !params[:resume].nil?
+      resume = params[:resume]
+      user.upload_resume_to_s3(user, resume)
+      user.has_resume = true
+      user.save
     end
 
-    # TODO: public_read probably not the best thing to do here
-    bucket.objects.create(user.id, avatar.tempfile.read(), acl: :public_read)
+    redirect_to :back
   end
 
+  def remove_resume
+    user = User.find(params[:id])
+    user.delete_resume_from_s3
+    user.has_resume = false
+    user.save
+
+    redirect_to :back
+  end
+
+  private
 end

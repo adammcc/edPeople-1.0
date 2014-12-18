@@ -13,7 +13,7 @@
 					<div class="ep-profile-image__uploader-container">
 						<a class="js-edit" data-toggle="collapse" data-target="#ep-profile-image__toggle">Change image</a>
 
-						<div id="ep-profile-image__toggle" class="js-edit-form--profile-image collapse">
+						<div id="ep-profile-image__toggle" class="js-edit-form--file-upload collapse">
 							<%= form_for @user, :url => add_avatar_user_path(@user), :html => { :method => "put", :multipart => true } do |f| %><br>
 
 								<span class="ep-profile-image__placeholder">
@@ -76,7 +76,40 @@
 
 
 			<p><i class="fa fa-envelope"></i> Send <%= @user.first_name %> a message</p>
-			<p><i class="fa fa-file-text"></i>&nbsp Download <%= @user.first_name %>'s resume</p>
+			<p>
+				<% if @user.has_resume %>
+					<i class="fa fa-file-text"></i>&nbsp <%= link_to "Download #{@user == current_user ? 'your' : @user.first_name + '\'s'} resume", "https://s3.amazonaws.com/ep-dev-resumes/#{@user.id}" %>
+					<span class="js-edit">
+						(<a data-toggle="collapse" data-target="#ep-resume__toggle">Update</a> |
+						<%= link_to 'Remove', remove_resume_user_path(@user), method: :put, data: {confirm: "Are you sure?"} %>)
+					</span>
+				<% end %>
+
+				<% if @user == current_user %>
+					<div class="ep-profile-image__uploader-container">
+						<% if !@user.has_resume %>
+							<i class="fa fa-file-text"></i>
+							<a data-toggle="collapse" data-target="#ep-resume__toggle">
+								Upload your resume
+							</a>
+						<% end %>
+
+						<div id="ep-resume__toggle" class="js-edit-form--file-upload collapse">
+							<%= form_for @user, :url => add_resume_user_path(@user), :html => { method: :put, :multipart => true } do |f| %><br>
+
+								<span class="ep-resume__placeholder">
+									<input class="ep-resume__placeholder-input" placeholder="Choose File" disabled="disabled" />
+								</span>
+
+								<div>
+								  <%= file_field_tag :resume, "data-filename-placement"=> "inside", class: "ep-resume__file-field js-resume__file-field" %>
+								  <%= f.submit "Upload", class: "btn btn-primary" %>
+							  </div>
+							<% end %>
+						</div>
+					</div>
+				<% end %>
+			</p>
 			<p><i class="fa fa-folder-open"></i> View <%= @user.first_name %>'s portfolio</p>
 			<% if current_user == @user %>
 				<p><i class="fa fa-linkedin-square"></i>&nbsp<%= link_to "Import from Linkedin",user_omniauth_authorize_path(:linkedin) %></p>

@@ -57,6 +57,7 @@ class User
   field :demo,        type: Boolean, default: false
   field :role,        type: String
   field :subject_area, type: String
+  field :has_resume,  type: Boolean, default: false
 
   field :provider,    type: String
   field :uid,         type: String
@@ -185,6 +186,41 @@ class User
         user.colleges << college
       end
     end
+  end
+
+  def upload_avatar_to_s3(user, avatar)
+    s3 = AWS::S3.new()
+    bucket_path = Ep::Lib.bucket_path('avatar')
+    object_path = avatar.original_filename
+
+    bucket = s3.buckets[bucket_path]
+    if !bucket.exists?
+      bucket = s3.buckets.create(bucket_path)
+    end
+
+    bucket.objects.create(user.id, avatar.tempfile.read(), acl: :public_read)
+  end
+
+  def upload_resume_to_s3(user, resume)
+    s3 = AWS::S3.new()
+    bucket_path = Ep::Lib.bucket_path('resumes')
+    object_path = resume.original_filename
+
+    bucket = s3.buckets[bucket_path]
+    if !bucket.exists?
+      bucket = s3.buckets.create(bucket_path)
+    end
+
+    bucket.objects.create(user.id, resume.tempfile.read(), acl: :public_read)
+  end
+
+  def delete_resume_from_s3
+    s3 = AWS::S3.new
+    bucket = s3.buckets['ep-dev-resumes']
+    name = self.id.to_s
+    bucket.objects.delete(name)
+    self.has_resume = false
+    self.save
   end
 end
 

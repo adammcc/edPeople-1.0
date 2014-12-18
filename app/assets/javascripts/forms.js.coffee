@@ -19,6 +19,12 @@ $ ->
   $(".ep-profile-image__placeholder").click ->
     $(".js-profile-image__file-field").click()
 
+  $(".js-resume__file-field").change ->
+    $('.ep-resume__placeholder-input').attr('placeholder', $(this).val().split('\\').pop())
+
+  $(".ep-resume__placeholder").click ->
+    $(".js-resume__file-field").click()
+
   $(".js-profile-image__file-field").change ->
     $('.ep-profile-image__placeholder-input').attr('placeholder', $(this).val().split('\\').pop())
 

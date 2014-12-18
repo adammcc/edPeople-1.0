@@ -27,6 +27,6 @@ $ ->
 		$('.js-exit-edit-mode').hide()
 		$('.js-edit').hide()
 		$('.js-edit-form').hide()
-		$('.js-edit-form--profile-image').removeClass('in')
+		$('.js-edit-form--file-upload').removeClass('in')
 
 
