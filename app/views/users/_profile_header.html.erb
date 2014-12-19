@@ -78,10 +78,17 @@
 			<p><i class="fa fa-envelope"></i> Send <%= @user.first_name %> a message</p>
 			<p>
 				<% if @user.has_resume %>
-					<i class="fa fa-file-text"></i>&nbsp <%= link_to "Download #{@user == current_user ? 'your' : @user.first_name + '\'s'} resume", "https://s3.amazonaws.com/ep-dev-resumes/#{@user.id}" %>
-					<span class="js-edit">
-						(<a data-toggle="collapse" data-target="#ep-resume__toggle">Update</a> |
-						<%= link_to 'Remove', remove_resume_user_path(@user), method: :put, data: {confirm: "Are you sure?"} %>)
+					<i class="fa fa-file-text"></i>&nbsp
+					<% if @user == current_user %>
+						<%= link_to "Edit your resume", "#", class: 'js-edit-resume' %>
+					<% else %>
+						<%= link_to "Download #{@user.first_name + '\'s'} resume", "https://s3.amazonaws.com/ep-dev-resumes/#{@user.id}" %>
+					<% end %>
+					<span class="ep-edit-resume-options js-edit-resume-options">
+						( <%= link_to "Download", "https://s3.amazonaws.com/ep-dev-resumes/#{@user.id}" %> |
+						<a data-toggle="collapse" data-target="#ep-resume__toggle">Update</a> |
+						<%= link_to 'Remove', remove_resume_user_path(@user), method: :put, data: {confirm: "Are you sure?"} %> |
+						<%= link_to "Cancel", "#", class: 'js-cancel-edit-resume' %> )
 					</span>
 				<% end %>
 

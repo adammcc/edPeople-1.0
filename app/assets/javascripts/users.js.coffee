@@ -22,6 +22,12 @@ $ ->
 		$('.js-exit-edit-mode').show()
 		$('.js-edit').show()
 
+	$('.js-edit-resume').click ->
+		$('.js-edit-resume-options').show()
+
+	$('.js-cancel-edit-resume').click ->
+		$('.js-edit-resume-options').hide()
+
 	$('.js-exit-edit-mode').click ->
 		$('.js-edit-mode').show()
 		$('.js-exit-edit-mode').hide()
