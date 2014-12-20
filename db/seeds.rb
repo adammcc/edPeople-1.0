@@ -14,9 +14,10 @@ for user in users
 end
 College.delete_all
 CollegeInfo.delete_all
+Role.delete_all
 
 skills = ["Backward Design", "Common Core State Standards", "Microsoft Office", "School Programming", "Differentiated Instruction", "SMARTboard", "Graphing Calculator", "Data Analysis", "Unit Mapping","Danielson Framework", "Secondary Education"]
-roles = %w(teacher administrator counselor)
+roles = %w(Teacher Administrator Counselor)
 subjects =  %w(math english history science sped art physed)
 college_names = ['Williams College', 'Stanford University', 'Swarthmore College', 'Princeton University', 'Massachusetts Institute of Technology', 'Yale University', 'Harvard University']
 
@@ -41,4 +42,8 @@ end
 
 college_names.each do |college_name|
   College.create(name: college_name)
+end
+
+roles.each do |role_name|
+  Role.create(name: role_name)
 end

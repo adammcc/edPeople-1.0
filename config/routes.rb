@@ -27,6 +27,7 @@ Ep::Application.routes.draw do
   resources :college_infos
   resources :experiences
   resources :skills
+  resources :roles, only: [:create, :destroy]
 
 
 

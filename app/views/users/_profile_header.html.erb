@@ -48,10 +48,7 @@
 
 		<div class="ep-user-roles-and-subjects col-md-3">
 			<div class="ep-user-roles-and-subjects__roles">
-				<h4>Roles</h4>
-				<span>Teacher</span>,
-				<span>Team Leader</span>,
-				<span>School Programmer</span>
+				<%= render partial: 'roles', locals: { user: @user, roles: @roles } %>
 			</div>
 			<div class="ep-user-roles-and-subjects__subject-areas">
 				<h4>Subject Areas</h4>

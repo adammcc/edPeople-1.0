@@ -1,0 +1,31 @@
+<h4>Roles</h4>
+  <% user.roles.each_with_index do |role, i| %>
+    <span class="ep-role">
+      <% if user == current_user %>
+        <%= link_to role_path(role), method: :delete, remote: true, class: 'js-edit js-delete' do %>
+          <i class="fa fa-times"></i>
+        <% end %>
+      <% end %>
+      <span><%= role.name %></span><%= "," unless i == user.roles.count - 1 %>
+    </span>
+  <% end %>
+  <br>
+<div class="js-section-container">
+  <% if user == current_user %>
+    <a class="js-edit js-edit-section-item ep-add-role"><i class="fa fa-plus"></i> Add</a>
+    <div id="ep-add-role" class="js-edit-form ep-edit-form">
+      <%= form_for Role.new, remote: true do |f| %>
+        <div class="ep-form__profile-form-field">
+          <%= f.label :name, :class => 'ep-form__label' %>
+          <%= collection_select(:role, :id, @roles,
+                  :id, :name,
+                 {:prompt => 'Select a role'}) %>
+          <%#= f.select :name, @roles, :class => 'ep-form__text-field'  %>
+          <%#= f.text_field :name, autofocus: true, :class => 'ep-form__text-field' %>
+        </div>
+        <%= f.submit 'Add', :class => 'btn btn-primary' %>
+        <%= content_tag :div, 'cancel', class: 'ep-cancel-edit btn btn-default' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

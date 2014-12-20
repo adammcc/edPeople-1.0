@@ -32,6 +32,7 @@ class UsersController < ApplicationController
 
     @colleges = College.all
     @experiences = @user.experiences
+    @roles = Role.all
 
     respond_to do |format|
       format.html # show.html.erb
