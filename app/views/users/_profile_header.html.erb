@@ -1,7 +1,7 @@
 <div class="col-md-12 ep-profile-header white-bg">
 
 	<div class="row">
-		<div class="col-md-7 ep-user-snapshot">
+		<div class="col-md-5 ep-user-snapshot">
 			<div class="ep-profile-image">
 				<% if @user.avatar.url != "/images/original/missing.png" %>
 					<%= image_tag("https://s3.amazonaws.com/ep-profilepics-avatar/#{@user.id}", height: '120', width: '120') %>
@@ -46,8 +46,21 @@
 			</div>
 		</div>
 
-		<div class="col-md-5 ep-profile-actions">
-			<div class="ep-hr-line"></div>
+		<div class="ep-user-roles-and-subjects col-md-3">
+			<div class="ep-user-roles-and-subjects__roles">
+				<h4>Roles</h4>
+				<span>Teacher</span>,
+				<span>Team Leader</span>,
+				<span>School Programmer</span>
+			</div>
+			<div class="ep-user-roles-and-subjects__subject-areas">
+				<h4>Subject Areas</h4>
+				<span>Math</span>,
+				<span>Special Education</span>
+			</div>
+		</div>
+
+		<div class="ep-profile-actions col-md-4">
 
 			<% if !user_signed_in? %>
 				<p><i class="fa fa-plus"></i>&nbsp Sign in to become Adam's Connection</p>
@@ -84,11 +97,12 @@
 					<% else %>
 						<%= link_to "Download #{@user.first_name + '\'s'} resume", "https://s3.amazonaws.com/ep-dev-resumes/#{@user.id}" %>
 					<% end %>
+					<br>
 					<span class="ep-edit-resume-options js-edit-resume-options">
-						( <%= link_to "Download", "https://s3.amazonaws.com/ep-dev-resumes/#{@user.id}" %> |
+						<%= link_to "Download", "https://s3.amazonaws.com/ep-dev-resumes/#{@user.id}" %> |
 						<a data-toggle="collapse" data-target="#ep-resume__toggle">Update</a> |
 						<%= link_to 'Remove', remove_resume_user_path(@user), method: :put, data: {confirm: "Are you sure?"} %> |
-						<%= link_to "Cancel", "#", class: 'js-cancel-edit-resume' %> )
+						<%= link_to "Cancel", "#", class: 'js-cancel-edit-resume' %>
 					</span>
 				<% end %>
 

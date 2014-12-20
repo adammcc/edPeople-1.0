@@ -18,19 +18,39 @@
 		.ep-user-info {
 			float: left;
 			width: 210px;
+			p {
+				color: gray;
+			}
 		}
 	}
-	.ep-profile-actions {
-		cursor: pointer;
-		float: left;
-		margin-top: 20px;
-		i {
-			font-size: 16px;
-		}
-		.ep-approve {
-			font-size: 12px;
-		}
+}
+
+.ep-profile-actions {
+	cursor: pointer;
+	float: left;
+	margin-top: 20px;
+	border-left: 1px solid #eee;
+	i {
+		font-size: 16px;
 	}
+	.ep-approve {
+		font-size: 12px;
+	}
+}
+
+.ep-user-roles-and-subjects {
+	margin-top: 20px;
+	border-left: 1px solid #eee;
+	h4 {
+		margin: 0;
+	}
+	span {
+		color: gray;
+	}
+}
+
+.ep-user-roles-and-subjects__roles {
+	margin-bottom: 10px;
 }
 
 #ep-connection {
