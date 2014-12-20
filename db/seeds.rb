@@ -18,7 +18,7 @@ Role.delete_all
 
 skills = ["Backward Design", "Common Core State Standards", "Microsoft Office", "School Programming", "Differentiated Instruction", "SMARTboard", "Graphing Calculator", "Data Analysis", "Unit Mapping","Danielson Framework", "Secondary Education"]
 roles = %w(Teacher Administrator Counselor)
-subjects =  %w(math english history science sped art physed)
+subjects =  %w(Math Mnglish History Science Sped Art Physed)
 college_names = ['Williams College', 'Stanford University', 'Swarthmore College', 'Princeton University', 'Massachusetts Institute of Technology', 'Yale University', 'Harvard University']
 
 30.times do
@@ -46,4 +46,8 @@ end
 
 roles.each do |role_name|
   Role.create(name: role_name)
+end
+
+subjects.each do |subject_name|
+  Subject.create(name: subject_name)
 end

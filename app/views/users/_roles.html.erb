@@ -20,8 +20,6 @@
           <%= collection_select(:role, :id, @roles,
                   :id, :name,
                  {:prompt => 'Select a role'}) %>
-          <%#= f.select :name, @roles, :class => 'ep-form__text-field'  %>
-          <%#= f.text_field :name, autofocus: true, :class => 'ep-form__text-field' %>
         </div>
         <%= f.submit 'Add', :class => 'btn btn-primary' %>
         <%= content_tag :div, 'cancel', class: 'ep-cancel-edit btn btn-default' %>

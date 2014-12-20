@@ -1,0 +1,29 @@
+<h4>Subjects</h4>
+  <% user.subjects.each_with_index do |subject, i| %>
+    <span class="ep-subject">
+      <% if user == current_user %>
+        <%= link_to subject_path(subject), method: :delete, remote: true, class: 'js-edit js-delete' do %>
+          <i class="fa fa-times"></i>
+        <% end %>
+      <% end %>
+      <span><%= subject.name %></span><%= "," unless i == user.subjects.count - 1 %>
+    </span>
+  <% end %>
+  <br>
+<div class="js-section-container">
+  <% if user == current_user %>
+    <a class="js-edit js-edit-section-item ep-add-subject"><i class="fa fa-plus"></i> Add</a>
+    <div id="ep-add-subject" class="js-edit-form ep-edit-form">
+      <%= form_for Subject.new, remote: true do |f| %>
+        <div class="ep-form__profile-form-field">
+          <%= f.label :name, :class => 'ep-form__label' %>
+          <%= collection_select(:subject, :id, @subjects,
+                  :id, :name,
+                 {:prompt => 'Select a subject'}) %>
+        </div>
+        <%= f.submit 'Add', :class => 'btn btn-primary' %>
+        <%= content_tag :div, 'cancel', class: 'ep-cancel-edit btn btn-default' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

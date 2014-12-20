@@ -51,9 +51,7 @@
 				<%= render partial: 'roles', locals: { user: @user, roles: @roles } %>
 			</div>
 			<div class="ep-user-roles-and-subjects__subject-areas">
-				<h4>Subject Areas</h4>
-				<span>Math</span>,
-				<span>Special Education</span>
+				<%= render partial: 'subjects', locals: { user: @user, subjects: @sbjects } %>
 			</div>
 		</div>
 

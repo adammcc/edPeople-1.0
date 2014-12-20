@@ -68,6 +68,7 @@ class User
   has_mongoid_attached_file :avatar, :styles => { :medium => "120x120#", :thumb => "50x50#" }, :default_url => "/images/:style/missing.png"
   has_and_belongs_to_many :experiences
   has_and_belongs_to_many :roles
+  has_and_belongs_to_many :subjects
 
   search_in :first_name, :last_name, :email, :headline, :role, :subject_area,
             skills: :name,

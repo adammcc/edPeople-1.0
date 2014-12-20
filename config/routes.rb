@@ -28,6 +28,7 @@ Ep::Application.routes.draw do
   resources :experiences
   resources :skills
   resources :roles, only: [:create, :destroy]
+  resources :subjects, only: [:create, :destroy]
 
 
 
