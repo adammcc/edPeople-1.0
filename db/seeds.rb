@@ -15,11 +15,20 @@ end
 College.delete_all
 CollegeInfo.delete_all
 Role.delete_all
+Subject.delete_all
 
 skills = ["Backward Design", "Common Core State Standards", "Microsoft Office", "School Programming", "Differentiated Instruction", "SMARTboard", "Graphing Calculator", "Data Analysis", "Unit Mapping","Danielson Framework", "Secondary Education"]
 roles = %w(Teacher Administrator Counselor)
 subjects =  %w(Math Mnglish History Science Sped Art Physed)
 college_names = ['Williams College', 'Stanford University', 'Swarthmore College', 'Princeton University', 'Massachusetts Institute of Technology', 'Yale University', 'Harvard University']
+
+roles.each do |role_name|
+  Role.create(name: role_name)
+end
+
+subjects.each do |subject_name|
+  Subject.create(name: subject_name)
+end
 
 30.times do
 	user = User.create(demo: true,
@@ -32,8 +41,8 @@ college_names = ['Williams College', 'Stanford University', 'Swarthmore College'
                      skill: "Bowling",
                      headline: Faker::Lorem.sentence(word_count = 5, supplemental = false, random_words_to_add = 6),
                      image_url: Faker::Avatar.image,
-                     role: roles.sample,
-                     subject_area: subjects.sample)
+                     roles: [Role.all.sample],
+                     subjects: [Subject.all.sample])
 
 	4.times do
 		user.skills.create(:name => skills.sample)
@@ -42,12 +51,4 @@ end
 
 college_names.each do |college_name|
   College.create(name: college_name)
-end
-
-roles.each do |role_name|
-  Role.create(name: role_name)
-end
-
-subjects.each do |subject_name|
-  Subject.create(name: subject_name)
 end
