@@ -4,18 +4,22 @@ class UsersController < ApplicationController
   autocomplete :college, :name, full: true
 
   def index
+    @roles = Role.all.asc(:name)
+    @subjects = Subject.all.asc(:name)
     @search_term = params[:search]
-    roles = params[:filter_by_roles]
-    subject_areas = params[:filter_by_subjects]
-    if !@search_term.blank? || roles || subject_areas
+
+    role_ids = params[:filter_by_roles]
+    subject_ids = params[:filter_by_subjects]
+
+    if @search_term.present? || role_ids || subject_ids
       @users = User.asc(:created_at)
-      @users = User.full_text_search(@search_term) if !@search_term.blank?
-      if roles && subject_areas
-        users_by_role_then_subject = @users.in(role: roles).in(subject_area: subject_areas)
+      @users = User.full_text_search(@search_term) if @search_term.present?
+      if role_ids && subject_ids
+        users_by_role_then_subject = @users.in(role_ids: role_ids).in(subject_ids: subject_ids)
         @users = users_by_role_then_subject
-      elsif roles || subject_areas
-        users_by_role = @users.in(role: roles) if roles
-        users_by_subject = @users.in(subject_area: subject_areas) if subject_areas
+      elsif role_ids || subject_ids
+        users_by_role = @users.in(role_ids: role_ids) if role_ids
+        users_by_subject = @users.in(subject_ids: subject_ids) if subject_ids
         @users = users_by_role ||= [] + users_by_subject ||= []
       end
     else

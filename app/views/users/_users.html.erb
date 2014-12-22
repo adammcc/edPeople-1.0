@@ -17,7 +17,15 @@
             <div class="ep-users__meta">
               <p><%= link_to user.name, user_path(user) %></p>
               <p><%= user.headline %></p>
-              <p class="ep-users__meta-content"><%= user.role %> | <%= user.subject_area %></p>
+              <p class="ep-users__meta-content">
+                <% user.roles.each_with_index do |role, i| %>
+                  <%= role.name %><%= "," unless i == user.roles.count - 1 %>
+                <% end %>
+                |
+                <% user.subjects.each_with_index do |subject, i| %>
+                  <%= subject.name %><%= "," unless i == user.subjects.count - 1 %>
+                <% end %>
+              </p>
             </div>
           </td>
           <td>

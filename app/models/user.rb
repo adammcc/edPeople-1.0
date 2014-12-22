@@ -55,8 +55,6 @@ class User
   field :skill,       type: String
   field :headline,    type: String, default: 'Headline'
   field :demo,        type: Boolean, default: false
-  field :role,        type: String
-  field :subject_area, type: String
   field :has_resume,  type: Boolean, default: false
 
   field :provider,    type: String
@@ -73,7 +71,9 @@ class User
   search_in :first_name, :last_name, :email, :headline, :role, :subject_area,
             skills: :name,
             colleges: [ :name, :degree_type, :major ],
-            experiences: [ :title, :employer, :school, :boro ]
+            experiences: [ :title, :employer, :school, :boro ],
+            roles: :name,
+            subjects: :name
 
   validates_attachment_content_type :avatar, :content_type => %w(image/jpeg image/jpg image/png)
   validates_attachment_size :avatar, :less_than => 5.megabytes

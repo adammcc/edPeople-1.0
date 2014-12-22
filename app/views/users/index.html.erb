@@ -3,39 +3,21 @@
   <div class="ep-search col-md-3 white-bg">
     <h3>Find people</h3>
     <%= form_tag users_path, method: :get, remote: true, class: 'js-search-form' do %>
+
       <%= text_field_tag 'search', @search_term, placeholder: 'Search people...', class: "js-search-form__text-field" %>
 
       <h4>Filter by role</h4>
-      <%= check_box_tag 'filter_by_roles[]', 'teacher', false, class: 'js-search-form__check-box' %>
-      <%= label_tag 'filter_by_role', 'Teachers', class: 'ep-filter-label' %><br>
-
-      <%= check_box_tag 'filter_by_roles[]', 'administrator', false, class: 'js-search-form__check-box' %>
-      <%= label_tag 'filter_by_role', 'Administrators', class: 'ep-filter-label'  %><br>
-
-      <%= check_box_tag 'filter_by_roles[]', 'counselor', false, class: 'js-search-form__check-box' %>
-      <%= label_tag 'filter_by_role', 'Counselors', class: 'ep-filter-label'  %>
+      <% @roles.each do |role| %>
+        <%= check_box_tag 'filter_by_roles[]', role.id, false, class: 'js-search-form__check-box' %>
+        <%= label_tag 'filter_by_role', role.name, class: 'ep-filter-label' %><br>
+      <% end %>
 
       <h4>Filter by subject</h4>
-      <%= check_box_tag 'filter_by_subjects[]', 'math', false, class: 'js-search-form__check-box' %>
-      <%= label_tag 'filter_by_subjects', 'Math', class: 'ep-filter-label'  %><br>
+      <% @subjects.each do |subject| %>
+        <%= check_box_tag 'filter_by_subjects[]', subject.id, false, class: 'js-search-form__check-box' %>
+        <%= label_tag 'filter_by_subjects', subject.name, class: 'ep-filter-label'  %><br>
+      <% end %>
 
-      <%= check_box_tag 'filter_by_subjects[]', 'english', false, class: 'js-search-form__check-box' %>
-      <%= label_tag 'filter_by_subjects', 'English', class: 'ep-filter-label'  %><br>
-
-      <%= check_box_tag 'filter_by_subjects[]', 'history', false, class: 'js-search-form__check-box' %>
-      <%= label_tag 'filter_by_subjects', 'History', class: 'ep-filter-label'  %><br>
-
-      <%= check_box_tag 'filter_by_subjects[]', 'science', false, class: 'js-search-form__check-box' %>
-      <%= label_tag 'filter_by_subjects', 'Science', class: 'ep-filter-label'  %><br>
-
-      <%= check_box_tag 'filter_by_subjects[]', 'sped', false, class: 'js-search-form__check-box' %>
-      <%= label_tag 'filter_by_subjects', 'Special Education', class: 'ep-filter-label'  %><br>
-
-      <%= check_box_tag 'filter_by_subjects[]', 'art', false, class: 'js-search-form__check-box' %>
-      <%= label_tag 'filter_by_subjects', 'Art', class: 'ep-filter-label'  %><br>
-
-      <%= check_box_tag 'filter_by_subjects[]', 'physed', false, class: 'js-search-form__check-box' %>
-      <%= label_tag 'filter_by_subjects', 'Physical Education', class: 'ep-filter-label'  %>
    <% end %>
   </div>
 
