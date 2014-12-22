@@ -19,7 +19,7 @@ Subject.delete_all
 
 skills = ["Backward Design", "Common Core State Standards", "Microsoft Office", "School Programming", "Differentiated Instruction", "SMARTboard", "Graphing Calculator", "Data Analysis", "Unit Mapping","Danielson Framework", "Secondary Education"]
 roles = %w(Teacher Administrator Counselor)
-subjects =  %w(Math Mnglish History Science Sped Art Physed)
+subjects =  %w(Math English History Science Sped Art Physed)
 college_names = ['Williams College', 'Stanford University', 'Swarthmore College', 'Princeton University', 'Massachusetts Institute of Technology', 'Yale University', 'Harvard University']
 
 roles.each do |role_name|
