@@ -21,7 +21,9 @@
                 <% user.roles.each_with_index do |role, i| %>
                   <%= role.name %><%= "," unless i == user.roles.count - 1 %>
                 <% end %>
-                |
+
+                <%= user.roles.present? && user.subjects.present? ? '|' : '' %>
+
                 <% user.subjects.each_with_index do |subject, i| %>
                   <%= subject.name %><%= "," unless i == user.subjects.count - 1 %>
                 <% end %>

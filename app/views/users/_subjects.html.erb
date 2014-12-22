@@ -9,10 +9,14 @@
       <span><%= subject.name %></span><%= "," unless i == user.subjects.count - 1 %>
     </span>
   <% end %>
+
+  <% if user.subjects.blank? && user = current_user %>
+   <span> No subjects yet</span>
+  <% end %>
   <br>
 <div class="js-section-container">
   <% if user == current_user %>
-    <a class="js-edit js-edit-section-item ep-add-subject"><i class="fa fa-plus"></i> Add</a>
+    <a class="js-edit-section-item js-add-subject ep-add-subject <%= user.subjects.present? ? 'js-edit' : '' %>"><i class="fa fa-plus"></i> Add</a>
     <div id="ep-add-subject" class="js-edit-form ep-edit-form">
       <%= form_for Subject.new, remote: true do |f| %>
         <div class="ep-form__profile-form-field">

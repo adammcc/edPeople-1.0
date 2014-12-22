@@ -9,10 +9,14 @@
       <span><%= role.name %></span><%= "," unless i == user.roles.count - 1 %>
     </span>
   <% end %>
+
+  <% if user.roles.blank? && user = current_user %>
+    <span>No roles yet</span>
+  <% end %>
   <br>
 <div class="js-section-container">
   <% if user == current_user %>
-    <a class="js-edit js-edit-section-item ep-add-role"><i class="fa fa-plus"></i> Add</a>
+    <a class="js-edit-section-item ep-add-role js-add-role <%= user.roles.present? ? 'js-edit' : '' %>"><i class="fa fa-plus"></i> Add</a>
     <div id="ep-add-role" class="js-edit-form ep-edit-form">
       <%= form_for Role.new, remote: true do |f| %>
         <div class="ep-form__profile-form-field">
