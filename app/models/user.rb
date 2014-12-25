@@ -144,48 +144,54 @@ class User
 
     user_experiences = user.experiences.map { |exp| exp.linkedin_id }
     positions = profile.positions.to_hash
-    positions["all"].each do |p|
-      if !user_experiences.include? p["id"].to_s
-        exp = Experience.create(title: p["title"],
-                                employer: p["company"]["name"],
-                                start_date: "#{p["start_date"]["month"]}/#{p["start_date"]["year"]}",
-                                is_current: p["is_current"],
-                                description: p["summary"],
-                                linkedin_id: p["id"])
-        exp.save
-        user.experiences << exp
-        if p["end_date"]
-          exp.end_date = "#{p["end_date"]["month"]}/#{p["end_date"]["year"]}"
+    if positions["all"].present?
+      positions["all"].each do |p|
+        if !user_experiences.include? p["id"].to_s
+          exp = Experience.create(title: p["title"],
+                                  employer: p["company"]["name"],
+                                  start_date: "#{p["start_date"]["month"]}/#{p["start_date"]["year"]}",
+                                  is_current: p["is_current"],
+                                  description: p["summary"],
+                                  linkedin_id: p["id"])
           exp.save
+          user.experiences << exp
+          if p["end_date"]
+            exp.end_date = "#{p["end_date"]["month"]}/#{p["end_date"]["year"]}"
+            exp.save
+          end
         end
       end
     end
 
     skills = profile.skills.to_hash
-    skills["all"].each do |s|
-      if !user.skills.any? { |skill| skill.name == s["skill"]["name"] }
-        skill = Skill.create(name: s["skill"]["name"])
-        user.skills << skill
-        user.save
+    if skills["all"].present?
+      skills["all"].each do |s|
+        if !user.skills.any? { |skill| skill.name == s["skill"]["name"] }
+          skill = Skill.create(name: s["skill"]["name"])
+          user.skills << skill
+          user.save
+        end
       end
     end
 
     user_educations = user.college_infos.map { |edu| edu.linkedin_id }
     educations = profile.educations.to_hash
-    educations["all"].each do |e|
-      if !user_educations.include? e["id"].to_s
-        if College.all.any? { |education| education.name == e["school_name"]}
-          college = College.where(name: e["school_name"]).first
-        else
-          college = College.create(name: e["school_name"])
+    if educations["all"].present?
+      educations["all"].each do |e|
+        if !user_educations.include? e["id"].to_s
+          if College.all.any? { |education| education.name == e["school_name"]}
+            college = College.where(name: e["school_name"]).first
+          else
+            college = College.create(name: e["school_name"])
+          end
+          college.college_infos.create( start_date: e["start_date"]["year"],
+                                        end_date: e["end_date"]["year"],
+                                        degree_type: e["degree"],
+                                        major: e["field_of_study"],
+                                        user: user,
+                                        linkedin_id: e["id"])
+          user.colleges << college
         end
-        college.college_infos.create( start_date: e["start_date"]["year"],
-                                      end_date: e["end_date"]["year"],
-                                      degree_type: e["degree"],
-                                      major: e["field_of_study"],
-                                      user: user,
-                                      linkedin_id: e["id"])
-        user.colleges << college
       end
     end
   end
