@@ -23,10 +23,10 @@ Ep::Application.routes.draw do
     end
   end
 
-  resources :colleges
-  resources :college_infos
-  resources :experiences
-  resources :skills
+  resources :colleges, only: [:create]
+  resources :college_infos, only: [:edit, :update, :destroy]
+  resources :experiences, only: [:create, :edit, :update, :destroy]
+  resources :skills, only: [:create, :destroy]
   resources :roles, only: [:create, :destroy]
   resources :subjects, only: [:create, :destroy]
 
