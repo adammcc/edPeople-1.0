@@ -18,5 +18,7 @@ class ExperiencesController < ApplicationController
   def destroy
     @experience = Experience.find(params[:id])
     @experience.destroy
+
+    render nothing: true
   end
 end

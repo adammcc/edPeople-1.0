@@ -84,7 +84,7 @@ describe UsersController do
       @some_other_user.approve @user
 
       expect(@some_other_user.reload.friends).to include(@user)
-      expect{ delete :destroy, :id => @user.id }.to change(User, :count).by(-1)
+      expect{ delete :destroy, id: @user.id }.to change(User, :count).by(-1)
       expect(@some_other_user.reload.friends).to_not include(@user)
     end
   end
