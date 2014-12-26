@@ -56,4 +56,5 @@ group :test, :development do
   gem 'guard-rspec', '~> 4.3.1', require: false
   gem 'terminal-notifier-guard', '~> 1.5.3', require: false
   gem 'database_cleaner'
+  gem 'simplecov', :require => false, :group => :test
 end
