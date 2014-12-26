@@ -7,10 +7,6 @@ describe UsersController do
     sign_in @user
   end
 
-  describe :create do
-    post :create
-  end
-
   describe :show do
     it "renders a user\'s profile" do
       get :show, id: @user.id
