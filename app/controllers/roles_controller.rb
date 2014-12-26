@@ -11,5 +11,7 @@ class RolesController < ApplicationController
     @user = current_user
     @role = Role.find(params[:id])
     @user.roles.delete(@role)
+
+    render nothing: true
   end
 end
