@@ -30,11 +30,13 @@
               </p>
             </div>
           </td>
-          <td>
-            <div class="ep_users--connection js_users--connection-<%= user.id %>">
-              <%= render partial: 'users/user_connection', locals: { user: user } %>
-            </div>
-          </td>
+          <% if current_user %>
+            <td>
+              <div class="ep_users--connection js_users--connection-<%= user.id %>">
+                <%= render partial: 'users/user_connection', locals: { user: user } %>
+              </div>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>
