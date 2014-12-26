@@ -11,5 +11,7 @@ class SubjectsController < ApplicationController
     @user = current_user
     @subject = Subject.find(params[:id])
     @user.subjects.delete(@subject)
+
+    render nothing: true
   end
 end
