@@ -9,6 +9,10 @@ $ ->
       $(this).siblings('.js-section-item').hide()
       $(this).siblings('.js-edit-form').show()
 
+  $('.js-edit-section-item--job').click ->
+    $('.js-section-item').hide()
+    $('.js-edit-form').show()
+
   $('.ep-cancel-edit').click ->
     $('.js-edit-form').hide()
     $('.js-section-item').show()

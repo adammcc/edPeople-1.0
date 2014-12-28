@@ -1,0 +1,50 @@
+<div class="ep-show-job__options pull-right">
+  <a class='js-edit-section-item--job'> Edit</a>
+  |
+  <%= link_to 'Remove', job_post_path(job), method: :delete, :data => { :confirm => "Are you sure?" } %>
+</div>
+<div class="js-section-item">
+  <div class="page-header ep-job-info__page-header">
+    <h3><%= job.title %></h3>
+  </div>
+
+  <div class="ep-job-info row">
+    <div class="ep-job-info__section ep-job-info__section--org col-md-4">
+      <h4>Organization</h4>
+      <p><%= job.organization %></p>
+      <p><%= link_to job.org_website, "http://#{job.org_website}" if job.org_website %></p>
+    </div>
+
+    <div class="ep-job-info__section col-md-4">
+      <h4>Location</h4>
+      <p>
+        <%= job.location if job.location %>
+        <%= '-' if job.location.present? &&  job.neighborhood.present? %>
+        <%= job.neighborhood if job.neighborhood %>
+      </p>
+    </div>
+
+    <div class="ep-job-info__section col-md-4">
+      <h4>Contact info</h4>
+      <p><%= job.contact_info %></p>
+    </div>
+  </div>
+  <hr>
+  <div class="ep-job-info__description">
+    <h4>Description</h4>
+    <p><%= job.description.html_safe %></p>
+  </div>
+</div>
+<br>
+<div class='ep-form ep-add-job-form ep-edit-form ep-edit-form--job js-edit-form'>
+  <h3>Edit job post</h3>
+  <hr>
+  <%= form_for job, method: :put, remote: true do |f| %>
+    <%= render partial: 'form_fields', locals: { f: f } %>
+    <div class="ep-form__clear">
+      <%= f.submit 'Save', :class => 'btn btn-primary' %>
+      <%= content_tag :div, 'cancel', class: 'ep-cancel-edit btn btn-default' %>
+    </div>
+  <% end %>
+</div>
+<br>

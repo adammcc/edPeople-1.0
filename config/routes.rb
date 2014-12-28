@@ -29,6 +29,7 @@ Ep::Application.routes.draw do
   resources :skills, only: [:create, :destroy]
   resources :roles, only: [:create, :destroy]
   resources :subjects, only: [:create, :destroy]
+  resources :job_posts
 
 
 

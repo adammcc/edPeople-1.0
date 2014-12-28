@@ -1,0 +1,21 @@
+<div class="js-section-container row-fluid"><br><br><br><br>
+
+    <div class="ep-similar-jobs col-md-3 white-bg">
+      <h3>Similar Jobs</h3><br><br>
+      <% @jobs.each do |job| %>
+        <p><%= link_to job.title, job_post_path(job) %></p>
+        <p><%= job.location %></p>
+        <hr>
+      <% end %>
+    </div>
+
+    <div class="ep-show-job col-md-8 white-bg">
+      <%= render partial: 'show_job', locals: { job: @job } %>
+    </div>
+  </div>
+</div>
+
+
+
+
+

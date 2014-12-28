@@ -1,0 +1,31 @@
+<div class="row-fluid"><br><br><br><br>
+  <div class="ep-search col-md-3 white-bg">
+    <h3>Find jobs</h3>
+    <%#= form_tag users_path, method: :get, remote: true, class: 'js-search-form' do %>
+
+      <%= text_field_tag 'search', @search_term, placeholder: 'Search jobs...', class: "js-search-form__text-field" %>
+
+      <h4>Filter by borough</h4>
+      <%# @roles.each do |role| %>
+        <%#= check_box_tag 'filter_by_roles[]', role.id, false, class: 'js-search-form__check-box' %>
+        <%#= label_tag 'filter_by_role', role.name, class: 'ep-filter-label' %><br>
+      <%# end %>
+
+      <h4>Filter by subject</h4>
+      <%# @subjects.each do |subject| %>
+        <%#= check_box_tag 'filter_by_subjects[]', subject.id, false, class: 'js-search-form__check-box' %>
+        <%#= label_tag 'filter_by_subjects', subject.name, class: 'ep-filter-label'  %><br>
+      <%# end %>
+
+      <h4>Filter by role</h4>
+      <%# @subjects.each do |subject| %>
+        <%#= check_box_tag 'filter_by_subjects[]', subject.id, false, class: 'js-search-form__check-box' %>
+        <%#= label_tag 'filter_by_subjects', subject.name, class: 'ep-filter-label'  %><br>
+
+   <%# end %>
+  </div>
+
+  <div class="ep-index col-md-8 white-bg">
+    <%= render partial: 'job_posts/job_posts', locals: { jobs: @jobs } %>
+  </div>
+</div>
