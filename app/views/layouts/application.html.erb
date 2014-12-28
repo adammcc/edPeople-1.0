@@ -36,7 +36,6 @@
         <% end %>
 
         <li class="<%= 'active' if current_page?(users_path) %>"><%= link_to "People", users_path %></li>
-        <li><a href="#" data-toggle="tab">Organizations</a></li>
         <li class="<%= 'active' if current_page?(job_posts_path) %>"><%= link_to "Jobs", job_posts_path %></li>
 
 			  <li class="dropdown">
@@ -45,7 +44,7 @@
 			    </a>
 			    <ul class="dropdown-menu" role="menu">
 			    	<% if user_signed_in? %>
-						  <li><%= link_to 'Edit profile', edit_user_registration_path %></li>
+						  <li><%= link_to 'My profile', user_path(current_user) %></li>
 						  <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
 						<% else %>
 						  <li><%= link_to "Sign up", new_user_registration_path %></li>
