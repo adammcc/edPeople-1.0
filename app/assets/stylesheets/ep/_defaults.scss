@@ -78,3 +78,88 @@ body#ep {
   background-color: darken(#96ceb4, 5%);
 }
 
+// INDEX PAGES
+
+.ep-index {
+	margin-left: 30px;
+}
+
+a.ep-index__connect {
+	margin-top: 16px;
+}
+
+.ep_index--connection {
+	width: 110px;
+	border-left: 1px solid #ddd;
+	padding-left: 5px;
+}
+
+.ep-index__connection-status {
+	// margin-top: 16px;
+	color: $ep-mid-gray;
+	font-size: 12px !important;
+}
+
+.ep-index__photo {
+	float: left;
+	img {
+		border-radius: 4px;
+	}
+}
+
+.ep-connection__photo {
+	img {
+		border-radius: 4px;
+	}
+}
+
+.ep-index__meta {
+	float: left;
+	line-height: 16px;
+	width: 450px;
+	margin: 0px 0px 0px 10px;
+	p {
+		margin: 0;
+		line-height: 18px;
+	}
+}
+
+.ep-index__meta-content {
+	color: $ep-mid-gray;
+	font-size: 12px;
+}
+
+.ep-search, .ep-similar-jobs {
+	padding: 20px;
+	font-size: 12px;
+	h4	{
+		padding: 10px 0px 5px 0px;
+		border-bottom: 1px solid $ep-light-gray;
+	}
+}
+
+.ep-index__table {
+	tr {
+		height: 90px;
+		td {
+			padding-top: 18px !important;
+		}
+	}
+}
+
+.ep-search__filter-item {
+	margin-bottom: 10px;
+}
+
+.ep-search__button {
+  margin-top: 4px;
+}
+
+.ep-edit-resume-options {
+	display: none;
+}
+
+.ep-index__description {
+	color: $ep-mid-gray;
+}
+
