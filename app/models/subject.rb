@@ -5,4 +5,5 @@ class Subject
   field :name, type: String
 
   has_and_belongs_to_many :users
+  has_many :job_posts
 end

@@ -27,9 +27,10 @@
           </td>
           <td>
             <div class="ep_index--connection js_jobss--connection-<%= job.id %>">
-              <p class="ep-index__connection-status">
+              <p class="ep-index__info-right">
                 <%= job.neighborhood if job.neighborhood %><br>
-                <%= job.location if job.location %>, NY
+                <%= job.location.name if job.location %><br>
+                <%= job.role.name if job.role %><br>
               </p>
             </div>
           </td>

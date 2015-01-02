@@ -17,12 +17,13 @@ CollegeInfo.delete_all
 Role.delete_all
 Subject.delete_all
 JobPost.delete_all
+Location.delete_all
 
 skills = ["Backward Design", "Common Core State Standards", "Microsoft Office", "School Programming", "Differentiated Instruction", "SMARTboard", "Graphing Calculator", "Data Analysis", "Unit Mapping","Danielson Framework", "Secondary Education"]
 roles = %w(Teacher Administrator Counselor)
 subjects =  %w(Math English History Science Sped Art Physed)
 college_names = ['Williams College', 'Stanford University', 'Swarthmore College', 'Princeton University', 'Massachusetts Institute of Technology', 'Yale University', 'Harvard University']
-locations = ['Bronx', 'Brooklyn', 'Queens', 'Manhattan', 'Long Island', 'Westchester County', 'Rockland County']
+locations = ['Bronx', 'Brooklyn', 'Queens', 'Manhattan', 'Staten Island', 'Long Island', 'Westchester County', 'Rockland County']
 school_names = ['The edPeople School', 'Renaissance High School', 'Nyack High School', 'Bronx Science High School']
 
 roles.each do |role_name|
@@ -31,6 +32,10 @@ end
 
 subjects.each do |subject_name|
   Subject.create(name: subject_name)
+end
+
+locations.each do |location|
+  Location.create(name: location)
 end
 
 30.times do
@@ -59,12 +64,19 @@ college_names.each do |college_name|
 end
 
 10.times do
-  JobPost.create(
+  job = JobPost.create(
     title: "#{subjects.sample} Teacher",
     location: locations.sample,
     neighborhood: locations.sample,
     organization: school_names.sample,
-    contact_info: "#{roles.sample.downcase}@#{subjects.sample.downcase}.com",
+    contact_info: Faker::Internet.email,
     description: Faker::Lorem.paragraph(sentence_count = 30, supplemental = false, random_sentences_to_add = 20)
   )
+end
+
+JobPost.all.each do |job|
+  job.role = Role.all.sample
+  job.subject = Subject.all.sample
+  job.location = Location.all.sample
+  job.save
 end
