@@ -18,7 +18,7 @@
 				<%= "#{experience.start_date} - present" %>
 			<% end %>
 		</p>
-		<p><%= experience.description %></p>
+		<p><%= h(experience.description).gsub(/\n/, '<br/>').html_safe %></p>
 	</div>
 	<% if @user == current_user %>
 		<a class="js-edit-section-item js-edit">Edit |</a>

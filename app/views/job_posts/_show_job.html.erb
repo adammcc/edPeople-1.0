@@ -48,7 +48,7 @@
 
     <hr>
     <h4>Description</h4>
-    <p><%= job.description.html_safe %></p>
+    <p><%= h(job.description).gsub(/\n/, '<br/>').html_safe %></p>
     <% if job.indeed_key.present? %>
       <p><%= link_to "View full post on indeed", "#{job.indeed_url}" %></p>
     <% else %>
