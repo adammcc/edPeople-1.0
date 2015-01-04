@@ -3,8 +3,12 @@
     <div class="ep-similar-jobs col-md-3 white-bg">
       <h3>Similar Jobs</h3><br><br>
       <% @jobs.each do |job| %>
-        <p><%= link_to job.title, job_post_path(job) %></p>
-        <p><%= job.location %></p>
+        <p><%= link_to job.title.truncate(40), job_post_path(job) %></p>
+        <% if job.indeed_key %>
+          <p><%= job.indeed_location %></p>
+        <% else %>
+          <p><%= job.location.name %></p>
+        <% end %>
         <hr>
       <% end %>
     </div>

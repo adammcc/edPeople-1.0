@@ -70,6 +70,7 @@ end
     neighborhood: locations.sample,
     organization: school_names.sample,
     contact_info: Faker::Internet.email,
+    org_website: 'www.edpeople.com',
     description: Faker::Lorem.paragraph(sentence_count = 30, supplemental = false, random_sentences_to_add = 20)
   )
 end

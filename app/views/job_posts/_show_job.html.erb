@@ -9,30 +9,51 @@
   </div>
 
   <div class="ep-job-info row">
-    <div class="ep-job-info__section ep-job-info__section--org col-md-4">
+    <div class="ep-job-info__section col-md-4">
       <h4>Organization</h4>
       <p><%= job.organization %></p>
-      <p><%= link_to job.org_website, "http://#{job.org_website}" if job.org_website %></p>
     </div>
 
     <div class="ep-job-info__section col-md-4">
       <h4>Location</h4>
-      <p>
-        <%= job.location if job.location %>
-        <%= '-' if job.location.present? &&  job.neighborhood.present? %>
-        <%= job.neighborhood if job.neighborhood %>
-      </p>
+      <% if job.indeed_key.present? %>
+        <%= job.indeed_location %>
+      <% else %>
+        <p>
+          <%= job.location.name if job.location %>
+          <%= '-' if job.location.present? &&  job.neighborhood.present? %>
+          <%= job.neighborhood if job.neighborhood %>
+        </p>
+      <% end %>
     </div>
 
     <div class="ep-job-info__section col-md-4">
-      <h4>Contact info</h4>
-      <p><%= job.contact_info %></p>
+      <h4>Date Posted</h4>
+      <% if job.indeed_key.present? %>
+        <p><%= job.indeed_date.to_datetime.strftime("%b %d, %Y") %></p>
+      <% else %>
+        <p><%= job.created_at.strftime("%b %d, %Y") %></p>
+      <% end %>
     </div>
   </div>
-  <hr>
+
   <div class="ep-job-info__description">
+    <% if job.org_website %>
+      <hr>
+      <h4>Website</h4>
+      <p><%= link_to job.org_website, "http://#{job.org_website}" %></p>
+    <% end %>
+
+    <hr>
     <h4>Description</h4>
     <p><%= job.description.html_safe %></p>
+    <% if job.indeed_key.present? %>
+      <p><%= link_to "View full post on indeed", "#{job.indeed_url}" %></p>
+    <% else %>
+      <hr>
+      <h4>Contact info</h4>
+      <p><%= job.contact_info %></p>
+    <% end %>
   </div>
 </div>
 <br>
