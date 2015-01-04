@@ -1,7 +1,9 @@
 <div class="ep-show-job__options pull-right">
-  <a class='js-edit-section-item--job'> Edit</a>
-  |
-  <%= link_to 'Remove', job_post_path(job), method: :delete, :data => { :confirm => "Are you sure?" } %>
+  <% if user_signed_in? && job.user == current_user %>
+    <a class='js-edit-section-item--job'> Edit</a>
+    |
+    <%= link_to 'Remove', job_post_path(job), method: :delete, :data => { :confirm => "Are you sure?" } %>
+  <% end %>
 </div>
 <div class="js-section-item">
   <div class="page-header ep-job-info__page-header">

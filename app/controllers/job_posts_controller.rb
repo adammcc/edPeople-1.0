@@ -31,6 +31,8 @@ class JobPostsController < ApplicationController
 
   def create
     @job_post = JobPost.create(params[:job_post])
+    @job_post.user = current_user
+    @job_post.save
 
     redirect_to job_post_path(@job_post)
   end

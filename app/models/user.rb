@@ -67,7 +67,7 @@ class User
   has_and_belongs_to_many :experiences
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :subjects
-  has_and_belongs_to_many :job_posts
+  has_many :job_posts
 
   search_in :first_name, :last_name, :email, :headline, :role, :subject_area,
             skills: :name,

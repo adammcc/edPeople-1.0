@@ -16,7 +16,7 @@ class JobPost
   field :indeed_url
   field :indeed_date
 
-  has_and_belongs_to_many :users
+  belongs_to :user
   belongs_to :subject
   belongs_to :role
   belongs_to :location
