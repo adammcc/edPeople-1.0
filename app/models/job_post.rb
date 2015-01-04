@@ -10,6 +10,12 @@ class JobPost
   field :org_website,   type: String
   field :description,   type: String
 
+  # Ideed job fields
+  field :indeed_key
+  field :indeed_location
+  field :indeed_url
+  field :indeed_date
+
   has_and_belongs_to_many :users
   belongs_to :subject
   belongs_to :role
