@@ -21,6 +21,8 @@ Ep::Application.routes.draw do
       put :add_resume
       put :remove_resume
     end
+
+    resources :conversations
   end
 
   resources :colleges, only: [:create]
@@ -30,6 +32,7 @@ Ep::Application.routes.draw do
   resources :roles, only: [:create, :destroy]
   resources :subjects, only: [:create, :destroy]
   resources :job_posts
+  resources :messages
 
 
 

@@ -1,0 +1,17 @@
+<div class="row-fluid"><br><br><br><br>
+  <div class="ep-search col-md-3 white-bg">
+    <h3><%= link_to 'Inbox', user_conversations_path(current_user) %></h3>
+  </div>
+  <div class="ep-index col-md-8 white-bg">
+    <div class="page-header">
+      <h3>Conversation with <%= @conversation.users.ne(id: current_user.id).first.name %></h3>
+    </div>
+    <% if @conversation.present? %>
+      <div class="js-conversation-messages">
+        <%= render partial: 'conversation_messages', locals: { conversation: @conversation } %>
+      </div>
+    <% else %>
+      <p>No conversations yet.</p>
+    <% end %>
+  </div>
+</div>

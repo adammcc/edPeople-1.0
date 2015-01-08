@@ -20,3 +20,6 @@
 .navbar-default {
   border-color:  #3BAFDA;
 }
+.modal-content {
+  width: 400px;
+}

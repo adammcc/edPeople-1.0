@@ -68,6 +68,8 @@ class User
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :subjects
   has_many :job_posts
+  has_and_belongs_to_many :conversations
+  has_many :messages
 
   search_in :first_name, :last_name, :email, :headline, :role, :subject_area,
             skills: :name,
@@ -230,6 +232,16 @@ class User
     bucket.objects.delete(name)
     self.has_resume = false
     self.save
+  end
+
+  def unread_messages_count(conversations)
+    unread_messages_count = 0
+    conversations.each do |convo|
+      convo.messages.each do |message|
+        unread_messages_count += 1 if !message.viewed_by_ids.include?(self.id)
+      end
+    end
+    unread_messages_count
   end
 end
 

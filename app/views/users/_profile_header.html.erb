@@ -82,8 +82,13 @@
 
 			<% end %>
 
-
-			<p><i class="fa fa-envelope"></i> Send <%= @user.first_name %> a message</p>
+			<% if current_user == @user %>
+				<p><i class="fa fa-envelope"></i> <%= link_to 'Your messages', user_conversations_path(@user) %></p>
+			<% else %>
+				<p data-toggle="modal" data-target=".ep-message-modal">
+					<i class="fa fa-envelope"></i> <a>Send <%= @user.first_name %> a message</a>
+				</p>
+			<% end %>
 			<p>
 				<% if @user.has_resume %>
 					<i class="fa fa-file-text"></i>&nbsp

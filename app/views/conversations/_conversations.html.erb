@@ -1,0 +1,39 @@
+<div class="page-header">
+  <h3>Conversations (<%= conversations.count %>)</h3>
+  <p class='pull-right'><%= "Unread messages (#{ @unread_messages_count })" if @unread_messages_count > 0 %></p>
+  <% if @unread_messages_count > 0 %>
+    <br>
+  <% end %>
+</div>
+<% if conversations.present? %>
+  <table class="table ep-index__table">
+    <tbody>
+      <% conversations.each do |convo| %>
+        <tr>
+          <td class="ep-index__conversation">
+            <div class="ep-convo-link" onclick="window.location='<%= user_conversation_path(@user, convo) %>'">
+              <% user = convo.users.ne(id: current_user.id).first %>
+              <div class="ep-index__photo">
+                <% if user.avatar.url != "/images/original/missing.png" %>
+                  <%= image_tag("https://s3.amazonaws.com/ep-dev-avatar/#{user.id}", height: '50', width: '50') %>
+                <% else %>
+                  <%= image_tag(user.image_url, height: '50', width: '50') %>
+                <% end %>
+              </div>
+              <div class="ep-index__meta">
+                <p class="<%= convo.messages.last.viewed_by_ids.include?(@user.id) ? '' : 'ep-bold' %>">
+                  <%= link_to user.name, user_path(user) %>
+                </p>
+                <p class="<%= convo.messages.last.viewed_by_ids.include?(@user.id) ? '' : 'ep-bold' %>">
+                  <%= h(convo.messages.last.note.truncate(120)).gsub(/\n/, '<br/>').html_safe %>
+                </p>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No conversations found.</p>
+<% end %>

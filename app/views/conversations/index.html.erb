@@ -1,0 +1,12 @@
+<div class="row-fluid"><br><br><br><br>
+  <div class="ep-search col-md-3 white-bg">
+    <h3>Inbox</h3>
+    <%= form_tag user_conversations_path, method: :get, remote: true, class: 'js-search-form' do %>
+      <%= text_field_tag 'search', @search_term, placeholder: 'Search messages...', class: "js-search-form__text-field" %>
+    <% end %>
+  </div>
+
+  <div class="ep-index col-md-8 white-bg">
+    <%= render partial: 'conversations/conversations', locals: { conversations: @conversations } %>
+  </div>
+</div>
