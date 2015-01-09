@@ -88,12 +88,14 @@ class UsersController < ApplicationController
 
 
   def invite_friend
+    @user = current_user
     @friend = User.find(params[:id])
 
     current_user.invite @friend
   end
 
   def approve_friend
+    @user = current_user
     @friend = User.find(params[:id])
 
     current_user.approve @friend
@@ -101,6 +103,7 @@ class UsersController < ApplicationController
   end
 
   def remove_deny_friend
+    @user = current_user
     @friend = User.find(params[:id])
 
     current_user.remove_friendship @friend

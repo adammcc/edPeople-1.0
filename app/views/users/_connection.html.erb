@@ -11,11 +11,11 @@
 		<% if current_user %>
 			<% if (current_user.invited_by? user) && (!current_user.friend_with? user) %>
 				<div class="ep-connection-choice">
-					<%= link_to approve_friend_user_path(user), method: :put, class: 'ep-approve' do %>
+					<%= link_to approve_friend_user_path(user), method: :put, remote: true, class: 'ep-approve' do %>
 						 <i class="fa fa-plus"></i> Approve
 					<% end %>
 					&nbsp|&nbsp
-					<%= link_to remove_deny_friend_user_path(user), method: :put, class: 'ep-deny' do %>
+					<%= link_to remove_deny_friend_user_path(user), method: :put, remote: true, class: 'ep-deny' do %>
 						<i class="fa fa-minus"></i> Decline
 					<% end %>
 				</div>

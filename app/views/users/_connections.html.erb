@@ -5,33 +5,33 @@
 <div class="ep-profile-section__body">
 
 	<div class="ep-connections">
-		<a id="ep-show-friends">Connections</a>
-		<% if @user == current_user %>
-			| <a id="ep-show-invites">Invites</a> |
-			<a id="ep-show-inviters">Invited by</a>
+		<a id="ep-show-friends">Connections <%= user.friends.count > 0 ? "(#{user.friends.count})" : "" %></a>
+		<% if user == current_user %>
+			| <a id="ep-show-invites">Invites <%= user.pending_invited.count > 0 ? "(#{user.pending_invited.count})" : "" %></a> |
+			<a id="ep-show-inviters">Invited by <%= user.pending_invited_by.count > 0 ? "(#{user.pending_invited_by.count})" : "" %></a>
 		<% end %>
 	</div>
 
-	<div id="ep-friends">
-		<% for friend in @user.friends.take(6) %>
+	<div id="ep-friends js-friends">
+		<% for friend in user.friends.take(6) %>
 			<%= render partial: 'connection', locals: { user: friend } %>
 		<% end %>
 	</div>
-	<% if @user == current_user %>
+	<% if user == current_user %>
 		<div id="ep-invited">
-			<% for invite in @user.pending_invited %>
+			<% for invite in user.pending_invited %>
 				<%= render partial: 'connection', locals: { user: invite } %>
 			<% end %>
 		</div>
 
 		<div id="ep-invited_by">
-			<% for inviter in @user.pending_invited_by %>
+			<% for inviter in user.pending_invited_by %>
 				<%= render partial: 'connection', locals: { user: inviter } %>
 			<% end %>
 		</div>
 	<% end %>
 
-  <% if @user.friends.count > 6 %>
+  <% if user.friends.count > 6 %>
 	 <a class="ep-see-all-connections" data-toggle="modal" data-target=".ep-connection-modal">See All</a>
   <% end %>
 </div>
@@ -43,7 +43,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">Connections</h4>
       </div>
-      <% for friend in @user.friends %>
+      <% for friend in user.friends %>
 				<%= render partial: 'connection', locals: { user: friend } %>
 			<% end %>
     </div>

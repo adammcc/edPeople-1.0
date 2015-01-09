@@ -22,8 +22,8 @@
 				<%= render partial: 'skills', locals: { user: @user } %>
 			</div>
 
-			<div class="ep-profile-section white-bg">
-				<%= render partial: 'connections' %>
+			<div class="ep-profile-section js-profile-section--connections white-bg">
+				<%= render partial: 'connections', locals: { user: @user } %>
 			</div>
 		</div>
 	</div>
