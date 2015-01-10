@@ -35,4 +35,8 @@ $ ->
 		$('.js-edit-form').hide()
 		$('.js-edit-form--file-upload').removeClass('in')
 
+@imgError = (image) ->
+  image.onerror = ""
+  image.src = "/assets/missing.png"
+
 

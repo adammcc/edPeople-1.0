@@ -49,7 +49,7 @@ class User
   # field :locked_at,       :type => Time
   field :first_name,  type: String
   field :last_name,   type: String
-  field :image_url,   type: String
+  field :image_url,   type: String, default: "/images/original/missing.png"
   field :email,       type: String
   field :pro_summary, type: String
   field :skill,       type: String
@@ -63,7 +63,6 @@ class User
   has_and_belongs_to_many :colleges
   has_many :college_infos
   has_and_belongs_to_many :skills
-  has_mongoid_attached_file :avatar, :styles => { :medium => "120x120#", :thumb => "50x50#" }, :default_url => "/images/:style/missing.png"
   has_and_belongs_to_many :experiences
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :subjects
@@ -77,6 +76,13 @@ class User
             experiences: [ :title, :employer, :school, :boro ],
             roles: :name,
             subjects: :name
+
+  has_mongoid_attached_file :avatar,
+    :storage        => :s3,
+    :bucket_name    => 'my-uploads',
+    :path           => ':attachment/:id/:style.:extension',
+    :s3_credentials => { bucket: "ep-#{ENV['EP_AWS_S3BUCKET']}-avatar", :access_key_id => ENV['EP_AWS_API_KEY'], :secret_access_key => ENV['EP_AWS_API_SECRET'] },
+    :styles => { :medium => "120x120#", :thumb => "50x50#" }
 
   validates_attachment_content_type :avatar, :content_type => %w(image/jpeg image/jpg image/png)
   validates_attachment_size :avatar, :less_than => 5.megabytes
@@ -199,19 +205,6 @@ class User
     end
   end
 
-  def upload_avatar_to_s3(user, avatar)
-    s3 = AWS::S3.new()
-    bucket_path = Ep::Lib.bucket_path('avatar')
-    object_path = avatar.original_filename
-
-    bucket = s3.buckets[bucket_path]
-    if !bucket.exists?
-      bucket = s3.buckets.create(bucket_path)
-    end
-
-    bucket.objects.create(user.id, avatar.tempfile.read(), acl: :public_read)
-  end
-
   def upload_resume_to_s3(user, resume)
     s3 = AWS::S3.new()
     bucket_path = Ep::Lib.bucket_path('resumes')
@@ -242,6 +235,21 @@ class User
       end
     end
     unread_messages_count
+  end
+
+  def photo_url(size = nil)
+    if avatar.present?
+      case size
+      when nil
+        avatar.url
+      when 'medium'
+        avatar.url(:medium)
+      when 'thumb'
+        avatar.url(:thumb)
+      end
+    else
+      image_url
+    end
   end
 end
 

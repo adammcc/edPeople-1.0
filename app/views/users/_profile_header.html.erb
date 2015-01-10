@@ -3,12 +3,7 @@
 	<div class="row">
 		<div class="col-md-5 ep-user-snapshot">
 			<div class="ep-profile-image">
-				<% if @user.avatar.url != "/images/original/missing.png" %>
-					<%= image_tag("https://s3.amazonaws.com/ep-dev-avatar/#{@user.id}", height: '120', width: '120') %>
-				<% else %>
-			  	<%= image_tag(@user.image_url, height: '120', width: '120') %>
-			  <% end %>
-
+				<%= image_tag @user.photo_url('medium'), onerror: "imgError(this);", height: '120', width: '120' %>
 			 	<% if @user == current_user %>
 					<div class="ep-profile-image__uploader-container">
 						<a class="js-edit" data-toggle="collapse" data-target="#ep-profile-image__toggle">Change image</a>

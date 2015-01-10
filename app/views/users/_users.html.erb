@@ -8,11 +8,7 @@
         <tr>
           <td>
             <div class="ep-index__photo">
-              <% if user.avatar.url != "/images/original/missing.png" %>
-                <%= image_tag("https://s3.amazonaws.com/ep-dev-avatar/#{user.id}", height: '50', width: '50') %>
-              <% else %>
-                <%= image_tag(user.image_url, height: '50', width: '50') %>
-              <% end %>
+              <%= image_tag user.photo_url('thumb'), onerror: "imgError(this);", height: '50', width: '50' %>
             </div>
             <div class="ep-index__meta">
               <p><%= link_to user.name, user_path(user) %></p>

@@ -1,13 +1,10 @@
 <div id="ep-connection" class="ep-connection">
 	<p>
 		<span class="ep-connection__photo">
-			<% if user.avatar.url != "/images/original/missing.png" %>
-	      <%= image_tag("https://s3.amazonaws.com/ep-dev-avatar/#{user.id}", height: '40', width: '40') %>
-	    <% else %>
-	      <%= image_tag(user.image_url, height: '40', width: '40') %>
-	    <% end %>
+			<%= image_tag user.photo_url('thumb'), onerror: "imgError(this);", height: '50', width: '50' %>
 	  </span>
-		<%= link_to user.name, user_path(user) %>	</p>
+		<%= link_to user.name, user_path(user) %>
+	</p>
 		<% if current_user %>
 			<% if (current_user.invited_by? user) && (!current_user.friend_with? user) %>
 				<div class="ep-connection-choice">
