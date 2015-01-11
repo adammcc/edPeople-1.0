@@ -3,8 +3,8 @@ require 'spec_helper'
 describe JobPostsController do
   before(:each) do
     @user = FactoryGirl.create(:user, first_name: 'Joe', last_name: 'User' )
-    @job_post = FactoryGirl.create(:job_post, title: 'Some job')
-    @job_post_2 = FactoryGirl.create(:job_post, title: 'Some other job')
+    @job_post = FactoryGirl.create(:job_post, title: 'Art Teacher')
+    @job_post_2 = FactoryGirl.create(:job_post, title: 'Math Teacher')
     sign_in @user
   end
 
@@ -23,6 +23,51 @@ describe JobPostsController do
       expect(response).to render_template(:index)
       expect(assigns(:jobs).to_a).to include(@job_post)
       expect(assigns(:jobs).to_a).to include(@job_post_2)
+    end
+
+    context 'when searching and filtering' do
+      before(:each) do
+        @location = FactoryGirl.create(:location, name: 'Bronx')
+        @role = FactoryGirl.create(:role, name: 'Teacher')
+        @job_post.role = @role
+        @job_post.location = @location
+        @job_post.save
+      end
+
+      it "returns correct jobs when a search term is entered" do
+        get :index, { search: 'Art' }
+
+        expect(assigns(:jobs).to_a).to eq([@job_post])
+        expect(assigns(:jobs).to_a).to_not include(@job_post_2)
+      end
+
+      it "returns correct jobs when filtered by role" do
+        get :index, { filter_by_roles: [@role.id] }
+
+        expect(assigns(:jobs).to_a).to eq([@job_post])
+        expect(assigns(:jobs).to_a).to_not include(@job_post_2)
+      end
+
+      it "returns correct jobs when filtered by locations" do
+        get :index, { filter_by_locations: [@location.id] }
+
+        expect(assigns(:jobs).to_a).to eq([@job_post])
+        expect(assigns(:jobs).to_a).to_not include(@job_post_2)
+      end
+
+      it "returns correct jobs when filtered by roles and locations" do
+        get :index, { filter_by_locations: [@location.id], filter_by_roles: [@role.id] }
+
+        expect(assigns(:jobs).to_a).to eq([@job_post])
+        expect(assigns(:jobs).to_a).to_not include(@job_post_2)
+      end
+
+      it "returns correct jobs when filtered by roles, locations and search term" do
+        get :index, { filter_by_roles: [@role.id], filter_by_locations: [@location.id], search: 'Art' }
+
+        expect(assigns(:jobs).to_a).to eq([@job_post])
+        expect(assigns(:jobs).to_a).to_not include(@job_post_2)
+      end
     end
   end
 

@@ -10,7 +10,7 @@ describe User do
     end
   end
 
-    describe :update_name do
+  describe :update_name do
     it "will update a user\'s name" do
       user = FactoryGirl.create(:user, first_name: 'Mister', last_name: 'Magoo')
       user.update_name('Mister New Lastname')
@@ -46,7 +46,14 @@ describe User do
     end
 
     it 'removes a user\'s pending invited by friends' do
+      @user = FactoryGirl.create(:user)
+    end
+  end
 
+  describe :photo_url do
+    it 'returns a user photo url' do
+      @user = FactoryGirl.create(:user)
+      expect(@user.photo_url).to eq("/images/original/missing.png")
     end
   end
 

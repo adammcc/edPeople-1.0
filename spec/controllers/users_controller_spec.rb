@@ -24,9 +24,9 @@ describe UsersController do
       expect(assigns(:users).to_a).to include(@some_other_user)
     end
 
-    context 'when searching and filtering it' do
+    context 'when searching and filtering' do
       before(:each) do
-        @subject = FactoryGirl.create(:role, name: 'Art')
+        @subject = FactoryGirl.create(:subject, name: 'Art')
         @role = FactoryGirl.create(:role, name: 'Teacher')
         @user.roles << @role
         @user.subjects << @subject
@@ -54,7 +54,7 @@ describe UsersController do
       end
 
       it "returns correct users when filtered by roles and subjects" do
-        get :index, { filter_by_subjects: @subject.id }
+        get :index, { filter_by_subjects: @subject.id, filter_by_roles: @role.id }
 
         expect(assigns(:users).to_a).to eq([@user])
         expect(assigns(:users).to_a).to_not include(@some_other_user)
