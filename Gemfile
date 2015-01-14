@@ -33,6 +33,7 @@ gem 'protected_attributes', '~>1.0.1'
 gem 'rails-observers', '~>0.1.1'
 gem 'rails-perftest', '~>0.0.2'
 gem 'httparty', '~> 0.13.1'
+gem 'will_paginate_mongoid'
 
 
 group :development do

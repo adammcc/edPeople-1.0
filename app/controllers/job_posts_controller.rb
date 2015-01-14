@@ -12,15 +12,14 @@ class JobPostsController < ApplicationController
       @jobs = JobPost.asc(:created_at)
       @jobs = JobPost.full_text_search(@search_term) if @search_term.present?
       if role_ids && location_ids
-        jobs_by_locations_then_roles = @jobs.in(location_id: location_ids).in(role_id: role_ids)
-        @jobs = jobs_by_locations_then_roles
+         @jobs = @jobs.in(location_id: location_ids).in(role_id: role_ids)
       elsif role_ids || location_ids
-        jobs_by_role = @jobs.in(role_id: role_ids) if role_ids
-        jobs_by_location = @jobs.in(location_id: location_ids) if location_ids
-        @jobs = jobs_by_role ||= [] + jobs_by_location ||= []
+        @jobs = @jobs.in(role_id: role_ids) if role_ids
+        @jobs = @jobs.in(location_id: location_ids) if location_ids
       end
+      @jobs = @jobs.asc(:created_at).paginate(page: params[:page], per_page: 10)
     else
-     @jobs = JobPost.asc(:created_at)
+      @jobs = JobPost.asc(:created_at).paginate(page: params[:page], per_page: 10)
     end
   end
 
