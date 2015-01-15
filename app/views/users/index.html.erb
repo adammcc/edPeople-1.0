@@ -1,4 +1,3 @@
-
 <div class="row-fluid"><br><br><br><br>
   <div class="ep-search col-md-3 white-bg">
     <h3>Find people</h3>
@@ -22,6 +21,16 @@
   </div>
 
   <div class="ep-index col-md-8 white-bg">
-    <%= render partial: 'users/users', locals: { users: @users } %>
+    <div class="page-header">
+      <h3>People</h3>
+    </div>
+    <table class="table ep-index__table">
+      <tbody class="ep-index__items">
+        <%= render partial: 'users/users', locals: { users: @users } %>
+      </tbody>
+    </table>
+    <div class="js-will-page">
+      <%= will_paginate @users %>
+    </div>
   </div>
 </div>
