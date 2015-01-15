@@ -30,6 +30,9 @@
       <% end %>
     </tbody>
   </table>
+  <div class="js-will-page">
+    <%= will_paginate @users %>
+  </div>
 <% else %>
   <p>No conversations found.</p>
 <% end %>

@@ -9,6 +9,7 @@ class ConversationsController < ApplicationController
     if @search_term.present?
       @conversations = @conversations.full_text_search(@search_term)
     end
+    @conversations = @conversations.paginate(page: params[:page], per_page: 10)
   end
 
   def show
