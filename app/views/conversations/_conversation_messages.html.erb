@@ -1,19 +1,5 @@
 <table class="table ep-index__table">
   <tbody>
-    <% conversation.messages.each do |message| %>
-      <tr>
-        <td>
-          <% user = message.user %>
-          <div class="ep-index__photo">
-            <%= image_tag user.photo_url('thumb'), onerror: "imgError(this);", height: '50', width: '50' %>
-          </div>
-          <div class="ep-index__meta">
-            <p><%= link_to user.name, user_path(user) %></p>
-            <p><%= h(message.note).gsub(/\n/, '<br/>').html_safe %></p>
-          </div>
-        </td>
-      </tr>
-    <% end %>
     <tr>
       <td class='ep-index__new-message'>
         <div class="ep-index__photo">
@@ -26,8 +12,19 @@
             <%= f.text_area :note, :class => 'ep-form__text-area', rows: '3', cols: '80' %>
             <%= f.submit 'Send', class: 'btn btn-primary' %>
           <% end %>
+          <br>
         </div>
       </td>
+      <td></td>
     </tr>
   </tbody>
 </table>
+
+<table class="table ep-index__table">
+  <tbody class="ep-index__messages js-messages-container">
+    <%= render partial: 'conversations/messages', locals: { messages: messages } %>
+  </tbody>
+</table>
+<div class="js-will-page js-will-page--messages">
+  <%= will_paginate messages %>
+</div>

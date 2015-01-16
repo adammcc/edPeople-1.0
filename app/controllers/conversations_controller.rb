@@ -14,6 +14,7 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation = Conversation.find(params[:id])
+    @messages = @conversation.messages.desc(:created_at).paginate(page: params[:page], per_page: 10)
 
     @conversation.messages.each do |message|
       if !message.viewed_by_ids.include?(current_user.id)

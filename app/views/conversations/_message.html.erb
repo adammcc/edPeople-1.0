@@ -1,0 +1,18 @@
+<tr>
+  <td>
+    <div class="ep-index__photo">
+      <%= image_tag user.photo_url('thumb'), onerror: "imgError(this);", height: '50', width: '50' %>
+    </div>
+    <div class="ep-index__meta">
+      <p><%= link_to user.name, user_path(user) %></p>
+      <p><%= h(message.note).gsub(/\n/, '<br/>').html_safe %></p>
+    </div>
+  </td>
+  <td>
+    <div class="ep_index--connection">
+      <p class="ep-index__info-right">
+        <%= message.created_at.strftime('%b %e, %l:%M %p') %>
+      </p>
+    </div>
+  </td>
+</tr>

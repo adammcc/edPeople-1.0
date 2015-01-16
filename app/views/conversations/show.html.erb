@@ -8,7 +8,7 @@
     </div>
     <% if @conversation.present? %>
       <div class="js-conversation-messages">
-        <%= render partial: 'conversation_messages', locals: { conversation: @conversation } %>
+        <%= render partial: 'conversation_messages', locals: { conversation: @conversation, messages: @messages } %>
       </div>
     <% else %>
       <p>No conversations yet.</p>

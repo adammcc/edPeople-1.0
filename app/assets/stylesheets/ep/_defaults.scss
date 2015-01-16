@@ -143,7 +143,7 @@ a.ep-index__connect {
 
 .ep-index__table {
 	tr {
-		height: 90px;
+		max-height: 90px;
 		td {
 			padding-top: 18px !important;
 		}
