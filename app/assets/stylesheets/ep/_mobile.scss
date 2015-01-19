@@ -22,8 +22,8 @@
     margin: 0 45px !important;
   }
   .ep-profile-actions {
-    margin-left: 20px;
     text-align: center;
+    border-left: none !important;
   }
   .ep-user-info {
     margin-left: 20px;
@@ -34,6 +34,14 @@
   }
   .ep-index__meta {
     width: 200px;
+  }
+  .ep-user-roles-and-subjects {
+    text-align: center;
+  }
+  .ep-edit-mode {
+    position: relative;
+    bottom: 10px;
+    right: 0;
   }
 
   // Sessions
