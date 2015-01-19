@@ -67,7 +67,8 @@ class UsersController < ApplicationController
     else
       respond_to do |format|
         if @user.update_attributes(params[:user])
-          format.html { redirect_to @user, notice: 'User was successfully updated.' }
+          sign_in(@user, :bypass => true)
+          format.html { redirect_to @user, notice: 'Account successfully updated.' }
           format.json { head :no_content }
         else
           format.html { render action: "edit" }
