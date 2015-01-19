@@ -59,6 +59,7 @@ class User
 
   field :provider,    type: String
   field :uid,         type: String
+  field :has_linkedin_account, type: Boolean, default: false
 
   has_and_belongs_to_many :colleges
   has_many :college_infos
@@ -132,6 +133,7 @@ class User
                             uid:auth.uid,
                             email:auth.info.email,
                             password:Devise.friendly_token[0,20],
+                            has_linkedin_account:true
                           )
         @user.sync_with_linkedin(@user, auth)
       end

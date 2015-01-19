@@ -67,7 +67,10 @@ class UsersController < ApplicationController
     else
       respond_to do |format|
         if @user.update_attributes(params[:user])
-          sign_in(@user, :bypass => true)
+          if params[:user][:password].present?
+            sign_in(@user, :bypass => true)
+            @user.set(has_linkedin_account: false)
+          end
           format.html { redirect_to @user, notice: 'Account successfully updated.' }
           format.json { head :no_content }
         else
@@ -86,6 +89,9 @@ class UsersController < ApplicationController
     redirect_to :root
   end
 
+  def add_password
+    @user = User.find(params[:id])
+  end
 
   def invite_friend
     @user = current_user
