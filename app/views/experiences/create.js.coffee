@@ -1,4 +1,4 @@
-<% new_html = render(partial: 'users/experience', locals: { user: @user, experiences: @experiences }) %>
+<% new_html = render(partial: 'users/experience', locals: { user: @user, experiences: @user.experiences }) %>
 $(".ep-profile-section--experience").html("<%= j new_html %>")
 
 $(".js-section-container").each ->

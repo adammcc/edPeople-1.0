@@ -16,7 +16,7 @@
   <br>
 <div class="js-section-container">
   <% if current_user && user == current_user %>
-    <a class="js-edit-section-item ep-add-role js-add-role <%= user.roles.present? ? 'js-edit' : '' %>"><i class="fa fa-plus"></i> Add</a>
+    <a class="js-edit-section-item ep-add-role js-add-role <%= user.roles.present? ? 'js-edit' : '' %>">+ Add</a>
     <div id="ep-add-role" class="js-edit-form ep-edit-form">
       <%= form_for Role.new, remote: true do |f| %>
         <div class="ep-form__profile-form-field">

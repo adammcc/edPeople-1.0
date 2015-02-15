@@ -33,9 +33,13 @@
 					<% end %>
 				</h3>
 				<p>
-					<%= best_in_place @user, :headline, :type => :input, activator: '.ep-edit-headline' %>
+					<%= best_in_place @user, :headline, :type => :input, activator: '.ep-edit-headline', nil: 'Add a headline' %>
 					<% if @user == current_user %>
-						<a class="ep-edit-headline js-edit"> Edit</a>
+						<% if @user.headline.present? %>
+							<a class="ep-edit-headline js-edit"> Edit</a>
+						<% else %>
+							<a class="ep-edit-headline js-add-bip"> + Add</a>
+						<% end %>
 					<% end %>
 				</p>
 			</div>

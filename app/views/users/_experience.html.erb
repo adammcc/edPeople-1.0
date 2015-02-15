@@ -7,7 +7,7 @@
 		<%= render partial: 'users/job', locals: { experience: experience, user: user } %>
 	<% end %>
 	<% if user == current_user %>
-		<a class="js-edit js-edit-section-item js-edit-section-item"><i class="fa fa-plus"></i> Add</a>
+		<a class="<%= experiences.present? ? 'js-edit' : '' %> js-edit-section-item js-edit-section-item"></i> + Add</a>
 	<% end %>
 	<div id="ep-add-experience" class="js-edit-form ep-edit-form">
 		<%= render :partial => '../views/experiences/add_form', locals: { experiences: experiences } %>

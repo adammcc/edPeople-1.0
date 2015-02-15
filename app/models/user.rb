@@ -56,7 +56,7 @@ class User
   field :email,       type: String
   field :pro_summary, type: String
   field :skill,       type: String
-  field :headline,    type: String, default: 'Headline'
+  field :headline,    type: String
   field :demo,        type: Boolean, default: false
   field :has_resume,  type: Boolean, default: false
 

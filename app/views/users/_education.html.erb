@@ -7,7 +7,7 @@
 		<%= render partial: 'users/college', locals: { college_info: college_info, user: user } %>
 	<% end %>
 	<% if user == current_user %>
-		<a class="js-edit js-edit-section-item"><i class="fa fa-plus"></i> Add</a>
+		<a class="<%= @user.college_infos.present? ? 'js-edit' : '' %> js-edit-section-item"></i> + Add</a>
 	<% end %>
 
 	<%= render :partial => '../views/colleges/add_form' %>
