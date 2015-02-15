@@ -5,6 +5,9 @@ class User
   include Mongoid::Paperclip
   include Mongoid::Search
 
+  scope :just_users, lambda { where(as_org: false) }
+  scope :just_orgs, lambda { where(as_org: true) }
+
   # validates_attachment_content_type :image, :content_type => ["image/jpg", "image/jpeg", "image/png"]
   # validates_attachment :image, presence: true, content_type: { content_type: ["image/jpg", "image/jpeg", "image/png"] }
 
@@ -57,6 +60,8 @@ class User
   field :demo,        type: Boolean, default: false
   field :has_resume,  type: Boolean, default: false
 
+  field :as_org,      type: Boolean, default: false
+
   field :provider,    type: String
   field :uid,         type: String
   field :has_linkedin_account, type: Boolean, default: false
@@ -70,13 +75,15 @@ class User
   has_many :job_posts
   has_and_belongs_to_many :conversations
   has_many :messages
+  belongs_to :org
 
   search_in :first_name, :last_name, :email, :headline, :role, :subject_area,
             skills: :name,
             colleges: [ :name, :degree_type, :major ],
             experiences: [ :title, :employer, :school, :boro ],
             roles: :name,
-            subjects: :name
+            subjects: :name,
+            org: [:name, :about, :org_website, :street_address, :borough, :org_type]
 
   has_mongoid_attached_file :avatar,
     :storage        => :s3,
@@ -90,7 +97,11 @@ class User
 
 
   def name
-    "#{first_name} #{last_name}"
+    if as_org
+      org.name
+    else
+      "#{first_name} #{last_name}"
+    end
   end
 
   def update_name(full_name)

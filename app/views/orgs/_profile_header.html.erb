@@ -1,0 +1,90 @@
+<div class="col-md-12 ep-profile-header white-bg">
+
+	<div class="row">
+		<div class="col-md-5 ep-user-snapshot">
+			<div class="ep-profile-image">
+				<%= image_tag org_user.photo_url('medium'), onerror: "imgError(this);", height: '120', width: '120' %>
+			 	<% if org_user == current_user %>
+					<div class="ep-profile-image__uploader-container">
+						<a class="js-edit" data-toggle="collapse" data-target="#ep-profile-image__toggle">Change image</a>
+
+						<div id="ep-profile-image__toggle" class="js-edit-form--file-upload collapse">
+							<%= form_for org_user, :url => add_avatar_user_path(org_user), :html => { :method => "put", :multipart => true } do |f| %><br>
+
+								<span class="ep-profile-image__placeholder">
+									<input class="ep-profile-image__placeholder-input" placeholder="Choose File" disabled="disabled" />
+								</span>
+
+								<div class="ep-profile-image__upload-fields">
+								  <%= f.file_field :avatar, "data-filename-placement"=> "inside", class: "ep-profile-image__file-field js-profile-image__file-field" %>
+								  <%= f.submit "Upload", class: "btn btn-primary" %>
+							  </div>
+							<% end %>
+						</div>
+					</div>
+				<% end %>
+			</div>
+
+			<div class="ep-user-info ep-user-info--org">
+				<h3>
+					<%= best_in_place org, :name, :type => :input, activator: '.ep-edit-org-name' %>
+					<% if org_user == current_user %>
+						<a class="ep-edit-org-name js-edit"> Edit</a>
+					<% end %>
+				</h3>
+				<% if org.street_address.present? || current_user == org_user %>
+					<p>
+						<%= best_in_place org, :street_address, :type => :input, activator: '.ep-edit-org-address', nil: 'What\'s your street address?' %>
+						<% if org_user == current_user %>
+							<% if org.street_address.present? %>
+								<a class="ep-edit-org-address js-edit"> Edit</a>
+							<% else %>
+								<a class="ep-edit-org-address js-add-bip"> + Add</a>
+							<% end %>
+						<% end %>
+					</p>
+				<% end %>
+				<% if org.borough.present? || current_user == org_user %>
+					<p>
+						<%= best_in_place org, :borough, :type => :input, activator: '.ep-edit-org-borough', nil: 'What\'s your borough or county?' %>
+						<% if org_user == current_user %>
+							<% if org.borough.present? %>
+								<a class="ep-edit-org-borough js-edit"> Edit</a>
+							<% else %>
+								<a class="ep-edit-org-borough js-add-bip"> + Add</a>
+							<% end %>
+						<% end %>
+					</p>
+				<% end %><br>
+				<% if org.org_type.present? || current_user == org_user %>
+					<p>
+						<%= best_in_place org, :org_type, :type => :input, activator: '.ep-edit-org-type', nil: 'What type of organization are you?' %>
+						<% if org_user == current_user %>
+							<% if org.org_type.present? %>
+								<a class="ep-edit-org-type js-edit"> Edit</a>
+							<% else %>
+								<a class="ep-edit-org-type js-add-bip"> + Add</a>
+							<% end %>
+						<% end %>
+					</p>
+				<% end %>
+			</div>
+		</div>
+
+		<div class="ep-user-roles-and-subjects col-md-3">
+		</div>
+
+		<div class="ep-profile-actions js-profile-actions col-md-4">
+			<%= render partial: 'profile_actions', locals: { org: org, org_user: org_user} %>
+		</div>
+	</div>
+	<% if current_user == org_user %>
+		<a class='js-edit-mode ep-edit-mode pull-right'> Edit</a>
+		<a class='js-exit-edit-mode ep-edit-mode js-edit pull-right'>Done Editing</a>
+	<% end %>
+</div>
+
+
+
+
+

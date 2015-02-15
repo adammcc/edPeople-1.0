@@ -1,0 +1,33 @@
+<div class="ep-profile-section__header">
+  <h4>
+    Jobs Posted
+    <% if org.user == current_user %>
+      <a class="pull-right" data-toggle="collapse" data-target="#ep-app-job__toggle">Post a job</a>
+    <% end %>
+  </h4>
+  <% if org.user == current_user %>
+    <div id="ep-app-job__toggle" class="collapse">
+      <div class='ep-form'>
+        <%= form_for JobPost.new do |f| %>
+          <%= render partial: 'job_posts/form_fields', locals: { f: f } %>
+          <div class="ep-form__clear">
+            <%= f.submit 'Add', :class => 'btn btn-primary' %>
+            <%= content_tag :div, 'cancel', class: 'btn btn-default', :data => { toggle: "collapse", target: "#ep-app-job__toggle" } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<div class="ep-profile-section__body js-section-container">
+  <% if org.user.job_posts.present? %>
+    <% org.user.job_posts.desc(:created_at).each do |job| %>
+      <p><%= link_to job.title, job_post_path(job) %> | <span class='ep-gray'>Posted on <%= job.created_at.strftime("%B %-d") %></span></p> <br>
+      <p><%= job.description.truncate(200) %></p>
+      <hr>
+    <% end %>
+  <% else %>
+    <p class='ep-gray'>No jobs posted</p>
+  <%end%>
+</div>

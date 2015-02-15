@@ -1,0 +1,29 @@
+<% if users.present? %>
+  <% users.each do |org_user| %>
+    <tr>
+      <td>
+        <div class="ep-index__photo">
+          <%= image_tag org_user.photo_url('thumb'), onerror: "imgError(this);", height: '50', width: '50' %>
+        </div>
+        <div class="ep-index__meta">
+          <% if org_user.org.present? %>
+            <p><%= link_to org_user.org.name, org_path(org_user) %></p>
+          <% end %>
+          <p class="ep-index__meta-content">
+            <%= org_user.org.borough %><br>
+            <%= org_user.org.org_type %>
+          </p>
+        </div>
+      </td>
+      <% if current_user %>
+        <td>
+          <div class="ep_index--connection js_users--connection-<%= org_user.id %>">
+            <%= render partial: 'users/user_connection', locals: { user: org_user } %>
+          </div>
+        </td>
+      <% end %>
+    </tr>
+  <% end %>
+<% else %>
+  <p>Sorry, no matches. Try broadening your search.</p>
+<% end %>

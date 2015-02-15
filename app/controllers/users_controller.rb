@@ -12,8 +12,8 @@ class UsersController < ApplicationController
     subject_ids = params[:filter_by_subjects]
 
     if @search_term.present? || role_ids || subject_ids
-      @users = User.asc(:created_at)
-      @users = User.full_text_search(@search_term) if @search_term.present?
+      @users = User.just_users.asc(:created_at)
+      @users = User.just_users.full_text_search(@search_term) if @search_term.present?
       if role_ids && subject_ids
         @users = @users.in(role_ids: role_ids).in(subject_ids: subject_ids)
       elsif role_ids || subject_ids
@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       end
       @users = @users.asc(:created_at).paginate(page: params[:page], per_page: 10)
     else
-      @users = User.asc(:created_at).paginate(page: params[:page], per_page: 10)
+      @users = User.just_users.asc(:created_at).paginate(page: params[:page], per_page: 10)
     end
   end
 
@@ -31,6 +31,11 @@ class UsersController < ApplicationController
       @user = User.find params[:id]
     else
       @user = current_user
+    end
+
+    if @user.as_org
+      redirect_to org_path(@user)
+      return
     end
 
     @colleges = College.all

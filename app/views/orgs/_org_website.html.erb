@@ -1,0 +1,20 @@
+<div class="ep-profile-section__header">
+  <h4>
+    Website
+  </h4>
+</div>
+
+<div class="ep-profile-section__body js-section-container">
+  <p class="<%= org.org_website.present? ? '' : 'ep-gray'%>">
+    <% if org.user == current_user %>
+      <%= best_in_place org, :org_website, :type => :input, activator: '.ep-edit-website', nil: 'Add your website here.' %> <br>
+      <% if org.org_website.present? %>
+        <a class="ep-edit-website js-edit"> Edit</a>
+      <% else %>
+        <a class="ep-edit-website js-add-bip"> + Add</a>
+      <% end %>
+    <% else %>
+      <p><%= org.org_website %></p>
+    <% end %>
+  </p>
+</div>

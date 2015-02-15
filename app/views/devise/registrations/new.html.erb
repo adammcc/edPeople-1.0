@@ -6,15 +6,21 @@
 				<div class="ep-home-section__one-liner col-md-3 col-md-offset-1">
 					<p>edPeople is a free professional networking community for educators in New York City</p>
 				</div>
-				<div class="ep-signin-signup col-md-6 col-md-offset-1">
+				<div class="ep-signin-signup js-signin-signup col-md-6 col-md-offset-1">
 					<h2>Create an account</h2>
 					<br>
 					<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
 					  <%= devise_error_messages! %>
-					  <div class="row">
+					  <div class="row js-user-name-fields">
 					  	<div class="col-md-10 col-md-offset-1">
-								  <%= f.text_field :first_name, placeholder: 'First Name', class: 'ep-signin-signup__text-field-small', :autofocus => true %>
-							    <%= f.text_field :last_name, placeholder: 'Last Name', class: 'ep-signin-signup__text-field-small ep-signin-signup__text-field-small--right' %>
+								<%= f.text_field :first_name, placeholder: 'First Name', class: 'ep-signin-signup__text-field-small', :autofocus => true %>
+							  <%= f.text_field :last_name, placeholder: 'Last Name', class: 'ep-signin-signup__text-field-small ep-signin-signup__text-field-small--right' %>
+							</div>
+					  </div>
+
+					  <div class="row ep-org-field js-org-field">
+					  	<div class="col-md-10 col-md-offset-1">
+								<%= text_field_tag 'org[name]', '', placeholder: 'Organization Name', class: 'ep-signin-signup__text-field-large' %>
 							</div>
 					  </div>
 

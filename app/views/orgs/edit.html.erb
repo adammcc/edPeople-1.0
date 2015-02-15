@@ -1,0 +1,62 @@
+<div class="col-md-12 ep-main-container">
+  <div class="row">
+    <div class="row">
+      <%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
+        <div class="col-md-4">
+          <div class="ep-profile-section ep-account-settings-section white-bg">
+            <div class="ep-profile-section__header">
+              <h4>Personal Information</h4>
+            </div>
+            <div class="ep-profile-section__body">
+              <div class="ep-form__profile-form-field">
+                <%= f.label :email, :class => 'ep-form__label' %><br>
+                <%= f.text_field :email, :class => 'ep-form__text-field' %>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="ep-profile-section ep-account-settings-section white-bg">
+            <div class="ep-profile-section__header">
+              <h4>Notifications</h4>
+            </div>
+            <div class="ep-profile-section__body">
+              <div class="ep-form__profile-form-field">
+               Coming soon
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-4">
+          <div class="ep-profile-section ep-account-settings-section white-bg">
+            <div class="ep-profile-section__header">
+              <h4>Change Password</h4>
+            </div>
+            <div class="ep-profile-section__body">
+              <div class="ep-form__profile-form-field">
+                <%= f.label :Password, :class => 'ep-form__label' %><br>
+                <%= f.password_field :password, placeholder: "New password", :autocomplete => "off", :class => 'ep-form__text-field' %>
+              </div>
+
+              <div class="ep-form__profile-form-field">
+                <%= f.label :password_confirmation, :class => 'ep-form__label' %><br>
+                <%= f.password_field :password_confirmation, placeholder: "Confirm new password", :autocomplete => "off", :class => 'ep-form__text-field' %>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row"><br>
+        <div class="form-actions container">
+          <div class="pull-right">
+            <%= f.submit 'Save', :class => 'btn btn-primary' %>
+            <%= link_to t('.cancel', :default => t("helpers.links.cancel")), user_path(current_user), :class => 'ep-cancel-edit btn btn-default' %>
+            <%= link_to 'Remove account', user_path(@user), method: :delete, class: 'btn btn-primary btn-warning', data: {confirm: "Are you sure?"} %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

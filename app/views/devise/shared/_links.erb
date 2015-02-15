@@ -22,7 +22,12 @@
 <% else %>
   <%= link_to user_omniauth_authorize_path(:linkedin) do %>
   <i class="fa fa-linkedin-square ep-linkedin-icon"></i> Sign in with Linkedin
-  <% end %><br>
+  <% end %><span>|</span>
+
+  <%- if controller_name != 'sessions' %>
+    <%= link_to "Create an organization account", "#", class: 'js-create-an-org' %>
+    <%= link_to "Create an individual account", "#", class: 'ep-create-a-user js-create-a-user' %>
+  <% end %>
 
   <%- if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
     <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />

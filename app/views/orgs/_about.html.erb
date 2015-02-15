@@ -1,0 +1,26 @@
+<div class="ep-profile-section__header">
+	<h4>
+		About
+	</h4>
+</div>
+
+<div class="ep-profile-section__body js-section-container">
+
+  <p class="<%= org.about.present? ? '' : 'ep-gray'%>">
+    <% if org.user == current_user %>
+      <%= best_in_place org, :about,
+        :type => :textarea,
+        activator: '.ep-edit-about',
+        nil: 'Tell us about your organization.',
+        :html_attrs => { :style => 'width:500px; height: 100px;' }
+      %> <br>
+      <% if org.about.present? %>
+        <a class="ep-edit-about js-edit"> Edit</a>
+      <% else %>
+        <a class="ep-edit-about js-add-bip"> + Add</a>
+      <% end %>
+    <% else %>
+      <p><%= org.about %></p>
+    <% end %>
+  </p>
+</div>

@@ -73,6 +73,7 @@
 	z-index: 2;
 	h2 {
 		text-align: center;
+    color: #96ceb4;
 	}
 	input {
 		height: 58px;
@@ -165,4 +166,8 @@ p.ep-italic {
   height: 1px;
   border-bottom: 1px solid $ep-light-gray;
   margin: 0 20px;
+}
+
+.ep-org-field, .ep-create-a-user {
+	display: none;
 }

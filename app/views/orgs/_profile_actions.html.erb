@@ -1,0 +1,32 @@
+<% if !user_signed_in? %>
+  <p><i class="fa fa-plus"></i>&nbsp Sign in to connect with <%= org.name %></p>
+
+<% elsif current_user == org_user %>
+  <% %>
+
+<% elsif !current_user.connected_with? org_user %>
+  <p><i class="fa fa-plus"></i>
+    <%= link_to "Connect with #{org.name}", invite_friend_user_path(org_user), method: :put, remote: true %></p>
+
+<% elsif current_user.friend_with? org_user %>
+  <p><i class="fa fa-plus"></i>&nbsp You are connected to <%= org.name %></p>
+
+<% elsif current_user.invited? org_user %>
+  <p><i class="fa fa-plus"></i>
+  Pending connection
+  </p>
+
+<% elsif current_user.invited_by? org_user %>
+  <p><i class="fa fa-plus"></i>
+  Pending connection
+  <%= link_to "(Approve)", approve_friend_user_path(org_user), method: :put, remote: true, class: 'ep-approve' %></p>
+
+<% end %>
+
+<% if current_user == org_user %>
+  <p><i class="fa fa-envelope"></i> <%= link_to 'Messages', user_conversations_path(org_user) %></p>
+<% else %>
+  <p data-toggle="modal" data-target=".ep-message-modal">
+    <i class="fa fa-envelope"></i> <a>Send <%= org.name %> a message</a>
+  </p>
+<% end %>

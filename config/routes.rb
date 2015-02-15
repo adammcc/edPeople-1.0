@@ -1,6 +1,6 @@
 Ep::Application.routes.draw do
 
-  devise_for :users, :controllers => { :omniauth_callbacks => "omniauth_callbacks" }
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks", registrations: "registrations" }
 
   devise_scope :user do
     authenticated :user do
@@ -34,6 +34,8 @@ Ep::Application.routes.draw do
   resources :subjects, only: [:create, :destroy]
   resources :job_posts
   resources :messages
+
+  resources :orgs, only: [:show, :index, :update]
 
 
 

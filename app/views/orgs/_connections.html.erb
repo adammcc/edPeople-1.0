@@ -1,0 +1,51 @@
+<div class="ep-profile-section__header">
+	<h4>Connections</h4>
+</div>
+
+<div class="ep-profile-section__body">
+
+	<div class="ep-connections">
+		<a id="ep-show-friends">Connections <%= org.user.friends.count > 0 ? "(#{org.user.friends.count})" : "" %></a>
+		<% if org.user == current_user %>
+			| <a id="ep-show-invites">Invites <%= org.user.pending_invited.count > 0 ? "(#{org.user.pending_invited.count})" : "" %></a> |
+			<a id="ep-show-inviters">Invited by <%= org.user.pending_invited_by.count > 0 ? "(#{org.user.pending_invited_by.count})" : "" %></a>
+		<% end %>
+	</div>
+
+	<div id="ep-friends js-friends">
+		<% for friend in org.user.friends.take(6) %>
+			<%= render partial: 'connection', locals: { user: friend } %>
+		<% end %>
+	</div>
+	<% if org.user == current_user %>
+		<div id="ep-invited">
+			<% for invite in org.user.pending_invited %>
+				<%= render partial: 'connection', locals: { user: invite } %>
+			<% end %>
+		</div>
+
+		<div id="ep-invited_by">
+			<% for inviter in org.user.pending_invited_by %>
+				<%= render partial: 'connection', locals: { user: inviter } %>
+			<% end %>
+		</div>
+	<% end %>
+
+  <% if org.user.friends.count > 6 %>
+	 <a class="ep-see-all-connections" data-toggle="modal" data-target=".ep-connection-modal">See All</a>
+  <% end %>
+</div>
+
+<div class="modal fade ep-connection-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    	<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Connections</h4>
+      </div>
+      <% for friend in org.user.friends %>
+				<%= render partial: 'connection', locals: { user: friend } %>
+			<% end %>
+    </div>
+  </div>
+</div>
