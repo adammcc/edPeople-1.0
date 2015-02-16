@@ -26,9 +26,13 @@
 <% if current_user == user %>
   <p><i class="fa fa-envelope"></i> <%= link_to 'Your messages', user_conversations_path(user) %></p>
 <% else %>
-  <p data-toggle="modal" data-target=".ep-message-modal">
-    <i class="fa fa-envelope"></i> <a>Send <%= user.first_name %> a message</a>
-  </p>
+  <% if user_signed_in? %>
+    <p data-toggle="modal" data-target=".ep-message-modal">
+      <i class="fa fa-envelope"></i> <a>Send <%= user.first_name %> a message</a>
+    </p>
+  <% else %>
+   <p><i class="fa fa-envelope"></i> Sign in to send <%= user.first_name %> a message</p>
+  <% end %>
 <% end %>
 <p>
   <% if user.has_resume %>

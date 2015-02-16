@@ -23,10 +23,14 @@
 
 <% end %>
 
-<% if current_user == org_user %>
-  <p><i class="fa fa-envelope"></i> <%= link_to 'Messages', user_conversations_path(org_user) %></p>
+<% if user_signed_in? %>
+  <% if current_user == org_user %>
+    <p><i class="fa fa-envelope"></i> <%= link_to 'Messages', user_conversations_path(org_user) %></p>
+  <% else %>
+    <p data-toggle="modal" data-target=".ep-message-modal">
+      <i class="fa fa-envelope"></i> <a>Send <%= org.name %> a message</a>
+    </p>
+  <% end %>
 <% else %>
-  <p data-toggle="modal" data-target=".ep-message-modal">
-    <i class="fa fa-envelope"></i> <a>Send <%= org.name %> a message</a>
-  </p>
+  <p><i class="fa fa-envelope"></i>&nbsp Sign in to message <%= org.name %></p>
 <% end %>
