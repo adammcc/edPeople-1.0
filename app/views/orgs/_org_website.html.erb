@@ -7,14 +7,19 @@
 <div class="ep-profile-section__body js-section-container">
   <p class="<%= org.org_website.present? ? '' : 'ep-gray'%>">
     <% if org.user == current_user %>
-      <%= best_in_place org, :org_website, :type => :input, activator: '.ep-edit-website', nil: 'Add your website here.' %> <br>
+      <%= best_in_place org, :org_website,
+        type: :input,
+        activator: '.ep-edit-website',
+        display_with: lambda { |url| "<a href='http://#{url}' target='_blank'>#{url}</a>".html_safe },
+        nil: 'Add your website here.'
+      %> <br>
       <% if org.org_website.present? %>
         <a class="ep-edit-website js-edit"> Edit</a>
       <% else %>
         <a class="ep-edit-website js-add-bip"> + Add</a>
       <% end %>
     <% else %>
-      <p><%= org.org_website %></p>
+      <p><%= link_to org.org_website, "http://#{org.org_website}", target: '_blank' %></p>
     <% end %>
   </p>
 </div>
