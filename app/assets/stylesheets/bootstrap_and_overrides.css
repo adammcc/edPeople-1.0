@@ -6,12 +6,11 @@
   =require twitter-bootstrap-static/fontawesome
   */
 
-.modal-content {
+.modal-content.ep-content--send-message {
   padding: 10px 22px;
+  width: 430px;
+  left: 85px;
 }
 .navbar-default {
   border-color:  #3BAFDA;
-}
-.modal-content {
-  width: 400px;
 }
