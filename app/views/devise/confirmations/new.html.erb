@@ -1,12 +1,33 @@
-<h2>Resend confirmation instructions</h2>
+<section class="ep-home-section__one ep-home-section__one--sign-in-pw">
+  <div class="container">
+    <div class="ep-home-section__row row">
+      <div class="ep-signin-signup ep-signin-signup--forgot-pw ep-signin-signup--signin-pw col-md-6 col-md-offset-3">
+        <h2>Resend confirmation instructi]ons</h2>
 
-<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
+        <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+          <%= devise_error_messages! %>
 
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, :autofocus => true %></div>
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+              <%= f.email_field :email, placeholder: 'Email', :autofocus => true, class: 'ep-signin-signup__text-field-large' %>
+            </div>
+          </div>
 
-  <div><%= f.submit "Resend confirmation instructions" %></div>
-<% end %>
+          <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+              <%= f.submit  "Resend confirmation instructions", class: 'btn btn-primary ep-signin-signup__submit' %>
+            </div>
+          </div>
+        <% end %>
 
-<%= render "devise/shared/links" %>
+        <div class="row">
+          <div class="ep-links col-md-10 col-md-offset-1">
+            <%= render "devise/shared/links" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
