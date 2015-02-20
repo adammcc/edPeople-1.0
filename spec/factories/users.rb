@@ -5,5 +5,7 @@ FactoryGirl.define do
 
     sequence(:first_name)  {|n| "First_#{n}" }
     sequence(:last_name)  {|n| "Last_#{n}" }
+
+    confirmed_at  { DateTime.now }
   end
 end
