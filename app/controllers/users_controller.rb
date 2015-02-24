@@ -102,7 +102,9 @@ class UsersController < ApplicationController
     @user = current_user
     @friend = User.find(params[:id])
 
-    current_user.invite @friend
+    if @user.invite @friend
+       EpMailer.friend_invitation(@friend, @user).deliver
+    end
   end
 
   def approve_friend

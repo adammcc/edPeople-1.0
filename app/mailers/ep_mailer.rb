@@ -12,4 +12,13 @@ class EpMailer < ActionMailer::Base
     )
   end
 
+  def friend_invitation(friend, user)
+    @friend = friend
+    @user = user
+    mail(
+      to: @friend.email,
+      subject: "New connection request form #{@friend.name}"
+    )
+  end
+
 end
