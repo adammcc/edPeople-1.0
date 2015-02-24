@@ -23,7 +23,9 @@ Ep::Application.routes.draw do
       get :add_password
     end
 
-    resources :conversations
+    authenticate :user do
+      resources :conversations
+    end
   end
 
   resources :colleges, only: [:create]
