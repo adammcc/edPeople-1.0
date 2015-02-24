@@ -1,0 +1,9 @@
+<p>You received a message from <%= @sender.name %>:</p>
+
+<p style="padding: 20px; border: 1px solid #ebebeb; background-color: #f5f5f5">
+  <%= @message %>
+</p>
+
+<p>
+  <b>To respond to <%= @sender.first_name %>, click <%= link_to 'here', "http://localhost:3000/#{user_conversations_path(@recipient)}" %>.</b>
+</p>
