@@ -4,7 +4,7 @@
   </div>
   <div class="ep-index col-md-8 white-bg">
     <div class="page-header">
-      <h3>Conversation with <%= @conversation.users.ne(id: current_user.id).first.name %></h3>
+      <h3>Conversation with <%= link_to "#{@recipient.name}", user_path(@recipient) %></h3>
     </div>
     <% if @conversation.present? %>
       <div class="js-conversation-messages">
