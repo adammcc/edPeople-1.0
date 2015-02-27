@@ -47,6 +47,30 @@
             </div>
           </div>
         </div>
+
+        <div class="col-md-4">
+          <div class="ep-profile-section ep-account-settings-section white-bg">
+            <div class="ep-profile-section__header">
+              <h4>Privacy Settings</h4>
+            </div>
+            <div class="ep-profile-section__body">
+              Who can view my profile?
+              <div class="ep-form__profile-form-field">
+                <%= f.radio_button :privacy_setting, 'fully_public' %>
+                <%= f.label :privacy_setting, "Anyone", :value => "Anyone" %>
+              </div>
+              <div class="ep-form__profile-form-field">
+                <%= f.radio_button :privacy_setting, 'only members' %>
+                <%= f.label :privacy_setting, "Only my connections", :value => "Only my connections" %>
+              </div>
+              <div class="ep-form__profile-form-field">
+                <%= f.radio_button :privacy_setting, 'only connections' %>
+                <%= f.label :privacy_setting, "Only edPeople members", :value => "Only edPeople members" %>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
       <div class="row"><br>
         <div class="form-actions container">

@@ -59,6 +59,7 @@ class User
   field :headline,    type: String
   field :demo,        type: Boolean, default: false
   field :has_resume,  type: Boolean, default: false
+  field :privacy_setting, type: String, default: 'fully_public' # other options: 'only members' and 'only connections'
 
   field :as_org,      type: Boolean, default: false
 
@@ -263,6 +264,12 @@ class User
     else
       image_url
     end
+  end
+
+  def gives_access_to(user)
+    self.privacy_setting == 'fully_public' ||
+    (self.privacy_setting == 'only members' && user.present?) ||
+    (self.privacy_setting == 'only connections' && user.present? && self.friend_with?(user))
   end
 end
 

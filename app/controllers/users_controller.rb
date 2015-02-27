@@ -66,22 +66,23 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     name = params[:user][:name]
 
+    if params[:user][:password].blank?
+      params[:user].delete(:password).delete(:password_confirmation)
+      params[:user].delete(:password_confirmation)
+    end
+
     if name.present?
       @user.update_name(params[:user][:name])
       render nothing: true
     else
-      respond_to do |format|
-        if @user.update_attributes(params[:user])
-          if params[:user][:password].present?
-            sign_in(@user, :bypass => true)
-            @user.set(has_linkedin_account: false)
-          end
-          format.html { redirect_to @user, notice: 'Account successfully updated.' }
-          format.json { head :no_content }
-        else
-          format.html { render action: "edit" }
-          format.json { render json: @user.errors, status: :unprocessable_entity }
+      if @user.update_attributes(params[:user])
+        if params[:user][:password].present?
+          sign_in(@user, :bypass => true)
+          @user.set(has_linkedin_account: false)
         end
+        redirect_to user_path(@user)
+      else
+        redirect_to edit_user_path(@user)
       end
     end
   end

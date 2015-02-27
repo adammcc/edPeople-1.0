@@ -1,0 +1,70 @@
+<div class="col-md-12 ep-profile-header white-bg">
+
+  <div class="row">
+    <div class="col-md-5 ep-user-snapshot">
+      <div class="ep-profile-image">
+        <%= image_tag @user.photo_url('medium'), onerror: "imgError(this);", height: '120', width: '120' %>
+        <% if @user == current_user %>
+          <div class="ep-profile-image__uploader-container">
+            <a class="js-edit" data-toggle="collapse" data-target="#ep-profile-image__toggle">Change image</a>
+
+            <div id="ep-profile-image__toggle" class="js-edit-form--file-upload collapse">
+              <%= form_for @user, :url => add_avatar_user_path(@user), :html => { :method => "put", :multipart => true } do |f| %><br>
+
+                <span class="ep-profile-image__placeholder">
+                  <input class="ep-profile-image__placeholder-input" placeholder="Choose File" disabled="disabled" />
+                </span>
+
+                <div class="ep-profile-image__upload-fields">
+                  <%= f.file_field :avatar, "data-filename-placement"=> "inside", class: "ep-profile-image__file-field js-profile-image__file-field" %>
+                  <%= f.submit "Upload", class: "btn btn-primary" %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="ep-user-info">
+        <h3>
+          <%= best_in_place @user, :name, :type => :input, activator: '.ep-edit-name' %>
+          <% if @user == current_user %>
+            <a class="ep-edit-name js-edit"> Edit</a>
+          <% end %>
+        </h3>
+        <p>
+          <%= best_in_place @user, :headline, :type => :input, activator: '.ep-edit-headline', nil: 'Add a headline' %>
+          <% if @user == current_user %>
+            <% if @user.headline.present? %>
+              <a class="ep-edit-headline js-edit"> Edit</a>
+            <% else %>
+              <a class="ep-edit-headline js-add-bip"> + Add</a>
+            <% end %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+
+    <div class="ep-user-roles-and-subjects col-md-3">
+      <div class="ep-user-roles-and-subjects__subject-areas">
+        <% if @user.privacy_setting == 'only members' %>
+          <p><i><%= @user.first_name %>'s profile is private. <br> To view it, <%= link_to "sign in", new_session_path(@user) %> or <%= link_to "create", new_registration_path(@user) %> an account</p></i></p>
+        <% elsif @user.privacy_setting == 'only connections' %>
+          <% if user_signed_in? %>
+            <p><i><%= @user.first_name %>'s profile is private. <br> To view it, <%= link_to "become #{@user.first_name}'s connection.", invite_friend_user_path(@user), method: :put, remote: true %></p></i></p>
+          <% else %>
+            <p><i><%= @user.first_name %>'s profile is private. <br> To view it, <%= link_to "sign in", new_session_path(@user) %> or <%= link_to "create", new_registration_path(@user) %> an account</p></i></p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+    <div class="ep-profile-actions js-profile-actions col-md-4">
+      <%= render partial: 'profile_actions', locals: { user: @user} %>
+    </div>
+  </div>
+</div>
+
+
+
+
+

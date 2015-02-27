@@ -1,38 +1,48 @@
-<div class="col-md-12 ep-main-container">
-	<div class="row">
-		<div class="col-md-12">
-			<%= render partial: 'profile_header' %>
-		</div>
-		<div class="col-md-7">
-			<div class="ep-profile-section ep-profile-section--experience  white-bg">
-				<%= render partial: 'experience', locals: { user: @user, experiences: @experiences } %>
-			</div>
+<% if @user.gives_access_to(current_user) || @user == current_user %>
+  <div class="col-md-12 ep-main-container">
+  	<div class="row">
+  		<div class="col-md-12">
+  			<%= render partial: 'profile_header' %>
+  		</div>
+  		<div class="col-md-7">
+  			<div class="ep-profile-section ep-profile-section--experience  white-bg">
+  				<%= render partial: 'experience', locals: { user: @user, experiences: @experiences } %>
+  			</div>
 
-			<div class="ep-profile-section ep-profile-section--education white-bg">
-				<%= render partial: 'education', locals: { colleges: @colleges, user: @user } %>
-			</div>
-		</div>
+  			<div class="ep-profile-section ep-profile-section--education white-bg">
+  				<%= render partial: 'education', locals: { colleges: @colleges, user: @user } %>
+  			</div>
+  		</div>
 
-		<div class="col-md-5">
-			<div class="ep-profile-section ep-profile-section--skill white-bg">
-				<%= render partial: 'skills', locals: { user: @user } %>
-			</div>
+  		<div class="col-md-5">
+  			<div class="ep-profile-section ep-profile-section--skill white-bg">
+  				<%= render partial: 'skills', locals: { user: @user } %>
+  			</div>
 
-			<div class="ep-profile-section js-profile-section--connections white-bg">
-				<%= render partial: 'connections', locals: { user: @user } %>
-			</div>
-		</div>
-	</div>
-</div>
-
+  			<div class="ep-profile-section js-profile-section--connections white-bg">
+  				<%= render partial: 'connections', locals: { user: @user } %>
+  			</div>
+  		</div>
+  	</div>
+  </div>
+<% else %>
+  <div class="col-md-12 ep-main-container">
+    <div class="row">
+        <div class="col-md-12">
+          <%= render partial: 'profile_header_no_access' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
 <div class="modal fade ep-message-modal" tabindex="-1" role="dialog" aria-labelledby="myMadalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content ep-content--send-message">
-    	<div class="modal-header">
+      <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
         <h4 class="modal-title">Send <%= @user.first_name %> a message</h4>
       </div><br>
-    	<%= form_for Message.new do |f| %>
+      <%= form_for Message.new do |f| %>
         <%= hidden_field_tag :recipient_id, @user.id %>
         <%= f.text_area :note, :class => 'ep-form__text-area', rows: '3', cols: '50' %>
         <%= f.submit 'Send', class: 'btn btn-primary' %>
