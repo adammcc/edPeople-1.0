@@ -60,18 +60,18 @@
               <h4>Privacy Settings</h4>
             </div>
             <div class="ep-profile-section__body">
-              Who can view my profile?
+              <p class="ep-bold-font-weight ep-gray">Who can view my profile?</p>
               <div class="ep-form__profile-form-field">
                 <%= f.radio_button :privacy_setting, 'fully_public' %>
-                <%= f.label :privacy_setting, "Anyone", :value => "Anyone" %>
+                <%= f.label :privacy_setting, "Anyone", :value => "Anyone", class: 'ep-normal-font-weight' %>
               </div>
               <div class="ep-form__profile-form-field">
                 <%= f.radio_button :privacy_setting, 'only members' %>
-                <%= f.label :privacy_setting, "Only my connections", :value => "Only my connections" %>
+                <%= f.label :privacy_setting, "Only my connections", :value => "Only my connections", class: 'ep-normal-font-weight' %>
               </div>
               <div class="ep-form__profile-form-field">
                 <%= f.radio_button :privacy_setting, 'only connections' %>
-                <%= f.label :privacy_setting, "Only edPeople members", :value => "Only edPeople members" %>
+                <%= f.label :privacy_setting, "Only edPeople members", :value => "Only edPeople members", class: 'ep-normal-font-weight' %>
               </div>
             </div>
           </div>
