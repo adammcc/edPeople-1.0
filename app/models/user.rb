@@ -139,7 +139,7 @@ class User
         registered_user.sync_with_linkedin(registered_user, auth)
         return registered_user
       else
-        @user = User.create( first_name:auth.info.first_name,
+        if @user = User.new( first_name:auth.info.first_name,
                             last_name:auth.info.last_name,
                             headline:auth.info.headline,
                             pro_summary:auth.info.summary,
@@ -147,9 +147,13 @@ class User
                             uid:auth.uid,
                             email:auth.info.email,
                             password:Devise.friendly_token[0,20],
-                            has_linkedin_account:true
+                            has_linkedin_account:true,
+                            confirmed_at: DateTime.now
                           )
-        @user.sync_with_linkedin(@user, auth)
+          @user.skip_confirmation!
+          @user.save!
+          @user.sync_with_linkedin(@user, auth)
+        end
       end
     end
     return @user
