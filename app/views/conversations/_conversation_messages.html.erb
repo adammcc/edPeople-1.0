@@ -1,24 +1,26 @@
 <table class="table ep-index__table">
   <tbody>
-    <tr>
-      <td class='ep-index__new-message'>
-        <div class="ep-index__photo">
-          <%= image_tag current_user.photo_url('thumb'), onerror: "imgError(this);", height: '50', width: '50' %>
-        </div>
-        <div class="ep-index__meta">
-          <p><%= link_to current_user.name, user_path(current_user) %></p>
-          <%= form_for Message.new, remote: true do |f| %>
-            <%= hidden_field_tag :convo_id, conversation.id  %>
-            <%= hidden_field_tag :in_convo, true  %>
-            <%= hidden_field_tag :recipient_id, recipient.id %>
-            <%= f.text_area :note, :class => 'ep-form__text-area', rows: '3', cols: '80' %>
-            <%= f.submit 'Send', class: 'btn btn-primary' %>
-          <% end %>
-          <br>
-        </div>
-      </td>
-      <td></td>
-    </tr>
+    <% if recipient %>
+      <tr>
+        <td class='ep-index__new-message'>
+          <div class="ep-index__photo">
+            <%= image_tag current_user.photo_url('thumb'), onerror: "imgError(this);", height: '50', width: '50' %>
+          </div>
+          <div class="ep-index__meta">
+            <p><%= link_to current_user.name, user_path(current_user) %></p>
+            <%= form_for Message.new, remote: true do |f| %>
+              <%= hidden_field_tag :convo_id, conversation.id  %>
+              <%= hidden_field_tag :in_convo, true  %>
+              <%= hidden_field_tag :recipient_id, recipient.id %>
+              <%= f.text_area :note, :class => 'ep-form__text-area', rows: '3', cols: '80' %>
+              <%= f.submit 'Send', class: 'btn btn-primary' %>
+            <% end %>
+            <br>
+          </div>
+        </td>
+        <td></td>
+      </tr>
+    <% end %>
   </tbody>
 </table>
 
