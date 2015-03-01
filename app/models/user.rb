@@ -60,6 +60,8 @@ class User
   field :demo,        type: Boolean, default: false
   field :has_resume,  type: Boolean, default: false
   field :privacy_setting, type: String, default: 'fully_public' # other options: 'only members' and 'only connections'
+  field :allows_one_on_one_message_email, type: Boolean, default: true
+  field :allows_friend_request_email, type: Boolean, default: true
 
   field :as_org,      type: Boolean, default: false
 

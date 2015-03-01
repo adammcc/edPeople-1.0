@@ -19,11 +19,17 @@
         <div class="col-md-4">
           <div class="ep-profile-section ep-account-settings-section white-bg">
             <div class="ep-profile-section__header">
-              <h4>Notifications</h4>
+              <h4>Email notifications</h4>
             </div>
             <div class="ep-profile-section__body">
+              <p class="ep-bold-font-weight ep-gray">When would you like to receive email notifications?</p>
               <div class="ep-form__profile-form-field">
-               Coming soon
+                <%= f.check_box :allows_one_on_one_message_email %>
+                <%= f.label :allows_one_on_one_message_email, "When I receive a message", class: 'ep-normal-font-weight' %>
+              </div>
+              <div class="ep-form__profile-form-field">
+                <%= f.check_box :allows_friend_request_email %>
+                <%= f.label :allows_friend_request_email, "When I receive a friend request", class: 'ep-normal-font-weight' %>
               </div>
             </div>
           </div>

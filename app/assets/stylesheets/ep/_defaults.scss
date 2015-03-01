@@ -90,6 +90,13 @@ body#ep {
   background-color: darken(#96ceb4, 5%);
 }
 
+.ep-normal-font-weight {
+	font-weight: normal;
+}
+
+.ep-bold-font-weight {
+	font-weight: bold;
+}
 // INDEX PAGES
 
 .ep-index {
@@ -178,4 +185,3 @@ a.ep-index__connect {
 .ep-gray {
   color: gray;
 }
-

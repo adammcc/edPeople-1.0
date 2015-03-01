@@ -104,7 +104,7 @@ class UsersController < ApplicationController
     @friend = User.find(params[:id])
 
     if @user.invite @friend
-       EpMailer.friend_invitation(@friend, @user).deliver
+       EpMailer.friend_invitation(@friend, @user).deliver if @friend.allows_friend_request_email
     end
   end
 
