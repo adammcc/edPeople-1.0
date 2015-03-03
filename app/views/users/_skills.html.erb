@@ -16,7 +16,7 @@
 	<% if @user == current_user %>
 		<br>
 		<a class="<%= @user.skills.present? ? 'js-edit' : '' %>  js-edit-section-item"></i> + Add</a>
-		<div id="ep-add-skill" class="js-edit-form ep-edit-form">
+		<div id="ep-add-skill" class="js-edit-form ep-form ep-edit-form">
 			<%= form_for Skill.new, remote: true do |f| %>
 				<div class="ep-form__profile-form-field">
 					<%= f.label :name, :class => 'ep-form__label' %>
