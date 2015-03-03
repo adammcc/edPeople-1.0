@@ -32,6 +32,7 @@ Ep::Application.routes.draw do
   resources :college_infos, only: [:edit, :update, :destroy]
   resources :experiences, only: [:create, :edit, :update, :destroy]
   resources :skills, only: [:create, :destroy]
+  resources :certs, only: [:create, :destroy]
   resources :roles, only: [:create, :destroy]
   resources :subjects, only: [:create, :destroy]
   resources :job_posts

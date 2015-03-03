@@ -72,6 +72,7 @@ class User
   has_and_belongs_to_many :colleges
   has_many :college_infos
   has_and_belongs_to_many :skills
+  has_and_belongs_to_many :certs
   has_and_belongs_to_many :experiences
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :subjects

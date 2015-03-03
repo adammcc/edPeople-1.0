@@ -1,0 +1,30 @@
+<div class="ep-profile-section__header">
+  <h4>Certifications</h4>
+</div>
+<div class="ep-certs ep-profile-section__body js-section-container">
+  <% for cert in @user.certs %>
+    <div class="ep-cert">
+      <%= cert.name %>
+        <% if @user == current_user %>
+          <%= link_to cert_path(cert), method: :delete, remote: true, class: 'js-edit js-delete' do %>
+          <i class="fa fa-times"></i>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+  <br>
+  <% if @user == current_user %>
+    <br>
+    <a class="<%= @user.certs.present? ? 'js-edit' : '' %>  js-edit-section-item"></i> + Add</a>
+    <div id="ep-add-cert" class="js-edit-form ep-form ep-edit-form">
+      <%= form_for Cert.new, remote: true do |f| %>
+        <div class="ep-form__profile-form-field">
+          <%= f.label 'Certification', :class => 'ep-form__label' %><br>
+          <%= f.text_field :name, autofocus: true, :class => 'ep-form__text-field' %>
+        </div>
+        <%= f.submit 'Add', :class => 'btn btn-primary' %>
+        <%= content_tag :div, 'cancel', class: 'ep-cancel-edit btn btn-default' %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
