@@ -7,7 +7,7 @@
         <% if job.indeed_key %>
           <p><%= job.indeed_location %></p>
         <% else %>
-          <p><%= job.location.name %></p>
+          <p><%= job.location ? job.location.name : 'Unknown Location' %></p>
         <% end %>
         <hr>
       <% end %>
