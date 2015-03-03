@@ -2,7 +2,11 @@ class SkillsController < ApplicationController
 
   def create
     @user = current_user
-    skill = @user.skills.create(params[:skill])
+    if skill = @user.skills.create(params[:skill])
+      flash[:notice] =  "Saved!"
+    else
+      flash[:alert] =  "Error!"
+    end
   end
 
   def destroy

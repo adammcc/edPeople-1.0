@@ -9,7 +9,11 @@ class CollegeInfosController < ApplicationController
     @college_info = CollegeInfo.find(params[:id])
 
     if @college_info.college.name == params[:college_info][:name]
-      @college_info.update_attributes(params[:college_info])
+      if @college_info.update_attributes(params[:college_info])
+        flash[:notice] =  "Saved!"
+      else
+        flash[:alert] =  "Error!"
+      end
     else
       college = College.where(name: params[:college_info][:name]).first
       if college.nil?
@@ -18,7 +22,11 @@ class CollegeInfosController < ApplicationController
       end
       college_info = params[:college_info]
       college_info.delete(:name)
-      @college_info = college.college_infos.create(college_info.merge user: @user)
+      if @college_info = college.college_infos.create(college_info.merge user: @user)
+        flash[:notice] =  "Saved!"
+      else
+        flash[:alert] =  "Error!"
+      end
     end
 
     @colleges = College.all

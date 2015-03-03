@@ -97,6 +97,14 @@ body#ep {
 .ep-bold-font-weight {
 	font-weight: bold;
 }
+
+.ep-notification {
+  position: fixed;
+  padding: 2px 15px;
+  top: 68px;
+  left: 50%;
+  z-index: 10000;
+}
 // INDEX PAGES
 
 .ep-index {

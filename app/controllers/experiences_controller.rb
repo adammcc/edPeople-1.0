@@ -2,7 +2,11 @@ class ExperiencesController < ApplicationController
 
 	def create
 		@user = current_user
-    experience = @user.experiences.create(params[:experience])
+    if experience = @user.experiences.create(params[:experience])
+      flash[:notice] =  "Saved!"
+    else
+      flash[:alert] =  "Error!"
+    end
 	end
 
   def edit
@@ -12,7 +16,11 @@ class ExperiencesController < ApplicationController
   def update
     @user = current_user
     @experience = Experience.find(params[:id])
-    @experience.update_attributes(params[:experience])
+    if @experience.update_attributes(params[:experience])
+      flash[:notice] =  "Saved!"
+    else
+      flash[:alert] =  "Error!"
+    end
   end
 
   def destroy

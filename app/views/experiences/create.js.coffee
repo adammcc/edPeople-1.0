@@ -25,3 +25,11 @@ $('.ep-datepicker').datepicker()
 
 $('.autocomplete_field').on 'autocompleteresponse', (event, ui) ->
   $(this).autocomplete('close') if ui.content?[0].id.length == 0
+
+<% if flash[:notice] %>
+_ep.notify.success("<%= flash[:notice] %>")
+<% end %>
+
+<% if flash[:alert] %>
+_ep.notify.success("<%= flash[:alert] %>")
+<% end %>

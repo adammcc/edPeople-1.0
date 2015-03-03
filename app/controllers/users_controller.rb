@@ -72,7 +72,11 @@ class UsersController < ApplicationController
     end
 
     if name.present?
-      @user.update_name(params[:user][:name])
+      if @user.update_name(params[:user][:name])
+        flash[:notice] =  "Saved!"
+      else
+        flash[:alert] =  "Error!"
+      end
       render nothing: true
     else
       if @user.update_attributes(params[:user])
@@ -80,9 +84,11 @@ class UsersController < ApplicationController
           sign_in(@user, :bypass => true)
           @user.set(has_linkedin_account: false)
         end
+        flash[:notice] = "Saved!"
         redirect_to user_path(@user)
       else
         redirect_to edit_user_path(@user)
+        flash[:alert] = "Error!"
       end
     end
   end

@@ -21,3 +21,11 @@ $('.js-delete').click ->
 
 $('.js-edit').show()
 $('.ep-datepicker').datepicker()
+
+<% if flash[:notice] %>
+_ep.notify.success("<%= flash[:notice] %>")
+<% end %>
+
+<% if flash[:alert] %>
+_ep.notify.success("<%= flash[:alert] %>")
+<% end %>
