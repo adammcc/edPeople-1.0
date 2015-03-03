@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require util
 //= require autocomplete-rails
 //= require twitter/bootstrap
 //= require best_in_place
