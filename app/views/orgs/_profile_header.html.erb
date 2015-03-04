@@ -1,7 +1,7 @@
 <div class="col-md-12 ep-profile-header white-bg">
 
 	<div class="row">
-		<div class="col-md-5 ep-user-snapshot">
+		<div class="col-md-6 ep-user-snapshot">
 			<div class="ep-profile-image">
 				<%= image_tag org_user.photo_url('medium'), onerror: "imgError(this);", height: '120', width: '120' %>
 			 	<% if org_user == current_user %>
@@ -74,12 +74,12 @@
 		<div class="ep-user-roles-and-subjects col-md-3">
 		</div>
 
-		<div class="ep-profile-actions js-profile-actions col-md-4">
+		<div class="ep-profile-actions js-profile-actions col-md-4 col-md-offset-2">
 			<%= render partial: 'profile_actions', locals: { org: org, org_user: org_user} %>
 		</div>
 	</div>
 	<% if current_user == org_user %>
-		<a class='js-edit-mode ep-edit-mode pull-right'> Edit</a>
+		<a class='js-edit-mode ep-edit-mode pull-right'> Edit profile</a>
 		<a class='js-exit-edit-mode ep-edit-mode js-edit pull-right'>Done Editing</a>
 	<% end %>
 </div>

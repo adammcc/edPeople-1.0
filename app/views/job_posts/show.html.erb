@@ -4,7 +4,7 @@
       <% if @similar_jobs.present? %>
         <h3>Similar Jobs</h3><br><br>
         <% @similar_jobs.each do |job| %>
-          <p><%= link_to job.title.truncate(40), job_post_path(job) %></p>
+          <p><%= link_to job.title.truncate(30), job_post_path(job) %></p>
           <% if job.indeed_key %>
             <p><%= job.indeed_location %></p>
           <% else %>
@@ -15,7 +15,7 @@
       <% else %>
           <h3>Other Jobs</h3><br><br>
           <% @random_jobs.each do |job| %>
-            <p><%= link_to job.title.truncate(40), job_post_path(job) %></p>
+            <p><%= link_to job.title.truncate(30), job_post_path(job) %></p>
             <% if job.indeed_key %>
               <p><%= job.indeed_location %></p>
             <% else %>
