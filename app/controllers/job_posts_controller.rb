@@ -27,7 +27,7 @@ class JobPostsController < ApplicationController
     @job = JobPost.find(params[:id])
     job_title = @job.title
     job_location = @job.location
-    @similar_jobs = JobPost.ne(id: @job.id).or(title: (/#{job_title}/i)).or(location: (/#{job_location}/i))
+    @similar_jobs = JobPost.ne(id: @job.id).or(title: (/#{job_title}/i)).or(location: (/#{job_location}/i)).shuffle.first(5)
     @random_jobs = JobPost.all.shuffle.first(5) if @similar_jobs.blank?
   end
 
