@@ -18,7 +18,7 @@
       <% if current_user %>
         <td>
           <div class="ep_index--connection js_users--connection-<%= org_user.id %>">
-            <%= render partial: 'users/user_connection', locals: { user: org_user } %>
+            <%= render partial: 'orgs/user_connection', locals: { user: org_user } %>
           </div>
         </td>
       <% end %>
