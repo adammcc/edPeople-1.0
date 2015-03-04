@@ -5,7 +5,7 @@
         <div class="ep-index__meta">
           <p><%= link_to job.title, job_post_path(job) %></p>
           <p><%= job.organization %></p>
-          <p class="ep-index__description"><%= job.description.truncate(78) %></p>
+          <p class="ep-index__description"><%= job.description.truncate(60) %></p>
         </div>
       </td>
       <td>
