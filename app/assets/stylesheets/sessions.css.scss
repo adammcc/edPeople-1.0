@@ -38,7 +38,7 @@
 	margin-top: 150px;
 	color: white;
 	p {
-		font-size:22px;
+		font-size:24px;
 	}
 }
 
@@ -63,11 +63,14 @@
 	margin-top: 100px;
 	line-height: 30px;
 	text-align: center;
+	h3 {
+		font-size: 22px;
+	}
 }
 
 .ep-signin-signup {
 	background-color: #ecf0f1;
-	height: 440px;
+	height: 420px;
 	// max-width: 571px;
 	margin-top: 8px;
 	z-index: 2;
@@ -76,7 +79,7 @@
     color: #96ceb4;
 	}
 	input {
-		height: 58px;
+		height: 54px;
 		margin-bottom: 14px;
 	}
 	&.ep-signin-signup--signin-pw {
@@ -91,7 +94,7 @@
 }
 
 .ep-signin-signup__text-field-small {
-	width: 228px;
+	width: 184px;
 }
 
 .ep-signin-signup__text-field-small--right {
