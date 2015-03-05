@@ -1,5 +1,5 @@
 <% if !user_signed_in? %>
-  <p><i class="fa fa-plus"></i>&nbsp Sign in to become Adam's Connection</p>
+  <p><i class="fa fa-plus"></i>&nbsp Sign in to connect with <%= user.first_name %></p>
 
 <% elsif current_user == user %>
   <% %>
