@@ -12,7 +12,7 @@
 		<% end %>
 	</div>
 
-	<div id="ep-friends js-friends">
+	<div id="ep-friends">
 		<% for friend in user.friends.take(6) %>
 			<%= render partial: 'connection', locals: { user: friend } %>
 		<% end %>
