@@ -83,7 +83,7 @@
 		margin-bottom: 14px;
 	}
 	&.ep-signin-signup--signin-pw {
-		height: 360px !important;
+		height: 342px !important;
 	}
 	&.ep-signin-signup--signin {
 		height: 350px;
@@ -176,4 +176,9 @@ p.ep-italic {
 
 .ep-org-field, .ep-create-a-user {
 	display: none;
+}
+
+.ep-confirmation-instructions {
+	color:gray;
+	padding: 10px 50px 30px 60px;
 }
