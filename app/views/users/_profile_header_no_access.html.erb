@@ -1,7 +1,7 @@
 <div class="col-md-12 ep-profile-header white-bg">
 
   <div class="row">
-    <div class="col-md-5 ep-user-snapshot">
+    <div class="col-md-6 ep-user-snapshot">
       <div class="ep-profile-image">
         <%= image_tag @user.photo_url('medium'), onerror: "imgError(this);", height: '120', width: '120' %>
         <% if @user == current_user %>
@@ -58,7 +58,7 @@
         <% end %>
       </div>
     </div>
-    <div class="ep-profile-actions js-profile-actions col-md-4">
+    <div class="ep-profile-actions js-profile-actions col-md-3">
       <%= render partial: 'profile_actions', locals: { user: @user} %>
     </div>
   </div>
