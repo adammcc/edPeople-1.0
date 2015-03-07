@@ -1,21 +1,42 @@
 $ ->
-	$('#ep-invited').hide()
-	$('#ep-invited_by').hide()
+	if $('#ep-show-suggested-friends').length
+		$('#ep-friends').hide()
+		$('#ep-show-friends').removeClass('ep-active-connections')
 
-	$('#ep-show-friends').click ->
-		$('#ep-friends').show()
 		$('#ep-invited').hide()
 		$('#ep-invited_by').hide()
 
-	$('#ep-show-invites').click ->
-		$('#ep-invited').show()
-		$('#ep-invited_by').hide()
-		$('#ep-friends').hide()
+		$('#ep-show-friends').click ->
+			$('.ep-active-connections').removeClass('ep-active-connections')
+			$(this).addClass('ep-active-connections')
+			$('#ep-friends').show()
+			$('#ep-invited').hide()
+			$('#ep-invited_by').hide()
+			$('#ep-friend-suggestions').hide()
 
-	$('#ep-show-inviters').click ->
-		$('#ep-invited_by').show()
-		$('#ep-invited').hide()
-		$('#ep-friends').hide()
+		$('#ep-show-invites').click ->
+			$('.ep-active-connections').removeClass('ep-active-connections')
+			$(this).addClass('ep-active-connections')
+			$('#ep-invited').show()
+			$('#ep-invited_by').hide()
+			$('#ep-friends').hide()
+			$('#ep-friend-suggestions').hide()
+
+		$('#ep-show-inviters').click ->
+			$('.ep-active-connections').removeClass('ep-active-connections')
+			$(this).addClass('ep-active-connections')
+			$('#ep-invited_by').show()
+			$('#ep-invited').hide()
+			$('#ep-friends').hide()
+			$('#ep-friend-suggestions').hide()
+
+		$('#ep-show-suggested-friends').click ->
+			$('.ep-active-connections').removeClass('ep-active-connections')
+			$(this).addClass('ep-active-connections')
+			$('#ep-friend-suggestions').show()
+			$('#ep-friends').hide()
+			$('#ep-invited').hide()
+			$('#ep-invited_by').hide()
 
 	$('.js-edit-mode').click ->
 		$('.js-edit-mode').hide()

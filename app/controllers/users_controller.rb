@@ -42,6 +42,7 @@ class UsersController < ApplicationController
     @experiences = @user.experiences
     @roles = Role.all
     @subjects = Subject.all
+    @suggestions = User.all.limit(3)
 
     respond_to do |format|
       format.html # show.html.erb

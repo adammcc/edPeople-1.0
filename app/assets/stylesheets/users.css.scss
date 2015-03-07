@@ -48,6 +48,14 @@
   }
 }
 
+.ep-connections {
+	font-size: 12px;
+}
+
+.ep-active-connections {
+  font-weight: bold;
+}
+
 #ep-connection {
 	position: relative;
 	.ep-connection-choice {
