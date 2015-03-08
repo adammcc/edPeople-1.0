@@ -3,7 +3,12 @@
 		<span class="ep-connection__photo">
 			<%= image_tag user.photo_url('thumb'), onerror: "imgError(this);", height: '50', width: '50' %>
 	  </span>
-		<%= link_to user.name, user_path(user) %>
+	  <div>
+			<%= link_to user.name, user_path(user) %><br>
+			<span class="ep-gray ep-connection__headline">
+				<%= user.headline.truncate(45) if user.headline.present? %>
+			</span>
+		</div>
 	</p>
 		<% if current_user %>
 			<% if (current_user.invited_by? user) && (!current_user.friend_with? user) %>
