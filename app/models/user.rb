@@ -278,6 +278,10 @@ class User
     (self.privacy_setting == 'only members' && user.present?) ||
     (self.privacy_setting == 'only connections' && user.present? && self.friend_with?(user))
   end
+
+  def is_admin?
+    self.roles.where(name: 'Administrator').any?
+  end
 end
 
 # positions:
