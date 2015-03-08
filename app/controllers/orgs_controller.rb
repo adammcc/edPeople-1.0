@@ -33,7 +33,7 @@ class OrgsController < ApplicationController
       @org_user = current_user
       @org = current_user.org
     end
-    @suggestions = User.where(as_org: true).limit(3)
+    @suggestions = User.where(as_org: true).shuffle.first(3)
   end
 
   def update

@@ -42,12 +42,27 @@ class UsersController < ApplicationController
     @experiences = @user.experiences
     @roles = Role.all
     @subjects = Subject.all
-    @suggestions = User.all.limit(3)
 
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @user }
+    college_user_ids = []
+    @user.colleges.each do |college|
+      college_user_ids << college.user_ids
     end
+    college_user_ids.flatten!
+    college_user_suggestions = User.in(id: college_user_ids).ne(id: @user.id)
+
+    subject_user_ids = []
+    @user.subjects.each do |subject|
+      subject_user_ids << subject.user_ids
+    end
+    subject_user_ids.flatten!
+    subject_user_suggestions = User.in(id: subject_user_ids).ne(id: @user.id)
+
+    if @user.is_admin?
+      admin_role = Role.where(name: 'Administrator').first
+      role_user_suggestions = admin_role.users.ne(id: @user.id)
+    end
+
+    @suggestions = (college_user_suggestions + subject_user_suggestions + role_user_suggestions).shuffle.first(3)
   end
 
   def new
