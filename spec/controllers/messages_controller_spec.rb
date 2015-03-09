@@ -10,12 +10,12 @@ describe MessagesController do
   end
 
   describe :create do
-    it 'creates a new message and adds it to an existing conversation if no recipient_id' do
-      expect{ post :create, convo_id: @conversation.id, message: { note: 'Sup?' }, format: :js }.to change(Message, :count).by(1)
+    it 'creates a new message and adds it to an existing conversation if no in_convo' do
+      expect{ post :create, convo_id: @conversation.id, message: { note: 'Sup?' }, recipient_id: @recipient.id, in_convo: true, format: :js }.to change(Message, :count).by(1)
       expect(@conversation.reload.messages.first.note).to eq('Sup?')
     end
 
-    it 'creates a new conversation and message if there is a recipient_id' do
+    it 'creates a new conversation and message if there is a not in_convo' do
       expect{ post :create, recipient_id: @recipient_2.id, message: { note: 'Hey what\'s up?' }, format: :js }.to change(Message, :count).by(1)
       expect(Conversation.last.reload.messages.first.note).to eq('Hey what\'s up?')
       expect(Conversation.all.count).to eq(2)
