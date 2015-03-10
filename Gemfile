@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby "1.9.3"
+
 gem 'rails', '~>4.1.0'
 gem 'sass-rails', '~>4.0.0'
 gem 'coffee-rails', '~>4.0.0'
@@ -34,6 +36,7 @@ gem 'rails-observers', '~>0.1.1'
 gem 'rails-perftest', '~>0.0.2'
 gem 'httparty', '~> 0.13.1'
 gem 'will_paginate_mongoid'
+gem 'rails_12factor'
 gem 'bson_ext'
 
 
