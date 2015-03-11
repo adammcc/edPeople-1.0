@@ -36,12 +36,8 @@ gem 'rails-observers', '~>0.1.1'
 gem 'rails-perftest', '~>0.0.2'
 gem 'httparty', '~> 0.13.1'
 gem 'will_paginate_mongoid'
-
-
 gem 'bson_ext'
-group :production do
-  gem 'rails_12factor'
-end
+gem 'rails_12factor'
 
 
 group :development do
