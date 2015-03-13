@@ -10,7 +10,7 @@ Ep::Application.configure do
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
 
-  config.action_mailer.default_url_options = { :host => 'edpeeps.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'http://edpeeps.herokuapp.com' }
 
   # Disable Rails's static asset server (Apache or nginx will already do this)
   config.serve_static_assets = false
@@ -64,5 +64,17 @@ Ep::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  config.action_mailer.smtp_settings = {
+    address: 'smtp.gmail.com',
+    port: 587,
+    domain: 'gmail.com',
+    authentication: 'login',
+    enable_starttls_auto: true,
+    user_name: ENV['EP_GOOGLE_USERNAME'],
+    password: ENV['EP_GOOGLE_PASSWORD']
+  }
+
+  ActionMailer::Base.default :from => 'adam@edpeople.com'
 
 end
