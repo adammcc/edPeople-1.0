@@ -39,7 +39,7 @@ locations.each do |location|
 end
 
 30.times do
-	user = User.create(
+	user = User.new(
     demo: true,
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
@@ -51,8 +51,10 @@ end
     headline: Faker::Lorem.sentence(word_count = 5, supplemental = false, random_words_to_add = 6),
     image_url: Faker::Avatar.image,
     roles: [Role.all.sample],
-    subjects: [Subject.all.sample]
+    subjects: [Subject.all.sample],
   )
+  user.skip_confirmation!
+  user.save!
 
 	4.times do
 		user.skills.create(:name => skills.sample)
