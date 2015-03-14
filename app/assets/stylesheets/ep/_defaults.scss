@@ -32,7 +32,9 @@ body#ep {
 	color: rgb(52, 73, 94);
 	.container {
 		// margin-left: 10px;
-    width: 960px;
+    &.ep-container {
+      width: 960px;
+    }
 	}
 	table {
 		tbody {
