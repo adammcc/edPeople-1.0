@@ -3,7 +3,7 @@
 	<div class="row">
 		<div class="col-md-6 ep-user-snapshot">
 			<div class="ep-profile-image">
-				<%= image_tag org_user.photo_url('medium'), onerror: "imgError(this);", height: '120', width: '120' %>
+				<%= user_image(org_user, 'medium', '120', '120') %>
 			 	<% if org_user == current_user %>
 					<div class="ep-profile-image__uploader-container">
 						<a class="js-edit" data-toggle="collapse" data-target="#ep-profile-image__toggle">Change image</a>

@@ -3,7 +3,7 @@
     <tr>
       <td>
         <div class="ep-index__photo">
-          <%= image_tag org_user.photo_url('thumb'), onerror: "imgError(this);", height: '50', width: '50' %>
+          <%= user_image(org_user, 'thumb', '50', '50') %>
         </div>
         <div class="ep-index__meta">
           <% if org_user.org.present? %>

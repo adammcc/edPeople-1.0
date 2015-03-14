@@ -3,7 +3,7 @@
     <tr>
       <td>
         <div class="ep-index__photo">
-          <%= image_tag user.photo_url('thumb'), onerror: "imgError(this);", height: '50', width: '50' %>
+          <%= user_image(user, 'thumb', '50', '50') %>
         </div>
         <div class="ep-index__meta">
           <p><%= link_to user.name, user_path(user) %></p>

@@ -15,7 +15,7 @@
               <% user = convo.users.ne(id: current_user.id).first %>
               <div class="ep-index__photo">
                 <% if user %>
-                  <%= image_tag user.photo_url('thumb'), onerror: "imgError(this);", height: '50', width: '50' %>
+                  <%= user_image(user, 'thumb', '50', '50') %>
                 <% else %>
                   This user no longer has an account on edpeople.
                 <% end %>

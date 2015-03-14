@@ -4,7 +4,7 @@
       <tr>
         <td class='ep-index__new-message'>
           <div class="ep-index__photo">
-            <%= image_tag current_user.photo_url('thumb'), onerror: "imgError(this);", height: '50', width: '50' %>
+            <%= user_image(current_user, 'thumb', '50', '50') %>
           </div>
           <div class="ep-index__meta">
             <p><%= link_to current_user.name, user_path(current_user) %></p>
