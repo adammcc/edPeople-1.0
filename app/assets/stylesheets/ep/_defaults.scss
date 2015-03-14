@@ -33,7 +33,7 @@ body#ep {
 	.container {
 		// margin-left: 10px;
     &.ep-container {
-      width: 960px;
+      max-width: 960px;
     }
 	}
 	table {
