@@ -12,7 +12,7 @@
       <p><%= h(message.note).gsub(/\n/, '<br/>').html_safe %></p>
     </div>
   </td>
-  <td>
+  <td class="ep_index--connection-td" >
     <div class="ep_index--connection">
       <p class="ep-index__info-right">
         <%= message.created_at.strftime('%b %e, %l:%M %p') %>

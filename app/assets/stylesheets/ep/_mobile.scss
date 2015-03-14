@@ -43,6 +43,16 @@
     bottom: 10px;
     right: 0;
   }
+  .ep_index--connection, .ep_index--connection-td {
+    display: none;
+  }
+  .ep-index__meta {
+    width: 180px;
+  }
+  .ep-form__text-area--mobile {
+    width: 180px
+  }
+
 
   // Sessions
   ///////////
