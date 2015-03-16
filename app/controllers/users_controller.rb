@@ -49,7 +49,7 @@ class UsersController < ApplicationController
         college_user_ids << college.user_ids
       end
       college_user_ids.flatten!
-      college_user_suggestions = User.in(id: college_user_ids).ne(id: @user.id)
+      college_user_suggestions = User.in(id: college_user_ids).ne(id: @user.id, as_org: true)
     else
       college_user_suggestions = []
     end
@@ -60,14 +60,14 @@ class UsersController < ApplicationController
         subject_user_ids << subject.user_ids
       end
       subject_user_ids.flatten!
-      subject_user_suggestions = User.in(id: subject_user_ids).ne(id: @user.id)
+      subject_user_suggestions = User.in(id: subject_user_ids).ne(id: @user.id, as_org: true)
     else
       subject_user_suggestions = []
     end
 
     if @user.is_admin?
       admin_role = Role.where(name: 'Administrator').first
-      role_user_suggestions = admin_role.users.ne(id: @user.id)
+      role_user_suggestions = admin_role.users.ne(id: @user.id, as_org: true)
       role_user_suggestions = [] if role_user_suggestions.blank?
     else
       role_user_suggestions = []
@@ -75,7 +75,7 @@ class UsersController < ApplicationController
 
     @suggestions = (college_user_suggestions + subject_user_suggestions + role_user_suggestions).shuffle.first(3)
 
-    @suggestions = User.all.ne(id: @user.id).shuffle.first(3) if @suggestions.blank?
+    @suggestions = User.all.ne(id: @user.id, as_org: true).shuffle.first(3) if @suggestions.blank?
   end
 
   def new
