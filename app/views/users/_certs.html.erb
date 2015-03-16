@@ -2,19 +2,19 @@
   <h4>Certifications</h4>
 </div>
 <div class="ep-certs ep-profile-section__body js-section-container">
-  <% for cert in @user.certs %>
-    <div class="ep-cert">
-      <%= cert.name %>
-        <% if @user == current_user %>
-          <%= link_to cert_path(cert), method: :delete, remote: true, class: 'js-edit js-delete' do %>
-          <i class="fa fa-times"></i>
+  <div class="ep-profile-section__item-holder">
+    <% for cert in @user.certs %>
+      <div class="ep-cert">
+        <%= cert.name %>
+          <% if @user == current_user %>
+            <%= link_to cert_path(cert), method: :delete, remote: true, class: 'js-edit js-delete' do %>
+            <i class="fa fa-times"></i>
+          <% end %>
         <% end %>
-      <% end %>
-    </div>
-  <% end %>
-  <br>
+      </div>
+    <% end %>
+  </div>
   <% if @user == current_user %>
-    <br>
     <a class="<%= @user.certs.present? ? 'js-edit' : '' %>  js-edit-section-item"></i> + Add</a>
     <div id="ep-add-cert" class="js-edit-form ep-form ep-edit-form">
       <%= form_for Cert.new, remote: true do |f| %>
