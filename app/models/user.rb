@@ -176,6 +176,10 @@ class User
     positions = profile.positions.to_hash
     if positions["all"].present?
       positions["all"].each do |p|
+
+        company = p["company"]
+        company.present? ? company = company["name"] : company = nil
+
         if !user_experiences.include? p["id"].to_s
           exp = Experience.create(title: p["title"],
                                   employer: p["company"]["name"],
@@ -214,8 +218,15 @@ class User
           else
             college = College.create(name: e["school_name"])
           end
-          college.college_infos.create( start_date: e["start_date"]["year"],
-                                        end_date: e["end_date"]["year"],
+
+          start_date = e["start_date"]
+          start_date.present? ? start_date_year = start_date["year"] : start_date_year = nil
+
+          end_date = e["end_date"]
+          end_date.present? ? end_date_year = end_date["year"] : end_date_year = nil
+
+          college.college_infos.create( start_date: start_date_year,
+                                        end_date: end_date_year,
                                         degree_type: e["degree"],
                                         major: e["field_of_study"],
                                         user: user,
