@@ -56,8 +56,14 @@ $ ->
 		$('.js-edit-form').hide()
 		$('.js-edit-form--file-upload').removeClass('in')
 
+	$('.ep-profile-image').hover (->
+	  $('.ep-change-image.js-edit').show()
+	), ->
+	  $('.ep-change-image.js-edit').hide()
+
 @imgError = (image) ->
   image.onerror = ""
   image.src = "/assets/missing.png"
+  $('.ep-change-image').show()
 
 

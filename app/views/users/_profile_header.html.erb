@@ -6,21 +6,10 @@
 				<%= user_image(@user, 'medium', '120', '120') %>
 			 	<% if @user == current_user %>
 					<div class="ep-profile-image__uploader-container">
-						<a class="js-edit" data-toggle="collapse" data-target="#ep-profile-image__toggle">Change image</a>
-
-						<div id="ep-profile-image__toggle" class="js-edit-form--file-upload collapse">
-							<%= form_for @user, :url => add_avatar_user_path(@user), :html => { :method => "put", :multipart => true } do |f| %><br>
-
-								<span class="ep-profile-image__placeholder">
-									<input class="ep-profile-image__placeholder-input" placeholder="Choose File" disabled="disabled" />
-								</span>
-
-								<div class="ep-profile-image__upload-fields">
-								  <%= f.file_field :avatar, "data-filename-placement"=> "inside", class: "ep-profile-image__file-field js-profile-image__file-field" %>
-								  <%= f.submit "Upload", class: "btn btn-primary" %>
-							  </div>
-							<% end %>
-						</div>
+						<a class="ep-change-image <%= @user.has_progile_image? ? 'js-edit' : '' %>" data-toggle="collapse" data-target="#ep-profile-image__toggle">
+							<i class="fa fa-camera-retro"></i>
+							<%= @user.has_progile_image? ? 'Change image' : 'Add image' %>
+						</a>
 					</div>
 				<% end %>
 			</div>
@@ -58,6 +47,21 @@
 			<%= render partial: 'profile_actions', locals: { user: @user} %>
 		</div>
 	</div>
+
+	<div id="ep-profile-image__toggle" class="js-edit-form--file-upload collapse">
+		<%= form_for @user, :url => add_avatar_user_path(@user), :html => { :method => "put", :multipart => true } do |f| %><br>
+
+			<span class="ep-profile-image__placeholder">
+				<input class="ep-profile-image__placeholder-input" placeholder="Choose File" disabled="disabled" />
+			</span>
+
+			<div class="ep-profile-image__upload-fields">
+			  <%= f.file_field :avatar, "data-filename-placement"=> "inside", class: "ep-profile-image__file-field js-profile-image__file-field" %>
+			  <%= f.submit "Upload", class: "btn btn-primary" %>
+		  </div>
+		<% end %>
+	</div>
+
 	<% if current_user == @user %>
 		<a class='js-edit-mode ep-edit-mode pull-right'> Edit your profile</a>
 		<a class='js-exit-edit-mode ep-edit-mode js-edit pull-right'>Done Editing</a>

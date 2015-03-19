@@ -284,6 +284,10 @@ class User
     end
   end
 
+  def has_progile_image?
+   photo_url != "/images/original/missing.png"
+  end
+
   def gives_access_to(user)
     self.privacy_setting == 'fully_public' ||
     (self.privacy_setting == 'only members' && user.present?) ||
