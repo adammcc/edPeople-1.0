@@ -17,7 +17,7 @@ class EpMailer < ActionMailer::Base
     @user = user
     mail(
       to: @friend.email,
-      subject: "New connection request form #{@friend.name}"
+      subject: "New connection request form #{@user.name}"
     )
   end
 
