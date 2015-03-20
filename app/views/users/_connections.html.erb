@@ -17,7 +17,7 @@
 
   <% if user == current_user %>
     <div id="ep-friend-suggestions">
-      <% for friend in @suggestions %>
+      <% for friend in suggestions %>
         <%= render partial: 'connection', locals: { user: friend } %>
       <% end %>
     </div>
