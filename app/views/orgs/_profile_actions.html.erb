@@ -34,3 +34,8 @@
 <% else %>
   <p><i class="fa fa-envelope"></i>&nbsp Sign in to message <%= org.name %></p>
 <% end %>
+
+<% if current_user == org_user %>
+  <p class='js-edit-mode'><i class="fa fa-pencil-square"></i><a> Edit my profile</a></p>
+  <p class='js-exit-edit-mode js-edit'><i class="fa fa-pencil-square"></i><a> Done Editing</a></p>
+<% end %>
