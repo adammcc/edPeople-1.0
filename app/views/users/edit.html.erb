@@ -66,11 +66,11 @@
                 <%= f.label :privacy_setting, "Anyone", :value => "Anyone", class: 'ep-normal-font-weight' %>
               </div>
               <div class="ep-form__profile-form-field">
-                <%= f.radio_button :privacy_setting, 'only members' %>
+                <%= f.radio_button :privacy_setting, 'only_connections' %>
                 <%= f.label :privacy_setting, "Only my connections", :value => "Only my connections", class: 'ep-normal-font-weight' %>
               </div>
               <div class="ep-form__profile-form-field">
-                <%= f.radio_button :privacy_setting, 'only connections' %>
+                <%= f.radio_button :privacy_setting, 'only_members' %>
                 <%= f.label :privacy_setting, "Only edPeople members", :value => "Only edPeople members", class: 'ep-normal-font-weight' %>
               </div>
             </div>

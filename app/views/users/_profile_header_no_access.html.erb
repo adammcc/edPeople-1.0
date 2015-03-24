@@ -45,19 +45,8 @@
       </div>
     </div>
 
-    <div class="ep-user-roles-and-subjects col-md-3">
-      <div class="ep-user-roles-and-subjects__subject-areas">
-        <% if @user.privacy_setting == 'only members' %>
-          <p><i><%= @user.first_name %>'s profile is private. <br> To view it, <%= link_to "sign in", new_session_path(@user) %> or <%= link_to "create", new_registration_path(@user) %> an account</p></i></p>
-        <% elsif @user.privacy_setting == 'only connections' %>
-          <% if user_signed_in? %>
-            <p><i><%= @user.first_name %>'s profile is private. <br> To view it, <%= link_to "become #{@user.first_name}'s connection.", invite_friend_user_path(@user), method: :put, remote: true %></p></i></p>
-          <% else %>
-            <p><i><%= @user.first_name %>'s profile is private. <br> To view it, <%= link_to "sign in", new_session_path(@user) %> or <%= link_to "create", new_registration_path(@user) %> an account</p></i></p>
-          <% end %>
-        <% end %>
-      </div>
-    </div>
+    <div class="ep-user-roles-and-subjects col-md-3"></div>
+
     <div class="ep-profile-actions js-profile-actions col-md-3">
       <%= render partial: 'profile_actions', locals: { user: @user} %>
     </div>

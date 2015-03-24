@@ -34,11 +34,21 @@
 <% else %>
   <div class="col-md-12 ep-main-container">
     <div class="row">
-        <div class="col-md-12">
-          <%= render partial: 'profile_header_no_access' %>
-        </div>
+      <div class="col-md-12">
+        <%= render partial: 'profile_header_no_access' %>
       </div>
     </div>
+  </div>
+  <div class="ep-private-profile-message">
+    <% if @user.privacy_setting == 'only_members' %>
+      <p><%= @user.first_name %>'s profile is private. <br> To view it, <%= link_to "sign in", new_session_path(@user) %> or <%= link_to "create", new_registration_path(@user) %> an account</p>
+    <% elsif @user.privacy_setting == 'only_connections' %>
+      <% if user_signed_in? %>
+        <p><%= @user.first_name %>'s profile is private. <br> To view it, <%= link_to "become #{@user.first_name}'s connection.", invite_friend_user_path(@user), method: :put, remote: true %></p>
+      <% else %>
+        <p><%= @user.first_name %>'s profile is private. <br> To view it, <%= link_to "sign in", new_session_path(@user) %> or <%= link_to "create", new_registration_path(@user) %> an account</p>
+      <% end %>
+    <% end %>
   </div>
 <% end %>
 <div class="modal fade ep-message-modal" tabindex="-1" role="dialog" aria-labelledby="myMadalLabel" aria-hidden="true">
