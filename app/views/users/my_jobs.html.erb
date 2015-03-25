@@ -1,0 +1,38 @@
+<div class="row-fluid"><br><br><br><br>
+  <div class="ep-search col-md-3 white-bg">
+    <h3>Search</h3>
+    <%= form_tag my_jobs_user_path, method: :get, remote: true, class: 'js-search-form' do %>
+      <%= text_field_tag 'search', @search_term, placeholder: 'Search term...', class: "js-search-form__text-field" %>
+    <% end %>
+  </div>
+
+  <div class="ep-index col-md-8 white-bg">
+    <div class="page-header">
+      <a class="pull-right" data-toggle="collapse" data-target="#ep-app-job__toggle">Post a job</a>
+      <% if @user == current_user %>
+        <h3>My job posts</h3>
+      <% else %>
+        <h3><%= @user.name %>'s job posts</h3>
+      <% end %>
+      <div id="ep-app-job__toggle" class="collapse">
+        <div class='ep-form js-edit-form'>
+          <%= form_for JobPost.new do |f| %>
+            <%= render partial: 'job_posts/form_fields', locals: { f: f } %>
+            <div class="ep-form__clear">
+              <%= f.submit 'Add', :class => 'btn btn-primary' %>
+              <%= content_tag :div, 'cancel', class: 'btn btn-default', :data => { toggle: "collapse", target: "#ep-app-job__toggle" } %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <table class="table ep-index__table">
+      <tbody class="ep-index__items">
+        <%= render partial: 'job_posts/job_posts', locals: { jobs: @jobs } %>
+      </tbody>
+    </table>
+    <div class="js-will-page">
+      <%= will_paginate @jobs %>
+    </div>
+  </div>
+</div>

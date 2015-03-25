@@ -161,6 +161,19 @@ class UsersController < ApplicationController
     redirect_to :back
   end
 
+  def my_jobs
+    @user = User.find(params[:id])
+    @search_term = params[:search]
+
+    if @search_term.present?
+      jobs = @user.job_posts.full_text_search(@search_term)
+    else
+      jobs = @user.job_posts
+    end
+
+    @jobs = jobs.asc(:created_at).paginate(page: params[:page], per_page: 10)
+  end
+
   private
 
   def get_suggestions(user)

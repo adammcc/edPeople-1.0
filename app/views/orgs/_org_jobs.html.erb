@@ -22,10 +22,13 @@
 
 <div class="ep-profile-section__body js-section-container">
   <% if org.user.job_posts.present? %>
-    <% org.user.job_posts.desc(:created_at).each do |job| %>
+    <% org.user.job_posts.desc(:created_at).limit(3).each do |job| %>
       <p><%= link_to job.title, job_post_path(job) %> | <span class='ep-gray'>Posted on <%= job.created_at.strftime("%B %-d") %></span></p> <br>
       <p><%= job.description.truncate(200) %></p>
       <hr>
+    <% end %>
+    <% if org.user.job_posts.count > 3 %>
+      <%= link_to 'View all', my_jobs_user_path(org.user) %>
     <% end %>
   <% else %>
     <p class='ep-gray'>No jobs posted</p>
