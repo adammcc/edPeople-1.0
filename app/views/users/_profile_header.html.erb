@@ -6,7 +6,7 @@
 				<%= user_image(@user, 'medium', '120', '120') %>
 			 	<% if @user == current_user %>
 					<div class="ep-profile-image__uploader-container">
-						<a class="ep-change-image <%= @user.has_progile_image? ? 'js-edit' : '' %>" data-toggle="collapse" data-target="#ep-profile-image__toggle">
+						<a class="ep-change-image <%= @user.has_profile_image? ? 'js-edit' : '' %>" data-toggle="collapse" data-target="#ep-profile-image__toggle">
 							<i class="fa fa-camera-retro"></i>
 							<%= @user.has_progile_image? ? 'Change image' : 'Add image' %>
 						</a>

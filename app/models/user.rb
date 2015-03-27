@@ -284,7 +284,7 @@ class User
     end
   end
 
-  def has_progile_image?
+  def has_profile_image?
    photo_url != "/images/original/missing.png"
   end
 
