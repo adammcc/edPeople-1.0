@@ -4,6 +4,10 @@
 			<%= render partial: 'profile_header', locals: { org: @org, org_user: @org_user } %>
 		</div>
 		<div class="col-md-7">
+      <div class="ep-profile-section ep-profile-section--skill white-bg">
+        <%= render partial: 'org_website', locals: { org: @org } %>
+      </div>
+
 			<div class="ep-profile-section white-bg">
 				<%= render partial: 'about', locals: { org: @org } %>
 			</div>
@@ -14,9 +18,11 @@
 		</div>
 
 		<div class="col-md-5">
-			<div class="ep-profile-section ep-profile-section--skill white-bg">
-				<%= render partial: 'org_website', locals: { org: @org } %>
-			</div>
+      <% if @org.coordinates.present? %>
+        <div class="ep-profile-section ep-profile-section--skill white-bg">
+          <%= render partial: 'org_map', locals: { org: @org } %>
+        </div>
+      <% end %>
 
 			<div class="ep-profile-section js-profile-section--connections white-bg">
 				<%= render partial: 'users/connections', locals: { user: @org.user, suggestions: @suggestions } %>

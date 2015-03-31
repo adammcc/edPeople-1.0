@@ -5,7 +5,11 @@
         <div class="col-md-4">
           <div class="ep-profile-section ep-account-settings-section white-bg">
             <div class="ep-profile-section__header">
-              <h4>Personal Information</h4>
+              <% if @user.as_org %>
+                <h4>Organization Information</h4>
+              <% else %>
+                <h4>Personal Information</h4>
+              <% end %>
             </div>
             <div class="ep-profile-section__body">
               <div class="ep-form__profile-form-field">
@@ -76,6 +80,34 @@
             </div>
           </div>
         </div>
+
+        <%= f.fields_for :org, @user.org do |g| %>
+          <div class="col-md-4">
+            <div class="ep-profile-section ep-account-settings-section white-bg">
+              <div class="ep-profile-section__header">
+                <h4>Address</h4>
+              </div>
+              <div class="ep-profile-section__body">
+                <div class="ep-form__profile-form-field">
+                  <%= g.label :street_address, :class => 'ep-form__label' %><br>
+                  <%= g.text_field :street_address, :class => 'ep-form__text-field__long' %>
+                </div>
+                <div class="ep-form__profile-form-field">
+                  <%= g.label :city, :class => 'ep-form__label' %><br>
+                  <%= g.text_field :city, :class => 'ep-form__text-field__long' %>
+                </div>
+                <div class="col-md-3" style="padding:0">
+                  <%= g.label :state, :class => 'ep-form__label' %><br>
+                  <%= g.text_field :state, :class => 'ep-form__text-field__state', width: '20px' %>
+                </div>
+                <div class="col-md-7" style="padding:0">
+                  <%= g.label :zip, :class => 'ep-form__label' %><br>
+                  <%= g.text_field :zip, :class => 'ep-form__text-field__zip' %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
 
       </div>
       <div class="row"><br>

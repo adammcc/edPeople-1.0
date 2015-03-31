@@ -38,6 +38,7 @@ gem 'httparty', '~> 0.13.1'
 gem 'will_paginate_mongoid'
 gem 'bson_ext'
 gem 'rails_12factor'
+gem 'geocoder', '~> 1.2.8'
 
 
 group :development do

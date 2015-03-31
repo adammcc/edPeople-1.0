@@ -120,6 +120,7 @@
 
 .ep-profile-section__body {
 	padding: 20px;
+	padding-top: 10px;
 	p {
 		margin: 0;
 	}
@@ -133,6 +134,11 @@
 	&.ep-profile-section__body--add-password {
 	  padding-top: 0px;
 	}
+}
+
+.ep-profile-section__map {
+	position: relative;
+	height: 230px;
 }
 
 .ep-profile-section__item-holder {
@@ -160,7 +166,7 @@
 }
 
 .ep-account-settings-section {
-	height: 250px;
+	height: 300px;
 }
 
 .ep-edit-mode{

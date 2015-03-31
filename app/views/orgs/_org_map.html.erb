@@ -1,0 +1,63 @@
+<script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?key=<%=ENV['EP_GOOGLE_MAPS_KEY'] %>">
+</script>
+
+<% lng = org.coordinates[0] %>
+<% lat = org.coordinates[1] %>
+
+<script type="text/javascript">
+
+  var myLatlng = new google.maps.LatLng(<%= lat %>,<%= lng %>);
+
+  var styles = [{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#d3d3d3"}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#3bafda"}]}]
+
+  function initialize() {
+    var mapOptions = {
+      center: myLatlng,
+      zoom: 12,
+      styles: styles
+    };
+    var map = new google.maps.Map(document.getElementById('map-canvas'),
+        mapOptions);
+
+    var marker = new google.maps.Marker({
+      position: myLatlng,
+      title:"<%= org.name %>"
+    });
+
+    marker.setMap(map);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+
+</script>
+
+<div class="ep-profile-section__header">
+  <h4>
+    Location
+  </h4>
+</div>
+<div class="ep-profile-section__body ep-profile-section__map js-section-container">
+  <% if current_user == org.user && org.street_address.blank? %>
+    <a href="" class="xpnd-not-your-address" data-toggle="modal" data-target=".ep-address-modal">Not your location?</a>
+  <% end %>
+  <div id="map-canvas" style="width: 89%; height: 81%; position: absolute;"></div>
+</div>
+
+<div class="modal fade ep-address-modal" tabindex="-1" role="dialog" aria-labelledby="myMadalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content ep-content--send-message">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">Change Your address:</h4>
+      </div><br>
+      <%= form_for org do |f| %>
+        <%= hidden_field_tag :address_update, true %>
+        <%= f.text_field :street_address, :class => '', placeholder: 'Street address', style: 'width: 92%' %> <br> <br>
+        <%= f.text_field :city, :class => 'ep-form__small-input', placeholder: 'City', style: "width:176px" %>
+        <%= f.text_field :state, :class => 'ep-form__small-input', placeholder: 'State', style: "width:54px" %>
+        <%= f.text_field :zip, :class => 'ep-form__small-input', placeholder: 'Zip code', style: "width:82px" %> <br><br><br>
+        <%= f.submit 'Save', class: 'btn btn-primary' %>
+      <% end %>
+    </div>
+  </div>
+</div>

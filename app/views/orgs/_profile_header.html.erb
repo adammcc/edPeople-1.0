@@ -32,14 +32,14 @@
 						<a class="ep-edit-org-name js-edit"> Edit</a>
 					<% end %>
 				</h3>
-				<% if org.street_address.present? || current_user == org_user %>
+				<% if org.org_type.present? || current_user == org_user %>
 					<p>
-						<%= best_in_place org, :street_address, :type => :input, activator: '.ep-edit-org-address', nil: 'What\'s your street address?' %>
+						<%= best_in_place org, :org_type, :type => :input, activator: '.ep-edit-org-type', nil: 'What type of organization are you?' %>
 						<% if org_user == current_user %>
-							<% if org.street_address.present? %>
-								<a class="ep-edit-org-address js-edit"> Edit</a>
+							<% if org.org_type.present? %>
+								<a class="ep-edit-org-type js-edit"> Edit</a>
 							<% else %>
-								<a class="ep-edit-org-address js-add-bip"> + Add</a>
+								<a class="ep-edit-org-type js-add-bip"> + Add</a>
 							<% end %>
 						<% end %>
 					</p>
@@ -56,18 +56,6 @@
 						<% end %>
 					</p>
 				<% end %><br>
-				<% if org.org_type.present? || current_user == org_user %>
-					<p>
-						<%= best_in_place org, :org_type, :type => :input, activator: '.ep-edit-org-type', nil: 'What type of organization are you?' %>
-						<% if org_user == current_user %>
-							<% if org.org_type.present? %>
-								<a class="ep-edit-org-type js-edit"> Edit</a>
-							<% else %>
-								<a class="ep-edit-org-type js-add-bip"> + Add</a>
-							<% end %>
-						<% end %>
-					</p>
-				<% end %>
 			</div>
 		</div>
 

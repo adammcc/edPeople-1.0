@@ -40,7 +40,11 @@ class OrgsController < ApplicationController
     @org = Org.find(params[:id])
     @org.update_attributes(params[:org])
 
-    render nothing: true
+    if params[:address_update]
+      redirect_to user_path(@org.user)
+    else
+      render nothing: true
+    end
   end
 
   private

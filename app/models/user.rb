@@ -99,6 +99,7 @@ class User
   validates_attachment_content_type :avatar, :content_type => %w(image/jpeg image/jpg image/png)
   validates_attachment_size :avatar, :less_than => 5.megabytes
 
+  accepts_nested_attributes_for :org
 
   def name
     if as_org
