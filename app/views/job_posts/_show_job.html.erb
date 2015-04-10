@@ -13,7 +13,11 @@
   <div class="ep-job-info row">
     <div class="ep-job-info__section col-md-4">
       <h4>Organization</h4>
-      <p><%= job.organization %></p>
+      <% if job.has_user? && job.user.as_org %>
+        <%= link_to job.user.name, org_path(job.user) %>
+      <% else %>
+        <p><%= job.organization %></p>
+      <% end %>
     </div>
 
     <div class="ep-job-info__section col-md-4">

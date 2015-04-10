@@ -1,0 +1,78 @@
+<script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5PlpzqBccRDDChpQkdK6JcYvgG4O9H6M">
+</script>
+
+<script type="text/javascript">
+
+  var jobs = <%= raw @jobs.to_json %>
+
+  var styles = [{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#d3d3d3"}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"road","elementType":"labels","stylers":[{"visibility":"off"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#3bafda"}]}]
+
+  var marker, myLatLong, infowindow;
+
+  function initialize() {
+    var mapOptions = {
+      center:  new google.maps.LatLng(40.7127, -74.0059),
+      zoom: 10,
+      styles: styles
+    };
+    var map = new google.maps.Map(document.getElementById('map-canvas'),
+        mapOptions);
+
+    for (i = 0; i < jobs.length; i++) {
+      myLatLong = new google.maps.LatLng(jobs[i]['coords'][1], jobs[i]['coords'][0]);
+
+      marker = new google.maps.Marker({
+        position: myLatLong,
+        map: map
+      });
+
+      attachMarker(marker, map, i)
+    }
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+
+  function attachMarker(marker, map, num) {
+    var titles = jobs[num]['titles'];
+    var titleLinks = '';
+
+
+    jobs[num]['titles'].forEach( function(title, i) {
+      titleLinks += "<li><a href='/job_posts/" + jobs[num]['job_ids'][i] + "'>"  + title + "</a></li>"
+    });
+
+    var contentString = '<div id="content">'+
+      '<div class="header">'+
+      '<h4 id="firstHeading" style="color:gray">' + jobs[num]['org_name'] + '</h4>'+
+      '</div>'+
+      '<hr style="margin: 5px 0">'+
+      '<div id="bodyContent">'+
+      '<ul style="padding-left:16px;">' +
+        titleLinks +
+      '</ul>'
+      '</div>'+
+      '</div>';
+
+    infowindow = new google.maps.InfoWindow({
+      maxWidth: 240
+    });
+
+    google.maps.event.addListener(marker, 'click', (function(marker, num) {
+      return function() {
+        infowindow.setContent(contentString);
+
+        infowindow.open(map, marker);
+      }
+    })(marker, i));
+  }
+
+</script>
+<br><br><br>
+
+<h2>Jobs Map</h2>
+
+<div class="ep-container">
+  <div class="" style="width: 100%; height: 500px; position: relative; border: 4px solid white">
+    <div id="map-canvas" style="width: 100%%; height: 100%; position: absolute;"></div>
+  </div>
+</div>

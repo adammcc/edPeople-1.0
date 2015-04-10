@@ -38,6 +38,7 @@ Ep::Application.routes.draw do
   resources :subjects, only: [:create, :destroy]
   resources :job_posts
   resources :messages
+  resources :job_maps, only: [:index]
 
   resources :orgs, only: [:show, :index, :update]
 

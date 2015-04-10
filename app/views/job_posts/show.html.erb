@@ -1,6 +1,11 @@
 <div class="js-section-container row-fluid"><br><br><br><br>
 
     <div class="ep-similar-jobs col-md-3 white-bg">
+      <h4>
+        <%= link_to job_maps_path, class: 'ep-link-to-job-maps' do %>
+          <i class="fa fa-globe"></i> Jobs Map
+        <% end %>
+      </h4>
       <% if @similar_jobs.present? %>
         <h3>Similar Jobs</h3><br><br>
         <% @similar_jobs.each do |job| %>

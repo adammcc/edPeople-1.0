@@ -13,6 +13,9 @@ namespace :db do
           indeed_url: job["url"],
           description: job["snippet"]
         )
+
+        job.geocode
+        job.save
       end
     end
   end

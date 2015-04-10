@@ -1,5 +1,11 @@
 <div class="row-fluid"><br><br><br><br>
   <div class="ep-search col-md-3 white-bg">
+    <h4>
+      <%= link_to job_maps_path, class: 'ep-link-to-job-maps' do %>
+        <i class="fa fa-globe"></i> Jobs Map
+      <% end %>
+    </h4>
+
     <h3>Find jobs</h3>
     <%= form_tag job_posts_path, method: :get, remote: true, class: 'js-search-form' do %>
 
