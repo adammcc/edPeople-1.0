@@ -2,18 +2,22 @@
 	<div class="container">
 		<div class="ep-home-section__row row">
 			<div class="ep-signin-signup ep-signin-signup--signin-pw col-md-6 col-md-offset-3">
-				<h2>Sign in</h2>
+				<h2 class="ep-signin-signup__header">Sign in</h2>
 
 				<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+					<div class="ep-signin-signup__errors">
+				  	<p><%= flash[:alert] %></p>
+				  </div>
+
 				  <div class="row">
 				  	<div class="col-md-10 col-md-offset-1">
-				  		<%= f.email_field :email, placeholder: 'Email', class: 'ep-signin-signup__text-field-large' %>
+				  		<%= f.email_field :email, placeholder: 'Email', class: 'ep-signin-signup__text-field-large', :required => true %>
 				  	</div>
 				  </div>
 
 				  <div class="row">
 				  	<div class="col-md-10 col-md-offset-1">
-				  		<%= f.password_field :password, placeholder: 'Password', class: 'ep-signin-signup__text-field-large' %>
+				  		<%= f.password_field :password, placeholder: 'Password', class: 'ep-signin-signup__text-field-large', :required => true %>
 				  	</div>
 					</div>
 
