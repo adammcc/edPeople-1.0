@@ -101,6 +101,8 @@ class User
 
   accepts_nested_attributes_for :org
 
+  validates_presence_of :first_name, :last_name, :email
+
   def name
     if as_org
       org.name
