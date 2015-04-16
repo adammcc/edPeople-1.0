@@ -42,6 +42,9 @@ $ ->
   $('.autocomplete_field').on 'autocompleteresponse', (event, ui) ->
     $(this).autocomplete('close') if ui.content?[0].id.length == 0
 
+  $(".js-dont-show-add-password-page").change ->
+    $('#js-dont-show-add-password-page').submit()
+
 # 	$('.checkbox input').iCheck ->
 # 		checkboxClass: 'icheckbox_flat',
 # 		increaseArea: '20%'

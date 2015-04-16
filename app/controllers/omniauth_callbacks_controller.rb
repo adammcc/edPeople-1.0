@@ -3,7 +3,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	def linkedin
 	  auth = request.env["omniauth.auth"]
 	  @user = User.connect_to_linkedin(auth, current_user)
-	  if @user.persisted? && @user.has_linkedin_account
+	  if @user.persisted? && @user.has_linkedin_account && !@user.dont_show_add_password_page
 	  	flash[:notice] = I18n.t "devise.omniauth_callbacks.success"
 	  	sign_in(@user)
 	    redirect_to add_password_user_path(@user)

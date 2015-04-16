@@ -62,7 +62,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     name = params[:user][:name]
 
-    if params[:user][:password].blank?
+    if params[:user][:password].blank? && params[:user][:dont_show_add_password_page].blank?
       params[:user].delete(:password).delete(:password_confirmation)
       params[:user].delete(:password_confirmation)
     end
