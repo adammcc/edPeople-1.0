@@ -2,5 +2,13 @@
 
 .ep-index__conversation:hover {
   background-color: $ep-blue-gray;
-  cursor: pointer;
+  .ep-view-convo {
+    display: block;
+  }
+}
+
+.ep-view-convo {
+  margin-right: 30px;
+  display: none;
+  color: gray !important;
 }

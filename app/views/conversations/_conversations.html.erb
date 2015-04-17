@@ -11,7 +11,7 @@
       <% conversations.each do |convo| %>
         <tr>
           <td class="ep-index__conversation">
-            <div class="ep-convo-link" onclick="window.location='<%= user_conversation_path(@user, convo) %>'">
+            <div class="ep-convo-link">
               <% user = convo.users.ne(id: current_user.id).first %>
               <div class="ep-index__photo">
                 <% if user %>
@@ -30,6 +30,7 @@
                   <%= h(convo.messages.last.note.truncate(120)).gsub(/\n/, '<br/>').html_safe %>
                 </p>
               </div>
+              <a href="<%= user_conversation_path(@user, convo) %>" class="ep-view-convo pull-right btn btn-default">View</a>
             </div>
           </td>
         </tr>
