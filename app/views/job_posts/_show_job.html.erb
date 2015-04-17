@@ -61,6 +61,11 @@
       <p><%= job.contact_info %></p>
     <% end %>
   </div>
+  <% if job.coordinates.present? %>
+    <div style="height:300px; width:100%; margin-left:30px">
+      <div id="map-canvas" style="width: 88%; height: 100%;"></div>
+    </div>
+  <% end %>
 </div>
 <br>
 <div class='ep-form ep-add-job-form ep-edit-form ep-edit-form--job js-edit-form'>
