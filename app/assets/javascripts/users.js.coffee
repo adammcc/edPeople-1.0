@@ -63,7 +63,12 @@ $ ->
 
 @imgError = (image) ->
   image.onerror = ""
-  image.src = "/assets/missing.png"
+  image.src = "/assets/missing_user.png"
+  $('.ep-change-image').show()
+
+@orgImgError = (image) ->
+  image.onerror = ""
+  image.src = "/assets/missing_org.png"
   $('.ep-change-image').show()
 
 
