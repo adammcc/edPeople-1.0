@@ -207,8 +207,12 @@ class UsersController < ApplicationController
       role_user_suggestions = []
     end
 
-    @suggestions = (college_user_suggestions + subject_user_suggestions + role_user_suggestions).shuffle.first(3)
-    @suggestions = User.all.ne(id: user.id, as_org: true).shuffle.first(3) if @suggestions.blank?
+    suggestions = (college_user_suggestions + subject_user_suggestions + role_user_suggestions)
+    if suggestions.blank?
+      @suggestions = User.all.ne(id: user.id, as_org: true).shuffle.first(3)
+    else
+      @suggestions = suggestions.shuffle.first(3)
+    end
   end
 
 end
