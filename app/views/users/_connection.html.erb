@@ -3,10 +3,10 @@
 		<span class="ep-connection__photo">
 			<%= user_image(user, 'thumb', '50', '50') %>
 	  </span>
-	  <div>
+	  <div style="padding-left:60px;">
 			<%= link_to user.name, user_path(user) %><br>
 			<span class="ep-gray ep-connection__headline">
-				<%= user.headline.truncate(45) if user.headline.present? %>
+				<p style="height:20px;"><%= user.headline.truncate(45) if user.headline.present? %></p>
 			</span>
 		</div>
 	</p>
@@ -29,5 +29,5 @@
 				</div>
 			<% end %>
 		<% end %>
-	<hr>
+	<hr style="clear:both">
 </div>

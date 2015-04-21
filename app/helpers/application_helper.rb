@@ -25,11 +25,11 @@ module ApplicationHelper
     end
 
     if image.match('missing.png')
-      icon = (user.as_org ? 'fa fa-university' : 'fa-user')
+      icon = (user.as_org ? 'fa-university' : 'fa-user')
 
-      content_tag(:div,
+      content_tag(:span,
         content_tag(:i, "", class:"fa #{icon}", style:"font-size:#{font_size};" ),
-        style: "width:#{width}px; height:#{height}px; background-color:#bdc3c7; color:white; border-radius:6px; padding: #{padding};"
+        style: "width:#{width}px; height:#{height}px; background-color:#bdc3c7; color:white; border-radius:6px; padding: #{padding}; float:left; margin-botton:10px;"
       )
     else
       return image
