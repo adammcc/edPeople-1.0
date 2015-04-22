@@ -8,7 +8,11 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	  	sign_in(@user)
 	    redirect_to add_password_user_path(@user)
 	  elsif @user.persisted?
-	    flash[:notice] = I18n.t "devise.omniauth_callbacks.success"
+	  	if user_signed_in?
+	  		flash[:notice] = I18n.t "devise.omniauth_callbacks.sync_success"
+	  	else
+	    	flash[:notice] = I18n.t "devise.omniauth_callbacks.success"
+	    end
 	    sign_in_and_redirect @user, :event => :authentication
 	  else
 	    session["devise.linkedin_uid"] = request.env["omniauth.auth"]
