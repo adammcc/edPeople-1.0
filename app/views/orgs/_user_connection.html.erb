@@ -10,6 +10,6 @@
       <%= link_to 'Decline', remove_deny_friend_user_path(user), method: :put, remote: true, class: 'ep-deny ep-index__info-right'%>
     </div>
   <% else %>
-    <%= link_to "Connect", invite_friend_user_path(user), method: :put, class: 'ep-index__connect ep-index__info-right', remote: :true, data: {confirm: "Are you sure?"} %>
+    <%= link_to "Connect", invite_friend_user_path(user), method: :put, class: 'ep-index__connect ep-index__info-right', remote: :true, data: {confirm: "Send a connection request to #{user.name}?"} %>
   <% end %>
 <% end %>
