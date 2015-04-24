@@ -35,12 +35,16 @@
 		</div>
 
 		<div class="ep-user-roles-and-subjects col-md-3">
-			<div class="ep-user-roles-and-subjects__roles">
-				<%= render partial: 'roles', locals: { user: @user, roles: @roles } %>
-			</div>
-			<div class="ep-user-roles-and-subjects__subject-areas">
-				<%= render partial: 'subjects', locals: { user: @user, subjects: @sbjects } %>
-			</div>
+			<% if @user.has_roles? || @user == current_user %>
+				<div class="ep-user-roles-and-subjects__roles">
+					<%= render partial: 'roles', locals: { user: @user, roles: @roles } %>
+				</div>
+			<% end %>
+			<% if @user.has_subjects? || @user == current_user %>
+				<div class="ep-user-roles-and-subjects__subject-areas">
+					<%= render partial: 'subjects', locals: { user: @user, subjects: @sbjects } %>
+				</div>
+			<% end %>
 		</div>
 
 		<div class="ep-profile-actions js-profile-actions col-md-3">
