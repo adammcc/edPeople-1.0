@@ -33,5 +33,4 @@ _ep.notify.success = (msg) ->
   notify('success', msg)
 
 _ep.notify.failure = (msg) ->
-  $note = $('#js-notification')
-  notify('failure', msg)
+  notify('danger', msg)
