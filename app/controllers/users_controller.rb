@@ -83,8 +83,13 @@ class UsersController < ApplicationController
         flash[:notice] = "Saved!"
         redirect_to user_path(@user)
       else
-        redirect_to edit_user_path(@user)
-        flash[:alert] = "Error!"
+        if @user.errors.full_messages.include? "Password is too short (minimum is 8 characters)"
+          flash[:alert] = "Password is too short (minimum is 8 characters)"
+          redirect_to :back
+        else
+          flash[:alert] = "Error!"
+          redirect_to edit_user_path(@user)
+        end
       end
     end
   end
