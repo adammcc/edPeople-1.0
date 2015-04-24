@@ -27,18 +27,33 @@
 		<% for friend in user.friends.take(6) %>
 			<%= render partial: 'connection', locals: { user: friend } %>
 		<% end %>
+    <% if user.friends.blank? %>
+      <div class="ep-no-friends">
+        No connections yet.
+      </div>
+    <% end %>
 	</div>
 	<% if user == current_user %>
 		<div id="ep-invited">
 			<% for invite in user.pending_invited %>
 				<%= render partial: 'connection', locals: { user: invite } %>
 			<% end %>
+      <% if user.pending_invited.blank? %>
+        <div class="ep-no-friends">
+          No invitations yet.
+        </div>
+      <% end %>
 		</div>
 
 		<div id="ep-invited_by">
 			<% for inviter in user.pending_invited_by %>
 				<%= render partial: 'connection', locals: { user: inviter } %>
 			<% end %>
+      <% if user.pending_invited_by.blank? %>
+        <div class="ep-no-friends">
+          You haven't sent any invitations.
+        </div>
+      <% end %>
 		</div>
 	<% end %>
 

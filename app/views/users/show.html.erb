@@ -25,9 +25,11 @@
   				<%= render partial: 'skills', locals: { user: @user } %>
   			</div>
 
-  			<div class="ep-profile-section js-profile-section--connections white-bg">
-  				<%= render partial: 'connections', locals: { user: @user, suggestions: @suggestions } %>
-  			</div>
+        <% if @user.friends.present? || @user == current_user %>
+          <div class="ep-profile-section js-profile-section--connections white-bg">
+	          <%= render partial: 'connections', locals: { user: @user, suggestions: @suggestions } %>
+          </div>
+        <% end %>
   		</div>
   	</div>
   </div>
