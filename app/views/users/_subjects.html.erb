@@ -20,7 +20,6 @@
     <div id="ep-add-subject" class="js-edit-form ep-edit-form">
       <%= form_for Subject.new, remote: true do |f| %>
         <div class="ep-form__profile-form-field">
-          <%= f.label :name, :class => 'ep-form__label' %>
           <%= collection_select(:subject, :id, @subjects,
                   :id, :name,
                  {:prompt => 'Select a subject'}) %>

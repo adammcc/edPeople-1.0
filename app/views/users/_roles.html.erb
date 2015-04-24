@@ -20,7 +20,6 @@
     <div id="ep-add-role" class="js-edit-form ep-edit-form">
       <%= form_for Role.new, remote: true do |f| %>
         <div class="ep-form__profile-form-field">
-          <%= f.label :name, :class => 'ep-form__label' %>
           <%= collection_select(:role, :id, @roles,
                   :id, :name,
                  {:prompt => 'Select a role'}) %>
