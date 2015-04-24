@@ -6,7 +6,7 @@
 
 <% elsif !current_user.connected_with? org_user %>
   <p><i class="fa fa-plus"></i>
-    <%= link_to "Connect with #{org.name}", invite_friend_user_path(org_user), method: :put, remote: true %></p>
+    <%= link_to "Connect with #{org.name}", invite_friend_user_path(org_user), method: :put, remote: true, :data => { :confirm => "Send a connection request to #{org.name}?" } %></p>
 
 <% elsif current_user.friend_with? org_user %>
   <p><i class="fa fa-plus"></i>&nbsp You are connected to <%= org.name %></p>
