@@ -8,8 +8,8 @@
     <% if user == current_user %>
         <a id="ep-show-suggested-friends" class="ep-active-connections">Suggestions</a>
 		  | <a id="ep-show-friends">Connections <%= user.friends.count > 0 ? "(#{user.friends.count})" : "" %></a>
-			| <a id="ep-show-invites">Invites <%= user.pending_invited.count > 0 ? "(#{user.pending_invited.count})" : "" %></a>
-      | <a id="ep-show-inviters">Invited by <%= user.pending_invited_by.count > 0 ? "(#{user.pending_invited_by.count})" : "" %></a>
+			| <a id="ep-show-invites">Sent <%= user.pending_invited.count > 0 ? "(#{user.pending_invited.count})" : "" %></a>
+      | <a id="ep-show-inviters">Invitations <%= user.pending_invited_by.count > 0 ? "(#{user.pending_invited_by.count})" : "" %></a>
     <% else %>
       <p>Connections <%= user.friends.count > 0 ? "(#{user.friends.count})" : "" %></p>
 		<% end %>
