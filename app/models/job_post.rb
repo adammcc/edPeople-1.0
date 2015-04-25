@@ -4,6 +4,7 @@ class JobPost
   include Mongoid::Search
   include Geocoder::Model::Mongoid
 
+  after_validation :geocode
   geocoded_by :address_or_name_for_geocode
 
   field :title,         type: String
