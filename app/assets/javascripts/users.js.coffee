@@ -6,7 +6,7 @@ $ ->
 		$('#ep-invited').hide()
 		$('#ep-invited_by').hide()
 
-		$('#ep-show-friends').click ->
+		$(".js-profile-section--connections").on 'click', '#ep-show-friends', ->
 			$('.ep-active-connections').removeClass('ep-active-connections')
 			$(this).addClass('ep-active-connections')
 			$('#ep-friends').show()
@@ -14,7 +14,7 @@ $ ->
 			$('#ep-invited_by').hide()
 			$('#ep-friend-suggestions').hide()
 
-		$('#ep-show-invites').click ->
+		$(".js-profile-section--connections").on 'click', '#ep-show-invites', ->
 			$('.ep-active-connections').removeClass('ep-active-connections')
 			$(this).addClass('ep-active-connections')
 			$('#ep-invited').show()
@@ -22,7 +22,7 @@ $ ->
 			$('#ep-friends').hide()
 			$('#ep-friend-suggestions').hide()
 
-		$('#ep-show-inviters').click ->
+		$(".js-profile-section--connections").on 'click', '#ep-show-inviters', ->
 			$('.ep-active-connections').removeClass('ep-active-connections')
 			$(this).addClass('ep-active-connections')
 			$('#ep-invited_by').show()
@@ -30,7 +30,7 @@ $ ->
 			$('#ep-friends').hide()
 			$('#ep-friend-suggestions').hide()
 
-		$('#ep-show-suggested-friends').click ->
+		$(".js-profile-section--connections").on 'click', '#ep-show-suggested-friends', ->
 			$('.ep-active-connections').removeClass('ep-active-connections')
 			$(this).addClass('ep-active-connections')
 			$('#ep-friend-suggestions').show()
