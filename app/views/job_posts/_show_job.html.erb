@@ -8,56 +8,41 @@
 <div class="js-section-item">
   <div class="page-header ep-job-info__page-header">
     <h3><%= job.title %></h3>
-  </div>
+    <% if job.has_user? && job.user.as_org %>
+      <p style="font-size:16px;">at <%= link_to job.user.name, org_path(job.user) %></p>
+    <% elsif (job.has_user? && !job.user.as_org) || job.indeed_key.present? %>
+      <p style="font-size:16px;">at <%= job.organization %></p>
+    <% end %>
 
-  <div class="ep-job-info row">
-    <div class="ep-job-info__section col-md-4">
-      <h4>Organization</h4>
-      <% if job.has_user? && job.user.as_org %>
-        <%= link_to job.user.name, org_path(job.user) %>
-      <% else %>
-        <p><%= job.organization %></p>
-      <% end %>
-    </div>
-
-    <div class="ep-job-info__section col-md-4">
-      <h4>Location</h4>
-      <% if job.indeed_key.present? %>
+    <% if job.indeed_key.present? %>
+      <span class="ep-gray">
         <%= job.indeed_location %>
-      <% else %>
-        <p>
-          <%= job.location.name if job.location %>
-          <%= '-' if job.location.present? &&  job.neighborhood.present? %>
-          <%= job.neighborhood if job.neighborhood %>
-        </p>
-      <% end %>
-    </div>
+      </span>
+    <% else %>
+      <span class="ep-gray">
+        <%= job.neighborhood if job.neighborhood %>
+        <%= job.city_state if job.city_state && job.neighborhood.blank? %>
+      </span>
+    <% end %>
 
-    <div class="ep-job-info__section col-md-4">
-      <h4>Date Posted</h4>
-      <% if job.indeed_key.present? %>
-        <p><%= job.indeed_date.to_datetime.strftime("%b %d, %Y") %></p>
-      <% else %>
-        <p><%= job.created_at.strftime("%b %d, %Y") %></p>
-      <% end %>
-    </div>
+    <% if job.org_website %>
+      | <span><%= link_to 'Website', "http://#{job.org_website}" %></span>
+    <% end %>
+
+    <span class="pull-right ep-gray" style="font-size:12px;">
+      Posted on: <%= job.indeed_key.present? ? job.indeed_date.to_datetime.strftime("%b %d, %Y") : job.created_at.strftime("%b %d, %Y") %>
+    </span>
   </div>
 
   <div class="ep-job-info__description">
-    <% if job.org_website %>
-      <hr>
-      <h4>Website</h4>
-      <p><%= link_to job.org_website, "http://#{job.org_website}" %></p>
-    <% end %>
-
-    <hr>
     <h4>Description</h4>
     <p><%= h(job.description).gsub(/\n/, '<br/>').html_safe %></p>
     <% if job.indeed_key.present? %>
       <p><%= link_to "View full post on indeed", "#{job.indeed_url}", target: '_blank' %></p>
-    <% else %>
+    <% end %>
+    <% if job.contact_info.present? %>
       <hr>
-      <h4>Contact info</h4>
+      <h4>How to apply</h4>
       <p><%= job.contact_info %></p>
     <% end %>
   </div>

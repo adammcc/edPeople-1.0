@@ -37,6 +37,10 @@ class JobPost
     "#{self.street_address} #{self.city} #{self.state} #{self.zip}"
   end
 
+  def city_state
+    "#{self.city}, #{self.state}"
+  end
+
   private
 
   def address_or_name_for_geocode

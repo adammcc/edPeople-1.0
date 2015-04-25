@@ -95,6 +95,10 @@ body#ep {
   }
 }
 
+.ep-clear {
+  clear: both;
+}
+
 .btn-primary:hover {
   border-color: darken(#96ceb4, 5%);
   background-color: darken(#96ceb4, 5%);
