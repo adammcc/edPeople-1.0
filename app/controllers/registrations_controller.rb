@@ -5,7 +5,7 @@ class RegistrationsController < Devise::RegistrationsController
     super
 
     if params[:user][:as_org]
-      resource.create_org(name: params[:org][:name])
+      resource.create_org(name: params[:org][:name], first_name: 'org_first', last_name: 'org_last')
       resource.save
     end
   end
