@@ -124,4 +124,26 @@
   ul.dropdown-menu li a {
     color: white !important;
   }
+
+  // JopPost show
+  .ep-show-job {
+    margin-left: 0px !important;
+  }
+
+  .ep-job-info__page-header {
+    padding-top: 6px !important;
+    padding-left: 0px !important;
+  }
+
+  .ep-job-info__description {
+    padding-left: 0px !important;
+  }
+
+  .ep-job-info__map {
+    margin-left: 0px !important;
+  }
+
+  .ep-job-info__map-canvas {
+    width: 100% !important;
+  }
 }
