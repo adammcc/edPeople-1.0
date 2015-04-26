@@ -13,6 +13,8 @@ Ep::Application.configure do
   config.serve_static_assets = true
   config.static_cache_control = "public, max-age=3600"
 
+  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+
   # Log error messages when you accidentally call methods on nil
   config.whiny_nils = true
 
