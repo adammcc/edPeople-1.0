@@ -89,40 +89,6 @@ describe UsersController do
     end
   end
 
-  describe :invite_friend do
-    it 'adds a user to the current user\'s invited list' do
-      put :invite_friend, id: @some_other_user.id, format: :js
-
-      expect(@user.reload.pending_invited).to include(@some_other_user)
-    end
-  end
-
-  describe :approve_friend do
-    it 'allows a user to accept a freiendship request' do
-      @some_other_user.invite @user
-
-      put :approve_friend, id: @some_other_user.id, format: :js
-
-      expect(@user.reload.friends).to include(@some_other_user)
-    end
-  end
-
-  describe :remove_deny_friend do
-    it 'allows a user to remove a freiendship or deny a friendship request' do
-      @some_other_user_2 = FactoryGirl.create(:user)
-      @some_other_user.invite @user
-      @user.approve @some_other_user
-      @some_other_user_2.invite @user
-
-      expect(@user.reload.friends).to include(@some_other_user)
-      put :remove_deny_friend, id: @some_other_user.id, format: :js
-      expect(@user.reload.friends).to_not include(@some_other_user)
-
-      expect(@user.reload.pending_invited_by).to include(@some_other_user_2)
-      put :remove_deny_friend, id: @some_other_user_2.id, format: :js
-      expect(@user.reload.pending_invited_by).to_not include(@some_other_user_2)
-    end
-  end
 
   describe :add_avatar do
     pending 'allows a user to upload profile pic' do

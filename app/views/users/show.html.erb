@@ -27,7 +27,7 @@
 
         <% if @user.friends.present? || @user == current_user %>
           <div class="ep-profile-section js-profile-section--connections white-bg">
-	          <%= render partial: 'connections', locals: { user: @user, suggestions: @suggestions } %>
+	          <%= render partial: 'connections/connections', locals: { user: @user, suggestions: @suggestions } %>
           </div>
         <% end %>
   		</div>

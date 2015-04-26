@@ -14,9 +14,6 @@ Ep::Application.routes.draw do
   resources :users do
     get :autocomplete_college_name, :on => :collection
     member do
-      put :invite_friend
-      put :approve_friend
-      put :remove_deny_friend
       put :add_avatar
       put :add_resume
       put :remove_resume
@@ -39,6 +36,7 @@ Ep::Application.routes.draw do
   resources :job_posts
   resources :messages
   resources :job_maps, only: [:index]
+  resources :friendships, only: [:create, :update, :destroy]
 
   resources :orgs, only: [:show, :index, :update]
 

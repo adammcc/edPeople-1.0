@@ -6,7 +6,7 @@
 
 <% elsif !current_user.connected_with? org_user %>
   <p><i class="fa fa-plus"></i>
-    <%= link_to "Connect with #{org.name}", invite_friend_user_path(org_user), method: :put, remote: true, :data => { :confirm => "Send a connection request to #{org.name}?" } %></p>
+    <%= link_to "Connect with #{org.name}", friendships_path(id: org_user.id), method: :post, remote: true, :data => { :confirm => "Send a connection request to #{org.name}?" } %></p>
 
 <% elsif current_user.friend_with? org_user %>
   <p><i class="fa fa-plus"></i>&nbsp You are connected to <%= org.name %></p>
@@ -19,7 +19,7 @@
 <% elsif current_user.invited_by? org_user %>
   <p><i class="fa fa-plus"></i>
   Pending connection
-  <%= link_to "(Approve)", approve_friend_user_path(org_user), method: :put, remote: true, class: 'ep-approve' %></p>
+  <%= link_to "(Approve)", friendship_path(org_user), method: :put, remote: true, class: 'ep-approve' %></p>
 
 <% end %>
 
