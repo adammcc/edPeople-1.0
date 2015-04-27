@@ -8,5 +8,5 @@
 </p>
 
 <p>
-  <b>To respond to <%= @sender.first_name %>, click <%= link_to 'here', "http://localhost:3000/#{user_conversations_path(@recipient)}" %>.</b>
+  <b>To respond to <%= @sender.first_name %>, click <%= link_to 'here', user_conversations_url(@recipient, host: @host) %>.</b>
 </p>

@@ -6,6 +6,7 @@ class EpMailer < ActionMailer::Base
     @recipient = recipient
     @sender = sender
     @message = message
+    @host = ActionMailer::Base.default_url_options[:host]
     mail(
       to: @recipient.email,
       subject: "New message from #{@sender.name}"
@@ -15,6 +16,7 @@ class EpMailer < ActionMailer::Base
   def friend_invitation(friend, user)
     @friend = friend
     @user = user
+    @host = ActionMailer::Base.default_url_options[:host]
     mail(
       to: @friend.email,
       subject: "New connection request from #{@user.name}"
