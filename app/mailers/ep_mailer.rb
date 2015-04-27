@@ -8,7 +8,7 @@ class EpMailer < ActionMailer::Base
     @message = message
     mail(
       to: @recipient.email,
-      subject: "New message form #{@sender.name}"
+      subject: "New message from #{@sender.name}"
     )
   end
 
@@ -17,7 +17,7 @@ class EpMailer < ActionMailer::Base
     @user = user
     mail(
       to: @friend.email,
-      subject: "New connection request form #{@user.name}"
+      subject: "New connection request from #{@user.name}"
     )
   end
 
