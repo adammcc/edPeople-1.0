@@ -46,7 +46,7 @@
       <p><%= @user.first_name %>'s profile is private. <br> To view it, <%= link_to "sign in", new_session_path(@user) %> or <%= link_to "create", new_registration_path(@user) %> an account</p>
     <% elsif @user.privacy_setting == 'only_connections' %>
       <% if user_signed_in? %>
-        <p><%= @user.first_name %>'s profile is private. <br> To view it, <%= link_to "become #{@user.first_name}'s connection.", invite_friend_user_path(@user), method: :put, remote: true %></p>
+        <p><%= @user.first_name %>'s profile is private. <br> To view it, <%= link_to "become #{@user.first_name}'s connection.", friendships_path(id: @user.id), method: :post, remote: true, :data => { :confirm => "Send a connection request to #{@user.name}?" } %></p>
       <% else %>
         <p><%= @user.first_name %>'s profile is private. <br> To view it, <%= link_to "sign in", new_session_path(@user) %> or <%= link_to "create", new_registration_path(@user) %> an account</p>
       <% end %>

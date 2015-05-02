@@ -47,7 +47,7 @@
 
     <div class="ep-user-roles-and-subjects col-md-3"></div>
 
-    <div class="ep-profile-actions js-profile-actions col-md-3">
+    <div class="ep-profile-actions js-profile-actions-<%= @user.id %> col-md-3">
       <%= render partial: 'profile_actions', locals: { user: @user} %>
     </div>
   </div>

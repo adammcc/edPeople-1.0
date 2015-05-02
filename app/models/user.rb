@@ -296,8 +296,8 @@ class User
 
   def gives_access_to(user)
     self.privacy_setting == 'fully_public' ||
-    (self.privacy_setting == 'only members' && user.present?) ||
-    (self.privacy_setting == 'only connections' && user.present? && self.friend_with?(user))
+    (self.privacy_setting == 'only_members' && user.present?) ||
+    (self.privacy_setting == 'only_connections' && user.present? && self.friend_with?(user))
   end
 
   def is_admin?
