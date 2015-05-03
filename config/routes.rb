@@ -40,6 +40,8 @@ Ep::Application.routes.draw do
 
   resources :orgs, only: [:show, :index, :update]
 
+  get '/terms' => 'pages#terms', as: :terms
+  get '/privacy_policy' => 'pages#privacy_policy', as: :privacy_policy
 
 
   # The priority is based upon order of creation:
