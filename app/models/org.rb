@@ -10,8 +10,10 @@ class Org
   field :about,           type: String
   field :org_website,     type: String
   field :org_type,        type: String
+  field :owner,           type: String
 
   field :borough,         type: String
+  field :neighborhood,    type: String
   field :street_address,  type: String
   field :city,            type: String
   field :state,           type: String

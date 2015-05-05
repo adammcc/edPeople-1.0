@@ -10,8 +10,10 @@
 			</h5>
 		</div>
 		<p class="ep-experience-meta">
-			<%= experience.boro.present? ? "#{experience.boro} |" : '' %>
-			<%= experience.district.present? ? "District: #{experience.district} |" : '' %>
+			<%= experience.boro.present? ? experience.boro : '' %>
+			<%= " |" if  experience.boro.present? && ( experience.district.present? || experience.start_date.present? )%>
+			<%= experience.district.present? ? "District: #{experience.district}" : '' %>
+			<%= " |" if  experience.district.present? && experience.start_date.present? %>
 			<% if experience.start_date.present? && experience.end_date.present? %>
 				<%= experience.start_date %> - <%= experience.end_date %>
 			<% elsif experience.start_date.present? && !experience.end_date.present? %>

@@ -5,7 +5,8 @@
 		<div class="ep-title-container js-college js-section-item">
 			<h5><%= college_info.college.name %></h5>
 				<p>
-					<%= college_info.degree_type %>,
+					<%= college_info.degree_type %>
+					<%= ',' if college_info.degree_type.present? && college_info.major.present? %>
 					<%= college_info.major %>
 				</p>
 				<p class="ep-college-meta">

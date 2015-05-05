@@ -19,7 +19,8 @@ gem 'devise', '3.0.0.rc'
 gem 'omniauth', '1.2.1'
 gem 'omniauth-linkedin', '0.1.0'
 gem 'linkedin', '0.4.7'
-gem "mongoid-paperclip", "~> 0.0.8", :require => "mongoid_paperclip"
+gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git"
+gem "mongoid-paperclip", :require => "mongoid_paperclip"
 gem 'aws-sdk', '~> 1.3.4', :require => "aws-sdk"
 gem 'best_in_place', github: "bernat/best_in_place"
 gem 'rails4-autocomplete'
@@ -39,6 +40,7 @@ gem 'bson_ext'
 gem 'rails_12factor'
 gem 'geocoder', '~> 1.2.8'
 gem 'bootstrap-datepicker-rails', '~> 1.4.0'
+gem 'google_drive', '~> 1.0.1'
 
 
 group :development do

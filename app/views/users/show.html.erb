@@ -130,42 +130,51 @@
   <div id="js-show-add-password-form"></div>
 <% end %>
 
-<div id="ep-confirm__add_password" class="modal fade">
+<div id="ep-confirm__add_password" class="modal fade" data-backdrop="<%= @user.original_user ? 'static' : 'true' %>">
   <div class="modal-dialog">
     <div class="col-sm-12 ep-main-container">
       <br>
       <div class="row">
         <div class="col-sm-8 col-sm-offset-2">
           <div class="ep-profile-section white-bg">
-            <button type="button" class="close" data-dismiss="modal" style="margin:10px 14px 0 0;">&times;</button>
+            <% unless @user.original_user %>
+              <button type="button" class="close" data-dismiss="modal" style="margin:10px 14px 0 0;">&times;</button>
+            <% end %>
             <%= form_for @user, html: { class: 'form-horizontal' }, remote: true do |f| %>
               <br>
               <p class="ep-add-password-text">
                 <strong>Hi, <%= @user.first_name %>!</strong><br>
-                Add a password now so you won't need to sign in through LinkedIn the next time you visit.
+                <% if @user.original_user %>
+                  Welcome back! Change your password below.
+                <% else %>
+                  Add a password now so you won't need to sign in through LinkedIn the next time you visit.
+                <% end %>
               </p>
               <div class="ep-profile-section__body ep-profile-section__body--add-password">
                 <div class="ep-form__profile-form-field">
                   <%= f.label :Password, class: 'ep-form__label' %><br>
-                  <%= f.password_field :password, autocomplete: "off", class: 'ep-form__text-field' %>
+                  <%= f.password_field :password, autocomplete: "off", class: 'ep-form__text-field', required: true %>
                 </div>
 
                 <div class="ep-form__profile-form-field">
                   <%= f.label :password_confirmation, class: 'ep-form__label' %><br>
-                  <%= f.password_field :password_confirmation, autocomplete: "off", class: 'ep-form__text-field' %>
+                  <%= f.password_field :password_confirmation, autocomplete: "off", class: 'ep-form__text-field', required: true %>
                 </div>
               </div>
               <div class="form-actions ep-form-actions--add-password">
                 <%= f.submit 'Save', class: 'btn btn-primary' %>
-                <button type="button" class="ep-cancel-edit btn btn-default" data-dismiss="modal">Skip</button>
-                <%#= link_to 'Skip', user_path(current_user), class: 'ep-cancel-edit btn btn-default' %>
+                <% unless @user.original_user %>
+                  <button type="button" class="ep-cancel-edit btn btn-default" data-dismiss="modal">Skip</button>
+                <% end %>
               </div><br>
             <% end %>
-            <%= form_for @user, :html => { :class => 'form-horizontal' }, html: { :id => 'js-dont-show-add-password-page' }, remote: true do |f| %>
-              <div class="form-actions ep-form-actions--add-password" style="color:gray">
-                <%= f.check_box :dont_show_add_password_page, class: 'js-dont-show-add-password-page' %>
-                <%= f.label :dont_show_add_password_page, "Don't show this message again.", class: 'ep-normal-font-weight' %>
-              </div><br>
+            <% unless @user.original_user %>
+              <%= form_for @user, :html => { :class => 'form-horizontal' }, html: { :id => 'js-dont-show-add-password-page' }, remote: true do |f| %>
+                <div class="form-actions ep-form-actions--add-password" style="color:gray">
+                  <%= f.check_box :dont_show_add_password_page, class: 'js-dont-show-add-password-page' %>
+                  <%= f.label :dont_show_add_password_page, "Don't show this message again.", class: 'ep-normal-font-weight' %>
+                </div><br>
+              <% end %>
             <% end %>
           </div>
         </div>
