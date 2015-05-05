@@ -40,6 +40,7 @@ gem 'bson_ext'
 gem 'rails_12factor'
 gem 'geocoder', '~> 1.2.8'
 gem 'bootstrap-datepicker-rails', '~> 1.4.0'
+gem 'google_drive', '0.3.6'
 
 
 group :development do

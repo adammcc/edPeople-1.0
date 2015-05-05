@@ -59,6 +59,7 @@ class User
   field :headline,    type: String
   field :demo,        type: Boolean, default: false
   field :has_resume,  type: Boolean, default: false
+  field :original_user, type: Boolean, default: false
 
   # User choices
   field :privacy_setting, type: String, default: 'fully_public' # other options: 'only members' and 'only connections'
