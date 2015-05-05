@@ -11,7 +11,7 @@ class OrgsController < ApplicationController
     if locations
       @orgs = User.just_orgs
     else
-      @orgs = User.just_orgs.asc(:created_at).paginate(page: params[:page], per_page: 10)
+      @orgs = User.just_orgs.sort_by{rand}.paginate(page: params[:page], per_page: 10)
     end
 
     if @search_term.present? || locations
