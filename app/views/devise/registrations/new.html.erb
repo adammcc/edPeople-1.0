@@ -31,14 +31,14 @@
 						<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
 						  <div class="row js-user-name-fields">
 						  	<div class="col-md-10 col-md-offset-1">
-									<%= f.text_field :first_name, placeholder: 'First Name', class: 'ep-signin-signup__text-field-small', :autofocus => true, :required => true %>
-								  <%= f.text_field :last_name, placeholder: 'Last Name', class: 'ep-signin-signup__text-field-small ep-signin-signup__text-field-small--right', :required => true %>
+									<%= f.text_field :first_name, placeholder: 'First Name', id: 'js-signin-signup--first-name', class: 'ep-signin-signup__text-field-small', :autofocus => true, :required => true %>
+									<%= f.text_field :last_name, placeholder: 'Last Name', id: 'js-signin-signup--last-name', class: 'ep-signin-signup__text-field-small ep-signin-signup__text-field-small--right', :required => true %>
 								</div>
 						  </div>
 
 						  <div class="row ep-org-field js-org-field">
 						  	<div class="col-md-10 col-md-offset-1">
-									<%= text_field_tag 'org[name]', '', placeholder: 'Organization Name', class: 'ep-signin-signup__text-field-large' %>
+									<%= text_field_tag 'org[name]', '', placeholder: 'Organization Name', id: 'js-signin-signup--org-name', class: 'ep-signin-signup__text-field-large', :required => true %>
 								</div>
 						  </div>
 
