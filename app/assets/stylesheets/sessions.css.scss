@@ -135,6 +135,25 @@
   }
 }
 
+.ep-signin-signup__submit__linkedin {
+	@extend .ep-signin-signup__submit;
+	background-color: $ep-links;
+	border-color: $ep-links;
+	height: 54px;
+  line-height: 40px;
+  a {
+  	color: white !important;
+  	i {
+  		font-size: 20px;
+  		color: white !important;
+  	}
+  }
+	&:hover {
+		border-color: darken($ep-links, 5%);
+    background: darken($ep-links, 5%);
+  }
+}
+
 .ep-signin-signup__submit-small {
 	border-radius: 0px;
 	color: white !important;

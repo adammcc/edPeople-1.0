@@ -55,8 +55,16 @@
 								</div>
 							</div>
 							<div class="row">
-						  	<div class="col-md-10 col-md-offset-1">
+						  	<div class="col-md-5 col-md-offset-1">
 						  		<%= f.submit "Sign up", class: 'btn btn-primary ep-signin-signup__submit' %>
+						  	</div>
+						  	<div class="col-md-5">
+						  		<div class="btn btn-primary ep-signin-signup__submit__linkedin">
+						  			<%= link_to user_omniauth_authorize_path(:linkedin) do %>
+									  	<i class="fa fa-linkedin-square ep-linkedin-icon"></i>
+									  	Sign up with Linkedin
+									  <% end %>
+									</div>
 						  	</div>
 						  </div>
 						<% end %>
