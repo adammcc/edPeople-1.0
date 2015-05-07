@@ -1,4 +1,6 @@
 $ ->
+  $('#js-signin-signup--org-name').removeAttr("required")
+
   $('.js-create-an-org').click ->
     $('#js-signin-signup--first-name').removeAttr("required")
     $('#js-signin-signup--last-name').removeAttr("required")
