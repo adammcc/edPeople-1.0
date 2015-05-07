@@ -22,7 +22,7 @@ class UsersController < ApplicationController
       end
       @users = @users.asc(:created_at).paginate(page: params[:page], per_page: 10)
     else
-      @users = User.just_users.sort_by{rand}.paginate(page: params[:page], per_page: 10)
+      @users = User.just_users.asc(:created_at).paginate(page: params[:page], per_page: 10)
     end
   end
 
