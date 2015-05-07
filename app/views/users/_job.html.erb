@@ -11,7 +11,7 @@
 		</div>
 		<p class="ep-experience-meta">
 			<%= experience.boro.present? ? "#{experience.boro} |" : '' %>
-			<%= experience.district.present? ? "District #{experience.district} |" : '' %>
+			<%= experience.district.present? ? "District: #{experience.district} |" : '' %>
 			<% if experience.start_date.present? && experience.end_date.present? %>
 				<%= experience.start_date %> - <%= experience.end_date %>
 			<% elsif experience.start_date.present? && !experience.end_date.present? %>
