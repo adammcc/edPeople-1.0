@@ -18,14 +18,14 @@
   <% if user == current_user %>
     <div id="ep-friend-suggestions">
       <% for friend in suggestions %>
-        <%= render partial: 'connections/connection', locals: { friend: friend, user: current_user } %>
+        <%= render partial: 'connections/connection', locals: { friend: friend } %>
       <% end %>
     </div>
   <% end %>
 
 	<div id="ep-friends">
 		<% for friend in user.friends.take(6) %>
-			<%= render partial: 'connections/connection', locals: { friend: friend, user: current_user } %>
+			<%= render partial: 'connections/connection', locals: { friend: friend } %>
 		<% end %>
     <% if user.friends.blank? %>
       <div class="ep-no-friends">
@@ -36,7 +36,7 @@
 	<% if user == current_user %>
 		<div id="ep-invited">
 			<% for invite in user.pending_invited %>
-				<%= render partial: 'connections/connection', locals: { friend: invite, user: current_user } %>
+				<%= render partial: 'connections/connection', locals: { friend: invite } %>
 			<% end %>
       <% if user.pending_invited.blank? %>
         <div class="ep-no-friends">
@@ -47,7 +47,7 @@
 
 		<div id="ep-invited_by">
 			<% for inviter in user.pending_invited_by %>
-				<%= render partial: 'connections/connection', locals: { friend: inviter, user: current_user } %>
+				<%= render partial: 'connections/connection', locals: { friend: inviter } %>
 			<% end %>
       <% if user.pending_invited_by.blank? %>
         <div class="ep-no-friends">
@@ -70,7 +70,7 @@
         <h4 class="modal-title">Connections</h4>
       </div>
       <% for friend in user.friends %>
-				<%= render partial: 'connections/connection', locals: { friend: friend, user: current_user } %>
+				<%= render partial: 'connections/connection', locals: { friend: friend } %>
 			<% end %>
     </div>
   </div>

@@ -10,7 +10,7 @@
 			</span>
 		</div>
 	</p>
-		<% if user_signed_in? && current_user == user  %>
+		<% if user_signed_in? && current_user.id == params[:id] %>
 			<% if (current_user.invited_by? friend) && (!current_user.friend_with? friend) %>
 				<div class="ep-connection-choice">
 					<%= link_to friendship_path(friend), method: :put, remote: true, class: 'ep-approve' do %>
