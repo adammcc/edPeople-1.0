@@ -1,29 +1,29 @@
 <div id="ep-connection" class="ep-connection">
 	<p>
 		<span class="ep-connection__photo">
-			<%= user_image(user, 'thumb', '50', '50') %>
+			<%= user_image(friend, 'thumb', '50', '50') %>
 	  </span>
 	  <div style="padding-left:60px;">
-			<%= link_to user.name, user_path(user) %><br>
+			<%= link_to friend.name, user_path(friend) %><br>
 			<span class="ep-gray ep-connection__headline">
-				<p style="height:20px;"><%= user.headline.truncate(45) if user.headline.present? %></p>
+				<p style="height:20px;"><%= friend.headline.truncate(45) if friend.headline.present? %></p>
 			</span>
 		</div>
 	</p>
-		<% if current_user %>
-			<% if (current_user.invited_by? user) && (!current_user.friend_with? user) %>
+		<% if user_signed_in? && current_user == user  %>
+			<% if (current_user.invited_by? friend) && (!current_user.friend_with? friend) %>
 				<div class="ep-connection-choice">
-					<%= link_to friendship_path(user), method: :put, remote: true, class: 'ep-approve' do %>
+					<%= link_to friendship_path(friend), method: :put, remote: true, class: 'ep-approve' do %>
 						 <i class="fa fa-plus"></i> Approve
 					<% end %>
 					&nbsp|&nbsp
-					<%= link_to friendship_path(user), method: :delete, remote: true, class: 'ep-deny' do %>
+					<%= link_to friendship_path(friend), method: :delete, remote: true, class: 'ep-deny' do %>
 						<i class="fa fa-minus"></i> Decline
 					<% end %>
 				</div>
-			<% elsif current_user.friend_with? user %>
+			<% elsif (current_user.friend_with? friend) %>
 				<div class="ep-connection-choice">
-					<%= link_to friendship_path(user), method: :delete, remote: true, class: 'ep-deny' do %>
+					<%= link_to friendship_path(friend), method: :delete, remote: true, class: 'ep-deny' do %>
 						<i class="fa fa-minus"></i> Remove
 					<% end %>
 				</div>
