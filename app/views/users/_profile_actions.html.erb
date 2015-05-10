@@ -1,12 +1,19 @@
 <% if !user_signed_in? %>
-  <p><i class="fa fa-plus"></i>&nbsp Sign in to connect with <%= user.first_name %></p>
+  <p><i class="fa fa-plus"></i>&nbsp Sign in to connect</p>
 
 <% elsif current_user == user %>
   <% %>
 
 <% elsif !current_user.connected_with? user %>
-  <p><i class="fa fa-plus"></i>
-    <%= link_to "Become #{user.first_name}'s Connection", friendships_path(id: user.id), method: :post, remote: true, :data => { :confirm => "Send a connection request to #{user.name}?" } %></p>
+  <p class='ep-profile-connection-request'>
+    <i class="fa fa-plus"></i>
+    <%= link_to " Connect",
+      friendships_path(id: user.id),
+      method: :post,
+      class: 'ep-profile-connection-request-link',
+      remote: true,
+      :data => { :confirm => "Send a connection request to #{user.name}?" } %>
+  </p>
 
 <% elsif current_user.friend_with? user %>
   <p><i class="fa fa-plus"></i>&nbsp You are connected to <%= user.first_name %></p>
@@ -28,10 +35,10 @@
 <% else %>
   <% if user_signed_in? %>
     <p data-toggle="modal" data-target=".ep-message-modal">
-      <i class="fa fa-envelope"></i> <a>Send <%= user.first_name %> a message</a>
+      <i class="fa fa-envelope"></i> <a>Send a message</a>
     </p>
   <% else %>
-   <p><i class="fa fa-envelope"></i> Sign in to send <%= user.first_name %> a message</p>
+   <p><i class="fa fa-envelope"></i> Sign in to send a message</p>
   <% end %>
 <% end %>
 <p>
