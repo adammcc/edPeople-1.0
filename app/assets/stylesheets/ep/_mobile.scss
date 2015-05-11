@@ -61,8 +61,14 @@
     padding-top: 5px;
     margin: 36px;
     height: 550px !important;
+    &.ep-signin-signup--signin {
+      height: 350px !important;
+    }
     &.ep-signin-signup--signin-pw {
-      height: 360px !important;
+      height: 380px !important;
+    }
+    &.ep-signin-signup--resend {
+      height: 365px !important;
     }
   }
 

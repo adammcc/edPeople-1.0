@@ -78,13 +78,16 @@
 		margin-bottom: 14px;
 	}
 	&.ep-signin-signup--signin-pw {
-		min-height: 342px !important;
+		min-height: 300px !important;
 	}
 	&.ep-signin-signup--signin {
-		height: 350px;
+		height: 320px;
 	}
 	&.ep-signin-signup--forgot-pw  {
 		height: 260px;
+	}
+	&.ep-signin-signup--resend {
+		height: 320px;
 	}
 }
 

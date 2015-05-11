@@ -24,7 +24,7 @@
   <i class="fa fa-linkedin-square ep-linkedin-icon"></i> Sign in with Linkedin
   <% end %><span>|</span>
 
-  <%- if controller_name != 'sessions' %>
+  <%- if controller_name == 'registrations'%>
     <%= link_to "Create an organization account", "#", class: 'js-create-an-org' %>
     <%= link_to "Create an individual account", "#", class: 'ep-create-a-user js-create-a-user' %>
   <% end %>
