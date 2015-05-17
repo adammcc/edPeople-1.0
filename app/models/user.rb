@@ -203,44 +203,44 @@ class User
       end
     end
 
-    skills = profile.skills.to_hash
-    if skills["all"].present?
-      skills["all"].each do |s|
-        if !user.skills.any? { |skill| skill.name == s["skill"]["name"] }
-          skill = Skill.create(name: s["skill"]["name"])
-          user.skills << skill
-          user.save
-        end
-      end
-    end
+    # skills = profile.skills.to_hash
+    # if skills["all"].present?
+    #   skills["all"].each do |s|
+    #     if !user.skills.any? { |skill| skill.name == s["skill"]["name"] }
+    #       skill = Skill.create(name: s["skill"]["name"])
+    #       user.skills << skill
+    #       user.save
+    #     end
+    #   end
+    # end
 
-    user_educations = user.college_infos.map { |edu| edu.linkedin_id }
-    educations = profile.educations.to_hash
-    if educations["all"].present?
-      educations["all"].each do |e|
-        if !user_educations.include? e["id"].to_s
-          if College.all.any? { |education| education.name == e["school_name"]}
-            college = College.where(name: e["school_name"]).first
-          else
-            college = College.create(name: e["school_name"])
-          end
+    # user_educations = user.college_infos.map { |edu| edu.linkedin_id }
+    # educations = profile.educations.to_hash
+    # if educations["all"].present?
+    #   educations["all"].each do |e|
+    #     if !user_educations.include? e["id"].to_s
+    #       if College.all.any? { |education| education.name == e["school_name"]}
+    #         college = College.where(name: e["school_name"]).first
+    #       else
+    #         college = College.create(name: e["school_name"])
+    #       end
 
-          start_date = e["start_date"]
-          start_date.present? ? start_date_year = start_date["year"] : start_date_year = nil
+    #       start_date = e["start_date"]
+    #       start_date.present? ? start_date_year = start_date["year"] : start_date_year = nil
 
-          end_date = e["end_date"]
-          end_date.present? ? end_date_year = end_date["year"] : end_date_year = nil
+    #       end_date = e["end_date"]
+    #       end_date.present? ? end_date_year = end_date["year"] : end_date_year = nil
 
-          college.college_infos.create( start_date: start_date_year,
-                                        end_date: end_date_year,
-                                        degree_type: e["degree"],
-                                        major: e["field_of_study"],
-                                        user: user,
-                                        linkedin_id: e["id"])
-          user.colleges << college
-        end
-      end
-    end
+    #       college.college_infos.create( start_date: start_date_year,
+    #                                     end_date: end_date_year,
+    #                                     degree_type: e["degree"],
+    #                                     major: e["field_of_study"],
+    #                                     user: user,
+    #                                     linkedin_id: e["id"])
+    #       user.colleges << college
+    #     end
+    #   end
+    # end
   end
 
   def upload_resume_to_s3(user, resume)
