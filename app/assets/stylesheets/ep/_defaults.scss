@@ -82,6 +82,12 @@ body#ep {
 	}
 }
 
+body#ep {
+  &.ep-devise {
+    background-color: $blue-jeans;
+  }
+}
+
 .btn-primary {
   background-color: #96ceb4;
   border-color: #96ceb4;

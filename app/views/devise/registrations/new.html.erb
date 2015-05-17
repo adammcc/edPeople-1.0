@@ -15,15 +15,16 @@
 		</div>
 	</section>
 <% else %>
-	<section class="ep-home-section__one">
-		<div class="container ep-container">
+	<section class="ep-home-section__one ep-home-section__one--home">
+		<div class="ep-home-section__one--bg-image"></div>
+		<div class="container ep-container ep-home-section__one--content">
 			<div class="row">
-				<div class="ep-home-section__row row">
+				<div class="ep-home-section__row ep-home-section__row--one row">
 					<div class="ep-home-section__one-liner col-md-5">
-						<p>edPeople is a free professional networking community for educators in the New York City area.</p>
+						<p><span class="ep-home-section__edpeople">edPeople</span> <span style="color:#E0E0E0">is a free professional networking community for educators in the New York City area.</span></p>
 					</div>
-					<div class="ep-signin-signup js-signin-signup col-md-6 col-md-offset-1">
-						<h2 class="ep-signin-signup__header">Create an account</h2>
+					<div class="ep-signin-signup ep-signin-signup--home js-signin-signup col-md-6 col-md-offset-1">
+						<h2 class="ep-signin-signup__header ep-signin-signup__header--home ep-signin-signup__header--white" style="color:white;">Create an account</h2>
 						<div class="ep-signin-signup__errors">
 					  	<%= devise_error_messages! %>
 					  </div>
@@ -70,7 +71,7 @@
 						<% end %>
 
 						<div class="row">
-							<div class="ep-links col-md-10 col-md-offset-1">
+							<div class="ep-links ep-links--white col-md-10 col-md-offset-1">
 								<%= render "devise/shared/links" %>
 							</div>
 						</div>
@@ -84,56 +85,19 @@
 <section class="ep-home-section__two">
 	<div class="container ep-container">
 		<div class="row">
-			<div class="ep-info-blurb ep-info-blurb__with-margin ep-info-blurb__with-margin-for-mobile col-md-6 col-md-offset-1">
-				<h1>What we are</h1>
+			<div class="ep-info-blurb ep-info-blurb__with-margin ep-info-blurb__with-margin-for-mobile col-md-4">
+				<h2>WHAT WE ARE</h2>
 				<p>edPeople is a free online network for educators. We offer access to people, jobs, and employers and enable members to create and manage their professional identity.</p>
 			</div>
-			<div class="ep-info-blurb ep-info-blurb--first ep-info-blurb__with-margin col-md-2 col-md-offset-1">
-				<i class="fa fa-rocket"></i>
-			</div>
-		</div>
-	</div>
-</section>
 
-<section class="ep-home-section__three">
-	<div class="container ep-container">
-		<div class="row">
-			<div class="ep-info-blurb ep-info-blurb__with-margin col-md-2 col-md-offset-1">
-				<i class="fa fa-laptop"></i>
-			</div>
-			<div class="ep-info-blurb ep-info-blurb__with-margin ep-info-blurb__with-margin-for-mobile col-md-6 col-md-offset-3">
-				<h1>Why we're here</h1>
+			<div class="ep-info-blurb ep-info-blurb__with-margin ep-info-blurb__with-margin-for-mobile col-md-4">
+				<h2>WHY WE'RE HERE</h2>
 				<p>Our mission is to empower educators to build and maximize their professional networks. We want to transform the way educators manage their careers and improve how schools find talent.</p>
 			</div>
-		</div>
-	</div>
-</section>
 
-<section class="ep-home-section__four">
-	<div class="container ep-container">
-		<div class="row">
-			<div class="row">
-				<div class="ep-info-blurb col-md-6 col-md-offset-1">
-					<h1>What we do</h1>
-					<p>Our platform enables educators to connect with one another, build a professional profile and learn about new opportunities. We also allow schools and other employers to advertise jobs and connect with candidates for free.</p>
-				</div>
-				<div class="ep-info-blurb col-md-2 col-md-offset-1">
-					<i class="fa fa-cogs"></i>
-				</div>
-			</div>
-			<div class="row">
-				<div class="ep-info-blurb--small col-md-3">
-					<h3>Build Your Network</h3>
-				</div>
-				<div class="ep-info-blurb--small col-md-3">
-					<h3>Discover Opportunities</h3>
-				</div>
-				<div class="ep-info-blurb--small col-md-3">
-					<h3>Recruit new talent</h3>
-				</div>
-				<div class="ep-info-blurb--small col-md-3">
-					<h3>Exchange Ideas</h3>
-				</div>
+			<div class="ep-info-blurb ep-info-blurb__with-margin ep-info-blurb__with-margin-for-mobile col-md-4">
+				<h2>WHAT WE DO</h2>
+				<p>Our platform enables educators to connect with one another, build a professional profile and learn about new opportunities. We also allow schools and other employers to advertise jobs and connect with candidates for free.</p>
 			</div>
 		</div>
 	</div>

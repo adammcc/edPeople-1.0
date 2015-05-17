@@ -1,53 +1,55 @@
 @import 'config';
 
 %ep-home-section {
-	height: 100%;
-	height:690px;
 	p {
-		font-size: 24px;
+		font-size: 16px;
 	}
 }
 
 .ep-home-section__one {
 	@extend %ep-home-section;
 	background-color: #3BAFDA;
+  height: auto;
+  &.ep-home-section__one--home {
+    background-image: url(green_apple.jpg);
+    background-size: cover;
+    height: 500px;
+  }
 }
 
 .ep-home-section__two {
 	@extend %ep-home-section;
-	background-color: #ecf0f1;
-}
-
-.ep-home-section__three {
-	@extend %ep-home-section;
-	background-color: #96ceb4;
-	color: white;
-}
-
-.ep-home-section__four {
-	@extend %ep-home-section;
-	background-color: #3BAFDA;
-	color: white;
+	background-color: white;
+  height: 360px;
 }
 
 .ep-home-section__row {
-	margin-top: 100px;
+	margin-top: 20px;
 }
 
 .ep-home-section__one-liner {
-	margin-top: 116px;
+	margin-top: 20px;
 	color: white;
 	p {
 		font-size: 34px;
 	}
 }
 
+.ep-home-section__edpeople {
+  font-size: 38px;
+}
+
 .ep-info-blurb {
+  position: relative;
 	margin-top: 120px;
-	line-height: 40px;
+	line-height: 26px;
+  h2 {
+    font-size: 20px;
+  }
 	i {
-		font-size: 250px;
-		color: white;
+    position: absolute;
+		font-size: 24px;
+		color: rgb(52, 73, 94);
 	}
 	&.ep-info-blurb--first {
 		i {
@@ -55,24 +57,27 @@
 		}
 	}
 	&.ep-info-blurb__with-margin {
-		margin-top: 200px;
+		margin-top: 60px;
 	}
 }
 
 .ep-info-blurb--small {
-	margin-top: 100px;
+	margin-top: 50px;
 	line-height: 30px;
 	text-align: center;
 	h3 {
-		font-size: 22px;
+		font-size: 20px;
 	}
 }
 
 .ep-signin-signup {
-	background-color: #ecf0f1;
 	min-height: 333px;
 	margin-top: 8px;
+  background-color: #ecf0f1;
 	z-index: 2;
+  &.ep-signin-signup--home {
+    background-color: rgba(0,0,0,0);
+  }
 	input {
 		height: 54px;
 		margin-bottom: 14px;
@@ -89,11 +94,17 @@
 	&.ep-signin-signup--resend {
 		height: 320px;
 	}
+  &.ep-signin-signup--home {
+    color: rgba(0,0,0,0);
+  }
 }
 
 .ep-signin-signup__header {
 	text-align: center;
   color: #96ceb4;
+  &.ep-signin-signup__header--home {
+    font-size: 34px;
+  }
 }
 
 .ep-signin-signup__errors {
@@ -140,8 +151,8 @@
 
 .ep-signin-signup__submit__linkedin {
 	@extend .ep-signin-signup__submit;
-	background-color: $ep-links;
-	border-color: $ep-links;
+	background-color: #60C0E4;
+	border-color: #60C0E4;
 	height: 54px;
   line-height: 40px;
   a {
@@ -152,8 +163,8 @@
   	}
   }
 	&:hover {
-		border-color: darken($ep-links, 5%);
-    background: darken($ep-links, 5%);
+		border-color: darken(#60C0E4, 5%);
+    background: darken(#60C0E4, 5%);
   }
 }
 
@@ -173,6 +184,12 @@
 .ep-links {
 	margin-top: 5px;
 	margin-bottom: 10px;
+}
+
+.ep-links.ep-links--white {
+  i, a, span {
+    color: white !important;
+  }
 }
 
 input:-webkit-autofill {

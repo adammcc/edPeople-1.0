@@ -76,12 +76,17 @@
     margin-top: 0px;
   }
 
+  .ep-home-section__one {
+    height: 680px !important;
+    background-image: url('') !important;
+  }
+
   .ep-home-section__one--sign-in-pw {
     height: 520px !important;
   }
 
   .ep-home-section__two {
-    height: 490px !important;
+    height: 650px !important;
   }
 
   .ep-home-section__three {
@@ -102,6 +107,16 @@
      margin-top: 40px !important;
   }
 
+  .ep-home-section__edpeople {
+    font-size: 18px !important;
+  }
+
+  .ep-signin-signup__header {
+    &.ep-signin-signup__header--home {
+      font-size: 28px !important;
+    }
+  }
+
   .ep-signin-signup__text-field-small {
     width: 100% !important;
   }
@@ -118,9 +133,6 @@
     }
     &.ep-info-blurb__with-margin {
       margin-top: 0px !important;
-    }
-    &.ep-info-blurb__with-margin-for-mobile {
-      margin-top: 100px !important;
     }
   }
   .ep-info-blurb--small {
