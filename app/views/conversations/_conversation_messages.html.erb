@@ -12,8 +12,8 @@
               <%= hidden_field_tag :convo_id, conversation.id  %>
               <%= hidden_field_tag :in_convo, true  %>
               <%= hidden_field_tag :recipient_id, recipient.id %>
-              <%= f.text_area :note, :class => 'ep-form__text-area ep-form__text-area--mobile', rows: '3', cols: '60' %>
-              <%= f.submit 'Send', class: 'btn btn-primary' %>
+              <%= f.text_area :note, :class => 'ep-form__text-area ep-form__text-area--mobile', rows: '3', cols: '60', :required => true %>
+              <%= f.submit 'Send', data: { disable_with: "Sending..." }, class: 'btn btn-primary' %>
             <% end %>
             <br>
           </div>

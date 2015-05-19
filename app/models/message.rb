@@ -8,4 +8,6 @@ class Message
   belongs_to :conversation
   belongs_to :user
 
+  validates :note, presence: true
+
 end
