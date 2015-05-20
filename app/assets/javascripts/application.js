@@ -16,6 +16,7 @@
 //= require util
 //= require autocomplete-rails
 //= require twitter/bootstrap
+//= require bootstrap-datepicker
 //= require best_in_place
 //= require forms
 //= require_tree .

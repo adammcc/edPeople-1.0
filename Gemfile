@@ -39,6 +39,7 @@ gem 'will_paginate_mongoid'
 gem 'bson_ext'
 gem 'rails_12factor'
 gem 'geocoder', '~> 1.2.8'
+gem 'bootstrap-datepicker-rails', '~> 1.4.0'
 
 
 group :development do
