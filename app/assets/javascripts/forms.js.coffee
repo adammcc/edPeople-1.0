@@ -1,5 +1,6 @@
 $ ->
   $('.ep-datepicker').datepicker()
+  $(".best_in_place").best_in_place();
 
   $('.js-edit-college').click ->
     $(this).closest('.js-college').hide()
