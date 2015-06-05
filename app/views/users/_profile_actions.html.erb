@@ -7,12 +7,9 @@
 <% elsif !current_user.connected_with? user %>
   <p class='ep-profile-connection-request'>
     <i class="fa fa-plus"></i>
-    <%= link_to " Connect",
-      friendships_path(id: user.id),
-      method: :post,
-      class: 'ep-profile-connection-request-link',
-      remote: true,
-      :data => { :confirm => "Send a connection request to #{user.name}?" } %>
+    <span class='ep-profile-connection-request-link ep-link-style' data-toggle="modal" data-target="#ep-confirm__connection-request">
+      Connect
+    </span>
   </p>
 
 <% elsif current_user.friend_with? user %>
@@ -53,7 +50,9 @@
     <span class="ep-edit-resume-options js-edit-resume-options">
       <%= link_to "Download", "https://s3.amazonaws.com/ep-dev-resumes/#{user.id}" %> |
       <a data-toggle="collapse" data-target="#ep-resume__toggle">Update</a> |
-      <%= link_to 'Remove', remove_resume_user_path(user), method: :put, data: {confirm: "Are you sure?"} %> |
+      <span class='ep-link-style' data-toggle="modal" data-target="#ep-confirm__remove-resume">
+        Remove
+      </span> |
       <%= link_to "Cancel", "#", class: 'js-cancel-edit-resume' %>
     </span>
   <% end %>
@@ -96,3 +95,33 @@
   <p class='js-edit-mode'><i class="fa fa-pencil-square"></i><a> Edit my profile</a></p>
   <p class='js-exit-edit-mode js-edit'><i class="fa fa-pencil-square"></i><a> Done Editing</a></p>
 <% end %>
+
+<div id="ep-confirm__connection-request" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content ep-content--send-message">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <div class="modal-header">
+        <h4 class="modal-title modal-title--gray">Connect with <%= @user.name %>?</h4>
+      </div><br>
+      <div class="ep-confirm__btns">
+        <%= link_to "Connect", friendships_path(id: user.id), method: :post, remote: true, class: 'btn btn-primary', data: { dismiss: "modal"} %>
+        <div class="ep-cancel-edit btn btn-default" data-dismiss="modal">cancel</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="ep-confirm__remove-resume" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content ep-content--send-message">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <div class="modal-header">
+        <h4 class="modal-title modal-title--gray">Are you sure you'd like to remve your resume?</h4>
+      </div><br>
+      <div class="ep-confirm__btns">
+        <%= link_to 'Remove', remove_resume_user_path(user), method: :put, class: 'btn btn-primary' %>
+        <div class="ep-cancel-edit btn btn-default" data-dismiss="modal">cancel</div>
+      </div>
+    </div>
+  </div>
+</div>

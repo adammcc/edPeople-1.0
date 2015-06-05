@@ -46,7 +46,11 @@
       <p><%= @user.first_name %>'s profile is private. <br> To view it, <%= link_to "sign in", new_session_path(@user) %> or <%= link_to "create", new_registration_path(@user) %> an account</p>
     <% elsif @user.privacy_setting == 'only_connections' %>
       <% if user_signed_in? %>
-        <p><%= @user.first_name %>'s profile is private. <br> To view it, <%= link_to "become #{@user.first_name}'s connection.", friendships_path(id: @user.id), method: :post, remote: true, :data => { :confirm => "Send a connection request to #{@user.name}?" } %></p>
+        <p><%= @user.first_name %>'s profile is private. <br> To view it,
+          <span class='ep-profile-connection-request-link ep-link-style' data-toggle="modal" data-target="#ep-confirm__connection-request">
+            become #{@user.first_name}'s connection.
+          </span>
+        </p>
       <% else %>
         <p><%= @user.first_name %>'s profile is private. <br> To view it, <%= link_to "sign in", new_session_path(@user) %> or <%= link_to "create", new_registration_path(@user) %> an account</p>
       <% end %>
@@ -65,6 +69,22 @@
         <%= f.text_area :note, :class => 'ep-form__text-area', rows: '3', cols: '50' %>
         <%= f.submit 'Send', class: 'btn btn-primary' %>
       <% end %>
+    </div>
+  </div>
+</div>
+
+<div id="ep-confirm__connection-request" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content ep-content--send-message">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <div class="modal-header">
+        <h4 class="modal-title modal-title--gray">Connect with <%= @user.name %>?</h4>
+      </div><br>
+      <div class="ep-confirm__btns">
+        <%#= link_to "Connect", friendships_path(id: @user.id), method: :post, remote: true, class: 'btn btn-primary', data: { dismiss: "modal"} %>
+        <%= link_to "Connect", friendships_path(id: @user.id), method: :post, remote: true, class: 'btn btn-primary', data: { dismiss: "modal"} %>
+        <div class="ep-cancel-edit btn btn-default" data-dismiss="modal">cancel</div>
+      </div>
     </div>
   </div>
 </div>
