@@ -57,6 +57,19 @@
   <%= yield %>
 </div>
 
+<%# Notices/Alerts %>
+<div id="js-notification" class="ep-notification alert fade"></div>
+<% if notice.to_s.present? %>
+  <script type="ep/notification" id="js-notice-content">
+    <%= notice.to_s %>
+  </script>
+<% end %>
+<% if alert.to_s.present? %>
+  <script type="ep/notification" id="js-alert-content">
+    <%= alert.to_s %>
+  </script>
+<% end %>
+
 <div class="footer footer--sessions">
   <%= render partial: 'layouts/footer' %>
 </div>

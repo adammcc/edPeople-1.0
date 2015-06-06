@@ -91,6 +91,9 @@
 	&.ep-signin-signup--forgot-pw  {
 		height: 260px;
 	}
+  &.ep-signin-signup--change-pw {
+    min-height: 366px;
+  }
 	&.ep-signin-signup--resend {
 		height: 320px;
 	}
