@@ -61,11 +61,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     name = params[:user][:name]
-
-    if params[:user][:password].blank? && params[:user][:dont_show_add_password_page].blank?
-      params[:user].delete(:password).delete(:password_confirmation)
-      params[:user].delete(:password_confirmation)
-    end
+    headline = params[:user][:headline]
 
     if name.present?
       if @user.update_name(params[:user][:name])
@@ -74,7 +70,19 @@ class UsersController < ApplicationController
         flash[:alert] =  "Error!"
       end
       render nothing: true
+    elsif headline.present?
+      if @user.update_attributes(params[:user][:headline])
+        flash[:notice] =  "Saved!"
+      else
+        flash[:alert] =  "Error!"
+      end
+      render nothing: true
     else
+      if params[:user][:password].blank? && params[:user][:dont_show_add_password_page].blank?
+        params[:user].delete(:password)
+        params[:user].delete(:password_confirmation)
+      end
+
       if @user.update_attributes(params[:user])
         if params[:user][:password].present?
           sign_in(@user, :bypass => true)
