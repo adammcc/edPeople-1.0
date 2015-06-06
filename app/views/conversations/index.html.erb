@@ -1,8 +1,19 @@
 <div class="row-fluid"><br><br><br><br>
   <div class="ep-search col-md-3 white-bg">
-    <h3>Inbox</h3>
+    <% if @trash %>
+      <h3><%= link_to 'Back to inbox', user_conversations_path(current_user) %></h3>
+    <% else %>
+      <h3>Inbox</h3>
+    <% end %>
+
     <%= form_tag user_conversations_path, method: :get, remote: true, class: 'js-search-form' do %>
-      <%= text_field_tag 'search', @search_term, placeholder: 'Search messages...', class: "js-search-form__text-field" %>
+      <%= text_field_tag 'search', @search_term, placeholder: 'Search conversations...', class: "js-search-form__text-field" %>
+    <% end %>
+    <br>
+    <% if !@trash %>
+      <%= link_to user_conversations_path(current_user, trash: true) do %>
+        <i class="fa fa-trash-o"></i> Trash
+      <% end %>
     <% end %>
   </div>
 

@@ -22,7 +22,11 @@ Ep::Application.routes.draw do
     end
 
     authenticate :user do
-      resources :conversations
+      resources :conversations do
+        member do
+          put :restore
+        end
+      end
     end
   end
 

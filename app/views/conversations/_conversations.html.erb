@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h3>Conversations (<%= conversations.count %>)</h3>
+  <h3><%= @trash ? 'Trash'  : 'Conversations' %> (<%= conversations.count %>)</h3>
   <p class='pull-right'><%= "Unread messages (#{ @unread_messages_count })" if @unread_messages_count > 0 %></p>
   <% if @unread_messages_count > 0 %>
     <br>
@@ -30,7 +30,11 @@
                   <%= h(convo.messages.last.note.truncate(120)).gsub(/\n/, '<br/>').html_safe %>
                 </p>
               </div>
-              <a href="<%= user_conversation_path(@user, convo) %>" class="ep-view-convo pull-right btn btn-default">View</a>
+              <% if @trash %>
+                <%= link_to 'Restore', restore_user_conversation_path(@user, convo), method: :put, class: 'ep-view-convo pull-right btn btn-default' %>
+              <% else %>
+                <a href="<%= user_conversation_path(@user, convo) %>" class="ep-view-convo pull-right btn btn-default">View</a>
+              <% end %>
             </div>
           </td>
         </tr>
