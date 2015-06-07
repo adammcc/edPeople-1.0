@@ -155,6 +155,9 @@ a.ep-index__connect {
     color: $blue-jeans;
     cursor: pointer;
   }
+  &.ep-index__info-right--small {
+    width: 150px;
+  }
 }
 
 .ep-index__photo {

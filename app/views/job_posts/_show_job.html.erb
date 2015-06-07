@@ -28,7 +28,7 @@
     <% end %>
 
     <% if job.org_website %>
-      | <span><%= link_to 'Website', "http://#{job.org_website}" %></span>
+      | <span><%= link_to 'Website', "http://#{job.org_website}", target: '_blank' %></span>
     <% end %>
 
     <span class="pull-right ep-gray" style="font-size:12px;">
