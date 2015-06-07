@@ -5,17 +5,17 @@
 
       <%= text_field_tag 'search', @search_term, placeholder: 'Search people...', class: "js-search-form__text-field" %>
 
-      <h4>Filter by role</h4>
-      <% @roles.each do |role| %>
-        <%= check_box_tag 'filter_by_roles[]', role.id, false, class: 'js-search-form__check-box' %>
-        <%= label_tag 'filter_by_role', role.name, class: 'ep-filter-label' %><br>
-      <% end %>
+     <!--  <h4>Filter by role</h4>
+      <%# @roles.each do |role| %>
+        <%#= check_box_tag 'filter_by_roles[]', role.id, false, class: 'js-search-form__check-box' %>
+        <%#= label_tag 'filter_by_role', role.name, class: 'ep-filter-label' %><br>
+      <%# end %>
 
       <h4>Filter by subject</h4>
-      <% @subjects.each do |subject| %>
-        <%= check_box_tag 'filter_by_subjects[]', subject.id, false, class: 'js-search-form__check-box' %>
-        <%= label_tag 'filter_by_subjects', subject.name, class: 'ep-filter-label'  %><br>
-      <% end %>
+      <%# @subjects.each do |subject| %>
+        <%#= check_box_tag 'filter_by_subjects[]', subject.id, false, class: 'js-search-form__check-box' %>
+        <%#= label_tag 'filter_by_subjects', subject.name, class: 'ep-filter-label'  %><br>
+      <%# end %> -->
 
     <% end %>
   </div>
