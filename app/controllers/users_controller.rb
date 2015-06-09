@@ -86,7 +86,7 @@ class UsersController < ApplicationController
       if @user.update_attributes(params[:user])
         if params[:user][:password].present?
           sign_in(@user, :bypass => true)
-          @user.set(has_linkedin_account: false)
+          @user.set(added_password: true)
         end
         flash[:notice] = "Saved!"
         redirect_to user_path(@user)

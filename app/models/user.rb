@@ -71,6 +71,7 @@ class User
   field :provider,    type: String
   field :uid,         type: String
   field :has_linkedin_account, type: Boolean, default: false
+  field :added_password, type: Boolean, default: false
 
   has_and_belongs_to_many :colleges
   has_many :college_infos
