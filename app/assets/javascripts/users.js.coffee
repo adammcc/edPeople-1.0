@@ -61,6 +61,9 @@ $ ->
 	), ->
 	  $('.ep-change-image.js-edit').hide()
 
+	if $('#js-show-add-password-form').length
+		$("#ep-confirm__add_password").modal('show');
+
 @imgError = (image) ->
   image.onerror = ""
   image.src = "/assets/missing_user.png"

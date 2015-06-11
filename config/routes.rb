@@ -22,7 +22,6 @@ Ep::Application.routes.draw do
       put :add_avatar
       put :add_resume
       put :remove_resume
-      get :add_password
       get :my_jobs
     end
 
