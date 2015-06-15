@@ -20,7 +20,11 @@ $('.js-delete').click ->
     $(this).parent().hide()
 
 $('.js-edit').show()
-$('.ep-datepicker').datepicker()
+$('.ep-datepicker').datepicker({
+  format: "mm/yyyy",
+  startView: "months",
+  minViewMode: "months"
+})
 
 <% if flash[:notice] %>
 _ep.notify.success("<%= flash[:notice] %>")

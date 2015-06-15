@@ -20,7 +20,11 @@ $('.js-delete').click ->
     $(this).parent().hide()
 
 $('.js-edit').show()
-$('.ep-datepicker').datepicker()
+$('.ep-datepicker').datepicker({
+  format: "mm/yyyy",
+  startView: "months",
+  minViewMode: "months"
+})
 
 $('.autocomplete_field').on 'autocompleteresponse', (event, ui) ->
   $(this).autocomplete('close') if ui.content?[0].id.length == 0

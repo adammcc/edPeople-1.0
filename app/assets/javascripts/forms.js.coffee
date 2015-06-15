@@ -1,5 +1,10 @@
 $ ->
-  $('.ep-datepicker').datepicker()
+  $('.ep-datepicker').datepicker({
+    format: "mm/yyyy",
+    startView: "months",
+    minViewMode: "months"
+  })
+
   $(".best_in_place").best_in_place();
 
   $('.js-edit-college').click ->
