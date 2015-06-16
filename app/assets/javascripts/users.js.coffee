@@ -48,6 +48,7 @@ $ ->
 
 	$('.js-cancel-edit-resume').click ->
 		$('.js-edit-resume-options').hide()
+		$('.js-edit-form--file-upload').removeClass('in')
 
 	$('.js-exit-edit-mode').click ->
 		$('.js-edit-mode').show()
@@ -74,4 +75,30 @@ $ ->
   image.src = "/assets/missing_org.png"
   $('.ep-change-image').show()
 
+
+_ep.validateResumeFile = (inputFile) ->
+  maxExceededMessage = 'This file exceeds the maximum allowed file size (5 MB)'
+  extErrorMessage = 'Only files with extensions .doc, .docx, .pdf or .txt are allowed'
+  allowedExtension = [
+    'doc'
+    'docx'
+    'pdf'
+  ]
+  extName = undefined
+  maxFileSize = $(inputFile).data('max-file-size')
+  sizeExceeded = false
+  extError = false
+  $.each inputFile.files, ->
+    if @size and maxFileSize and @size > parseInt(maxFileSize)
+      sizeExceeded = true
+    extName = @name.split('.').pop()
+    if $.inArray(extName, allowedExtension) == -1
+      extError = true
+
+  if sizeExceeded
+    window.alert maxExceededMessage
+    $(inputFile).val ''
+  if extError
+    window.alert extErrorMessage
+    $(inputFile).val ''
 

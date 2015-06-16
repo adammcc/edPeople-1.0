@@ -130,10 +130,16 @@ class UsersController < ApplicationController
   def add_resume
     user = User.find(params[:id])
     if !params[:resume].nil?
+      accepted_formats = [".doc", ".docx", ".pdf", ".txt"]
       resume = params[:resume]
-      user.upload_resume_to_s3(user, resume)
-      user.has_resume = true
-      user.save
+
+      if accepted_formats.include? File.extname(resume.original_filename)
+        user.upload_resume_to_s3(user, resume)
+        user.has_resume = true
+        user.save
+      else
+        flash[:notice] = "Only files with extensions .doc, .docx, .pdf or .txt are allowed"
+      end
     end
 
     redirect_to :back

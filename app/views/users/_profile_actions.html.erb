@@ -48,7 +48,7 @@
     <% end %>
     <br>
     <span class="ep-edit-resume-options js-edit-resume-options">
-      <%= link_to "Download", "https://s3.amazonaws.com/ep-dev-resumes/#{user.id}" %> |
+      <%= link_to "Download", "https://s3.amazonaws.com/ep-dev-resumes/#{user.id}", target: "_blank" %> |
       <a data-toggle="collapse" data-target="#ep-resume__toggle">Update</a> |
       <span class='ep-link-style' data-toggle="modal" data-target="#ep-confirm__remove-resume">
         Remove
@@ -74,7 +74,12 @@
           </span>
 
           <div>
-            <%= file_field_tag :resume, "data-filename-placement"=> "inside", class: "ep-resume__file-field js-resume__file-field" %>
+            <%= file_field_tag :resume,
+              :onchange => "_ep.validateResumeFile(this);",
+              :data => { :max_file_size => 5.megabytes },
+              "data-filename-placement"=> "inside",
+              class: "ep-resume__file-field js-resume__file-field" %>
+
             <%= f.submit "Upload", class: "btn btn-primary" %>
           </div>
         <% end %>
