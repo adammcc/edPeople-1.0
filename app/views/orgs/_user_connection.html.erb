@@ -10,7 +10,7 @@
       <%= link_to 'Decline', friendship_path(user), method: :delete, remote: true, class: 'ep-deny ep-index__info-right'%>
     </div>
   <% else %>
-     <span class='ep-index__connect ep-index__info-right ep-link-style' data-toggle="modal" data-target="#ep-confirm__connection-request-<%= user.id %>">
+    <span class='ep-index__connect ep-index__info-right ep-link-style' data-toggle="modal" data-target="#ep-confirm__connection-request-<%= user.id %>">
       Connect
     </span>
   <% end %>
