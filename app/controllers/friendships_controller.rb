@@ -5,7 +5,10 @@ class FriendshipsController < ApplicationController
     @friend = User.find(params[:id])
 
     if @user.invite @friend
-       EpMailer.friend_invitation(@friend, @user).deliver if @friend.allows_friend_request_email
+      flash[:notice] = "Request sent."
+      EpMailer.friend_invitation(@friend, @user).deliver if @friend.allows_friend_request_email
+    else
+      flash[:notice] = "Error"
     end
   end
 
