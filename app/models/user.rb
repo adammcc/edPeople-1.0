@@ -107,6 +107,18 @@ class User
 
   validates_presence_of :first_name, :last_name, :email
 
+  def self.users_with_info
+    all_users = User.where(as_org: false)
+    users_with_info = []
+    all_users.shuffle.each do |user|
+      if user.has_profile_info && user.has_profile_image?
+        users_with_info << user
+        break if users_with_info.count == 4
+      end
+    end
+    return users_with_info
+  end
+
   def name
     if as_org
       org.name
@@ -303,6 +315,14 @@ class User
 
   def is_admin?
     self.roles.where(name: 'Administrator').any?
+  end
+
+  def has_profile_info
+    experiences.present? ||
+    college_infos.present? ||
+    certs.present? ||
+    skills.present? ||
+    friends.present?
   end
 end
 

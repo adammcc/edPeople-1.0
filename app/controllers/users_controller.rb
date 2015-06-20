@@ -43,6 +43,10 @@ class UsersController < ApplicationController
     @roles = Role.all
     @subjects = Subject.all
     @suggestions = Ep::Lib.get_suggestions(@user)
+
+    if !@user.has_profile_info
+      @other_people_that_have_info = User.users_with_info
+    end
   end
 
   def new

@@ -4,34 +4,60 @@
   		<div class="col-md-12">
   			<%= render partial: 'profile_header' %>
   		</div>
-  		<div class="col-md-7">
-  			<div class="ep-profile-section ep-profile-section--experience  white-bg">
-  				<%= render partial: 'experience', locals: { user: @user, experiences: @experiences } %>
-  			</div>
 
-  			<div class="ep-profile-section ep-profile-section--education white-bg">
-  				<%= render partial: 'education', locals: { colleges: @colleges, user: @user } %>
-  			</div>
-  		</div>
+      <% if @user.has_profile_info %>
+    		<div class="col-md-7">
+          <% if @user == current_user || @experiences.present? %>
+      			<div class="ep-profile-section ep-profile-section--experience  white-bg">
+      				<%= render partial: 'experience', locals: { user: @user, experiences: @experiences } %>
+      			</div>
+          <% end %>
 
-  		<div class="col-md-5">
-        <% if @user == current_user || @user.certs.present? %>
-          <div class="ep-profile-section ep-profile-section--cert white-bg">
-            <%= render partial: 'certs', locals: { user: @user } %>
-          </div>
-        <% end %>
+          <% if @user == current_user || @user.college_infos.present? %>
+      			<div class="ep-profile-section ep-profile-section--education white-bg">
+      				<%= render partial: 'education', locals: { colleges: @colleges, user: @user } %>
+      			</div>
+          <% end %>
+    		</div>
 
-  			<div class="ep-profile-section ep-profile-section--skill white-bg">
-  				<%= render partial: 'skills', locals: { user: @user } %>
-  			</div>
+    		<div class="col-md-5">
+          <% if @user == current_user || @user.certs.present? %>
+            <div class="ep-profile-section ep-profile-section--cert white-bg">
+              <%= render partial: 'certs', locals: { user: @user } %>
+            </div>
+          <% end %>
 
-        <% if @user.friends.present? || @user == current_user %>
-          <div class="ep-profile-section js-profile-section--connections white-bg">
-	          <%= render partial: 'connections/connections', locals: { user: @user, suggestions: @suggestions } %>
-          </div>
-        <% end %>
-  		</div>
-  	</div>
+          <% if @user == current_user || @user.skills.present? %>
+      			<div class="ep-profile-section ep-profile-section--skill white-bg">
+      				<%= render partial: 'skills', locals: { user: @user } %>
+      			</div>
+          <% end %>
+
+          <% if @user.friends.present? || @user == current_user %>
+            <div class="ep-profile-section js-profile-section--connections white-bg">
+  	          <%= render partial: 'connections/connections', locals: { user: @user, suggestions: @suggestions } %>
+            </div>
+          <% end %>
+    		</div>
+      <% else %>
+        <div class="ep-no-profile-message">
+          <p><strong><%= @user.first_name %></strong> has no profile information yet. <br> You may want to check out these profiles:</p>
+        </div>
+        <div class="col-md-8 col-md-offset-2 ep-profile-header white-bg">
+          <br>
+          <% @other_people_that_have_info.each do |user| %>
+            <%= link_to user_path(user) do %>
+              <div class="ep-other-person-with-info col-md-3">
+                <div class="ep-index__photo">
+                  <%= user_image(user, 'medium', '120', '120') %>
+                </div><br>
+                <div class="ep-other-person-with-info__name"><%= user.name.truncate(18)  %></div>
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
   </div>
 <% else %>
   <div class="col-md-12 ep-main-container">
