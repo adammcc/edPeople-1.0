@@ -7,7 +7,7 @@
         </div>
         <div class="ep-index__meta">
           <% if org_user.org.present? %>
-            <p><%= link_to org_user.org.name, org_path(org_user) %></p>
+            <p class="ep-index__meta--name"><%= link_to org_user.org.name, org_path(org_user) %></p>
           <% end %>
           <p class="ep-index__meta-content">
             <%= org_user.org.borough %><br>

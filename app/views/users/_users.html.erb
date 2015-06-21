@@ -6,7 +6,7 @@
           <%= user_image(user, 'thumb', '50', '50') %>
         </div>
         <div class="ep-index__meta">
-          <p><%= link_to user.name, user_path(user) %></p>
+          <p class="ep-index__meta--name"><%= link_to user.name, user_path(user) %></p>
           <p><%= user.headline %></p>
           <p class="ep-index__meta-content">
             <% user.roles.each_with_index do |role, i| %>
