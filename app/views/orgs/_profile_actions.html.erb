@@ -29,7 +29,12 @@
 
 <% if user_signed_in? %>
   <% if current_user == org_user %>
-    <p><i class="fa fa-envelope"></i> <%= link_to 'Messages', user_conversations_path(org_user) %></p>
+    <p>
+      <i class="fa fa-envelope"></i> <%= link_to 'Messages', user_conversations_path(org_user) %>
+      <% if @unread_messages_count > 0 %>
+        <span class="ep-unread-messages-alert"><%= "#{@unread_messages_count}" %></span>
+      <% end %>
+    </p>
   <% else %>
     <p data-toggle="modal" data-target=".ep-message-modal">
       <i class="fa fa-envelope"></i>&nbsp<a>Send a message</a>

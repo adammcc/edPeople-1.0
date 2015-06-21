@@ -28,7 +28,12 @@
 <% end %>
 
 <% if current_user == user %>
-  <p><i class="fa fa-envelope"></i> <%= link_to 'My messages', user_conversations_path(user) %></p>
+  <p>
+    <i class="fa fa-envelope"></i> <%= link_to 'My messages', user_conversations_path(user) %>
+    <% if @unread_messages_count > 0 %>
+      <span class="ep-unread-messages-alert"><%= "#{@unread_messages_count}" %></span>
+    <% end %>
+  </p>
 <% else %>
   <% if user_signed_in? %>
     <p data-toggle="modal" data-target=".ep-message-modal">

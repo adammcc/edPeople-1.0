@@ -44,6 +44,9 @@ class UsersController < ApplicationController
     @subjects = Subject.all
     @suggestions = Ep::Lib.get_suggestions(@user)
 
+    @conversations = @user.conversations.where(removed_for_ids: { '$nin' => [current_user.id.to_s] })
+    @unread_messages_count = @user.unread_messages_count(@conversations)
+
     if !@user.has_profile_info
       @other_people_that_have_info = User.users_with_info
     end

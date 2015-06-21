@@ -21,13 +21,13 @@
                 <% end %>
               </div>
               <div class="ep-index__meta">
-                <p class="<%= convo.messages.last.viewed_by_ids.include?(@user.id) ? '' : 'ep-bold' %>">
+                <p class="<%= convo.messages.last.viewed_by_ids.include?(@user.id) ? '' : 'ep-bold'  if convo.messages.present? %>">
                   <% if user %>
                     <%= link_to user.name, user_path(user) %>
                   <% end %>
                 </p>
-                <p class="<%= convo.messages.last.viewed_by_ids.include?(@user.id) ? '' : 'ep-bold' %>">
-                  <%= h(convo.messages.last.note.truncate(120)).gsub(/\n/, '<br/>').html_safe %>
+                <p class="<%= convo.messages.last.viewed_by_ids.include?(@user.id) ? '' : 'ep-bold' if convo.messages.present? %>">
+                  <%= h(convo.messages.last.note.truncate(120)).gsub(/\n/, '<br/>').html_safe if convo.messages.present? %>
                 </p>
               </div>
               <% if @trash %>
