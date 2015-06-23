@@ -34,8 +34,11 @@ class OrgsController < ApplicationController
       @org = current_user.org
     end
     @suggestions = User.where(as_org: true).shuffle.first(3)
-    @conversations = @org_user.conversations.where(removed_for_ids: { '$nin' => [current_user.id.to_s] })
-    @unread_messages_count = @org_user.unread_messages_count(@conversations)
+
+    if current_user
+      @conversations = @org_user.conversations.where(removed_for_ids: { '$nin' => [current_user.id.to_s] })
+      @unread_messages_count = @org_user.unread_messages_count(@conversations)
+    end
   end
 
   def update
