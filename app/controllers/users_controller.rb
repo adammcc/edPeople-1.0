@@ -79,35 +79,21 @@ class UsersController < ApplicationController
         flash[:alert] =  "Error!"
       end
       render nothing: true
-    elsif headline.present?
-      if @user.update_attributes(params[:user][:headline])
-        flash[:notice] =  "Saved!"
-      else
-        flash[:alert] =  "Error!"
+    elsif @user.update_attributes(params[:user].delete_if { |k, v| v.empty? })
+      if params[:user][:password].present?
+        sign_in(@user, :bypass => true)
+        @user.set(added_password: true)
       end
-      render nothing: true
+      flash[:notice] = "Saved!"
+      respond_to do |format|
+        format.html { redirect_to user_path(@user) }
+        format.json { render nothing: true }
+      end
     else
-      if params[:user][:password].blank? && params[:user][:dont_show_add_password_page].blank?
-        params[:user].delete(:password)
-        params[:user].delete(:password_confirmation)
-      end
-
-      if @user.update_attributes(params[:user])
-        if params[:user][:password].present?
-          sign_in(@user, :bypass => true)
-          @user.set(added_password: true)
-        end
-        flash[:notice] = "Saved!"
-        respond_to do |format|
-          format.html { redirect_to user_path(@user) }
-          format.js
-        end
-      else
-        flash[:alert] = @user.errors.full_messages
-        respond_to do |format|
+      flash[:alert] = @user.errors.full_messages
+      respond_to do |format|
         format.html { redirect_to :back }
-        format.js
-        end
+        format.json { render nothing: true }
       end
     end
   end
