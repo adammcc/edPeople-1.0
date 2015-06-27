@@ -57,31 +57,6 @@
   <%= yield %>
 </div>
 
-<%# Notices/Alerts %>
-<div id="js-notification" class="ep-notification alert fade"></div>
-<% if notice.to_s.present? %>
-  <script type="ep/notification" id="js-notice-content">
-     <% if notice.class == Array %>
-      <% notice.each do |note| %>
-        <%= note.to_s.html_safe %>
-      <% end %>
-    <% else %>
-      <%= notice.to_s.html_safe %>
-    <% end %>
-  </script>
-<% end %>
-<% if alert.to_s.present? %>
-  <script type="ep/notification" id="js-alert-content">
-     <% if alert.class == Array %>
-      <% alert.each do |note| %>
-        <%= note.to_s.html_safe %>
-      <% end %>
-    <% else %>
-      <%= alert.to_s.html_safe %>
-    <% end %>
-  </script>
-<% end %>
-
 <div class="footer footer--sessions">
   <%= render partial: 'layouts/footer' %>
 </div>
