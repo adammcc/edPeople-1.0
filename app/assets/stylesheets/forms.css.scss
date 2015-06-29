@@ -72,16 +72,28 @@ input, textarea {
 	position: relative;
 	overflow: hidden;
 	margin: 10px 0px;
-	width: 75px;
+	// width: 75px;
 }
 
-.ep-profile-image__file-field, .ep-resume__file-field {
+%ep-file-field {
 	position: absolute;
 	font-size: 20px;
 	cursor: pointer;
 	z-index: -1;
 	opacity: 0;
 	filter: alpha(opacity=0);
+}
+
+.ep-profile-image__file-field {
+	@extend %ep-file-field;
+	left: -50px;
+	bottom: 44px;
+}
+
+.ep-resume__file-field {
+	@extend %ep-file-field;
+	right: 0px;
+	bottom: 133px;
 }
 
 .ui-autocomplete {

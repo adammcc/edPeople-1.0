@@ -70,22 +70,22 @@
           Upload your resume
         </a>
       <% end %>
-
-      <div id="ep-resume__toggle" class="js-edit-form--file-upload collapse">
+      <div id="ep-resume__toggle" class="js-edit-form--file-upload js-resume-uploader-container collapse">
         <%= form_for user, :url => add_resume_user_path(user), :html => { method: :put, :multipart => true } do |f| %><br>
 
           <span class="ep-resume__placeholder">
-            <input class="ep-resume__placeholder-input" placeholder="Choose File" disabled="disabled" />
+            <input class="ep-resume__placeholder-input js-file-upload__placeholder-input" placeholder="Choose File" disabled="disabled" />
           </span>
-
-          <div>
-            <%= file_field_tag :resume,
+          <%= file_field_tag :resume,
               :onchange => "_ep.validateResumeFile(this);",
               :data => { :max_file_size => 5.megabytes },
               "data-filename-placement"=> "inside",
-              class: "ep-resume__file-field js-resume__file-field" %>
-
-            <%= f.submit "Upload", class: "btn btn-primary" %>
+              class: "ep-resume__file-field js-resume__file-field js-file-upload__file-field",
+              required: true %>
+          <div>
+            <br>
+            <%= f.submit "Upload", class: "btn btn-primary js-file-upload__submit", disabled: true %>
+            <%= content_tag :div, 'Cancel', class: 'btn btn-default', :data => { toggle: "collapse", target: "#ep-resume__toggle" } %>
           </div>
         <% end %>
       </div>

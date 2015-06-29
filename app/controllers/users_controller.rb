@@ -113,10 +113,15 @@ class UsersController < ApplicationController
   def add_avatar
     user = User.find(params[:id])
     if params[:user].present?
+      accepted_formats = [".jpg", ".tif", ".png", ".gif"]
       avatar = params[:user][:avatar]
 
-      user.avatar = avatar
-      user.save
+      if accepted_formats.include? File.extname(avatar.original_filename)
+        user.avatar = avatar
+        user.save
+      else
+        flash[:notice] = "Only files with extensions .jpg  .png .tif or .gif are allowed"
+      end
     end
 
     redirect_to :back

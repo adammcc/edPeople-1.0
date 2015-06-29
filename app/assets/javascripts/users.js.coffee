@@ -77,28 +77,45 @@ $ ->
 
 
 _ep.validateResumeFile = (inputFile) ->
+  $container = $('.js-resume-uploader-container')
   maxExceededMessage = 'This file exceeds the maximum allowed file size (5 MB)'
   extErrorMessage = 'Only files with extensions .doc, .docx, .pdf or .txt are allowed'
-  allowedExtension = [
-    'doc'
-    'docx'
-    'pdf'
-  ]
+  allowedExtension = ['doc', 'docx', 'pdf']
+  validationFinisher(inputFile, $container, maxExceededMessage, allowedExtension, extErrorMessage)
+
+_ep.validateProfileImageFile = (inputFile) ->
+  $container = $('.js-profile-image-uploader-container ')
+  maxExceededMessage = 'This file exceeds the maximum allowed file size (5 MB)'
+  extErrorMessage = 'Only files with extensions .jpg  .png .tif or .gif are allowed'
+  allowedExtension = ["jpg", "tif", "png", "gif"]
+  validationFinisher(inputFile, $container, maxExceededMessage, allowedExtension, extErrorMessage)
+
+
+validationFinisher = (inputFile, $container, maxExceededMessage, allowedExtension, extErrorMessage) ->
   extName = undefined
   maxFileSize = $(inputFile).data('max-file-size')
   sizeExceeded = false
   extError = false
   $.each inputFile.files, ->
-    if @size and maxFileSize and @size > parseInt(maxFileSize)
-      sizeExceeded = true
-    extName = @name.split('.').pop()
-    if $.inArray(extName, allowedExtension) == -1
-      extError = true
+      if @size and maxFileSize and @size > parseInt(maxFileSize)
+        sizeExceeded = true
+      extName = @name.split('.').pop()
+      if $.inArray(extName, allowedExtension) == -1
+        extError = true
+      else
+        $container.find('.js-file-upload__placeholder-input').prop('placeholder', @name);
 
-  if sizeExceeded
-    window.alert maxExceededMessage
-    $(inputFile).val ''
-  if extError
-    window.alert extErrorMessage
-    $(inputFile).val ''
+    if !sizeExceeded && !extError
+      $container.find('.js-file-upload__submit').prop('disabled', false);
+
+    if sizeExceeded
+      _ep.notify.failure(maxExceededMessage)
+      $container.find('.js-file-upload__submit').prop('disabled', true);
+      $container.find('.js-file-upload__placeholder-input').prop('placeholder', 'Choose File');
+      $container.find(inputFile).val ''
+    if extError
+      _ep.notify.failure(extErrorMessage)
+      $container.find('.js-file-upload__submit').prop('disabled', true);
+      $container.find('.js-file-upload__placeholder-input').prop('placeholder', 'Choose File');
+      $container.find(inputFile).val ''
 
