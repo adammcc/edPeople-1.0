@@ -87,7 +87,7 @@ _ep.validateProfileImageFile = (inputFile) ->
   $container = $('.js-profile-image-uploader-container ')
   maxExceededMessage = 'This file exceeds the maximum allowed file size (5 MB)'
   extErrorMessage = 'Only files with extensions .jpg  .png .tif or .gif are allowed'
-  allowedExtension = ["jpg", "tif", "png", "gif"]
+  allowedExtension = ["jpg", "JPG", "tif", "TIF", "png", "PNG", "gif", "GIF"]
   validationFinisher(inputFile, $container, maxExceededMessage, allowedExtension, extErrorMessage)
 
 
