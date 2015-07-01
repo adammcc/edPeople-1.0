@@ -1,0 +1,20 @@
+<div id="ep-profile-image__toggle" class="js-edit-form--file-upload js-profile-image-uploader-container collapse">
+  <%= form_for user, :url => add_avatar_user_path(user), :html => { :method => "put", :multipart => true } do |f| %><br>
+
+    <span class="ep-profile-image__placeholder">
+      <input class="ep-profile-image__placeholder-input js-file-upload__placeholder-input" placeholder="Choose File" disabled="disabled" />
+    </span>
+
+    <div class="ep-profile-image__upload-fields">
+      <%= f.file_field :avatar,
+        :onchange => "_ep.validateProfileImageFile(this);",
+        :data => { :max_file_size => 5.megabytes },
+        "data-filename-placement"=> "inside",
+        class: "ep-profile-image__file-field js-file-upload__file-field js-profile-image__file-field",
+        required: true %>
+
+      <%= f.submit "Upload", class: "btn btn-primary js-file-upload__submit", disabled: true  %>
+      <%= content_tag :div, 'Cancel', class: 'btn btn-default', :data => { toggle: "collapse", target: "#ep-profile-image__toggle" } %>
+    </div>
+  <% end %>
+</div>

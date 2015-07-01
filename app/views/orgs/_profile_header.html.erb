@@ -6,21 +6,10 @@
 				<%= user_image(org_user, 'medium', '120', '120') %>
 			 	<% if org_user == current_user %>
 					<div class="ep-profile-image__uploader-container">
-						<a class="js-edit" data-toggle="collapse" data-target="#ep-profile-image__toggle">Change image</a>
-
-						<div id="ep-profile-image__toggle" class="js-edit-form--file-upload collapse">
-							<%= form_for org_user, :url => add_avatar_user_path(org_user), :html => { :method => "put", :multipart => true } do |f| %><br>
-
-								<span class="ep-profile-image__placeholder">
-									<input class="ep-profile-image__placeholder-input" placeholder="Choose File" disabled="disabled" />
-								</span>
-
-								<div class="ep-profile-image__upload-fields">
-								  <%= f.file_field :avatar, "data-filename-placement"=> "inside", class: "ep-profile-image__file-field js-profile-image__file-field" %>
-								  <%= f.submit "Upload", class: "btn btn-primary" %>
-							  </div>
-							<% end %>
-						</div>
+						<a class="ep-change-image <%= org_user.has_profile_image? ? 'js-edit' : '' %>" data-toggle="collapse" data-target="#ep-profile-image__toggle">
+							<i class="fa fa-camera-retro"></i>
+							<%= org_user.has_profile_image? ? 'Change image' : 'Add image' %>
+						</a>
 					</div>
 				<% end %>
 			</div>
@@ -66,6 +55,7 @@
 			<%= render partial: 'profile_actions', locals: { org: org, org_user: org_user} %>
 		</div>
 	</div>
+	<%= render partial: 'users/add_avatar_form', locals: { user: org_user } %>
 </div>
 
 
