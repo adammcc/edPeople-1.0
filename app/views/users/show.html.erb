@@ -74,7 +74,7 @@
       <% if user_signed_in? %>
         <p><%= @user.first_name %>'s profile is private. <br> To view it,
           <span class='ep-profile-connection-request-link ep-link-style' data-toggle="modal" data-target="#ep-confirm__connection-request">
-            become #{@user.first_name}'s connection.
+            <%= "become #{@user.first_name}'s connection." %>
           </span>
         </p>
       <% else %>
