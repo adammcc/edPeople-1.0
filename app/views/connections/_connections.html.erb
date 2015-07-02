@@ -47,7 +47,7 @@
 
 		<div id="ep-invited_by">
 			<% for inviter in user.pending_invited_by %>
-				<%= render partial: 'connections/connection', locals: { friend: invite, user: user } %>
+				<%= render partial: 'connections/connection', locals: { friend: inviter, user: user } %>
 			<% end %>
       <% if user.pending_invited_by.blank? %>
         <div class="ep-no-friends">
