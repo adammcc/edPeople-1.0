@@ -109,6 +109,11 @@
 	&.in {
 		z-index: 9999999;
 	}
+	.modal-content {
+		padding: 20px;
+		height: 400px;
+		overflow: scroll;
+	}
 }
 
 .ep-profile-section__header {
@@ -222,7 +227,7 @@
 	background-color: $ep-red;
 	color: white;
 	font-size: 10px;
-	padding: 2px;
+	padding: 2px 5px;
 	border-radius: 4px;
 	margin-bottom: 10px;
 	position: relative;

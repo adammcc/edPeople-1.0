@@ -7,9 +7,12 @@
 	<div class="ep-connections">
     <% if user == current_user %>
         <a id="ep-show-suggested-friends" class="ep-active-connections">Suggestions</a>
-		  | <a id="ep-show-friends">Connections <%= user.friends.count > 0 ? "(#{user.friends.count})" : "" %></a>
-			| <a id="ep-show-invites">Sent <%= user.pending_invited.count > 0 ? "(#{user.pending_invited.count})" : "" %></a>
-      | <a id="ep-show-inviters">Invitations <%= user.pending_invited_by.count > 0 ? "(#{user.pending_invited_by.count})" : "" %></a>
+		  | <a id="ep-show-friends">Connections</a>
+			| <a id="ep-show-invites">Sent</a>
+      | <a id="ep-show-inviters">Invitations</a>
+      <% if user.pending_invited_by.count > 0 %>
+        <span class="ep-unread-messages-alert"><%= user.pending_invited_by.count > 0 ? user.pending_invited_by.count : "" %></span>
+      <% end %>
     <% else %>
       <p>Connections <%= user.friends.count > 0 ? "(#{user.friends.count})" : "" %></p>
 		<% end %>
