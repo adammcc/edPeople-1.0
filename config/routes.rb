@@ -32,6 +32,8 @@ Ep::Application.routes.draw do
         end
       end
     end
+
+    resources :connections, only: [:index]
   end
 
   resources :colleges, only: [:create]

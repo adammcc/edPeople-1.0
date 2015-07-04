@@ -20,14 +20,17 @@
 
   <% if user == current_user %>
     <div id="ep-friend-suggestions">
-      <% for friend in suggestions %>
+      <% for friend in suggestions.take(4) %>
         <%= render partial: 'connections/connection', locals: { friend: friend, user: user } %>
+      <% end %>
+      <% if suggestions.count > 4 %>
+        <%= link_to 'See more', user_connections_path(user, connection_type: 'suggestions'), remote: true %>
       <% end %>
     </div>
   <% end %>
 
 	<div id="ep-friends">
-		<% for friend in user.friends.take(6) %>
+		<% for friend in user.friends.take(4) %>
 			<%= render partial: 'connections/connection', locals: { friend: friend, user: user } %>
 		<% end %>
     <% if user.friends.blank? %>
@@ -35,10 +38,13 @@
         No connections yet. <%= link_to 'Find connections.', users_path() %>
       </div>
     <% end %>
+    <% if user.friends.count > 4 %>
+      <%= link_to 'See all', user_connections_path(user, connection_type: 'friends'), remote: true %>
+    <% end %>
 	</div>
 	<% if user == current_user %>
 		<div id="ep-invited">
-			<% for invite in user.pending_invited %>
+			<% for invite in user.pending_invited.take(4) %>
 				<%= render partial: 'connections/connection', locals: { friend: invite, user: user } %>
 			<% end %>
       <% if user.pending_invited.blank? %>
@@ -46,10 +52,13 @@
           You haven't sent any invitations.
         </div>
       <% end %>
+      <% if user.pending_invited.count > 4 %>
+        <%= link_to 'See all', user_connections_path(user, connection_type: 'pending_invited'), remote: true %>
+      <% end %>
 		</div>
 
 		<div id="ep-invited_by">
-			<% for inviter in user.pending_invited_by %>
+			<% for inviter in user.pending_invited_by.take(4) %>
 				<%= render partial: 'connections/connection', locals: { friend: inviter, user: user } %>
 			<% end %>
       <% if user.pending_invited_by.blank? %>
@@ -57,24 +66,12 @@
           No invitations.
         </div>
       <% end %>
+      <% if user.pending_invited_by.count > 4 %>
+        <%= link_to 'See all', user_connections_path(user, connection_type: 'pending_invited_by'), remote: true %>
+      <% end %>
 		</div>
 	<% end %>
-
-  <% if user.friends.count > 6 %>
-	 <a class="ep-see-all-connections" data-toggle="modal" data-target=".ep-connection-modal">See All</a>
-  <% end %>
 </div>
 
 <div class="modal fade ep-connection-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-sm">
-    <div class="modal-content">
-    	<div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Connections</h4>
-      </div>
-      <% for friend in user.friends %>
-				<%= render partial: 'connections/connection', locals: { friend: friend, user: user } %>
-			<% end %>
-    </div>
-  </div>
 </div>
