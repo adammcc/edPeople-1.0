@@ -5,7 +5,7 @@
   			<%= render partial: 'profile_header' %>
   		</div>
 
-      <% if @user.has_profile_info %>
+      <% if @user.has_profile_info || @user == current_user %>
     		<div class="col-md-7">
           <% if @user == current_user || @experiences.present? %>
       			<div class="ep-profile-section ep-profile-section--experience  white-bg">

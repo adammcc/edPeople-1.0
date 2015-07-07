@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_filter :mailer_set_url_options
 
   def update_sanitized_params
-    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:first_name, :last_name, :email, :password, :as_org)}
+    devise_parameter_sanitizer.for(:sign_up) {|u| u.permit(:first_name, :last_name, :email, :password, :as_org, :added_password)}
   end
 
   def after_sign_in_path_for(resource)

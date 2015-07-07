@@ -53,6 +53,7 @@
 						  <div class="row">
 						  	<div class="col-md-10 col-md-offset-1">
 						  		<%= f.password_field :password, placeholder: 'Password', class: 'ep-signin-signup__text-field-large', :required => true %>
+						  		<%= f.hidden_field :added_password, value: true %>
 								  <%#= f.password_field :password_confirmation, placeholder: 'Confirm Pasword', class: 'ep-signin-signup__text-field-small ep-signin-signup__text-field-small--right' %>
 								</div>
 							</div>
