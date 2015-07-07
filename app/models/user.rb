@@ -80,7 +80,7 @@ class User
   has_and_belongs_to_many :experiences
   has_and_belongs_to_many :roles
   has_and_belongs_to_many :subjects
-  has_many :job_posts
+  has_many :job_posts, dependent: :destroy
   has_and_belongs_to_many :conversations
   has_many :messages
   belongs_to :org
