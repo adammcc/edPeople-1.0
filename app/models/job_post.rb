@@ -45,7 +45,7 @@ class JobPost
 
   def address_or_name_for_geocode
     if self.indeed_key.present?
-      return "#{self.organization} New York City"
+      return "#{self.organization} #{self.indeed_location}"
     else
       if self.street_address.present?
         return self.address

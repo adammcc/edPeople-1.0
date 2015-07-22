@@ -1,27 +1,21 @@
 class JobMapsController < ApplicationController
 
   def index
-    grouped_jobs = JobPost.ne(user_id: nil).where(indeed_key: nil).group_by { |job| job.user_id }
-    grouped_indeed_jobs = JobPost.ne(indeed_key: nil).group_by { |job| job.organization }
+    grouped_jobs = JobPost.collection.aggregate([
+      { "$group" => { "_id" => { "coordinates" => "$coordinates", "organization" => "$organization", "user_id" => "$user_id" }, "data" => { "$push" => { "job" => { "id" => "$_id", "title" => "$title" }}}}}
+    ])
 
     @jobs = []
     grouped_jobs.each do |job|
-      ids = job[1].map { |job| job.id.to_s }
-      titles = job[1].map { |job| job.title }
-      coords = job[1].first.coordinates
-      name = job[1].first.user.name
-      org_user_id = job[1].first.user.id
-      if coords.present?
-        @jobs << { org_name: name, org_user_id: org_user_id, job_ids: ids, titles: titles, coords: coords }
-      end
-    end
+      ids = job["data"].map { |job| job["job"]["id"].to_s }
+      titles =  job["data"].map { |job| job["job"]["title"] }
+      coords = job["_id"]["coordinates"]
+      name = job["_id"]["organization"]
+      user_id = job["_id"]["user_id"]
 
-    grouped_indeed_jobs.each do |job|
-      ids = job[1].map { |job| job.id.to_s }
-      titles = job[1].map { |job| job.title }
-      coords = job[1].first.coordinates
-      if coords.present?
-        @jobs << { org_name: job[0], job_ids: ids, titles: titles, coords: coords }
+
+      if coords.present? && coords != [-74.0059413, 40.7127837] # TODO: figure out why all these jobs are geodcoded to these coords
+        @jobs << { org_name: name, user_id: user_id, job_ids: ids, titles: titles, coords: coords }
       end
     end
   end

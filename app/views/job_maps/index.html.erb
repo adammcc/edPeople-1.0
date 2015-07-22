@@ -5,10 +5,11 @@
 <script type="text/javascript">
 
   var jobs = <%= raw @jobs.to_json %>
+  var marker, myLatLong, infowindow;
+  var existingMarkers = []
+  var content = []
 
   var styles = [{"featureType":"landscape.natural","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"color":"#e0efef"}]},{"featureType":"poi","elementType":"geometry.fill","stylers":[{"visibility":"on"},{"hue":"#1900ff"},{"color":"#d3d3d3"}]},{"featureType":"road","elementType":"geometry","stylers":[{"lightness":100},{"visibility":"simplified"}]},{"featureType":"transit.line","elementType":"geometry","stylers":[{"visibility":"on"},{"lightness":700}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#3bafda"}]}]
-
-  var marker, myLatLong, infowindow;
 
   function initialize() {
     var mapOptions = {
@@ -27,18 +28,19 @@
         map: map
       });
 
-      attachMarker(marker, map, i)
+      attachMarker(marker, map, myLatLong, i)
     }
   }
-  google.maps.event.addDomListener(window, 'load', initialize);
 
-  function attachMarker(marker, map, num) {
+  function attachMarker(marker, map, latLong, num) {
     var titles = jobs[num]['titles'];
     var titleLinks = '';
+    var finalContentString;
+    var tempContentString = '';
 
-
-    jobs[num]['titles'].forEach( function(title, i) {
-      titleLinks += "<li><a href='/job_posts/" + jobs[num]['job_ids'][i] + "'>"  + title + "</a></li>"
+    jobs[num]['titles'].forEach( function(title, j) {
+      console.log(jobs[num]['job_ids'][j])
+      titleLinks += "<li><a href='/job_posts/" + jobs[num]['job_ids'][j] + "'>"  + title + "</a></li>"
     });
 
     var contentString = '<div id="content">'+
@@ -49,9 +51,32 @@
       '<div id="bodyContent">'+
       '<ul style="padding-left:16px;">' +
         titleLinks +
-      '</ul>'
+      '</ul>' +
       '</div>'+
       '</div>';
+
+    // Lets check to see if any of the existing markers are at the same position as the current marker
+    if (existingMarkers.length != 0) {
+      for (k=0; k < existingMarkers.length; k++) {
+        var markerPos = marker.getPosition();
+
+        var testMarker = existingMarkers[k];
+        var testMarkerPos = testMarker.getPosition();
+
+        if (markerPos.equals(testMarkerPos)){
+          tempContentString =  content[k] + " <br> " + contentString;
+        }
+      }
+    }
+
+    if (tempContentString.length) {
+      finalContentString = tempContentString
+    } else {
+      finalContentString = contentString
+    }
+
+    existingMarkers.push(marker);
+    content.push(finalContentString);
 
     infowindow = new google.maps.InfoWindow({
       maxWidth: 240
@@ -59,12 +84,12 @@
 
     google.maps.event.addListener(marker, 'click', (function(marker, num) {
       return function() {
-        infowindow.setContent(contentString);
-
+        infowindow.setContent(finalContentString);
         infowindow.open(map, marker);
       }
-    })(marker, i));
+    })(marker, num));
   }
+  google.maps.event.addDomListener(window, 'load', initialize);
 
 </script>
 
