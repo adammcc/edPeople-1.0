@@ -75,7 +75,7 @@ Ep::Application.configure do
     password: ENV['EP_GOOGLE_PASSWORD']
   }
 
-  ActionMailer::Base.default :from => 'adam@edpeople.com'
+  ActionMailer::Base.default :from => 'info@edpeople.com'
 
   config.ga_key = 'UA-62360226-1'
 end
