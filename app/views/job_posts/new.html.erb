@@ -28,6 +28,8 @@
           <div class="ep-form__clear">
             <%= f.submit 'Add', :class => 'btn btn-primary' %>
             <%= content_tag :div, 'cancel', class: 'btn btn-default', :data => { toggle: "collapse", target: "#ep-app-job__toggle" } %>
+            <br><br>
+            <p class="ep-gray">This job post will expire in 90 days.</p>
           </div>
         <% end %>
       </div>
