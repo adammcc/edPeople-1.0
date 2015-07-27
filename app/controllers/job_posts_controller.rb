@@ -31,6 +31,11 @@ class JobPostsController < ApplicationController
     @random_jobs = JobPost.all.shuffle.first(5) if @similar_jobs.blank?
   end
 
+  def new
+    @job_post = JobPost.new()
+    @random_jobs = JobPost.all.shuffle.first(5) if @similar_jobs.blank?
+  end
+
   def create
     @job_post = JobPost.create(params[:job_post])
     @job_post.user = current_user
