@@ -11,9 +11,12 @@
 	background-color: #3BAFDA;
   height: auto;
   &.ep-home-section__one--home {
-    background-image: url(green_apple.jpg);
-    background-size: cover;
-    height: 500px;
+    height: 825px;
+    background: url(green_apple-smaller.jpg) no-repeat top center;
+    -webkit-background-size: 1920px 825px;
+    -moz-background-size: 1920px 825px;
+    -o-background-size: 1920px 825px;
+    background-size: 1920px 825px;
   }
 }
 
