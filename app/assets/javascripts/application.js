@@ -15,7 +15,7 @@
 //= require jquery-ui
 //= require util
 //= require autocomplete-rails
-//= require twitter/bootstrap
+//= require bootstrap.min
 //= require bootstrap-datepicker
 //= require best_in_place
 //= require forms

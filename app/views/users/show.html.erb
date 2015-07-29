@@ -1,12 +1,12 @@
 <% if @user.gives_access_to(current_user) || @user == current_user %>
-  <div class="col-md-12 ep-main-container">
+  <div class="col-sm-12 ep-main-container">
   	<div class="row">
-  		<div class="col-md-12">
+  		<div class="col-sm-12">
   			<%= render partial: 'profile_header' %>
   		</div>
 
       <% if @user.has_profile_info || @user == current_user %>
-    		<div class="col-md-7">
+    		<div class="col-sm-7">
           <% if @user == current_user || @experiences.present? %>
       			<div class="ep-profile-section ep-profile-section--experience  white-bg">
       				<%= render partial: 'experience', locals: { user: @user, experiences: @experiences } %>
@@ -20,7 +20,7 @@
           <% end %>
     		</div>
 
-    		<div class="col-md-5">
+    		<div class="col-sm-5">
           <% if @user == current_user || @user.certs.present? %>
             <div class="ep-profile-section ep-profile-section--cert white-bg">
               <%= render partial: 'certs', locals: { user: @user } %>
@@ -43,11 +43,11 @@
         <div class="ep-no-profile-message">
           <p><strong><%= @user.first_name %></strong> has no profile information yet. <br> You may want to check out these profiles:</p>
         </div>
-        <div class="col-md-8 col-md-offset-2 ep-profile-header white-bg">
+        <div class="col-sm-8 col-sm-offset-2 ep-profile-header white-bg">
           <br>
           <% @other_people_that_have_info.each do |user| %>
             <%= link_to user_path(user) do %>
-              <div class="ep-other-person-with-info col-md-3">
+              <div class="ep-other-person-with-info col-sm-3">
                 <div class="ep-index__photo">
                   <%= user_image(user, 'medium', '120', '120') %>
                 </div><br>
@@ -60,9 +60,9 @@
     </div>
   </div>
 <% else %>
-  <div class="col-md-12 ep-main-container">
+  <div class="col-sm-12 ep-main-container">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-sm-12">
         <%= render partial: 'profile_header_no_access' %>
       </div>
     </div>
@@ -123,10 +123,10 @@
 
 <div id="ep-confirm__add_password" class="modal fade">
   <div class="modal-dialog">
-    <div class="col-md-12 ep-main-container">
+    <div class="col-sm-12 ep-main-container">
       <br>
       <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-sm-8 col-sm-offset-2">
           <div class="ep-profile-section white-bg">
             <button type="button" class="close" data-dismiss="modal" style="margin:10px 14px 0 0;">&times;</button>
             <%= form_for @user, html: { class: 'form-horizontal' }, remote: true do |f| %>

@@ -1,8 +1,8 @@
 <div class="row-fluid"><br><br><br><br>
-  <div class="ep-search col-md-3 white-bg">
+  <div class="ep-search col-sm-3 white-bg">
     <h3><%= link_to 'Back to inbox', user_conversations_path(current_user) %></h3>
   </div>
-  <div class="ep-index col-md-8 white-bg">
+  <div class="ep-index col-sm-8 white-bg">
     <div class="page-header">
       <% if @recipient %>
         <h3>Conversation with <%= link_to "#{@recipient.name}", user_path(@recipient) %></h3>
