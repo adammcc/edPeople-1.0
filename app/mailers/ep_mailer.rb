@@ -23,4 +23,14 @@ class EpMailer < ActionMailer::Base
     )
   end
 
+  def original_user_password_reset(user, password)
+    @user = user
+    @password = password
+    @host = ActionMailer::Base.default_url_options[:host]
+    mail(
+      :to => user.email,
+      :subject => 'Password Reset Notification'
+    )
+  end
+
 end
