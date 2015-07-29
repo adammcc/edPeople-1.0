@@ -1,9 +1,10 @@
 <% if flash[:notice] == "A message with a confirmation link has been sent to your email address. Please open the link to activate your account." %>
 	<section class="ep-home-section__one ep-home-section__one--sign-in-pw">
+		<div class="ep-home-section__one--bg-image"></div>
 		<div class="container ep-container">
 			<div class="ep-home-section__row row">
 				<div class="ep-signin-signup ep-signin-signup--signin-pw col-md-6 col-md-offset-3">
-					<h2 class="ep-signin-signup__header" style="padding-top: 25px">Almost there!</h2>
+					<h2 class="ep-signin-signup__header ep-signin-signup__header--home" style="padding-top: 25px; color:white;">Almost there!</h2>
 						<p class="ep-confirmation-instructions"><%= flash[:notice] %></p>
 					<div class="row">
 						<div class="ep-links col-md-10 col-md-offset-1">
@@ -24,8 +25,8 @@
 					<div class="ep-home-section__one-liner col-md-5">
 						<p><span class="ep-home-section__edpeople">edPeople</span> <span style="color:#E0E0E0">is a free professional networking community for educators in the New York City area.</span></p>
 					</div>
-					<div class="ep-signin-signup ep-signin-signup--home js-signin-signup col-md-6 col-md-offset-1">
-						<h2 class="ep-signin-signup__header ep-signin-signup__header--home ep-signin-signup__header--white" style="color:white;">Create an account</h2>
+					<div class="ep-signin-signup js-signin-signup col-md-6 col-md-offset-1">
+						<h2 class="ep-signin-signup__header ep-signin-signup__header--home" style="color:white;">Create an account</h2>
 						<div class="ep-signin-signup__errors ep-signin-signup__errors--home">
 					  	<%= devise_error_messages! %>
 					  </div>
@@ -73,7 +74,7 @@
 						<% end %>
 
 						<div class="row">
-							<div class="ep-links ep-links--white col-md-10 col-md-offset-1">
+							<div class="ep-links col-md-10 col-md-offset-1">
 								<%= render "devise/shared/links" %>
 							</div>
 						</div>

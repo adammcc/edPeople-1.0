@@ -8,16 +8,12 @@
 
 .ep-home-section__one {
 	@extend %ep-home-section;
-	background-color: #3BAFDA;
-  height: auto;
-  &.ep-home-section__one--home {
-    height: 825px;
-    background: url(green_apple-smaller.jpg) no-repeat top center;
-    -webkit-background-size: 1920px 825px;
-    -moz-background-size: 1920px 825px;
-    -o-background-size: 1920px 825px;
-    background-size: 1920px 825px;
-  }
+  height: 825px;
+  background: url(green_apple.jpg) no-repeat top center;
+  -webkit-background-size: 1920px 825px;
+  -moz-background-size: 1920px 825px;
+  -o-background-size: 1920px 825px;
+  background-size: 1920px 825px;
   .ep-signin-signup__text-field-small, .ep-signin-signup__text-field-large {
     border: 2px solid white;
   }
@@ -84,11 +80,8 @@
 .ep-signin-signup {
 	min-height: 333px;
 	margin-top: 8px;
-  background-color: #ecf0f1;
+  background-color: rgba(0,0,0,0);
 	z-index: 2;
-  &.ep-signin-signup--home {
-    background-color: rgba(0,0,0,0);
-  }
 	input {
 		height: 54px;
 		margin-bottom: 14px;
@@ -115,7 +108,7 @@
 
 .ep-signin-signup__header {
 	text-align: center;
-  color: #96ceb4;
+  color: white;
   &.ep-signin-signup__header--home {
     font-size: 34px;
   }
@@ -201,9 +194,6 @@
 .ep-links {
 	margin-top: 5px;
 	margin-bottom: 10px;
-}
-
-.ep-links.ep-links--white {
   i, a, span {
     color: white !important;
   }
@@ -217,7 +207,7 @@ input:-webkit-autofill {
 	font-size: 20px;
 	color: #3BAFDA;
 	position: relative;
-	top: 2px
+	top: 0px
 }
 
 .ep-navbar-sessions {
