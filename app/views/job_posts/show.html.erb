@@ -1,6 +1,6 @@
 <div class="js-section-container row-fluid"><br><br><br><br>
 
-    <div class="ep-similar-jobs col-md-3 white-bg">
+    <div class="ep-similar-jobs col-sm-3 white-bg">
       <h4>
         <%= link_to job_maps_path, class: 'ep-link-to-job-maps' do %>
           <i class="fa fa-globe"></i> Jobs Map
@@ -31,7 +31,7 @@
       <% end %>
     </div>
 
-    <div class="ep-show-job col-md-8 white-bg">
+    <div class="ep-show-job col-sm-8 white-bg">
       <%= render partial: 'show_job', locals: { job: @job } %>
     </div>
   </div>

@@ -3,11 +3,11 @@
 		<div class="ep-home-section__one--bg-image"></div>
 		<div class="container ep-container">
 			<div class="ep-home-section__row row">
-				<div class="ep-signin-signup ep-signin-signup--signin-pw col-md-6 col-md-offset-3">
+				<div class="ep-signin-signup ep-signin-signup--signin-pw col-sm-6 col-sm-offset-3">
 					<h2 class="ep-signin-signup__header ep-signin-signup__header--home" style="padding-top: 25px; color:white;">Almost there!</h2>
 						<p class="ep-confirmation-instructions"><%= flash[:notice] %></p>
 					<div class="row">
-						<div class="ep-links col-md-10 col-md-offset-1">
+						<div class="ep-links col-sm-10 col-sm-offset-1">
 							<%= render "devise/shared/links" %>
 						</div>
 					</div>
@@ -22,10 +22,10 @@
 		<div class="container ep-container ep-home-section__one--content">
 			<div class="row">
 				<div class="ep-home-section__row ep-home-section__row--one row">
-					<div class="ep-home-section__one-liner col-md-5">
+					<div class="ep-home-section__one-liner col-sm-5">
 						<p><span class="ep-home-section__edpeople">edPeople</span> <span style="color:#E0E0E0">is a free professional networking community for educators in the New York City area.</span></p>
 					</div>
-					<div class="ep-signin-signup js-signin-signup col-md-6 col-md-offset-1">
+					<div class="ep-signin-signup js-signin-signup col-sm-6 col-sm-offset-1">
 						<h2 class="ep-signin-signup__header ep-signin-signup__header--home" style="color:white;">Create an account</h2>
 						<div class="ep-signin-signup__errors ep-signin-signup__errors--home">
 					  	<%= devise_error_messages! %>
@@ -33,36 +33,36 @@
 						<br>
 						<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
 						  <div class="row js-user-name-fields">
-						  	<div class="col-md-10 col-md-offset-1">
+						  	<div class="col-sm-10 col-sm-offset-1">
 									<%= f.text_field :first_name, placeholder: 'First Name', id: 'js-signin-signup--first-name', class: 'ep-signin-signup__text-field-small', :autofocus => true, :required => true %>
 									<%= f.text_field :last_name, placeholder: 'Last Name', id: 'js-signin-signup--last-name', class: 'ep-signin-signup__text-field-small ep-signin-signup__text-field-small--right', :required => true %>
 								</div>
 						  </div>
 
 						  <div class="row ep-org-field js-org-field">
-						  	<div class="col-md-10 col-md-offset-1">
+						  	<div class="col-sm-10 col-sm-offset-1">
 									<%= text_field_tag 'org[name]', '', placeholder: 'Organization Name', id: 'js-signin-signup--org-name', class: 'ep-signin-signup__text-field-large', :required => true %>
 								</div>
 						  </div>
 
 						  <div class="row">
-						  	<div class="col-md-10 col-md-offset-1">
+						  	<div class="col-sm-10 col-sm-offset-1">
 						  		<%= f.email_field :email, placeholder: 'Email', class: 'ep-signin-signup__text-field-large', :required => true %>
 						  	</div>
 						  </div>
 
 						  <div class="row">
-						  	<div class="col-md-10 col-md-offset-1">
+						  	<div class="col-sm-10 col-sm-offset-1">
 						  		<%= f.password_field :password, placeholder: 'Password', class: 'ep-signin-signup__text-field-large', :required => true %>
 						  		<%= f.hidden_field :added_password, value: true %>
 								  <%#= f.password_field :password_confirmation, placeholder: 'Confirm Pasword', class: 'ep-signin-signup__text-field-small ep-signin-signup__text-field-small--right' %>
 								</div>
 							</div>
 							<div class="row">
-						  	<div class="col-md-5 col-md-offset-1">
+						  	<div class="col-sm-5 col-sm-offset-1">
 						  		<%= f.submit "Sign up", class: 'btn btn-primary ep-signin-signup__submit' %>
 						  	</div>
-						  	<div class="col-md-5">
+						  	<div class="col-sm-5">
 						  		<div class="btn btn-primary ep-signin-signup__submit__linkedin">
 						  			<%= link_to user_omniauth_authorize_path(:linkedin) do %>
 									  	<i class="fa fa-linkedin-square ep-linkedin-icon"></i>
@@ -74,7 +74,7 @@
 						<% end %>
 
 						<div class="row">
-							<div class="ep-links col-md-10 col-md-offset-1">
+							<div class="ep-links col-sm-10 col-sm-offset-1">
 								<%= render "devise/shared/links" %>
 							</div>
 						</div>
@@ -88,17 +88,17 @@
 <section class="ep-home-section__two">
 	<div class="container ep-container">
 		<div class="row">
-			<div class="ep-info-blurb ep-info-blurb__with-margin ep-info-blurb__with-margin-for-mobile col-md-4">
+			<div class="ep-info-blurb ep-info-blurb__with-margin ep-info-blurb__with-margin-for-mobile col-sm-4">
 				<h2><img src="/assets/lines15.png"> WHAT WE ARE</h2>
 				<p>edPeople is a free online network for educators. We offer access to people, jobs, and employers and enable members to create and manage their professional identity.</p>
 			</div>
 
-			<div class="ep-info-blurb ep-info-blurb__with-margin ep-info-blurb__with-margin-for-mobile col-md-4">
+			<div class="ep-info-blurb ep-info-blurb__with-margin ep-info-blurb__with-margin-for-mobile col-sm-4">
 				<h2><img src="/assets/lock132.png"> WHY WE'RE HERE</h2>
 				<p>Our mission is to empower educators to build and maximize their professional networks. We want to transform the way educators manage their careers and improve how schools find talent.</p>
 			</div>
 
-			<div class="ep-info-blurb ep-info-blurb__with-margin ep-info-blurb__with-margin-for-mobile col-md-4">
+			<div class="ep-info-blurb ep-info-blurb__with-margin ep-info-blurb__with-margin-for-mobile col-sm-4">
 				<h2><img src="/assets/rocketlaunch.png"> WHAT WE DO</h2>
 				<p>Our platform enables educators to connect with one another, build a professional profile and learn about new opportunities. We also allow schools and other employers to advertise jobs and connect with candidates for free.</p>
 			</div>

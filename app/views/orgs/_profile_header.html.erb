@@ -1,7 +1,7 @@
-<div class="col-md-12 ep-profile-header white-bg">
+<div class="col-sm-12 ep-profile-header white-bg">
 
 	<div class="row">
-		<div class="col-md-6 ep-user-snapshot">
+		<div class="col-sm-6 ep-user-snapshot">
 			<div class="ep-profile-image">
 				<%= user_image(org_user, 'medium', '120', '120') %>
 			 	<% if org_user == current_user %>
@@ -48,10 +48,10 @@
 			</div>
 		</div>
 
-		<div class="ep-user-roles-and-subjects col-md-3">
+		<div class="ep-user-roles-and-subjects col-sm-3">
 		</div>
 
-		<div class="ep-profile-actions js-profile-actions-<%= org_user.id %> col-md-3">
+		<div class="ep-profile-actions js-profile-actions-<%= org_user.id %> col-sm-3">
 			<%= render partial: 'profile_actions', locals: { org: org, org_user: org_user} %>
 		</div>
 	</div>

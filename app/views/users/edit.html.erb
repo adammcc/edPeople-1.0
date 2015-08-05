@@ -1,8 +1,8 @@
-<div class="col-md-12 ep-main-container">
+<div class="col-sm-12 ep-main-container">
   <div class="row">
     <div class="row">
       <%= form_for @user, :html => { :class => 'form-horizontal' } do |f| %>
-        <div class="col-md-4">
+        <div class="col-sm-4">
           <div class="ep-profile-section ep-account-settings-section white-bg">
             <div class="ep-profile-section__header">
               <% if @user.as_org %>
@@ -20,7 +20,7 @@
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-sm-4">
           <div class="ep-profile-section ep-account-settings-section white-bg">
             <div class="ep-profile-section__header">
               <h4>Email notifications</h4>
@@ -39,7 +39,7 @@
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-sm-4">
           <div class="ep-profile-section ep-account-settings-section white-bg">
             <div class="ep-profile-section__header">
               <h4>Change Password</h4>
@@ -58,7 +58,7 @@
           </div>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-sm-4">
           <div class="ep-profile-section ep-account-settings-section white-bg">
             <div class="ep-profile-section__header">
               <h4>Privacy Settings</h4>
@@ -82,7 +82,7 @@
         </div>
 
         <%= f.fields_for :org, @user.org do |g| %>
-          <div class="col-md-4">
+          <div class="col-sm-4">
             <div class="ep-profile-section ep-account-settings-section white-bg">
               <div class="ep-profile-section__header">
                 <h4>Address</h4>
@@ -96,11 +96,11 @@
                   <%= g.label :city, :class => 'ep-form__label' %><br>
                   <%= g.text_field :city, :class => 'ep-form__text-field__long' %>
                 </div>
-                <div class="col-md-3" style="padding:0">
+                <div class="col-sm-3" style="padding:0">
                   <%= g.label :state, :class => 'ep-form__label' %><br>
                   <%= g.text_field :state, :class => 'ep-form__text-field__state', width: '20px' %>
                 </div>
-                <div class="col-md-7" style="padding:0">
+                <div class="col-sm-7" style="padding:0">
                   <%= g.label :zip, :class => 'ep-form__label' %><br>
                   <%= g.text_field :zip, :class => 'ep-form__text-field__zip' %>
                 </div>

@@ -1,6 +1,28 @@
 @import 'config';
 
-@media only screen and (max-width: 767px) {
+@media screen and (min-width: 768px) and (max-width: 960px) {
+  .container {
+    width: 750px !important;
+  }
+
+  .ep-signin-signup__text-field-small {
+    width: 141px !important;
+  }
+
+  .ep-signin-signup__submit__linkedin {
+    font-size: 10px !important;
+  }
+
+  .ep-profile-header {
+    .ep-user-snapshot {
+      .ep-user-info {
+        width: 150px !important;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 480px) {
   // User Profile
   ////////////////
 
