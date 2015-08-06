@@ -9,7 +9,7 @@
     <h3>Find jobs</h3>
     <%= form_tag job_posts_path, method: :get, remote: true, class: 'js-search-form' do %>
 
-      <%= text_field_tag 'search', @search_term, placeholder: 'Search jobs...', class: "js-search-form__text-field" %>
+      <%= text_field_tag 'search', @search_term, placeholder: 'Search jobs...', class: "js-search-form__text-field ep-search-form__text-field" %>
 
       <h4>Filter by location</h4>
       <% @locations.each do |location| %>

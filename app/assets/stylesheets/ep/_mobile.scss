@@ -20,6 +20,17 @@
       }
     }
   }
+
+  .ep-form__text-area--mobile {
+    width: 320px !important;
+    display: block !important;
+    margin-bottom: 10px !important;
+  }
+
+  .ep-search-form__text-field {
+    width: 130px;
+    font-size: 11px;
+  }
 }
 
 @media screen and (max-width: 480px) {

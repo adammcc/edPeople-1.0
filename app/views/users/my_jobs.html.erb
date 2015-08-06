@@ -2,7 +2,7 @@
   <div class="ep-search col-sm-3 white-bg">
     <h3>Search</h3>
     <%= form_tag my_jobs_user_path, method: :get, remote: true, class: 'js-search-form' do %>
-      <%= text_field_tag 'search', @search_term, placeholder: 'Search term...', class: "js-search-form__text-field" %>
+      <%= text_field_tag 'search', @search_term, placeholder: 'Search term...', class: "js-search-form__text-field ep-search-form__text-field" %>
     <% end %>
   </div>
 

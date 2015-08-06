@@ -7,7 +7,7 @@
     <% end %>
 
     <%= form_tag user_conversations_path, method: :get, remote: true, class: 'js-search-form' do %>
-      <%= text_field_tag 'search', @search_term, placeholder: 'Search conversations...', class: "js-search-form__text-field" %>
+      <%= text_field_tag 'search', @search_term, placeholder: 'Search conversations...', class: "js-search-form__text-field ep-search-form__text-field" %>
     <% end %>
     <br>
     <% if !@trash %>
