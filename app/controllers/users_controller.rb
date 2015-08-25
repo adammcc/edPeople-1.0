@@ -113,7 +113,7 @@ class UsersController < ApplicationController
   def add_avatar
     user = User.find(params[:id])
     if params[:user].present?
-      accepted_formats = [".jpg", ".JPG", ".tif", ".TIF", ".png", ".PNG", ".gif", ".GIF"]
+      accepted_formats = [".jpg", ".JPG", ".tif", ".TIF", ".png", ".PNG", ".gif", ".GIF", ".jpeg", ".JPEG"]
       avatar = params[:user][:avatar]
 
       if accepted_formats.include? File.extname(avatar.original_filename)
