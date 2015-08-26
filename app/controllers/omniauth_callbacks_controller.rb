@@ -3,7 +3,10 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 	def linkedin
 	  auth = request.env["omniauth.auth"]
 	  @user = User.connect_to_linkedin(auth, current_user)
-	  if @user.persisted?
+	  if @user.nil?
+	    flash[:alert] = "Your linkedin account email must match your edPeople email."
+	    redirect_to user_path(current_user)
+	  elsif @user.persisted?
 	  	if user_signed_in?
 	  		flash[:notice] = I18n.t "devise.omniauth_callbacks.sync_success"
 	  	else

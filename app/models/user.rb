@@ -149,34 +149,34 @@ class User
   end
 
   def self.connect_to_linkedin(auth, signed_in_resource=nil)
-    user = User.where(:provider => auth.provider, :uid => auth.uid).first
-    if user
-      user.sync_with_linkedin(user, auth)
-      return user
-    else
+    if signed_in_resource.present? && signed_in_resource.email == auth.info.email
+      signed_in_resource.sync_with_linkedin(signed_in_resource, auth)
+      return signed_in_resource
+    elsif signed_in_resource.nil?
       registered_user = User.where(:email => auth.info.email).first
       if registered_user
         registered_user.sync_with_linkedin(registered_user, auth)
         return registered_user
       else
-        if @user = User.new( first_name:auth.info.first_name,
-                            last_name:auth.info.last_name,
-                            headline:auth.info.headline,
-                            pro_summary:auth.info.summary,
-                            provider:auth.provider,
-                            uid:auth.uid,
-                            email:auth.info.email,
-                            password:Devise.friendly_token[0,20],
-                            has_linkedin_account:true,
-                            confirmed_at: DateTime.now
-                          )
-          @user.skip_confirmation!
-          @user.save!
-          @user.sync_with_linkedin(@user, auth)
+        if new_user = User.new(
+          first_name:auth.info.first_name,
+          last_name:auth.info.last_name,
+          headline:auth.info.headline,
+          pro_summary:auth.info.summary,
+          provider:auth.provider,
+          uid:auth.uid,
+          email:auth.info.email,
+          password:Devise.friendly_token[0,20],
+          has_linkedin_account:true,
+          confirmed_at: DateTime.now
+        )
+          new_user.skip_confirmation!
+          new_user.save!
+          new_user.sync_with_linkedin(new_user, auth)
         end
       end
     end
-    return @user
+    return new_user
   end
 
   def sync_with_linkedin(user, auth)
