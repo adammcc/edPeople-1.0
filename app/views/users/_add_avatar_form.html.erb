@@ -15,6 +15,7 @@
 
       <%= f.submit "Upload", class: "btn btn-primary js-file-upload__submit", disabled: true  %>
       <%= content_tag :div, 'Cancel', class: 'btn btn-default', :data => { toggle: "collapse", target: "#ep-profile-image__toggle" } %>
+      <%= link_to 'Remove', remove_avatar_user_path(user), method: :put, class: 'btn btn-primary btn-warning' %>
     </div>
   <% end %>
 </div>

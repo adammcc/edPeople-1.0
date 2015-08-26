@@ -129,6 +129,19 @@ class UsersController < ApplicationController
     redirect_to :back
   end
 
+  def remove_avatar
+    user = User.find(params[:id])
+    user.avatar.clear
+    user.image_url = ""
+    user.delete_avatar_from_s3
+    if user.save
+      flash[:notice] = "Your profile picture has successfully been removed"
+    else
+     flash[:alert] =  "Error!"
+    end
+    redirect_to :back
+  end
+
   def add_resume
     user = User.find(params[:id])
     if !params[:resume].nil?

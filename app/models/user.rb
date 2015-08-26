@@ -278,6 +278,13 @@ class User
     self.save
   end
 
+  def delete_avatar_from_s3
+    s3 = AWS::S3.new
+    bucket = s3.buckets['ep-dev-avatar/avatars']
+    name = self.id.to_s
+    bucket.objects.delete(name)
+  end
+
   def unread_messages_count(conversations)
     unread_messages_count = 0
     conversations.each do |convo|

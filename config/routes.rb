@@ -20,6 +20,7 @@ Ep::Application.routes.draw do
     get :autocomplete_college_name, :on => :collection
     member do
       put :add_avatar
+      put :remove_avatar
       put :add_resume
       put :remove_resume
       get :my_jobs
