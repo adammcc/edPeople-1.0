@@ -9,8 +9,11 @@
 					<%= college_info.major %>
 				</p>
 				<p class="ep-college-meta">
-					<%= college_info.start_date %> -
+					<%= college_info.start_date %>
+					<%= '- Present' if college_info.start_date.present? && college_info.end_date.blank? %>
+					<%= '-' if college_info.start_date.present? && college_info.end_date.present? %>
 					<%= college_info.end_date %>
+
 				</p>
 		</div>
 		<a class="js-edit-college js-edit js-edit-section-item">Edit |</a>
