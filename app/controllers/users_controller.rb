@@ -88,12 +88,14 @@ class UsersController < ApplicationController
       respond_to do |format|
         format.html { redirect_to user_path(@user) }
         format.json { render nothing: true }
+        format.js
       end
     else
       flash[:alert] = @user.errors.full_messages
       respond_to do |format|
         format.html { redirect_to :back }
         format.json { render nothing: true }
+        format.js
       end
     end
   end
