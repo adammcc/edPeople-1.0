@@ -49,7 +49,28 @@
         </li>
 
         <li class="<%= 'active' if current_page?(job_posts_path) %>"><%= link_to "Organizations", orgs_path %></li>
-        <li><%= link_to "Sign in", new_user_session_path %></li>
+
+        <li>
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+           Sign in <b class="caret"></b>
+          </a>
+          <div class="dropdown-menu row ep-sign-up-dropdown-form" role="menu">
+            <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+              <div class="ep-signin-signup__errors">
+                <p><%= flash[:alert] %></p>
+              </div>
+              <div class="col-sm-5 ep-sign-up-dropdown-form__input">
+                <%= f.email_field :email, placeholder: 'Email', class: 'ep-signin-signup__text-field-large', :required => true %>
+              </div>
+              <div class="col-sm-5 ep-sign-up-dropdown-form__input">
+                <%= f.password_field :password, placeholder: 'Password', class: 'ep-signin-signup__text-field-large', :required => true %>
+              </div>
+              <div class="col-sm-2 ep-sign-up-dropdown-form__last-input">
+                <%= f.submit "Sign in", class: 'btn btn-primary ep-signin-signup__submit' %>
+              </div>
+            <% end %>
+          </div>
+        </li>
       </ul>
     </div>
   </div>

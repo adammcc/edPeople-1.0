@@ -27,3 +27,6 @@ $ ->
     $('.js-signin-signup h2').text('Create an account')
     $('.js-as-org-field').remove()
 
+  $('.dropdown-menu input').click (e) ->
+    e.stopPropagation()
+
