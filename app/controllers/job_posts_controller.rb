@@ -9,15 +9,36 @@ class JobPostsController < ApplicationController
     location_ids = params[:filter_by_locations]
 
     if @search_term.present? || role_ids || location_ids
-      @jobs = JobPost.asc(:created_at)
-      @jobs = JobPost.full_text_search(@search_term) if @search_term.present?
-      if role_ids && location_ids
-         @jobs = @jobs.in(location_id: location_ids).in(role_id: role_ids)
-      elsif role_ids || location_ids
-        @jobs = @jobs.in(role_id: role_ids) if role_ids
-        @jobs = @jobs.in(location_id: location_ids) if location_ids
+      if @search_term.present?
+        jobs = JobPost.full_text_search(@search_term)
+      else
+        jobs = JobPost.all
       end
-      @jobs = @jobs.asc(:created_at).paginate(page: params[:page], per_page: 10)
+
+      if role_ids && location_ids
+        location_names = Location.in(id: location_ids).pluck(:name).map { |name| Regexp.new(name, 'i')}
+        role_names = Role.in(id: role_ids).pluck(:name).map { |name| Regexp.new(name, 'i')}
+
+        jobs_filtered_by_location = jobs.where( location_id: { :$in => location_ids } ) + jobs.where( indeed_location: { :$in => location_names } )
+        jobs_filtered_by_location = JobPost.all.in( id: jobs_filtered_by_location.map(&:id) )
+        jobs = jobs_filtered_by_location.where( role_ids: { :$in => location_names } ) + jobs_filtered_by_location.where( title: { :$in => role_names } )
+
+        @jobs = jobs.sort_by(&:created_at).paginate(page: params[:page], per_page: 10)
+      elsif role_ids || location_ids
+        if location_ids
+          location_names = Location.in(id: location_ids).pluck(:name).map { |name| Regexp.new(name, 'i')}
+          jobs = jobs.where( location_id: { :$in => location_ids } ) + jobs.where( indeed_location: { :$in => location_names } )
+        end
+
+        if role_ids
+          role_names = Role.in(id: role_ids).pluck(:name).map { |name| Regexp.new(name, 'i')}
+          jobs = jobs.where( role_id: { :$in => role_ids }) + jobs.where( title: { :$in => role_names } )
+        end
+
+        @jobs = jobs.sort_by(&:created_at).paginate(page: params[:page], per_page: 10)
+      else
+        @jobs = jobs.asc(:created_at).paginate(page: params[:page], per_page: 10)
+      end
     else
       @jobs = JobPost.asc(:created_at).paginate(page: params[:page], per_page: 10)
     end
