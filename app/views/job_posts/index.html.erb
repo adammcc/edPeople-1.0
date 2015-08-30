@@ -13,19 +13,19 @@
 
       <h4>Filter by location</h4>
       <% @locations.each do |location| %>
-        <%= check_box_tag 'filter_by_locations[]', location.id, false, class: 'js-search-form__check-box' %>
-        <%= label_tag 'filter_by_location', location.name, class: 'ep-filter-label' %><br>
+        <%= check_box_tag 'filter_by_locations[]', location.id, false, id: "#{location.id}", class: 'js-search-form__check-box' %>
+        <%= label_tag 'filter_by_location', location.name, class: 'ep-filter-label', for: "#{location.id}"   %><br>
       <% end %>
 
       <h4>Filter by role</h4>
       <% @roles.in(name: ["Administrator", "Teacher"]).desc(:name).each do |role| %>
-        <%= check_box_tag 'filter_by_roles[]', role.id, false, class: 'js-search-form__check-box' %>
-        <%= label_tag 'filter_by_roles', role.name, class: 'ep-filter-label'  %><br>
+        <%= check_box_tag 'filter_by_roles[]', role.id, false, id: "#{role.id}", class: 'js-search-form__check-box' %>
+        <%= label_tag 'filter_by_roles', role.name, class: 'ep-filter-label', for: "#{role.id}"  %><br>
       <% end %>
 
       <% @roles.nin(name: ["Administrator", "Teacher"]).desc(:name).each do |role| %>
-        <%= check_box_tag 'filter_by_roles[]', role.id, false, class: 'js-search-form__check-box' %>
-        <%= label_tag 'filter_by_roles', role.name, class: 'ep-filter-label'  %><br>
+        <%= check_box_tag 'filter_by_roles[]', role.id, false, id: "#{role.id}", class: 'js-search-form__check-box' %>
+        <%= label_tag 'filter_by_roles', role.name, class: 'ep-filter-label', for: "#{role.id}"  %><br>
       <% end %>
    <% end %>
   </div>
