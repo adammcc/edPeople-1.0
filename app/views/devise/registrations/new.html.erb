@@ -26,7 +26,10 @@
 						<p><span class="ep-home-section__edpeople">edPeople</span> <span style="color:#E0E0E0">is a free professional networking community for educators in the New York City area.</span></p>
 					</div>
 					<div class="ep-signin-signup js-signin-signup col-sm-6 col-sm-offset-1">
-						<h2 class="ep-signin-signup__header ep-signin-signup__header--home" style="color:white;">Create an account</h2>
+						<h2 class="ep-signin-signup__header ep-signin-signup__header--home" style="color:white; margin:0;">Create an account</h2>
+						<%= link_to "#", class: 'js-create-an-org' do %>
+							<p class="ep-orgs-click-here"><i>Organizations click here</i></p>
+						<% end %>
 						<div class="ep-signin-signup__errors">
 					  	<%= devise_error_messages! %>
 					  </div>
