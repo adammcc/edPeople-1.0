@@ -45,5 +45,5 @@ Ep::Application.configure do
 
   ActionMailer::Base.default :from => 'info@edpeople.com'
 
-  config.ga_key = 'UA-62360226-1'
+  config.ga_key = 'UA-40348268-1'
 end
