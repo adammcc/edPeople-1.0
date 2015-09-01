@@ -41,21 +41,28 @@
     		</div>
       <% else %>
         <div class="ep-no-profile-message">
-          <p><strong><%= @user.first_name %></strong> has no profile information yet. <br> You may want to check out these profiles:</p>
-        </div>
-        <div class="col-sm-8 col-sm-offset-2 ep-profile-header white-bg">
-          <br>
-          <% @other_people_that_have_info.each do |user| %>
-            <%= link_to user_path(user) do %>
-              <div class="ep-other-person-with-info col-sm-3">
-                <div class="ep-index__photo">
-                  <%= user_image(user, 'medium', '120', '120') %>
-                </div><br>
-                <div class="ep-other-person-with-info__name"><%= user.name.truncate(18)  %></div>
-              </div>
+          <p><strong><%= @user.first_name %></strong> has no profile information yet.
+            <% if @other_people_that_have_info.count > 5 %>
+              <br>
+              You may want to check out these profiles:
             <% end %>
-          <% end %>
+          </p>
         </div>
+        <% if @other_people_that_have_info.count > 5 %>
+          <div class="col-sm-8 col-sm-offset-2 ep-profile-header white-bg">
+            <br>
+            <% @other_people_that_have_info.each do |user| %>
+              <%= link_to user_path(user) do %>
+                <div class="ep-other-person-with-info col-sm-3">
+                  <div class="ep-index__photo">
+                    <%= user_image(user, 'medium', '120', '120') %>
+                  </div><br>
+                  <div class="ep-other-person-with-info__name"><%= user.name.truncate(18)  %></div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        <% end %>
       <% end %>
     </div>
   </div>
