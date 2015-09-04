@@ -145,14 +145,14 @@
 }
 
 .ep-signin-signup__submit {
-	background-color: $ep-bright-green;
-	border-color: $ep-bright-green;
+	background-color: $ep-light-green;
+	border-color: $ep-light-green;
 	border-radius: 0px;
 	width: 100%;
 	text-align: center;
 	&:hover {
-		border-color: darken($ep-bright-green, 5%);
-    background: darken($ep-bright-green, 5%);
+		border-color: darken($ep-light-green, 5%);
+    background: darken($ep-light-green, 5%);
   }
 }
 

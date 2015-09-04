@@ -111,7 +111,7 @@ progress::-webkit-progress-value {
     background: $blue-jeans-light;
   }
   &.ep-profile-good {
-    background: $ep-bright-green;
+    background: $ep-light-green;
   }
 }
 
@@ -120,7 +120,7 @@ progress.ep-profile-goodish::-webkit-progress-value  {
 }
 
 progress.ep-profile-good::-webkit-progress-value  {
-  background: $ep-bright-green;
+  background: $ep-light-green;
 }
 
 .ep-profile-percentage {
@@ -138,12 +138,12 @@ progress.ep-profile-good::-webkit-progress-value  {
 }
 
 .ep-profile-good {
-  color: $ep-bright-green;
+  color: $ep-light-green;
 }
 
 .btn-primary {
-  background-color: $ep-bright-green;
-  border-color: $ep-bright-green;
+  background-color: $ep-light-green;
+  border-color: $ep-light-green;
   color: white !important;
   &.btn-warning {
   	background-color: $ep-red;
@@ -165,8 +165,8 @@ progress.ep-profile-good::-webkit-progress-value  {
 }
 
 .btn-primary:hover {
-  border-color: darken($ep-bright-green, 5%);
-  background-color: darken($ep-bright-green, 5%);
+  border-color: darken($ep-light-green, 5%);
+  background-color: darken($ep-light-green, 5%);
 }
 
 .ep-normal-font-weight {
