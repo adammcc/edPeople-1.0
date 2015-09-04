@@ -142,8 +142,8 @@ progress.ep-profile-good::-webkit-progress-value  {
 }
 
 .btn-primary {
-  background-color: #96ceb4;
-  border-color: #96ceb4;
+  background-color: $ep-bright-green;
+  border-color: $ep-bright-green;
   color: white !important;
   &.btn-warning {
   	background-color: $ep-red;
@@ -165,8 +165,8 @@ progress.ep-profile-good::-webkit-progress-value  {
 }
 
 .btn-primary:hover {
-  border-color: darken(#96ceb4, 5%);
-  background-color: darken(#96ceb4, 5%);
+  border-color: darken($ep-bright-green, 5%);
+  background-color: darken($ep-bright-green, 5%);
 }
 
 .ep-normal-font-weight {
