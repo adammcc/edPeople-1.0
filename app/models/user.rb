@@ -311,7 +311,7 @@ class User
   end
 
   def has_profile_image?
-   photo_url != "/images/original/missing.png"
+   !["/images/original/missing.png", ""].include? photo_url
   end
 
   def gives_access_to(user)
