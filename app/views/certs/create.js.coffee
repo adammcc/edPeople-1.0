@@ -28,5 +28,5 @@ _ep.notify.success("<%= flash[:notice] %>")
 <% end %>
 
 <% if flash[:alert] %>
-_ep.notify.success("<%= flash[:alert] %>")
+_ep.notify.failure("<%= flash[:alert] %>")
 <% end %>
