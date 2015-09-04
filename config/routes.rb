@@ -24,6 +24,7 @@ Ep::Application.routes.draw do
       put :add_resume
       put :remove_resume
       get :my_jobs
+      get :refresh_progress
     end
 
     authenticate :user do

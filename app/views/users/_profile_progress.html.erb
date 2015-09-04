@@ -1,0 +1,6 @@
+<% progress_class = 'ep-profile-bad' if progress <= 50 %>
+<% progress_class = 'ep-profile-goodish' if progress >= 50 && progress < 75 %>
+<% progress_class = 'ep-profile-good' if progress >= 75 %>
+
+<progress class="<%= progress_class %>" value="<%= progress %>" max="100"></progress>
+<span class="ep-profile-percentage <%= progress_class %>"><%= progress %>%</span>

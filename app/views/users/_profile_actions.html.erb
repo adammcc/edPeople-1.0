@@ -104,6 +104,9 @@
 <% if current_user == user %>
   <p class='js-edit-mode'><i class="fa fa-pencil-square"></i><a> Edit my profile</a></p>
   <p class='js-exit-edit-mode js-edit'><i class="fa fa-pencil-square"></i><a> Done Editing</a></p>
+  <div class="ep-profile-progress">
+    <%= render partial: 'profile_progress', locals: { progress: user.profile_progress } %>
+  </div>
 <% end %>
 
 <div id="ep-confirm__connection-request" class="modal fade">

@@ -182,6 +182,11 @@ class UsersController < ApplicationController
     @jobs = jobs.asc(:created_at).paginate(page: params[:page], per_page: 10)
   end
 
+  def refresh_progress
+    user_progress = User.find(params[:id]).profile_progress
+    render partial: "users/profile_progress", locals: {progress: user_progress}
+  end
+
   private
 
 end

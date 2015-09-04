@@ -92,6 +92,55 @@ body#ep {
   }
 }
 
+progress {
+  width: 120px;
+  height: 16px;
+  -webkit-appearance: none;
+  border: none;
+}
+
+progress::-webkit-progress-bar {
+  background: #ecf0f1;
+  border-radius: 50px;
+}
+
+progress::-webkit-progress-value {
+  border-radius: 50px;
+  background-color: $ep-red;
+  &.ep-profile-goodish {
+    background: $blue-jeans-light;
+  }
+  &.ep-profile-good {
+    background: $ep-bright-green;
+  }
+}
+
+progress.ep-profile-goodish::-webkit-progress-value  {
+  background: $blue-jeans-light;
+}
+
+progress.ep-profile-good::-webkit-progress-value  {
+  background: $ep-bright-green;
+}
+
+.ep-profile-percentage {
+  font-weight: bold;
+  position: relative;
+  bottom: 3px;
+}
+
+.ep-profile-bad {
+  color: $ep-red;
+}
+
+.ep-profile-goodish {
+  color: $blue-jeans-light
+}
+
+.ep-profile-good {
+  color: $ep-bright-green;
+}
+
 .btn-primary {
   background-color: #96ceb4;
   border-color: #96ceb4;

@@ -331,6 +331,22 @@ class User
     skills.present? ||
     friends.present?
   end
+
+  def profile_progress
+    progress = 0
+    progress += 10 if first_name.present? && last_name.present?
+    progress += 10 if headline.present?
+    progress += 10 if has_profile_image?
+    progress += 10 if has_experiences?
+    progress += 10 if has_college_infos?
+    progress += 10 if has_certs?
+    progress += 10 if has_skills?
+    progress += 10 if has_roles?
+    progress += 10 if has_subjects?
+    progress += 10 if has_resume
+    progress
+  end
+
 end
 
 # positions:

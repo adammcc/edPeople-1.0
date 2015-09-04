@@ -38,6 +38,11 @@ $ ->
 			$('#ep-invited').hide()
 			$('#ep-invited_by').hide()
 
+  $(document).ajaxSuccess ->
+    url = $('.je-refresh-progress-url').data('url')
+    if url.length
+      $('.ep-profile-progress').load(url)
+
 	$('.js-edit-mode').click ->
 		$('.js-edit-mode').hide()
 		$('.js-exit-edit-mode').show()
@@ -63,7 +68,7 @@ $ ->
 	  $('.ep-change-image.js-edit').hide()
 
 	if $('#js-show-add-password-form').length
-		$("#ep-confirm__add_password").modal('show');
+		$("#ep-confirm__add_password").modal('show')
 
 @imgError = (image) ->
   image.onerror = ""
