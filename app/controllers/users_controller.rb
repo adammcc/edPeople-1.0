@@ -12,7 +12,7 @@ class UsersController < ApplicationController
     subject_ids = params[:filter_by_subjects]
 
     if @search_term.present? || role_ids || subject_ids
-      @users = User.just_users.asc(:created_at)
+      @users = User.just_users.desc(:created_at)
       @users = User.just_users.full_text_search(@search_term) if @search_term.present?
       if role_ids && subject_ids
         @users = @users.in(role_ids: role_ids).in(subject_ids: subject_ids)
@@ -20,9 +20,13 @@ class UsersController < ApplicationController
         @users = @users.in(role_ids: role_ids) if role_ids
         @users = @users.in(subject_ids: subject_ids) if subject_ids
       end
-      @users = @users.asc(:created_at).paginate(page: params[:page], per_page: 10)
+      @users = @users.desc(:created_at).paginate(page: params[:page], per_page: 10)
     else
-      @users = User.just_users.desc(:created_at).paginate(page: params[:page], per_page: 10)
+      users_with_info = User.just_users.desc(:created_at).select { |user| user.has_profile_info }
+      users_with_no_info = User.just_users.desc(:created_at).nin(id: users_with_info.map(&:id))
+      users = users_with_info + users_with_no_info
+
+      @users = users.paginate(page: params[:page], per_page: 10)
     end
   end
 
