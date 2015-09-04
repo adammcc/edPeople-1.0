@@ -39,7 +39,7 @@ $ ->
 			$('#ep-invited_by').hide()
 
   $(document).ajaxSuccess ->
-    url = $('.je-refresh-progress-url').data('url')
+    url = $('.js-refresh-progress-url').data('url')
     if url.length
       $('.ep-profile-progress').load(url)
 
