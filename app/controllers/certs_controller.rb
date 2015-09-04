@@ -12,5 +12,7 @@ class CertsController < ApplicationController
   def destroy
     @cert = Cert.find(params[:id])
     @cert.destroy
+
+    render nothing: true
   end
 end
