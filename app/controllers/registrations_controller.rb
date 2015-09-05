@@ -2,15 +2,19 @@ class RegistrationsController < Devise::RegistrationsController
 
 
   def create
-    if params[:user][:as_org]
-      params[:user].merge( first_name: 'org_first', last_name: 'org_last' )
-    end
+    if !params[:phone_number].present? # Beating registration bots!
+      if params[:user][:as_org]
+        params[:user].merge( first_name: 'org_first', last_name: 'org_last' )
+      end
 
-    super
+      super
 
-    if params[:user][:as_org]
-      resource.create_org(name: params[:org][:name])
-      resource.save
+      if params[:user][:as_org]
+        resource.create_org(name: params[:org][:name])
+        resource.save
+      end
+    else
+      render nothing: true
     end
   end
 
