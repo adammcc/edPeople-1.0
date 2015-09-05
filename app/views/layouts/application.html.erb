@@ -61,6 +61,7 @@
 			    <ul class="dropdown-menu" role="menu">
 			    	<% if user_signed_in? %>
 						  <li><%= link_to 'My profile', user_path(current_user) %></li>
+              <li><%= link_to 'My messages', user_conversations_path(current_user) %></li>
               <li><%= link_to "Account Settings", edit_user_path(current_user) %></li>
 						  <li><%= link_to "Sign out", destroy_user_session_path, method: :delete %></li>
 						<% else %>
