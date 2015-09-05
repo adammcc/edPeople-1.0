@@ -9,7 +9,7 @@
     <div id="ep-app-job__toggle" class="collapse">
       <div class='ep-form'>
         <%= form_for JobPost.new do |f| %>
-          <%= render partial: 'job_posts/form_fields', locals: { f: f } %>
+          <%= render partial: 'job_posts/form_fields', locals: { f: f, org: org } %>
           <div class="ep-form__clear">
             <%= f.submit 'Add', :class => 'btn btn-primary' %>
             <%= content_tag :div, 'cancel', class: 'btn btn-default', :data => { toggle: "collapse", target: "#ep-app-job__toggle" } %>

@@ -92,7 +92,7 @@
   <h3>Edit job post</h3>
   <hr>
   <%= form_for job, method: :put, remote: true do |f| %>
-    <%= render partial: 'form_fields', locals: { f: f } %>
+    <%= render partial: 'form_fields_for_edit', locals: { f: f } %>
     <div class="ep-form__clear">
       <%= f.submit 'Save', :class => 'btn btn-primary' %>
       <%= content_tag :div, 'cancel', class: 'ep-cancel-edit btn btn-default' %>

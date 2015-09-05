@@ -24,7 +24,7 @@
     <% if current_user %>
       <div class='ep-form js-edit-form'>
         <%= form_for @job_post do |f| %>
-          <%= render partial: 'form_fields', locals: { f: f } %>
+          <%= render partial: 'form_fields', locals: { f: f, org: current_user && current_user.as_org ? current_user.org : nil } %>
           <div class="ep-form__clear">
             <%= f.submit 'Add', :class => 'btn btn-primary' %>
             <%= content_tag :div, 'cancel', class: 'btn btn-default', :data => { toggle: "collapse", target: "#ep-app-job__toggle" } %>
