@@ -14,6 +14,7 @@ $('.js-delete').click ->
     $(this).parent().hide()
 
 $('.js-edit').show()
+$('.js-exit-edit-mode').hide()
 $('.ep-datepicker').datepicker({
   format: "mm/yyyy",
   startView: "months",
