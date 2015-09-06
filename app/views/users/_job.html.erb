@@ -5,10 +5,13 @@
 	<div class="js-experience ep-experience js-section-item">
 		<div class="ep-title-container">
 			<h5>
-				<%= experience.title %> at <span><%= experience.school.present? ? experience.school : experience.employer %></span>
+				<%= experience.title %> <span><%= place_of_work(experience) %></span>
 				<span class="nycdoe"><%= experience.employer == 'NYCDOE' ? "(#{experience.employer})" : '' %></span>
 			</h5>
 		</div>
+		<p class="ep-experience-meta">
+			<%= experience.employer if experience.school.present? && experience.employer.present? %>
+		</p>
 		<p class="ep-experience-meta">
 			<%= experience.boro.present? ? experience.boro : '' %>
 			<%= " |" if  experience.boro.present? && ( experience.district.present? || experience.start_date.present? )%>

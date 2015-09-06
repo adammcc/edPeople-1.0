@@ -36,4 +36,13 @@ module ApplicationHelper
     end
   end
 
+  def place_of_work(experience)
+    if experience.school.present?
+      "at #{experience.school}"
+    elsif experience.employer.present?
+      "at #{experience.employer}"
+    else
+      ""
+    end
+  end
 end
