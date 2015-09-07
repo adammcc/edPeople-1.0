@@ -3,8 +3,8 @@
 		<%= form_for college_info, :html => { class: '' }, remote: true do |f| %>
 			<div class="ep-form__profile-form-field">
 				<div class="ep-college-name">
-					<%= f.label :college_name, :class => 'ep-form__label' %><br>
-		    	<%= f.autocomplete_field :name, autocomplete_college_name_users_path, value: college_info.college.name, class: 'autocomplete_field ep-form__text-field' %>
+					<%= f.label :college_name, :class => 'ep-form__label' %>*<br>
+		    	<%= f.autocomplete_field :name, autocomplete_college_name_users_path, value: college_info.college.name, class: 'autocomplete_field ep-form__text-field', required: true %>
 		   	</div>
 		  </div>
 

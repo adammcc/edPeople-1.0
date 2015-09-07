@@ -20,4 +20,6 @@ class Experience
   field :linkedin_id, type: String
 
   has_and_belongs_to_many :users
+
+  validates_presence_of :title, :start_date
 end

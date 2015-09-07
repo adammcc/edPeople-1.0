@@ -20,7 +20,7 @@
 			<%= form_for Skill.new, remote: true do |f| %>
 				<div class="ep-form__profile-form-field">
 					<%= f.label :name, :class => 'ep-form__label' %>
-				 	<%= f.text_field :name, autofocus: true, :class => 'ep-form__text-field' %>
+				 	<%= f.text_field :name, autofocus: true, :class => 'ep-form__text-field', required: true %>
 				</div>
 		    <%= f.submit 'Add', :class => 'btn btn-primary' %>
 		    <%= content_tag :div, 'cancel', class: 'ep-cancel-edit btn btn-default' %>

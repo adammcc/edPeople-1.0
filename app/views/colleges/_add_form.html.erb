@@ -2,8 +2,8 @@
 	<% if current_user %>
 		<%= form_for College.new, remote: true do |f| %>
 			<div class="ep-form__profile-form-field">
-		    <%= f.label :college_name, :class => 'ep-form__label' %><br>
-		    <%= f.autocomplete_field :name, autocomplete_college_name_users_path, class: 'autocomplete_field ep-form__text-field' %>
+		    <%= f.label :college_name, :class => 'ep-form__label' %>*<br>
+		    <%= f.autocomplete_field :name, autocomplete_college_name_users_path, class: 'autocomplete_field ep-form__text-field', required: true %>
 		  </div>
 
 	    <div class="ep-form__profile-form-field">

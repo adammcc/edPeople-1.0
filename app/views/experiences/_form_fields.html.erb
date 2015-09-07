@@ -1,6 +1,6 @@
 <div class="ep-form__profile-form-field">
-  <%= f.label :title, :class => 'ep-form__label' %><br>
-  <%= f.text_field :title, :class => 'ep-form__text-field' %>
+  <%= f.label :title, :class => 'ep-form__label' %>*<br>
+  <%= f.text_field :title, :class => 'ep-form__text-field', required: true %>
 </div>
 
 <div class="ep-form__profile-form-field">
@@ -14,8 +14,8 @@
 </div>
 
 <div class="ep-form__date ep-form__start-date ep-form__small-input ep-form__profile-form-field">
-  <%= f.label :start_date, :class => 'ep-form__label' %><br>
-  <%= f.text_field :start_date, id: "start-#{experience.id}", class: 'ep-form__text-field ep-datepicker' %>
+  <%= f.label :start_date, :class => 'ep-form__label' %>*<br>
+  <%= f.text_field :start_date, id: "start-#{experience.id}", class: 'ep-form__text-field ep-datepicker', required: true %>
 </div>
 
 <div class="ep-form__date ep-form__small-input ep-form__profile-form-field">
