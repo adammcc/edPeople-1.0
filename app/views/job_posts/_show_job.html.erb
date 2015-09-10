@@ -70,13 +70,15 @@
   </div>
 
   <div class="ep-job-info__description">
-    <h4>Description</h4>
-    <p><%= h(job.description).gsub(/\n/, '<br/>').html_safe %></p>
+    <% if job.description.present? %>
+      <h4>Description</h4>
+      <p><%= h(job.description).gsub(/\n/, '<br/>').html_safe %></p>
+      <hr>
+    <% end %>
     <% if job.indeed_key.present? %>
       <p><%= link_to "View full post on indeed", "#{job.indeed_url}", target: '_blank' %></p>
     <% end %>
     <% if job.contact_info.present? %>
-      <hr>
       <h4>How to apply</h4>
       <p><%= job.contact_info %></p>
     <% end %>
