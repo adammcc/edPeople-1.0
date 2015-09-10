@@ -38,11 +38,6 @@ $ ->
 			$('#ep-invited').hide()
 			$('#ep-invited_by').hide()
 
-  $(document).ajaxSuccess ->
-    url = $('.js-refresh-progress-url').data('url')
-    if url.length
-      $('.ep-profile-progress').load(url)
-
 	$('.js-edit-mode').click ->
 		$('.js-edit-mode').hide()
 		$('.js-exit-edit-mode').show()
@@ -69,6 +64,15 @@ $ ->
 
 	if $('#js-show-add-password-form').length
 		$("#ep-confirm__add_password").modal('show')
+
+profileProgressListenerSetUp = ->
+  $(document).ajaxSuccess ->
+    url = $('.ep-profile-progress').data('url')
+    $('.ep-profile-progress').load url, ->
+    $(this).unbind('ajaxSuccess')
+$(document).ajaxStop ->
+  profileProgressListenerSetUp()
+profileProgressListenerSetUp()
 
 @imgError = (image) ->
   image.onerror = ""
