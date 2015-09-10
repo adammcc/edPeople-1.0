@@ -8,7 +8,6 @@ class CollegesController < ApplicationController
       college = College.create(name: params[:college][:name])
     end
     college_info = params[:college]
-    college_info.delete(:name)
     if college.college_infos.create(college_info.merge user: @user)
       flash[:notice] =  "Saved!"
     else
