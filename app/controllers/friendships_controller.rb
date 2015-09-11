@@ -6,7 +6,7 @@ class FriendshipsController < ApplicationController
 
     if @user.invite @friend
       flash[:notice] = "Request sent."
-      EpMailer.friend_invitation(@friend, @user).deliver if @friend.allows_friend_request_email
+      FriendInvitationMailerJob.new.async.perform(@friend, @user) if @friend.allows_friend_request_email
     else
       flash[:notice] = "Error"
     end
