@@ -41,6 +41,7 @@ gem 'rails_12factor'
 gem 'geocoder', '~> 1.2.8'
 gem 'bootstrap-datepicker-rails', '~> 1.4.0'
 gem 'google_drive', '~> 1.0.1'
+gem 'sucker_punch', '~> 1.0'
 
 
 group :development do
