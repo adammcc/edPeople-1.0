@@ -209,8 +209,16 @@ a.ep-index__connect {
     cursor: pointer;
   }
   &.ep-index__info-right--small {
-    width: 150px;
+    width: 100%;
   }
+}
+
+.ep-index__items td:first-child {
+  width: 78%;
+}
+
+.ep-index__items td:nth-child(2) {
+  width: 22%;
 }
 
 .ep-index__photo {
