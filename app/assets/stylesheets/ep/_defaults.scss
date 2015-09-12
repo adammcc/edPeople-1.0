@@ -201,15 +201,12 @@ a.ep-index__connect {
 }
 
 .ep-index__info-right {
-	width: 200px;
+	width: 100%;
 	color: $ep-mid-gray;
 	font-size: 12px !important;
   &.ep-link-style {
     color: $blue-jeans;
     cursor: pointer;
-  }
-  &.ep-index__info-right--small {
-    width: 100%;
   }
 }
 
