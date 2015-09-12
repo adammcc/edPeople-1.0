@@ -92,6 +92,19 @@ body#ep {
   }
 }
 
+.ep-outdated-browser-warning {
+  color:white;
+  height:100px;
+  width:600px;
+  background-color:#F1A9A0;
+  margin:20px auto;
+  padding: 16px;
+}
+
+a.ep-outdated-browser-warning__link {
+  color: lightgoldenrodyellow !important;
+}
+
 progress {
   width: 120px;
   height: 16px;

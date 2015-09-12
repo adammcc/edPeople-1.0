@@ -20,6 +20,14 @@
 	<section class="ep-home-section__one ep-home-section__one--home">
 		<div class="ep-home-section__one--bg-image"></div>
 		<div class="container ep-container ep-home-section__one--content">
+			<% if unsupported_browser? %>
+				<div class="ep-outdated-browser-warning">
+					<p>
+						<i class="fa fa-exclamation-triangle" style="font-size:20px"></i>
+						Looks like you're using an <strong>outdated</strong> version of Internet Explorer. For the best experience please download <a href="https://www.google.com/chrome/browser/desktop/index.html" class="ep-outdated-browser-warning__link">Google Chrome</a>. If you would still like to use Internet Explorer, you can find the latest viersion <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie" class="ep-outdated-browser-warning__link">here</a>.
+					</p>
+				</div>
+			<% end %>
 			<div class="row">
 				<div class="ep-home-section__row ep-home-section__row--one row">
 					<div class="ep-home-section__one-liner col-sm-5">

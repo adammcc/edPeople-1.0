@@ -45,4 +45,14 @@ module ApplicationHelper
       ""
     end
   end
+
+  def unsupported_browser?
+    browser = Struct.new(:browser, :version)
+    unsupported_browsers = [
+      browser.new("Internet Explorer", "9.0"),
+    ]
+
+    user_agent = UserAgent.parse(request.env["HTTP_USER_AGENT"])
+    unsupported_browsers.detect { |browser| user_agent <= browser }.present?
+  end
 end
