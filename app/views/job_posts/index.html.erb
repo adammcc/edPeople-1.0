@@ -32,21 +32,25 @@
 
   <div class="ep-index col-sm-8 white-bg">
     <div class="page-header">
-      <a class="pull-right" data-toggle="collapse" data-target="#ep-app-job__toggle">Post a job</a>
+      <% if user_signed_in? %>
+        <a class="pull-right" data-toggle="collapse" data-target="#ep-app-job__toggle">Post a job</a>
+      <% end %>
       <h3>Jobs</h3>
-      <div id="ep-app-job__toggle" class="collapse">
-        <div class='ep-form js-edit-form'>
-          <%= form_for JobPost.new do |f| %>
-            <%= render partial: 'form_fields', locals: { f: f, org: current_user && current_user.as_org ? current_user.org : nil } %>
-            <div class="ep-form__clear">
-              <%= f.submit 'Add', :class => 'btn btn-primary' %>
-              <%= content_tag :div, 'cancel', class: 'btn btn-default', :data => { toggle: "collapse", target: "#ep-app-job__toggle" } %>
-              <br><br>
-              <p class="ep-gray">This job post will expire in 90 days.</p>
-            </div>
-          <% end %>
+      <% if user_signed_in? %>
+        <div id="ep-app-job__toggle" class="collapse">
+          <div class='ep-form js-edit-form'>
+            <%= form_for JobPost.new do |f| %>
+              <%= render partial: 'form_fields', locals: { f: f, org: current_user && current_user.as_org ? current_user.org : nil } %>
+              <div class="ep-form__clear">
+                <%= f.submit 'Add', :class => 'btn btn-primary' %>
+                <%= content_tag :div, 'cancel', class: 'btn btn-default', :data => { toggle: "collapse", target: "#ep-app-job__toggle" } %>
+                <br><br>
+                <p class="ep-gray">This job post will expire in 90 days.</p>
+              </div>
+            <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
     </div>
     <table class="table ep-index__table">
       <tbody class="ep-index__items">
