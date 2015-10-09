@@ -13,7 +13,7 @@ gem "bson"
 gem "moped", github: "mongoid/moped"
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'mongoid', '~> 4.0.0'
+gem 'mongoid', '~> 5.0.0'
 gem 'mongoid_search', '~> 0.3.2'
 gem 'devise', '3.0.0.rc'
 gem 'omniauth', '1.2.1'
