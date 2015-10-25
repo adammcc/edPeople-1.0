@@ -23,7 +23,7 @@ class JobPostsController < ApplicationController
         jobs_filtered_by_location = JobPost.all.in( id: jobs_filtered_by_location.map(&:id) )
         jobs = jobs_filtered_by_location.where( role_ids: { :$in => location_names } ) + jobs_filtered_by_location.where( title: { :$in => role_names } )
 
-        @jobs = jobs.sort_by(&:created_at).paginate(page: params[:page], per_page: 10)
+        @jobs = jobs.sort_by(&:created_at).reverse.paginate(page: params[:page], per_page: 10)
       elsif role_ids || location_ids
         if location_ids
           location_names = Location.in(id: location_ids).pluck(:name).map { |name| Regexp.new(name, 'i')}
@@ -35,12 +35,12 @@ class JobPostsController < ApplicationController
           jobs = jobs.where( role_id: { :$in => role_ids }) + jobs.where( title: { :$in => role_names } )
         end
 
-        @jobs = jobs.sort_by(&:created_at).paginate(page: params[:page], per_page: 10)
+        @jobs = jobs.sort_by(&:created_at).reverse.paginate(page: params[:page], per_page: 10)
       else
-        @jobs = jobs.asc(:created_at).paginate(page: params[:page], per_page: 10)
+        @jobs = jobs.desc(:created_at).paginate(page: params[:page], per_page: 10)
       end
     else
-      @jobs = JobPost.asc(:created_at).paginate(page: params[:page], per_page: 10)
+      @jobs = JobPost.desc(:created_at).paginate(page: params[:page], per_page: 10)
     end
   end
 
